@@ -1,4 +1,6 @@
-from .cooperative_transport_env import CooperativeTransportEnv
+from .cooperative_transport_env import (
+    CooperativeTransportEnv,
+)
 from .objects import RectObject
 
 __all__ = [

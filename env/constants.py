@@ -1,14 +1,16 @@
-# ============================================================
-# Physical actions
-# ============================================================
-
 STAY = 0
 UP = 1
 RIGHT = 2
 DOWN = 3
 LEFT = 4
 
-PHYSICAL_ACTIONS = (STAY, UP, RIGHT, DOWN, LEFT)
+PHYSICAL_ACTIONS = (
+    STAY,
+    UP,
+    RIGHT,
+    DOWN,
+    LEFT,
+)
 
 ACTION_TO_DELTA = {
     STAY: (0, 0),
@@ -26,23 +28,8 @@ ACTION_NAMES = {
     LEFT: "LEFT",
 }
 
-
-# ============================================================
-# Communication actions
-# ============================================================
-
 NO_MESSAGE = 0
 HELP = 1
-
-COMMUNICATION_ACTIONS = (
-    NO_MESSAGE,
-    HELP,
-)
-
-
-# ============================================================
-# Observation encoding
-# ============================================================
 
 EMPTY = 0
 WALL = 1
