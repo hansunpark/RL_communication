@@ -29,41 +29,62 @@ from .rollout_buffer import (
     MultiAgentRolloutBuffer,
 )
 
+from .curriculum import (
+    CurriculumManager,
+)
+
+
+# ==========================================================
+# Configuration
+# ==========================================================
 
 SEED = 42
 
-TOTAL_EPISODES = 10000
+TOTAL_EPISODES = 20000
 
 ROLLOUT_SIZE = 4096
 
 GAMMA = 0.99
+
 GAE_LAMBDA = 0.95
 
 LEARNING_RATE = 3e-4
 
 HIDDEN_DIM = 256
 
-ENTROPY_COEF = 0.03
+CLIP_COEF = 0.2
 
 VALUE_COEF = 0.5
 
-CLIP_COEF = 0.2
+ENTROPY_COEF = 0.03
 
 UPDATE_EPOCHS = 4
 
 MINIBATCH_SIZE = 256
 
-SUCCESS_THRESHOLD = 0.80
+SUCCESS_THRESHOLD = 0.85
 
-MIN_EPISODES_PER_STAGE = 200
+CURRICULUM_WINDOW = 100
+
+MIN_EPISODES_PER_UNIT = 200
+
+STAGE4_BASELINE_PATIENCE = 600
 
 SAVE_INTERVAL = 200
 
+STOP_WHEN_MASTERED = True
+
+
+# ==========================================================
+# Utility
+# ==========================================================
 
 def set_seed(seed):
 
     random.seed(seed)
+
     np.random.seed(seed)
+
     torch.manual_seed(seed)
 
     if torch.cuda.is_available():
@@ -83,9 +104,14 @@ def flatten_obs(
             space,
             observation,
         ),
+
         dtype=np.float32,
     )
 
+
+# ==========================================================
+# Main
+# ==========================================================
 
 def main():
 
@@ -98,8 +124,7 @@ def main():
     )
 
     print(
-        "Device:",
-        device,
+        f"Device: {device}"
     )
 
     os.makedirs(
@@ -109,21 +134,60 @@ def main():
 
     writer = SummaryWriter(
         "runs/"
-        "curriculum_ppo"
+        "curriculum_v2"
     )
 
-    env = CooperativeTransportEnv(
-        num_agents=4,
-        vision_size=5,
-        max_steps=200,
+    curriculum = (
+        CurriculumManager(
+            success_threshold=
+                SUCCESS_THRESHOLD,
 
-        curriculum_stage=0,
+            window_size=
+                CURRICULUM_WINDOW,
 
-        step_penalty=-0.01,
+            min_episodes=
+                MIN_EPISODES_PER_UNIT,
 
-        distance_reward_coef=0.2,
+            stage4_baseline_patience=
+                STAGE4_BASELINE_PATIENCE,
+        )
+    )
 
-        success_reward=10.0,
+    config = (
+        curriculum.config()
+    )
+
+    env = (
+        CooperativeTransportEnv(
+            num_agents=4,
+
+            vision_size=5,
+
+            max_steps=200,
+
+            curriculum_stage=
+                config["stage"],
+
+            spawn_level=
+                config[
+                    "spawn_level"
+                ],
+
+            reward_mode=
+                config[
+                    "reward_mode"
+                ],
+
+            step_penalty=-0.01,
+
+            distance_reward_coef=
+                0.2,
+
+            obstacle_reward_coef=
+                0.1,
+
+            success_reward=10.0,
+        )
     )
 
     sample_agent = (
@@ -137,12 +201,13 @@ def main():
     )
 
     print(
-        "Observation dim:",
-        obs_dim,
+        f"Observation dim: "
+        f"{obs_dim}"
     )
 
     ppo = PPO(
         obs_dim=obs_dim,
+
         num_actions=5,
 
         learning_rate=
@@ -175,14 +240,6 @@ def main():
         )
     )
 
-    current_stage = 0
-
-    stage_episode_count = 0
-
-    success_window = deque(
-        maxlen=100
-    )
-
     length_window = deque(
         maxlen=100
     )
@@ -191,15 +248,40 @@ def main():
         maxlen=100
     )
 
+    target_move_window = deque(
+        maxlen=100
+    )
+
+    obstacle_move_window = deque(
+        maxlen=100
+    )
+
     global_step = 0
+
+    last_metrics = None
 
     for episode in range(
         1,
         TOTAL_EPISODES + 1,
     ):
 
-        env.set_curriculum_stage(
-            current_stage
+        config = (
+            curriculum.config()
+        )
+
+        env.set_curriculum(
+            stage=
+                config["stage"],
+
+            spawn_level=
+                config[
+                    "spawn_level"
+                ],
+
+            reward_mode=
+                config[
+                    "reward_mode"
+                ],
         )
 
         observations, _ = (
@@ -216,6 +298,10 @@ def main():
 
         episode_success = False
 
+        episode_target_moves = 0
+
+        episode_obstacle_moves = 0
+
         while env.agents:
 
             current_agents = (
@@ -228,6 +314,10 @@ def main():
 
             actions = {}
 
+            # ============================================
+            # Policy actions
+            # ============================================
+
             for agent in (
                 current_agents
             ):
@@ -236,6 +326,7 @@ def main():
                     env.observation_space(
                         agent
                     ),
+
                     observations[
                         agent
                     ],
@@ -245,8 +336,10 @@ def main():
                     action,
                     log_prob,
                     value,
-                ) = ppo.act(
-                    flat
+                ) = (
+                    ppo.act(
+                        flat
+                    )
                 )
 
                 actions[
@@ -256,6 +349,7 @@ def main():
                         action,
                         NO_MESSAGE,
                     ],
+
                     dtype=np.int64,
                 )
 
@@ -271,6 +365,10 @@ def main():
                     value,
                 )
 
+            # ============================================
+            # Environment step
+            # ============================================
+
             (
                 next_observations,
                 rewards,
@@ -280,6 +378,10 @@ def main():
             ) = env.step(
                 actions
             )
+
+            # ============================================
+            # Store transitions
+            # ============================================
 
             for agent in (
                 current_agents
@@ -306,6 +408,7 @@ def main():
                             env.observation_space(
                                 agent
                             ),
+
                             next_observations[
                                 agent
                             ],
@@ -356,23 +459,41 @@ def main():
 
                 global_step += 1
 
-            episode_return += (
+            first_agent = (
+                current_agents[0]
+            )
+
+            team_reward = (
                 rewards[
-                    current_agents[
-                        0
-                    ]
+                    first_agent
                 ]
+            )
+
+            info = (
+                infos[
+                    first_agent
+                ]
+            )
+
+            episode_return += (
+                team_reward
             )
 
             episode_length += 1
 
             episode_success = (
-                infos[
-                    current_agents[
-                        0
-                    ]
-                ][
-                    "success"
+                info["success"]
+            )
+
+            episode_target_moves += int(
+                info[
+                    "target_moved"
+                ]
+            )
+
+            episode_obstacle_moves += (
+                info[
+                    "obstacle_moves"
                 ]
             )
 
@@ -380,15 +501,21 @@ def main():
                 next_observations
             )
 
+            # ============================================
+            # PPO update
+            # ============================================
+
             if (
                 len(buffer)
                 >= ROLLOUT_SIZE
             ):
 
-                metrics = (
+                last_metrics = (
                     ppo.update(
                         buffer,
+
                         gamma=GAMMA,
+
                         gae_lambda=
                             GAE_LAMBDA,
                     )
@@ -396,37 +523,39 @@ def main():
 
                 writer.add_scalar(
                     "loss/policy",
-                    metrics[
+
+                    last_metrics[
                         "policy_loss"
                     ],
+
                     global_step,
                 )
 
                 writer.add_scalar(
                     "loss/value",
-                    metrics[
+
+                    last_metrics[
                         "value_loss"
                     ],
+
                     global_step,
                 )
 
                 writer.add_scalar(
                     "policy/entropy",
-                    metrics[
+
+                    last_metrics[
                         "entropy"
                     ],
+
                     global_step,
                 )
 
                 buffer.reset()
 
-        stage_episode_count += 1
-
-        success_window.append(
-            int(
-                episode_success
-            )
-        )
+        # ==================================================
+        # Episode statistics
+        # ==================================================
 
         length_window.append(
             episode_length
@@ -436,19 +565,55 @@ def main():
             episode_return
         )
 
-        success_rate = (
-            np.mean(
-                success_window
+        target_move_window.append(
+            episode_target_moves
+        )
+
+        obstacle_move_window.append(
+            episode_obstacle_moves
+        )
+
+        curriculum_event = (
+            curriculum.record_episode(
+                episode_success
             )
         )
 
-        avg_length = np.mean(
-            length_window
+        success_rate = (
+            curriculum.success_rate
         )
 
-        avg_return = np.mean(
-            return_window
+        avg_length = (
+            np.mean(
+                length_window
+            )
         )
+
+        avg_return = (
+            np.mean(
+                return_window
+            )
+        )
+
+        avg_target_moves = (
+            np.mean(
+                target_move_window
+            )
+        )
+
+        avg_obstacle_moves = (
+            np.mean(
+                obstacle_move_window
+            )
+        )
+
+        config = (
+            curriculum.config()
+        )
+
+        # ==================================================
+        # TensorBoard
+        # ==================================================
 
         writer.add_scalar(
             "episode/return",
@@ -472,95 +637,133 @@ def main():
 
         writer.add_scalar(
             "curriculum/stage",
-            current_stage,
+            config["stage"],
             episode,
         )
 
         writer.add_scalar(
-            "curriculum/"
-            "success_rate_100",
+            "curriculum/spawn_level",
+            config[
+                "spawn_level"
+            ],
+            episode,
+        )
+
+        writer.add_scalar(
+            "curriculum/success_rate",
             success_rate,
             episode,
         )
+
+        writer.add_scalar(
+            "diagnostics/"
+            "target_moves",
+
+            episode_target_moves,
+
+            episode,
+        )
+
+        writer.add_scalar(
+            "diagnostics/"
+            "obstacle_moves",
+
+            episode_obstacle_moves,
+
+            episode,
+        )
+
+        # ==================================================
+        # Console
+        # ==================================================
 
         if episode % 10 == 0:
 
             print(
                 f"[Episode "
                 f"{episode:5d}] "
-                f"Stage={current_stage} "
+                f"{curriculum.unit_name:<28} "
+                f"reward="
+                f"{curriculum.reward_mode:<17} "
                 f"success100="
                 f"{success_rate:.3f} "
                 f"avg_len="
                 f"{avg_length:.1f} "
-                f"avg_return="
-                f"{avg_return:.3f}"
+                f"return="
+                f"{avg_return:.3f} "
+                f"Tmove="
+                f"{avg_target_moves:.2f} "
+                f"Omove="
+                f"{avg_obstacle_moves:.2f}"
             )
 
-        # ================================================
-        # Curriculum promotion
-        # ================================================
+        # ==================================================
+        # Curriculum transition
+        # ==================================================
 
-        enough_episodes = (
-            stage_episode_count
-            >= MIN_EPISODES_PER_STAGE
-        )
-
-        enough_samples = (
-            len(success_window)
-            >= 100
-        )
-
-        mastered = (
-            success_rate
-            >= SUCCESS_THRESHOLD
-        )
-
-        if (
-            current_stage < 4
-            and enough_episodes
-            and enough_samples
-            and mastered
-        ):
-
-            old_stage = (
-                current_stage
-            )
-
-            current_stage += 1
-
-            stage_episode_count = 0
-
-            success_window.clear()
-            length_window.clear()
-            return_window.clear()
+        if curriculum_event:
 
             print()
             print(
-                "================================"
+                "=" * 70
             )
 
             print(
-                f"Stage {old_stage} mastered."
+                curriculum_event[
+                    "message"
+                ]
             )
 
             print(
-                f"Moving to Stage "
-                f"{current_stage}"
-            )
-
-            print(
-                "================================"
+                "=" * 70
             )
 
             print()
+
+            checkpoint_path = (
+                "checkpoints/"
+                +
+                curriculum_event[
+                    "checkpoint"
+                ]
+            )
 
             ppo.save(
-                "checkpoints/"
-                f"stage_"
-                f"{old_stage}"
-                f"_complete.pt"
+                checkpoint_path
             )
+
+            # Important:
+            # Do not mix samples from
+            # different curriculum distributions.
+            buffer.reset()
+
+            length_window.clear()
+
+            return_window.clear()
+
+            target_move_window.clear()
+
+            obstacle_move_window.clear()
+
+            if (
+                curriculum_event[
+                    "type"
+                ]
+                == "completed"
+                and
+                STOP_WHEN_MASTERED
+            ):
+
+                print(
+                    "Final curriculum "
+                    "mastered."
+                )
+
+                break
+
+        # ==================================================
+        # Periodic checkpoint
+        # ==================================================
 
         if (
             episode
@@ -574,11 +777,17 @@ def main():
                 f"{episode}.pt"
             )
 
+    # ======================================================
+    # Final update
+    # ======================================================
+
     if len(buffer) > 0:
 
         ppo.update(
             buffer,
+
             gamma=GAMMA,
+
             gae_lambda=
                 GAE_LAMBDA,
         )

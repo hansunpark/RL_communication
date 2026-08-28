@@ -5,7 +5,9 @@ import torch.nn as nn
 
 from torch.optim import Adam
 
-from .network import ActorCritic
+from .network import (
+    ActorCritic,
+)
 
 
 class PPO:
@@ -18,15 +20,17 @@ class PPO:
         hidden_dim=256,
         clip_coef=0.2,
         value_coef=0.5,
-        entropy_coef=0.02,
+        entropy_coef=0.03,
         max_grad_norm=0.5,
         update_epochs=4,
         minibatch_size=256,
         device="cpu",
     ):
 
-        self.device = torch.device(
-            device
+        self.device = (
+            torch.device(
+                device
+            )
         )
 
         self.network = (
@@ -39,13 +43,19 @@ class PPO:
             )
         )
 
-        self.optimizer = Adam(
-            self.network.parameters(),
-            lr=learning_rate,
-            eps=1e-5,
+        self.optimizer = (
+            Adam(
+                self.network.parameters(),
+
+                lr=learning_rate,
+
+                eps=1e-5,
+            )
         )
 
-        self.clip_coef = clip_coef
+        self.clip_coef = (
+            clip_coef
+        )
 
         self.value_coef = (
             value_coef
@@ -75,7 +85,9 @@ class PPO:
 
         obs = torch.tensor(
             observation,
+
             dtype=torch.float32,
+
             device=self.device,
         ).unsqueeze(0)
 
@@ -95,9 +107,11 @@ class PPO:
             int(
                 action.item()
             ),
+
             float(
                 log_prob.item()
             ),
+
             float(
                 value.item()
             ),
@@ -111,7 +125,9 @@ class PPO:
 
         obs = torch.tensor(
             observation,
+
             dtype=torch.float32,
+
             device=self.device,
         ).unsqueeze(0)
 
@@ -136,18 +152,27 @@ class PPO:
             old_log_probs,
             advantages,
             returns,
-        ) = buffer.compute(
-            gamma=gamma,
-            gae_lambda=gae_lambda,
+        ) = (
+            buffer.compute(
+                gamma=gamma,
+
+                gae_lambda=
+                    gae_lambda,
+            )
         )
 
-        advantages = (
-            advantages
-            - advantages.mean()
-        ) / (
-            advantages.std()
-            + 1e-8
-        )
+        if (
+            advantages.numel()
+            > 1
+        ):
+
+            advantages = (
+                advantages
+                - advantages.mean()
+            ) / (
+                advantages.std()
+                + 1e-8
+            )
 
         batch_size = (
             observations.shape[0]
@@ -179,7 +204,8 @@ class PPO:
                     indices[
                         start:
                         start
-                        + self.minibatch_size
+                        +
+                        self.minibatch_size
                     ]
                 )
 
@@ -194,6 +220,7 @@ class PPO:
                         observations[
                             batch_idx
                         ],
+
                         actions[
                             batch_idx
                         ],
@@ -202,7 +229,8 @@ class PPO:
 
                 ratio = torch.exp(
                     new_log_prob
-                    - old_log_probs[
+                    -
+                    old_log_probs[
                         batch_idx
                     ]
                 )
@@ -213,34 +241,39 @@ class PPO:
                     ]
                 )
 
-                loss_1 = (
+                unclipped_loss = (
                     -batch_adv
                     * ratio
                 )
 
-                loss_2 = (
+                clipped_loss = (
                     -batch_adv
-                    * torch.clamp(
+                    *
+                    torch.clamp(
                         ratio,
-                        1
+
+                        1.0
                         - self.clip_coef,
-                        1
+
+                        1.0
                         + self.clip_coef,
                     )
                 )
 
                 policy_loss = (
                     torch.max(
-                        loss_1,
-                        loss_2,
+                        unclipped_loss,
+                        clipped_loss,
                     ).mean()
                 )
 
                 value_loss = (
                     0.5
-                    * (
+                    *
+                    (
                         new_value
-                        - returns[
+                        -
+                        returns[
                             batch_idx
                         ]
                     )
@@ -252,20 +285,23 @@ class PPO:
                     entropy.mean()
                 )
 
-                loss = (
+                total_loss = (
                     policy_loss
-                    + self.value_coef
+                    +
+                    self.value_coef
                     * value_loss
-                    - self.entropy_coef
+                    -
+                    self.entropy_coef
                     * entropy_mean
                 )
 
                 self.optimizer.zero_grad()
 
-                loss.backward()
+                total_loss.backward()
 
                 nn.utils.clip_grad_norm_(
                     self.network.parameters(),
+
                     self.max_grad_norm,
                 )
 
@@ -285,18 +321,24 @@ class PPO:
 
         return {
             "policy_loss":
-                np.mean(
-                    policy_losses
+                float(
+                    np.mean(
+                        policy_losses
+                    )
                 ),
 
             "value_loss":
-                np.mean(
-                    value_losses
+                float(
+                    np.mean(
+                        value_losses
+                    )
                 ),
 
             "entropy":
-                np.mean(
-                    entropies
+                float(
+                    np.mean(
+                        entropies
+                    )
                 ),
         }
 
@@ -315,17 +357,20 @@ class PPO:
                     self.optimizer
                     .state_dict(),
             },
+
             path,
         )
 
     def load(
         self,
         path,
+        load_optimizer=True,
     ):
 
         checkpoint = (
             torch.load(
                 path,
+
                 map_location=
                     self.device,
             )
@@ -336,3 +381,16 @@ class PPO:
                 "network"
             ]
         )
+
+        if (
+            load_optimizer
+            and
+            "optimizer"
+            in checkpoint
+        ):
+
+            self.optimizer.load_state_dict(
+                checkpoint[
+                    "optimizer"
+                ]
+            )

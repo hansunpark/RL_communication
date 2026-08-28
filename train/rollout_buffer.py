@@ -12,6 +12,7 @@ class MultiAgentRolloutBuffer:
         self,
         device,
     ):
+
         self.device = device
 
         self.reset()
@@ -25,6 +26,7 @@ class MultiAgentRolloutBuffer:
         self.total_size = 0
 
     def __len__(self):
+
         return self.total_size
 
     def add(
@@ -65,7 +67,9 @@ class MultiAgentRolloutBuffer:
                     float(value),
 
                 "next_value":
-                    float(next_value),
+                    float(
+                        next_value
+                    ),
             }
         )
 
@@ -83,15 +87,22 @@ class MultiAgentRolloutBuffer:
         all_advantages = []
         all_returns = []
 
-        for agent, trajectory in (
+        for (
+            agent,
+            trajectory,
+        ) in (
             self.trajectories.items()
         ):
 
-            n = len(trajectory)
+            n = len(
+                trajectory
+            )
 
-            advantages = np.zeros(
-                n,
-                dtype=np.float32,
+            advantages = (
+                np.zeros(
+                    n,
+                    dtype=np.float32,
+                )
             )
 
             last_gae = 0.0
@@ -105,15 +116,15 @@ class MultiAgentRolloutBuffer:
                 )
 
                 done = (
-                    transition[
-                        "done"
-                    ]
+                    transition["done"]
+                )
+
+                reward = (
+                    transition["reward"]
                 )
 
                 value = (
-                    transition[
-                        "value"
-                    ]
+                    transition["value"]
                 )
 
                 next_value = (
@@ -122,23 +133,20 @@ class MultiAgentRolloutBuffer:
                     ]
                 )
 
-                reward = (
-                    transition[
-                        "reward"
-                    ]
-                )
-
                 delta = (
                     reward
-                    + gamma
+                    +
+                    gamma
                     * next_value
                     * (1.0 - done)
-                    - value
+                    -
+                    value
                 )
 
                 last_gae = (
                     delta
-                    + gamma
+                    +
+                    gamma
                     * gae_lambda
                     * (1.0 - done)
                     * last_gae
@@ -148,21 +156,13 @@ class MultiAgentRolloutBuffer:
                     last_gae
                 )
 
-            for t, transition in (
-                enumerate(
-                    trajectory
-                )
+            for (
+                transition,
+                advantage,
+            ) in zip(
+                trajectory,
+                advantages,
             ):
-
-                advantage = (
-                    advantages[t]
-                )
-
-                value = (
-                    transition[
-                        "value"
-                    ]
-                )
 
                 all_observations.append(
                     transition[
@@ -187,7 +187,11 @@ class MultiAgentRolloutBuffer:
                 )
 
                 all_returns.append(
-                    advantage + value
+                    advantage
+                    +
+                    transition[
+                        "value"
+                    ]
                 )
 
         observations = (
@@ -195,34 +199,46 @@ class MultiAgentRolloutBuffer:
                 np.asarray(
                     all_observations
                 ),
+
                 dtype=torch.float32,
+
                 device=self.device,
             )
         )
 
         actions = torch.tensor(
             all_actions,
+
             dtype=torch.long,
+
             device=self.device,
         )
 
         old_log_probs = (
             torch.tensor(
                 all_log_probs,
+
                 dtype=torch.float32,
+
                 device=self.device,
             )
         )
 
-        advantages = torch.tensor(
-            all_advantages,
-            dtype=torch.float32,
-            device=self.device,
+        advantages = (
+            torch.tensor(
+                all_advantages,
+
+                dtype=torch.float32,
+
+                device=self.device,
+            )
         )
 
         returns = torch.tensor(
             all_returns,
+
             dtype=torch.float32,
+
             device=self.device,
         )
 

@@ -6,7 +6,9 @@ from torch.distributions import (
 )
 
 
-class ActorCritic(nn.Module):
+class ActorCritic(
+    nn.Module
+):
 
     def __init__(
         self,
@@ -14,20 +16,25 @@ class ActorCritic(nn.Module):
         num_actions=5,
         hidden_dim=256,
     ):
+
         super().__init__()
 
-        self.encoder = nn.Sequential(
-            nn.Linear(
-                obs_dim,
-                hidden_dim,
-            ),
-            nn.Tanh(),
+        self.encoder = (
+            nn.Sequential(
+                nn.Linear(
+                    obs_dim,
+                    hidden_dim,
+                ),
 
-            nn.Linear(
-                hidden_dim,
-                hidden_dim,
-            ),
-            nn.Tanh(),
+                nn.Tanh(),
+
+                nn.Linear(
+                    hidden_dim,
+                    hidden_dim,
+                ),
+
+                nn.Tanh(),
+            )
         )
 
         self.actor = nn.Linear(
@@ -45,18 +52,23 @@ class ActorCritic(nn.Module):
         obs,
     ):
 
-        features = self.encoder(
-            obs
+        features = (
+            self.encoder(
+                obs
+            )
         )
 
-        logits = self.actor(
-            features
+        logits = (
+            self.actor(
+                features
+            )
         )
 
         value = (
             self.critic(
                 features
-            ).squeeze(-1)
+            )
+            .squeeze(-1)
         )
 
         return logits, value
@@ -67,20 +79,30 @@ class ActorCritic(nn.Module):
         action=None,
     ):
 
-        logits, value = self(obs)
+        logits, value = (
+            self(obs)
+        )
 
-        dist = Categorical(
-            logits=logits
+        distribution = (
+            Categorical(
+                logits=logits
+            )
         )
 
         if action is None:
-            action = dist.sample()
+
+            action = (
+                distribution.sample()
+            )
 
         return (
             action,
-            dist.log_prob(
+
+            distribution.log_prob(
                 action
             ),
-            dist.entropy(),
+
+            distribution.entropy(),
+
             value,
         )

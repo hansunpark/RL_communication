@@ -1,12 +1,6 @@
 from __future__ import annotations
 
-from typing import (
-    Dict,
-    List,
-    Optional,
-    Set,
-    Tuple,
-)
+from typing import Dict, List, Tuple
 
 import numpy as np
 
@@ -28,7 +22,7 @@ from .constants import (
     GOAL,
 )
 
-from .objects import RectObject
+from .object import RectObject
 
 
 Position = Tuple[int, int]
@@ -37,20 +31,18 @@ Position = Tuple[int, int]
 class CooperativeTransportEnv(ParallelEnv):
 
     metadata = {
-        "name": "cooperative_transport_v1",
-        "render_modes": [
-            "human",
-            "ansi",
-        ],
+        "name": "cooperative_transport_v3",
+        "render_modes": ["human", "ansi"],
         "is_parallelizable": True,
     }
     @property
     def num_agents(self):
         return self._num_agents
     @num_agents.setter
-    def num_agents(self,num):
-        self._num_agents=num
-        return num
+    def num_agents(self, value):
+        self._num_agents=value
+        return value
+
 
     def __init__(
         self,
@@ -60,45 +52,36 @@ class CooperativeTransportEnv(ParallelEnv):
         vision_size=5,
         max_steps=200,
         curriculum_stage=0,
+        spawn_level=0,
+        reward_mode="target_only",
         step_penalty=-0.01,
         distance_reward_coef=0.2,
+        obstacle_reward_coef=0.1,
         success_reward=10.0,
         render_mode=None,
     ):
         super().__init__()
 
         if vision_size % 2 == 0:
-            raise ValueError(
-                "vision_size must be odd."
-            )
+            raise ValueError("vision_size must be odd.")
 
         self.width = width
         self.height = height
-
         self._num_agents = num_agents
-
         self.vision_size = vision_size
-        self.vision_radius = (
-            vision_size // 2
-        )
-
+        self.vision_radius = vision_size // 2
         self.max_steps = max_steps
 
         self.render_mode = render_mode
 
-        self.curriculum_stage = (
-            curriculum_stage
-        )
+        self.curriculum_stage = curriculum_stage
+        self.spawn_level = spawn_level
+        self.reward_mode = reward_mode
 
         self.step_penalty = step_penalty
-
-        self.distance_reward_coef = (
-            distance_reward_coef
-        )
-
-        self.success_reward = (
-            success_reward
-        )
+        self.distance_reward_coef = distance_reward_coef
+        self.obstacle_reward_coef = obstacle_reward_coef
+        self.success_reward = success_reward
 
         self.possible_agents = [
             f"agent_{i}"
@@ -109,178 +92,419 @@ class CooperativeTransportEnv(ParallelEnv):
 
         self.agent_positions = {}
 
-        self.objects: List[
-            RectObject
-        ] = []
+        self.objects: List[RectObject] = []
 
         self.goal_cells = set()
-
         self.walls = set()
 
         self.received_messages = {}
 
         self.step_count = 0
 
-        self.rng = (
-            np.random.default_rng()
-        )
+        self.rng = np.random.default_rng()
 
         self.max_objects = 10
 
+        self.current_scenario_name = None
+
         self.action_spaces = {
-            agent:
-                spaces.MultiDiscrete(
-                    [5, 2]
-                )
-            for agent
-            in self.possible_agents
+            agent: spaces.MultiDiscrete([5, 2])
+            for agent in self.possible_agents
         }
 
         self.observation_spaces = {}
 
         for agent in self.possible_agents:
 
-            self.observation_spaces[
-                agent
-            ] = spaces.Dict(
+            self.observation_spaces[agent] = spaces.Dict(
                 {
-                    "local_map":
-                        spaces.Box(
-                            low=0,
-                            high=5,
-                            shape=(
-                                vision_size,
-                                vision_size,
-                            ),
-                            dtype=np.int8,
+                    "local_map": spaces.Box(
+                        low=0,
+                        high=5,
+                        shape=(
+                            vision_size,
+                            vision_size,
                         ),
+                        dtype=np.int8,
+                    ),
 
-                    "object_ids":
-                        spaces.Box(
-                            low=0,
-                            high=self.max_objects,
-                            shape=(
-                                vision_size,
-                                vision_size,
-                            ),
+                    "object_ids": spaces.Box(
+                        low=0,
+                        high=self.max_objects,
+                        shape=(
+                            vision_size,
+                            vision_size,
+                        ),
+                        dtype=np.int16,
+                    ),
+
+                    "goal_mask": spaces.Box(
+                        low=0,
+                        high=1,
+                        shape=(
+                            vision_size,
+                            vision_size,
+                        ),
+                        dtype=np.int8,
+                    ),
+
+                    "position": spaces.Box(
+                        low=np.array(
+                            [0, 0],
                             dtype=np.int16,
                         ),
-
-                    "goal_mask":
-                        spaces.Box(
-                            low=0,
-                            high=1,
-                            shape=(
-                                vision_size,
-                                vision_size,
-                            ),
-                            dtype=np.int8,
-                        ),
-
-                    "position":
-                        spaces.Box(
-                            low=np.array(
-                                [0, 0],
-                                dtype=np.int16,
-                            ),
-                            high=np.array(
-                                [
-                                    width - 1,
-                                    height - 1,
-                                ],
-                                dtype=np.int16,
-                            ),
+                        high=np.array(
+                            [
+                                width - 1,
+                                height - 1,
+                            ],
                             dtype=np.int16,
                         ),
+                        dtype=np.int16,
+                    ),
 
-                    "touching_objects":
-                        spaces.Box(
-                            low=0,
-                            high=max(
-                                width,
-                                height,
-                            ),
-                            shape=(
-                                self.max_objects,
-                                4,
-                            ),
-                            dtype=np.int16,
+                    "touching_objects": spaces.Box(
+                        low=0,
+                        high=max(
+                            width,
+                            height,
                         ),
+                        shape=(
+                            self.max_objects,
+                            4,
+                        ),
+                        dtype=np.int16,
+                    ),
 
-                    "messages":
-                        spaces.Box(
-                            low=-max(
-                                width,
-                                height,
-                            ),
-                            high=max(
-                                width,
-                                height,
-                            ),
-                            shape=(
-                                num_agents - 1,
-                                4,
-                            ),
-                            dtype=np.int16,
+                    "messages": spaces.Box(
+                        low=-max(
+                            width,
+                            height,
                         ),
+                        high=max(
+                            width,
+                            height,
+                        ),
+                        shape=(
+                            num_agents - 1,
+                            4,
+                        ),
+                        dtype=np.int16,
+                    ),
                 }
             )
 
-    def action_space(
-        self,
-        agent,
-    ):
-        return self.action_spaces[
-            agent
-        ]
+    # =====================================================
+    # Spaces
+    # =====================================================
 
-    def observation_space(
-        self,
-        agent,
-    ):
-        return self.observation_spaces[
-            agent
-        ]
+    def action_space(self, agent):
+        return self.action_spaces[agent]
 
-    # ========================================================
+    def observation_space(self, agent):
+        return self.observation_spaces[agent]
+
+    # =====================================================
     # Curriculum
-    # ========================================================
+    # =====================================================
 
-    def set_curriculum_stage(
+    def set_curriculum(
         self,
         stage: int,
+        spawn_level: int = 0,
+        reward_mode: str = "target_only",
     ):
         self.curriculum_stage = max(
             0,
-            min(4, stage),
+            min(6, stage),
         )
 
+        self.spawn_level = max(
+            0,
+            min(2, spawn_level),
+        )
+
+        if reward_mode not in (
+            "target_only",
+            "obstacle_shaping",
+        ):
+            raise ValueError(
+                "Unknown reward mode."
+            )
+
+        self.reward_mode = reward_mode
+
+    # =====================================================
+    # Reset
+    # =====================================================
+
+    def reset(
+        self,
+        seed=None,
+        options=None,
+    ):
+        if seed is not None:
+            self.rng = (
+                np.random.default_rng(
+                    seed
+                )
+            )
+
+        self.agents = (
+            self.possible_agents[:]
+        )
+
+        self.step_count = 0
+
+        self.current_scenario_name = None
+
+        # ---------------------------------------------
+        # Benchmark / custom scenario
+        # ---------------------------------------------
+
+        if (
+            options is not None
+            and
+            "scenario" in options
+        ):
+            self._configure_custom_scenario(
+                options["scenario"]
+            )
+
+        else:
+            self._configure_stage()
+
+        self.received_messages = {
+            agent: []
+            for agent in self.agents
+        }
+
+        observations = {
+            agent:
+                self._get_observation(
+                    agent
+                )
+
+            for agent in self.agents
+        }
+
+        infos = {
+            agent: {
+                "stage":
+                    self.curriculum_stage,
+
+                "spawn_level":
+                    self.spawn_level,
+
+                "reward_mode":
+                    self.reward_mode,
+
+                "scenario":
+                    self.current_scenario_name,
+            }
+
+            for agent in self.agents
+        }
+
+        if self.render_mode == "human":
+            self.render()
+
+        return observations, infos
+
+    # =====================================================
+    # Custom benchmark scenario
+    # =====================================================
+
+    def _configure_custom_scenario(
+        self,
+        scenario,
+    ):
+        """
+        scenario must be a dictionary.
+
+        Example:
+
+        {
+            "name": "left_obstacle",
+            "target": {
+                "x": 4,
+                "y": 2,
+                "width": 3,
+                "height": 2,
+            },
+            "goal_cells": [(4,9), ...],
+            "obstacles": [
+                {
+                    "x": 3,
+                    "y": 6,
+                    "width": 3,
+                    "height": 1,
+                }
+            ],
+            "walls": [],
+            "random_agents": True,
+            "agent_positions": None,
+        }
+        """
+
+        self.current_scenario_name = (
+            scenario.get(
+                "name",
+                "custom",
+            )
+        )
+
+        target_cfg = (
+            scenario["target"]
+        )
+
+        target = RectObject(
+            object_id=0,
+            x=int(
+                target_cfg["x"]
+            ),
+            y=int(
+                target_cfg["y"]
+            ),
+            width=int(
+                target_cfg["width"]
+            ),
+            height=int(
+                target_cfg["height"]
+            ),
+            is_target=True,
+        )
+
+        self.objects = [target]
+
+        for i, obstacle_cfg in enumerate(
+            scenario.get(
+                "obstacles",
+                [],
+            ),
+            start=1,
+        ):
+            obstacle = RectObject(
+                object_id=i,
+                x=int(
+                    obstacle_cfg["x"]
+                ),
+                y=int(
+                    obstacle_cfg["y"]
+                ),
+                width=int(
+                    obstacle_cfg["width"]
+                ),
+                height=int(
+                    obstacle_cfg["height"]
+                ),
+                is_target=False,
+            )
+
+            self.objects.append(
+                obstacle
+            )
+
+        self.goal_cells = {
+            tuple(cell)
+            for cell in scenario[
+                "goal_cells"
+            ]
+        }
+
+        self.walls = {
+            tuple(cell)
+            for cell in scenario.get(
+                "walls",
+                [],
+            )
+        }
+
+        if (
+            "reward_mode"
+            in scenario
+        ):
+            self.reward_mode = (
+                scenario[
+                    "reward_mode"
+                ]
+            )
+
+        agent_positions = (
+            scenario.get(
+                "agent_positions"
+            )
+        )
+
+        if agent_positions:
+
+            self.agent_positions = {
+                agent: tuple(
+                    agent_positions[
+                        agent
+                    ]
+                )
+
+                for agent
+                in self.possible_agents
+            }
+
+            self._validate_agent_positions()
+
+        else:
+            self._randomize_agents()
+
+    def _validate_agent_positions(
+        self,
+    ):
+        positions = list(
+            self.agent_positions.values()
+        )
+
+        if (
+            len(set(positions))
+            != len(positions)
+        ):
+            raise ValueError(
+                "Agent positions overlap."
+            )
+
+        forbidden = (
+            self._forbidden_cells()
+        )
+
+        for position in positions:
+
+            if not self._inside(position):
+                raise ValueError(
+                    f"Agent outside map: "
+                    f"{position}"
+                )
+
+            if position in forbidden:
+                raise ValueError(
+                    f"Agent spawned on "
+                    f"occupied cell: "
+                    f"{position}"
+                )
+
+    # =====================================================
+    # Curriculum stage configuration
+    # =====================================================
+
     def _configure_stage(self):
-        """
-        Stage 0:
-            push itself
 
-        Stage 1:
-            agents must approach + align
-
-        Stage 2:
-            larger target requiring 3 agents
-
-        Stage 3:
-            movable obstacle
-
-        Stage 4:
-            full task
-        """
-
-        stage = self.curriculum_stage
+        self.current_scenario_name = (
+            f"stage_{self.curriculum_stage}"
+        )
 
         self.walls = set()
 
-        # ---------------------------------------------
-        # Stage 0
-        # ---------------------------------------------
+        stage = (
+            self.curriculum_stage
+        )
 
+        # Stage 0
         if stage == 0:
 
             target = RectObject(
@@ -299,19 +523,25 @@ class CooperativeTransportEnv(ParallelEnv):
                 (6, 7),
             }
 
+            fixed = [
+                (5, 3),
+                (6, 3),
+                (1, 1),
+                (10, 1),
+            ]
+
             self.agent_positions = {
-                "agent_0": (5, 3),
-                "agent_1": (6, 3),
-                "agent_2": (2, 2),
-                "agent_3": (9, 2),
+                agent: fixed[i]
+
+                for i, agent
+                in enumerate(
+                    self.possible_agents
+                )
             }
 
             return
 
-        # ---------------------------------------------
         # Stage 1
-        # ---------------------------------------------
-
         if stage == 1:
 
             target = RectObject(
@@ -330,42 +560,14 @@ class CooperativeTransportEnv(ParallelEnv):
                 (6, 8),
             }
 
-            candidate_positions = [
-                (3, 2),
-                (4, 2),
-                (5, 2),
-                (6, 2),
-                (7, 2),
-                (8, 2),
-
-                (3, 3),
-                (4, 3),
-                (7, 3),
-                (8, 3),
-            ]
-
-            selected = self.rng.choice(
-                len(candidate_positions),
-                size=self.num_agents,
-                replace=False,
+            self._spawn_agents_near(
+                target.cells(),
+                radius=4,
             )
-
-            self.agent_positions = {
-                agent:
-                    candidate_positions[idx]
-                for agent, idx
-                in zip(
-                    self.possible_agents,
-                    selected,
-                )
-            }
 
             return
 
-        # ---------------------------------------------
         # Stage 2
-        # ---------------------------------------------
-
         if stage == 2:
 
             target = RectObject(
@@ -381,56 +583,74 @@ class CooperativeTransportEnv(ParallelEnv):
 
             self.goal_cells = {
                 (x, y)
-                for y in range(8, 10)
-                for x in range(4, 7)
-            }
 
-            candidate_positions = [
-                (2, 1),
-                (3, 1),
-                (4, 1),
-                (5, 1),
-                (6, 1),
-                (7, 1),
-                (8, 1),
+                for y in range(
+                    8,
+                    10,
+                )
 
-                (2, 2),
-                (3, 2),
-                (4, 2),
-                (5, 2),
-                (6, 2),
-                (7, 2),
-                (8, 2),
-
-                (2, 3),
-                (3, 3),
-                (7, 3),
-                (8, 3),
-            ]
-
-            selected = self.rng.choice(
-                len(candidate_positions),
-                size=self.num_agents,
-                replace=False,
-            )
-
-            self.agent_positions = {
-                agent:
-                    candidate_positions[idx]
-                for agent, idx
-                in zip(
-                    self.possible_agents,
-                    selected,
+                for x in range(
+                    4,
+                    7,
                 )
             }
 
+            self._spawn_agents_near(
+                target.cells(),
+                radius=4,
+            )
+
             return
 
-        # ---------------------------------------------
         # Stage 3
-        # ---------------------------------------------
-
         if stage == 3:
+
+            target = RectObject(
+                object_id=0,
+                x=4,
+                y=4,
+                width=3,
+                height=2,
+                is_target=True,
+            )
+
+            self.objects = [target]
+
+            self.goal_cells = {
+                (x, y)
+
+                for y in range(
+                    8,
+                    10,
+                )
+
+                for x in range(
+                    4,
+                    7,
+                )
+            }
+
+            if self.spawn_level == 0:
+
+                self._spawn_agents_near(
+                    target.cells(),
+                    radius=3,
+                )
+
+            elif self.spawn_level == 1:
+
+                self._spawn_agents_near(
+                    target.cells(),
+                    radius=5,
+                )
+
+            else:
+                self._randomize_agents()
+
+            return
+
+        # Stage 4
+        if stage == 4:
 
             target = RectObject(
                 object_id=0,
@@ -457,17 +677,76 @@ class CooperativeTransportEnv(ParallelEnv):
 
             self.goal_cells = {
                 (x, y)
-                for y in range(9, 11)
-                for x in range(4, 7)
+
+                for y in range(
+                    9,
+                    11,
+                )
+
+                for x in range(
+                    4,
+                    7,
+                )
+            }
+
+            reference = (
+                target.cells()
+                |
+                obstacle.cells()
+            )
+
+            self._spawn_agents_near(
+                reference,
+                radius=4,
+            )
+
+            return
+
+        # Stage 5
+        if stage == 5:
+
+            target = RectObject(
+                object_id=0,
+                x=4,
+                y=2,
+                width=3,
+                height=2,
+                is_target=True,
+            )
+
+            obstacle = RectObject(
+                object_id=1,
+                x=4,
+                y=6,
+                width=3,
+                height=1,
+                is_target=False,
+            )
+
+            self.objects = [
+                target,
+                obstacle,
+            ]
+
+            self.goal_cells = {
+                (x, y)
+
+                for y in range(
+                    9,
+                    11,
+                )
+
+                for x in range(
+                    4,
+                    7,
+                )
             }
 
             self._randomize_agents()
 
             return
 
-        # ---------------------------------------------
-        # Stage 4
-        # ---------------------------------------------
+        # Stage 6
 
         target = RectObject(
             object_id=0,
@@ -504,41 +783,80 @@ class CooperativeTransportEnv(ParallelEnv):
 
         self.goal_cells = {
             (x, y)
-            for y in range(9, 11)
-            for x in range(4, 7)
+
+            for y in range(
+                9,
+                11,
+            )
+
+            for x in range(
+                4,
+                7,
+            )
         }
 
         self._randomize_agents()
 
-    def _randomize_agents(self):
+    # =====================================================
+    # Spawning
+    # =====================================================
 
-        forbidden = set()
+    def _spawn_agents_near(
+        self,
+        reference_cells,
+        radius,
+    ):
+        forbidden = (
+            self._forbidden_cells()
+        )
 
-        for obj in self.objects:
-            forbidden |= obj.cells()
+        candidates = []
 
-        forbidden |= self.walls
-
-        available = [
-            (x, y)
-            for y in range(
-                self.height
-            )
+        for y in range(
+            self.height
+        ):
             for x in range(
                 self.width
-            )
-            if (x, y)
-            not in forbidden
-        ]
+            ):
+                pos = (x, y)
 
-        selected = self.rng.choice(
-            len(available),
-            size=self.num_agents,
-            replace=False,
+                if pos in forbidden:
+                    continue
+
+                distance = min(
+                    abs(x - rx)
+                    +
+                    abs(y - ry)
+
+                    for rx, ry
+                    in reference_cells
+                )
+
+                if distance <= radius:
+                    candidates.append(
+                        pos
+                    )
+
+        if (
+            len(candidates)
+            < self.num_agents
+        ):
+            raise RuntimeError(
+                "Not enough spawn cells."
+            )
+
+        selected = (
+            self.rng.choice(
+                len(candidates),
+                size=self.num_agents,
+                replace=False,
+            )
         )
 
         self.agent_positions = {
-            agent: available[index]
+            agent:
+                candidates[index]
+
             for agent, index
             in zip(
                 self.possible_agents,
@@ -546,65 +864,81 @@ class CooperativeTransportEnv(ParallelEnv):
             )
         }
 
-    # ========================================================
-    # Reset
-    # ========================================================
+    def _randomize_agents(self):
 
-    def reset(
-        self,
-        seed=None,
-        options=None,
-    ):
-
-        if seed is not None:
-            self.rng = (
-                np.random.default_rng(
-                    seed
-                )
-            )
-
-        self.agents = (
-            self.possible_agents[:]
+        forbidden = (
+            self._forbidden_cells()
         )
 
-        self.step_count = 0
+        available = [
+            (x, y)
 
-        self._configure_stage()
+            for y in range(
+                self.height
+            )
 
-        self.received_messages = {
-            agent: []
-            for agent in self.agents
-        }
+            for x in range(
+                self.width
+            )
 
-        observations = {
+            if (x, y)
+            not in forbidden
+        ]
+
+        if (
+            len(available)
+            < self.num_agents
+        ):
+            raise RuntimeError(
+                "Not enough free cells."
+            )
+
+        selected = (
+            self.rng.choice(
+                len(available),
+                size=self.num_agents,
+                replace=False,
+            )
+        )
+
+        self.agent_positions = {
             agent:
-                self._get_observation(
-                    agent
-                )
-            for agent in self.agents
+                available[index]
+
+            for agent, index
+            in zip(
+                self.possible_agents,
+                selected,
+            )
         }
 
-        infos = {
-            agent: {
-                "stage":
-                    self.curriculum_stage
-            }
-            for agent in self.agents
-        }
+    def _forbidden_cells(self):
 
-        if self.render_mode == "human":
-            self.render()
+        forbidden = set(
+            self.walls
+        )
 
-        return observations, infos
+        for obj in self.objects:
+            forbidden |= (
+                obj.cells()
+            )
 
-    # ========================================================
+        return forbidden
+
+    # =====================================================
     # Step
-    # ========================================================
+    # =====================================================
 
     def step(self, actions):
 
         if not self.agents:
-            return {}, {}, {}, {}, {}
+            return (
+                {},
+                {},
+                {},
+                {},
+                {},
+            )
 
         current_agents = (
             self.agents[:]
@@ -633,12 +967,22 @@ class CooperativeTransportEnv(ParallelEnv):
             self._target_goal_distance()
         )
 
-        self._resolve_movement(
-            physical_actions
+        blocking_before = (
+            self._obstacle_blocking_score()
+        )
+
+        movement_info = (
+            self._resolve_movement(
+                physical_actions
+            )
         )
 
         distance_after = (
             self._target_goal_distance()
+        )
+
+        blocking_after = (
+            self._obstacle_blocking_score()
         )
 
         self._update_messages(
@@ -649,16 +993,33 @@ class CooperativeTransportEnv(ParallelEnv):
             self._check_success()
         )
 
-        distance_improvement = (
+        target_progress = (
             distance_before
-            - distance_after
+            -
+            distance_after
+        )
+
+        obstacle_progress = (
+            blocking_before
+            -
+            blocking_after
         )
 
         reward = (
             self.step_penalty
-            + self.distance_reward_coef
-            * distance_improvement
+            +
+            self.distance_reward_coef
+            * target_progress
         )
+
+        if (
+            self.reward_mode
+            == "obstacle_shaping"
+        ):
+            reward += (
+                self.obstacle_reward_coef
+                * obstacle_progress
+            )
 
         if success:
             reward += (
@@ -667,12 +1028,14 @@ class CooperativeTransportEnv(ParallelEnv):
 
         rewards = {
             agent: reward
-            for agent in current_agents
+            for agent
+            in current_agents
         }
 
         terminations = {
             agent: success
-            for agent in current_agents
+            for agent
+            in current_agents
         }
 
         timeout = (
@@ -684,22 +1047,55 @@ class CooperativeTransportEnv(ParallelEnv):
             agent:
                 timeout
                 and not success
-            for agent in current_agents
+
+            for agent
+            in current_agents
         }
 
         infos = {
             agent: {
-                "success": success,
-                "step_count":
-                    self.step_count,
+                "success":
+                    success,
+
                 "stage":
                     self.curriculum_stage,
-                "distance":
+
+                "scenario":
+                    self.current_scenario_name,
+
+                "step_count":
+                    self.step_count,
+
+                "target_distance":
                     distance_after,
-                "distance_improvement":
-                    distance_improvement,
+
+                "target_progress":
+                    target_progress,
+
+                "obstacle_blocking":
+                    blocking_after,
+
+                "obstacle_progress":
+                    obstacle_progress,
+
+                "target_moved":
+                    movement_info[
+                        "target_moved"
+                    ],
+
+                "obstacle_moves":
+                    movement_info[
+                        "obstacle_moves"
+                    ],
+
+                "successful_pushes":
+                    movement_info[
+                        "successful_pushes"
+                    ],
             }
-            for agent in current_agents
+
+            for agent
+            in current_agents
         }
 
         observations = {
@@ -707,6 +1103,7 @@ class CooperativeTransportEnv(ParallelEnv):
                 self._get_observation(
                     agent
                 )
+
             for agent
             in current_agents
         }
@@ -725,16 +1122,14 @@ class CooperativeTransportEnv(ParallelEnv):
             infos,
         )
 
-    # ========================================================
-    # Reward helper
-    # ========================================================
+    # =====================================================
+    # Reward / diagnostics
+    # =====================================================
 
     def _target_goal_distance(self):
 
-        target = next(
-            obj
-            for obj in self.objects
-            if obj.is_target
+        target = (
+            self._target_object()
         )
 
         goal_x = min(
@@ -750,22 +1145,142 @@ class CooperativeTransportEnv(ParallelEnv):
         )
 
         return (
-            abs(target.x - goal_x)
+            abs(
+                target.x
+                -
+                goal_x
+            )
             +
-            abs(target.y - goal_y)
+            abs(
+                target.y
+                -
+                goal_y
+            )
         )
 
-    # ========================================================
+    def _obstacle_blocking_score(
+        self,
+    ):
+        target = (
+            self._target_object()
+        )
+
+        if len(self.objects) <= 1:
+            return 0
+
+        target_cells = (
+            target.cells()
+        )
+
+        target_x_min = min(
+            x
+            for x, _
+            in target_cells
+        )
+
+        target_x_max = max(
+            x
+            for x, _
+            in target_cells
+        )
+
+        goal_x_min = min(
+            x
+            for x, _
+            in self.goal_cells
+        )
+
+        goal_x_max = max(
+            x
+            for x, _
+            in self.goal_cells
+        )
+
+        corridor_x_min = min(
+            target_x_min,
+            goal_x_min,
+        )
+
+        corridor_x_max = max(
+            target_x_max,
+            goal_x_max,
+        )
+
+        target_y_min = min(
+            y
+            for _, y
+            in target_cells
+        )
+
+        target_y_max = max(
+            y
+            for _, y
+            in target_cells
+        )
+
+        goal_y_min = min(
+            y
+            for _, y
+            in self.goal_cells
+        )
+
+        goal_y_max = max(
+            y
+            for _, y
+            in self.goal_cells
+        )
+
+        corridor_y_min = min(
+            target_y_min,
+            goal_y_min,
+        )
+
+        corridor_y_max = max(
+            target_y_max,
+            goal_y_max,
+        )
+
+        score = 0
+
+        for obj in self.objects:
+
+            if obj.is_target:
+                continue
+
+            for x, y in obj.cells():
+
+                if (
+                    corridor_x_min
+                    <= x
+                    <= corridor_x_max
+                    and
+                    corridor_y_min
+                    <= y
+                    <= corridor_y_max
+                ):
+                    score += 1
+
+        return score
+
+    def _target_object(self):
+
+        return next(
+            obj
+            for obj in self.objects
+            if obj.is_target
+        )
+
+    # =====================================================
     # Movement
-    # ========================================================
+    # =====================================================
 
     def _resolve_movement(
         self,
         actions: Dict[str, int],
     ):
-
         agent_at = {
             position: agent
+
             for agent, position
             in self.agent_positions.items()
         }
@@ -783,7 +1298,6 @@ class CooperativeTransportEnv(ParallelEnv):
                 DOWN,
                 LEFT,
             ):
-
                 contact_cells = (
                     obj.contact_cells(
                         direction
@@ -791,12 +1305,9 @@ class CooperativeTransportEnv(ParallelEnv):
                 )
 
                 participants = []
-
                 valid = True
 
-                for cell in (
-                    contact_cells
-                ):
+                for cell in contact_cells:
 
                     if cell not in agent_at:
                         valid = False
@@ -847,7 +1358,6 @@ class CooperativeTransportEnv(ParallelEnv):
             push_candidates
         )
 
-        # Map / wall validation
         for obj in self.objects:
 
             oid = obj.object_id
@@ -861,30 +1371,31 @@ class CooperativeTransportEnv(ParallelEnv):
                 )
             )
 
-            if any(
+            invalid = any(
                 (
-                    not self._inside(
-                        cell
-                    )
-                    or cell in self.walls
+                    not self._inside(cell)
+                    or
+                    cell in self.walls
                 )
-                for cell in destination
-            ):
+
+                for cell
+                in destination
+            )
+
+            if invalid:
                 valid_pushes.pop(
                     oid,
                     None,
                 )
 
-        # Object cannot push object
         self._remove_object_conflicts(
             valid_pushes
         )
 
         while True:
 
-            final_object_cells = (
-                self
-                ._calculate_final_object_cells(
+            final_objects = (
+                self._calculate_final_object_cells(
                     valid_pushes
                 )
             )
@@ -892,8 +1403,7 @@ class CooperativeTransportEnv(ParallelEnv):
             occupied = set()
 
             for cells in (
-                final_object_cells
-                .values()
+                final_objects.values()
             ):
                 occupied |= cells
 
@@ -922,7 +1432,8 @@ class CooperativeTransportEnv(ParallelEnv):
                     not self._inside(
                         target
                     )
-                    or target in self.walls
+                    or
+                    target in self.walls
                 ):
                     target = current
 
@@ -930,14 +1441,14 @@ class CooperativeTransportEnv(ParallelEnv):
                     agent
                 ] = target
 
-            final_agent_positions = (
+            final_agents = (
                 self._resolve_agent_conflicts(
                     raw_targets,
                     occupied,
                 )
             )
 
-            pushes_to_cancel = set()
+            cancel_pushes = set()
 
             for obj in self.objects:
 
@@ -951,25 +1462,22 @@ class CooperativeTransportEnv(ParallelEnv):
                 ):
 
                     if (
-                        final_agent_positions[
-                            agent
-                        ]
+                        final_agents[agent]
                         ==
                         self.agent_positions[
                             agent
                         ]
                     ):
-                        pushes_to_cancel.add(
+                        cancel_pushes.add(
                             oid
                         )
+
                         break
 
-            if not pushes_to_cancel:
+            if not cancel_pushes:
                 break
 
-            for oid in (
-                pushes_to_cancel
-            ):
+            for oid in cancel_pushes:
                 valid_pushes.pop(
                     oid,
                     None,
@@ -979,7 +1487,10 @@ class CooperativeTransportEnv(ParallelEnv):
                 valid_pushes
             )
 
-        # Commit objects
+        target_moved = False
+        obstacle_moves = 0
+        successful_pushes = 0
+
         for obj in self.objects:
 
             if (
@@ -992,16 +1503,32 @@ class CooperativeTransportEnv(ParallelEnv):
                     ]
                 )
 
-        # Commit agents
+                successful_pushes += 1
+
+                if obj.is_target:
+                    target_moved = True
+                else:
+                    obstacle_moves += 1
+
         self.agent_positions = (
-            final_agent_positions
+            final_agents
         )
+
+        return {
+            "target_moved":
+                target_moved,
+
+            "obstacle_moves":
+                obstacle_moves,
+
+            "successful_pushes":
+                successful_pushes,
+        }
 
     def _calculate_final_object_cells(
         self,
         valid_pushes,
     ):
-
         result = {}
 
         for obj in self.objects:
@@ -1010,7 +1537,6 @@ class CooperativeTransportEnv(ParallelEnv):
                 obj.object_id
                 in valid_pushes
             ):
-
                 result[
                     obj.object_id
                 ] = obj.moved_cells(
@@ -1020,7 +1546,6 @@ class CooperativeTransportEnv(ParallelEnv):
                 )
 
             else:
-
                 result[
                     obj.object_id
                 ] = obj.cells()
@@ -1031,7 +1556,6 @@ class CooperativeTransportEnv(ParallelEnv):
         self,
         valid_pushes,
     ):
-
         changed = True
 
         while changed:
@@ -1039,8 +1563,7 @@ class CooperativeTransportEnv(ParallelEnv):
             changed = False
 
             final_cells = (
-                self
-                ._calculate_final_object_cells(
+                self._calculate_final_object_cells(
                     valid_pushes
                 )
             )
@@ -1048,12 +1571,10 @@ class CooperativeTransportEnv(ParallelEnv):
             for i in range(
                 len(self.objects)
             ):
-
                 for j in range(
                     i + 1,
                     len(self.objects),
                 ):
-
                     a = self.objects[i]
                     b = self.objects[j]
 
@@ -1094,7 +1615,8 @@ class CooperativeTransportEnv(ParallelEnv):
 
                     if (
                         a_moving
-                        or b_moving
+                        or
+                        b_moving
                     ):
                         changed = True
                         break
@@ -1107,7 +1629,6 @@ class CooperativeTransportEnv(ParallelEnv):
         raw_targets,
         final_object_cells,
     ):
-
         current = dict(
             self.agent_positions
         )
@@ -1116,7 +1637,9 @@ class CooperativeTransportEnv(ParallelEnv):
             agent:
                 raw_targets[agent]
                 != current[agent]
-            for agent in self.agents
+
+            for agent
+            in self.agents
         }
 
         while True:
@@ -1126,25 +1649,22 @@ class CooperativeTransportEnv(ParallelEnv):
             proposed = {
                 agent:
                     (
-                        raw_targets[
-                            agent
-                        ]
+                        raw_targets[agent]
                         if moving[agent]
-                        else current[
-                            agent
-                        ]
+                        else
+                        current[agent]
                     )
-                for agent in self.agents
+
+                for agent
+                in self.agents
             }
 
-            # Agent-object collision
             for agent in self.agents:
 
                 if (
                     moving[agent]
-                    and proposed[
-                        agent
-                    ]
+                    and
+                    proposed[agent]
                     in final_object_cells
                 ):
                     moving[
@@ -1156,29 +1676,27 @@ class CooperativeTransportEnv(ParallelEnv):
             if changed:
                 continue
 
-            # Agent-agent same final cell
             occupancy = {}
 
             for agent, pos in (
                 proposed.items()
             ):
-
                 occupancy.setdefault(
                     pos,
                     [],
-                ).append(agent)
+                ).append(
+                    agent
+                )
 
             for agents in (
                 occupancy.values()
             ):
-
                 if len(agents) <= 1:
                     continue
 
                 for agent in agents:
 
                     if moving[agent]:
-
                         moving[
                             agent
                         ] = False
@@ -1188,33 +1706,33 @@ class CooperativeTransportEnv(ParallelEnv):
             if changed:
                 continue
 
-            # Direct swap forbidden
             for i in range(
                 len(self.agents)
             ):
-
                 for j in range(
                     i + 1,
                     len(self.agents),
                 ):
-
                     a = self.agents[i]
                     b = self.agents[j]
 
                     if not (
                         moving[a]
-                        and moving[b]
+                        and
+                        moving[b]
                     ):
                         continue
 
                     if (
                         raw_targets[a]
                         == current[b]
-                        and raw_targets[b]
+                        and
+                        raw_targets[b]
                         == current[a]
                     ):
                         moving[a] = False
                         moving[b] = False
+
                         changed = True
 
             if not changed:
@@ -1225,20 +1743,22 @@ class CooperativeTransportEnv(ParallelEnv):
                 (
                     raw_targets[agent]
                     if moving[agent]
-                    else current[agent]
+                    else
+                    current[agent]
                 )
-            for agent in self.agents
+
+            for agent
+            in self.agents
         }
 
-    # ========================================================
+    # =====================================================
     # Communication
-    # ========================================================
+    # =====================================================
 
     def _update_messages(
         self,
         communication_actions,
     ):
-
         next_messages = {
             agent: []
             for agent in self.agents
@@ -1266,10 +1786,7 @@ class CooperativeTransportEnv(ParallelEnv):
 
             for receiver in self.agents:
 
-                if (
-                    receiver
-                    == sender
-                ):
+                if receiver == sender:
                     continue
 
                 rx, ry = (
@@ -1292,15 +1809,14 @@ class CooperativeTransportEnv(ParallelEnv):
             next_messages
         )
 
-    # ========================================================
+    # =====================================================
     # Observation
-    # ========================================================
+    # =====================================================
 
     def _get_observation(
         self,
         agent,
     ):
-
         ax, ay = (
             self.agent_positions[
                 agent
@@ -1336,26 +1852,25 @@ class CooperativeTransportEnv(ParallelEnv):
         for obj in self.objects:
 
             for cell in obj.cells():
-
                 object_by_cell[
                     cell
                 ] = obj
 
         other_agents = {
             position
+
             for name, position
             in self.agent_positions.items()
+
             if name != agent
         }
 
         for ly in range(
             self.vision_size
         ):
-
             for lx in range(
                 self.vision_size
             ):
-
                 wx = (
                     ax
                     + lx
@@ -1368,28 +1883,30 @@ class CooperativeTransportEnv(ParallelEnv):
                     - self.vision_radius
                 )
 
-                pos = (wx, wy)
+                pos = (
+                    wx,
+                    wy,
+                )
 
-                if not self._inside(
-                    pos
-                ):
+                if not self._inside(pos):
+
                     local_map[
                         ly,
                         lx,
                     ] = WALL
+
                     continue
 
                 if pos in self.walls:
+
                     local_map[
                         ly,
                         lx,
                     ] = WALL
+
                     continue
 
-                if (
-                    pos
-                    in self.goal_cells
-                ):
+                if pos in self.goal_cells:
 
                     local_map[
                         ly,
@@ -1405,7 +1922,6 @@ class CooperativeTransportEnv(ParallelEnv):
                     pos
                     in object_by_cell
                 ):
-
                     obj = (
                         object_by_cell[
                             pos
@@ -1418,14 +1934,16 @@ class CooperativeTransportEnv(ParallelEnv):
                     ] = (
                         TARGET_OBJECT
                         if obj.is_target
-                        else MOVABLE_OBJECT
+                        else
+                        MOVABLE_OBJECT
                     )
 
                     object_ids[
                         ly,
                         lx,
                     ] = (
-                        obj.object_id + 1
+                        obj.object_id
+                        + 1
                     )
 
                 if pos in other_agents:
@@ -1433,7 +1951,9 @@ class CooperativeTransportEnv(ParallelEnv):
                     local_map[
                         ly,
                         lx,
-                    ] = OTHER_AGENT
+                    ] = (
+                        OTHER_AGENT
+                    )
 
         touching_objects = (
             np.zeros(
@@ -1454,13 +1974,11 @@ class CooperativeTransportEnv(ParallelEnv):
                 continue
 
             if (
-                self
-                ._agent_touching_object(
+                self._agent_touching_object(
                     agent,
                     obj,
                 )
             ):
-
                 touching_objects[
                     obj.object_id
                 ] = np.array(
@@ -1483,19 +2001,23 @@ class CooperativeTransportEnv(ParallelEnv):
             dtype=np.int16,
         )
 
+        received = (
+            self.received_messages.get(
+                agent,
+                [],
+            )
+        )
+
         for index, (
             sender_id,
             dx,
             dy,
         ) in enumerate(
-            self.received_messages[
-                agent
-            ][
+            received[
                 :
                 self.num_agents - 1
             ]
         ):
-
             messages[
                 index
             ] = np.array(
@@ -1536,7 +2058,6 @@ class CooperativeTransportEnv(ParallelEnv):
         agent,
         obj,
     ):
-
         ax, ay = (
             self.agent_positions[
                 agent
@@ -1547,18 +2068,22 @@ class CooperativeTransportEnv(ParallelEnv):
 
             if (
                 abs(ax - ox)
-                + abs(ay - oy)
+                +
+                abs(ay - oy)
                 == 1
             ):
                 return True
 
         return False
 
+    # =====================================================
+    # Utility
+    # =====================================================
+
     def _inside(
         self,
         pos,
     ):
-
         x, y = pos
 
         return (
@@ -1569,20 +2094,56 @@ class CooperativeTransportEnv(ParallelEnv):
 
     def _check_success(self):
 
-        target = next(
-            obj
-            for obj in self.objects
-            if obj.is_target
+        target = (
+            self._target_object()
         )
 
         return (
             target.cells()
-            == self.goal_cells
+            ==
+            self.goal_cells
         )
 
-    # ========================================================
+    def state(self):
+
+        grid = np.zeros(
+            (
+                self.height,
+                self.width,
+            ),
+            dtype=np.float32,
+        )
+
+        for x, y in self.walls:
+            grid[y, x] = 1
+
+        for x, y in self.goal_cells:
+            grid[y, x] = 2
+
+        for obj in self.objects:
+
+            value = (
+                4
+                if obj.is_target
+                else 3
+            )
+
+            for x, y in obj.cells():
+                grid[y, x] = value
+
+        for _, (
+            x,
+            y,
+        ) in (
+            self.agent_positions.items()
+        ):
+            grid[y, x] = 5
+
+        return grid.flatten()
+
+    # =====================================================
     # Render
-    # ========================================================
+    # =====================================================
 
     def render(self):
 
@@ -1593,14 +2154,13 @@ class CooperativeTransportEnv(ParallelEnv):
                     self.width
                 )
             ]
+
             for _ in range(
                 self.height
             )
         ]
 
-        for x, y in (
-            self.goal_cells
-        ):
+        for x, y in self.goal_cells:
             grid[y][x] = "G"
 
         for x, y in self.walls:
@@ -1615,27 +2175,36 @@ class CooperativeTransportEnv(ParallelEnv):
             )
 
             for x, y in obj.cells():
-                grid[y][x] = (
-                    symbol
-                )
+                grid[y][x] = symbol
 
         for agent, (
             x,
             y,
         ) in (
-            self.agent_positions
-            .items()
+            self.agent_positions.items()
         ):
-
             grid[y][x] = (
                 agent.split("_")[1]
             )
 
-        result = (
-            f"\nStage "
+        header = (
+            self.current_scenario_name
+            if self.current_scenario_name
+            is not None
+            else
+            f"Stage "
             f"{self.curriculum_stage}"
+        )
+
+        result = (
+            "\n"
+            +
+            str(header)
+            +
             f" | Step "
-            f"{self.step_count}\n"
+            f"{self.step_count}"
+            +
+            "\n"
             +
             "\n".join(
                 " ".join(row)
@@ -1645,10 +2214,7 @@ class CooperativeTransportEnv(ParallelEnv):
             "\n"
         )
 
-        if (
-            self.render_mode
-            == "ansi"
-        ):
+        if self.render_mode == "ansi":
             return result
 
         print(result)

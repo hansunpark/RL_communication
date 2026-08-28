@@ -4,3 +4,5 @@ pettingzoo>=1.24
 pytest>=8.0
 torch>=2.3
 tensorboard>=2.17
+matplotlib>=3.9
+pillow>=10.0

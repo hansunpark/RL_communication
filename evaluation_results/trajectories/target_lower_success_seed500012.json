@@ -1,0 +1,1789 @@
+{
+  "scenario": "target_lower",
+  "seed": 500012,
+  "width": 12,
+  "height": 12,
+  "success": true,
+  "episode_length": 19,
+  "return": 11.309999999999999,
+  "frames": [
+    {
+      "step": 0,
+      "agents": {
+        "agent_0": [
+          9,
+          6
+        ],
+        "agent_1": [
+          3,
+          0
+        ],
+        "agent_2": [
+          10,
+          9
+        ],
+        "agent_3": [
+          9,
+          0
+        ]
+      },
+      "objects": [
+        {
+          "id": 0,
+          "x": 4,
+          "y": 3,
+          "width": 3,
+          "height": 2,
+          "is_target": true
+        },
+        {
+          "id": 1,
+          "x": 4,
+          "y": 6,
+          "width": 3,
+          "height": 1,
+          "is_target": false
+        }
+      ],
+      "goal_cells": [
+        [
+          4,
+          9
+        ],
+        [
+          4,
+          10
+        ],
+        [
+          5,
+          9
+        ],
+        [
+          5,
+          10
+        ],
+        [
+          6,
+          9
+        ],
+        [
+          6,
+          10
+        ]
+      ],
+      "walls": [],
+      "actions": null,
+      "reward": 0.0
+    },
+    {
+      "step": 1,
+      "agents": {
+        "agent_0": [
+          8,
+          6
+        ],
+        "agent_1": [
+          2,
+          0
+        ],
+        "agent_2": [
+          10,
+          8
+        ],
+        "agent_3": [
+          8,
+          0
+        ]
+      },
+      "objects": [
+        {
+          "id": 0,
+          "x": 4,
+          "y": 3,
+          "width": 3,
+          "height": 2,
+          "is_target": true
+        },
+        {
+          "id": 1,
+          "x": 4,
+          "y": 6,
+          "width": 3,
+          "height": 1,
+          "is_target": false
+        }
+      ],
+      "goal_cells": [
+        [
+          4,
+          9
+        ],
+        [
+          4,
+          10
+        ],
+        [
+          5,
+          9
+        ],
+        [
+          5,
+          10
+        ],
+        [
+          6,
+          9
+        ],
+        [
+          6,
+          10
+        ]
+      ],
+      "walls": [],
+      "actions": {
+        "agent_0": [
+          4,
+          0
+        ],
+        "agent_1": [
+          4,
+          0
+        ],
+        "agent_2": [
+          1,
+          0
+        ],
+        "agent_3": [
+          4,
+          0
+        ]
+      },
+      "reward": -0.01,
+      "success": false,
+      "target_distance": 6,
+      "obstacle_blocking": 3,
+      "target_moved": false,
+      "obstacle_moves": 0
+    },
+    {
+      "step": 2,
+      "agents": {
+        "agent_0": [
+          7,
+          6
+        ],
+        "agent_1": [
+          1,
+          0
+        ],
+        "agent_2": [
+          10,
+          7
+        ],
+        "agent_3": [
+          7,
+          0
+        ]
+      },
+      "objects": [
+        {
+          "id": 0,
+          "x": 4,
+          "y": 3,
+          "width": 3,
+          "height": 2,
+          "is_target": true
+        },
+        {
+          "id": 1,
+          "x": 4,
+          "y": 6,
+          "width": 3,
+          "height": 1,
+          "is_target": false
+        }
+      ],
+      "goal_cells": [
+        [
+          4,
+          9
+        ],
+        [
+          4,
+          10
+        ],
+        [
+          5,
+          9
+        ],
+        [
+          5,
+          10
+        ],
+        [
+          6,
+          9
+        ],
+        [
+          6,
+          10
+        ]
+      ],
+      "walls": [],
+      "actions": {
+        "agent_0": [
+          4,
+          0
+        ],
+        "agent_1": [
+          4,
+          0
+        ],
+        "agent_2": [
+          1,
+          0
+        ],
+        "agent_3": [
+          4,
+          0
+        ]
+      },
+      "reward": -0.01,
+      "success": false,
+      "target_distance": 6,
+      "obstacle_blocking": 3,
+      "target_moved": false,
+      "obstacle_moves": 0
+    },
+    {
+      "step": 3,
+      "agents": {
+        "agent_0": [
+          6,
+          6
+        ],
+        "agent_1": [
+          2,
+          0
+        ],
+        "agent_2": [
+          9,
+          7
+        ],
+        "agent_3": [
+          6,
+          0
+        ]
+      },
+      "objects": [
+        {
+          "id": 0,
+          "x": 4,
+          "y": 3,
+          "width": 3,
+          "height": 2,
+          "is_target": true
+        },
+        {
+          "id": 1,
+          "x": 3,
+          "y": 6,
+          "width": 3,
+          "height": 1,
+          "is_target": false
+        }
+      ],
+      "goal_cells": [
+        [
+          4,
+          9
+        ],
+        [
+          4,
+          10
+        ],
+        [
+          5,
+          9
+        ],
+        [
+          5,
+          10
+        ],
+        [
+          6,
+          9
+        ],
+        [
+          6,
+          10
+        ]
+      ],
+      "walls": [],
+      "actions": {
+        "agent_0": [
+          4,
+          0
+        ],
+        "agent_1": [
+          2,
+          0
+        ],
+        "agent_2": [
+          4,
+          0
+        ],
+        "agent_3": [
+          4,
+          0
+        ]
+      },
+      "reward": 0.09000000000000001,
+      "success": false,
+      "target_distance": 6,
+      "obstacle_blocking": 2,
+      "target_moved": false,
+      "obstacle_moves": 1
+    },
+    {
+      "step": 4,
+      "agents": {
+        "agent_0": [
+          5,
+          6
+        ],
+        "agent_1": [
+          1,
+          0
+        ],
+        "agent_2": [
+          8,
+          7
+        ],
+        "agent_3": [
+          5,
+          0
+        ]
+      },
+      "objects": [
+        {
+          "id": 0,
+          "x": 4,
+          "y": 3,
+          "width": 3,
+          "height": 2,
+          "is_target": true
+        },
+        {
+          "id": 1,
+          "x": 2,
+          "y": 6,
+          "width": 3,
+          "height": 1,
+          "is_target": false
+        }
+      ],
+      "goal_cells": [
+        [
+          4,
+          9
+        ],
+        [
+          4,
+          10
+        ],
+        [
+          5,
+          9
+        ],
+        [
+          5,
+          10
+        ],
+        [
+          6,
+          9
+        ],
+        [
+          6,
+          10
+        ]
+      ],
+      "walls": [],
+      "actions": {
+        "agent_0": [
+          4,
+          0
+        ],
+        "agent_1": [
+          4,
+          0
+        ],
+        "agent_2": [
+          4,
+          0
+        ],
+        "agent_3": [
+          4,
+          0
+        ]
+      },
+      "reward": 0.09000000000000001,
+      "success": false,
+      "target_distance": 6,
+      "obstacle_blocking": 1,
+      "target_moved": false,
+      "obstacle_moves": 1
+    },
+    {
+      "step": 5,
+      "agents": {
+        "agent_0": [
+          4,
+          6
+        ],
+        "agent_1": [
+          2,
+          0
+        ],
+        "agent_2": [
+          7,
+          7
+        ],
+        "agent_3": [
+          4,
+          0
+        ]
+      },
+      "objects": [
+        {
+          "id": 0,
+          "x": 4,
+          "y": 3,
+          "width": 3,
+          "height": 2,
+          "is_target": true
+        },
+        {
+          "id": 1,
+          "x": 1,
+          "y": 6,
+          "width": 3,
+          "height": 1,
+          "is_target": false
+        }
+      ],
+      "goal_cells": [
+        [
+          4,
+          9
+        ],
+        [
+          4,
+          10
+        ],
+        [
+          5,
+          9
+        ],
+        [
+          5,
+          10
+        ],
+        [
+          6,
+          9
+        ],
+        [
+          6,
+          10
+        ]
+      ],
+      "walls": [],
+      "actions": {
+        "agent_0": [
+          4,
+          0
+        ],
+        "agent_1": [
+          2,
+          0
+        ],
+        "agent_2": [
+          4,
+          0
+        ],
+        "agent_3": [
+          4,
+          0
+        ]
+      },
+      "reward": 0.09000000000000001,
+      "success": false,
+      "target_distance": 6,
+      "obstacle_blocking": 0,
+      "target_moved": false,
+      "obstacle_moves": 1
+    },
+    {
+      "step": 6,
+      "agents": {
+        "agent_0": [
+          3,
+          6
+        ],
+        "agent_1": [
+          2,
+          1
+        ],
+        "agent_2": [
+          7,
+          6
+        ],
+        "agent_3": [
+          3,
+          0
+        ]
+      },
+      "objects": [
+        {
+          "id": 0,
+          "x": 4,
+          "y": 3,
+          "width": 3,
+          "height": 2,
+          "is_target": true
+        },
+        {
+          "id": 1,
+          "x": 0,
+          "y": 6,
+          "width": 3,
+          "height": 1,
+          "is_target": false
+        }
+      ],
+      "goal_cells": [
+        [
+          4,
+          9
+        ],
+        [
+          4,
+          10
+        ],
+        [
+          5,
+          9
+        ],
+        [
+          5,
+          10
+        ],
+        [
+          6,
+          9
+        ],
+        [
+          6,
+          10
+        ]
+      ],
+      "walls": [],
+      "actions": {
+        "agent_0": [
+          4,
+          0
+        ],
+        "agent_1": [
+          3,
+          0
+        ],
+        "agent_2": [
+          1,
+          0
+        ],
+        "agent_3": [
+          4,
+          0
+        ]
+      },
+      "reward": -0.01,
+      "success": false,
+      "target_distance": 6,
+      "obstacle_blocking": 0,
+      "target_moved": false,
+      "obstacle_moves": 1
+    },
+    {
+      "step": 7,
+      "agents": {
+        "agent_0": [
+          3,
+          6
+        ],
+        "agent_1": [
+          2,
+          2
+        ],
+        "agent_2": [
+          6,
+          6
+        ],
+        "agent_3": [
+          2,
+          0
+        ]
+      },
+      "objects": [
+        {
+          "id": 0,
+          "x": 4,
+          "y": 3,
+          "width": 3,
+          "height": 2,
+          "is_target": true
+        },
+        {
+          "id": 1,
+          "x": 0,
+          "y": 6,
+          "width": 3,
+          "height": 1,
+          "is_target": false
+        }
+      ],
+      "goal_cells": [
+        [
+          4,
+          9
+        ],
+        [
+          4,
+          10
+        ],
+        [
+          5,
+          9
+        ],
+        [
+          5,
+          10
+        ],
+        [
+          6,
+          9
+        ],
+        [
+          6,
+          10
+        ]
+      ],
+      "walls": [],
+      "actions": {
+        "agent_0": [
+          4,
+          0
+        ],
+        "agent_1": [
+          3,
+          0
+        ],
+        "agent_2": [
+          4,
+          0
+        ],
+        "agent_3": [
+          4,
+          0
+        ]
+      },
+      "reward": -0.01,
+      "success": false,
+      "target_distance": 6,
+      "obstacle_blocking": 0,
+      "target_moved": false,
+      "obstacle_moves": 0
+    },
+    {
+      "step": 8,
+      "agents": {
+        "agent_0": [
+          3,
+          6
+        ],
+        "agent_1": [
+          3,
+          2
+        ],
+        "agent_2": [
+          5,
+          6
+        ],
+        "agent_3": [
+          2,
+          1
+        ]
+      },
+      "objects": [
+        {
+          "id": 0,
+          "x": 4,
+          "y": 3,
+          "width": 3,
+          "height": 2,
+          "is_target": true
+        },
+        {
+          "id": 1,
+          "x": 0,
+          "y": 6,
+          "width": 3,
+          "height": 1,
+          "is_target": false
+        }
+      ],
+      "goal_cells": [
+        [
+          4,
+          9
+        ],
+        [
+          4,
+          10
+        ],
+        [
+          5,
+          9
+        ],
+        [
+          5,
+          10
+        ],
+        [
+          6,
+          9
+        ],
+        [
+          6,
+          10
+        ]
+      ],
+      "walls": [],
+      "actions": {
+        "agent_0": [
+          4,
+          0
+        ],
+        "agent_1": [
+          2,
+          0
+        ],
+        "agent_2": [
+          4,
+          0
+        ],
+        "agent_3": [
+          3,
+          0
+        ]
+      },
+      "reward": -0.01,
+      "success": false,
+      "target_distance": 6,
+      "obstacle_blocking": 0,
+      "target_moved": false,
+      "obstacle_moves": 0
+    },
+    {
+      "step": 9,
+      "agents": {
+        "agent_0": [
+          3,
+          5
+        ],
+        "agent_1": [
+          4,
+          2
+        ],
+        "agent_2": [
+          4,
+          6
+        ],
+        "agent_3": [
+          3,
+          1
+        ]
+      },
+      "objects": [
+        {
+          "id": 0,
+          "x": 4,
+          "y": 3,
+          "width": 3,
+          "height": 2,
+          "is_target": true
+        },
+        {
+          "id": 1,
+          "x": 0,
+          "y": 6,
+          "width": 3,
+          "height": 1,
+          "is_target": false
+        }
+      ],
+      "goal_cells": [
+        [
+          4,
+          9
+        ],
+        [
+          4,
+          10
+        ],
+        [
+          5,
+          9
+        ],
+        [
+          5,
+          10
+        ],
+        [
+          6,
+          9
+        ],
+        [
+          6,
+          10
+        ]
+      ],
+      "walls": [],
+      "actions": {
+        "agent_0": [
+          1,
+          0
+        ],
+        "agent_1": [
+          2,
+          0
+        ],
+        "agent_2": [
+          4,
+          0
+        ],
+        "agent_3": [
+          2,
+          0
+        ]
+      },
+      "reward": -0.01,
+      "success": false,
+      "target_distance": 6,
+      "obstacle_blocking": 0,
+      "target_moved": false,
+      "obstacle_moves": 0
+    },
+    {
+      "step": 10,
+      "agents": {
+        "agent_0": [
+          3,
+          4
+        ],
+        "agent_1": [
+          5,
+          2
+        ],
+        "agent_2": [
+          3,
+          6
+        ],
+        "agent_3": [
+          4,
+          1
+        ]
+      },
+      "objects": [
+        {
+          "id": 0,
+          "x": 4,
+          "y": 3,
+          "width": 3,
+          "height": 2,
+          "is_target": true
+        },
+        {
+          "id": 1,
+          "x": 0,
+          "y": 6,
+          "width": 3,
+          "height": 1,
+          "is_target": false
+        }
+      ],
+      "goal_cells": [
+        [
+          4,
+          9
+        ],
+        [
+          4,
+          10
+        ],
+        [
+          5,
+          9
+        ],
+        [
+          5,
+          10
+        ],
+        [
+          6,
+          9
+        ],
+        [
+          6,
+          10
+        ]
+      ],
+      "walls": [],
+      "actions": {
+        "agent_0": [
+          1,
+          0
+        ],
+        "agent_1": [
+          2,
+          0
+        ],
+        "agent_2": [
+          4,
+          0
+        ],
+        "agent_3": [
+          2,
+          0
+        ]
+      },
+      "reward": -0.01,
+      "success": false,
+      "target_distance": 6,
+      "obstacle_blocking": 0,
+      "target_moved": false,
+      "obstacle_moves": 0
+    },
+    {
+      "step": 11,
+      "agents": {
+        "agent_0": [
+          3,
+          3
+        ],
+        "agent_1": [
+          5,
+          2
+        ],
+        "agent_2": [
+          3,
+          6
+        ],
+        "agent_3": [
+          4,
+          2
+        ]
+      },
+      "objects": [
+        {
+          "id": 0,
+          "x": 4,
+          "y": 3,
+          "width": 3,
+          "height": 2,
+          "is_target": true
+        },
+        {
+          "id": 1,
+          "x": 0,
+          "y": 6,
+          "width": 3,
+          "height": 1,
+          "is_target": false
+        }
+      ],
+      "goal_cells": [
+        [
+          4,
+          9
+        ],
+        [
+          4,
+          10
+        ],
+        [
+          5,
+          9
+        ],
+        [
+          5,
+          10
+        ],
+        [
+          6,
+          9
+        ],
+        [
+          6,
+          10
+        ]
+      ],
+      "walls": [],
+      "actions": {
+        "agent_0": [
+          1,
+          0
+        ],
+        "agent_1": [
+          0,
+          0
+        ],
+        "agent_2": [
+          4,
+          0
+        ],
+        "agent_3": [
+          3,
+          0
+        ]
+      },
+      "reward": -0.01,
+      "success": false,
+      "target_distance": 6,
+      "obstacle_blocking": 0,
+      "target_moved": false,
+      "obstacle_moves": 0
+    },
+    {
+      "step": 12,
+      "agents": {
+        "agent_0": [
+          3,
+          2
+        ],
+        "agent_1": [
+          6,
+          2
+        ],
+        "agent_2": [
+          3,
+          6
+        ],
+        "agent_3": [
+          5,
+          2
+        ]
+      },
+      "objects": [
+        {
+          "id": 0,
+          "x": 4,
+          "y": 3,
+          "width": 3,
+          "height": 2,
+          "is_target": true
+        },
+        {
+          "id": 1,
+          "x": 0,
+          "y": 6,
+          "width": 3,
+          "height": 1,
+          "is_target": false
+        }
+      ],
+      "goal_cells": [
+        [
+          4,
+          9
+        ],
+        [
+          4,
+          10
+        ],
+        [
+          5,
+          9
+        ],
+        [
+          5,
+          10
+        ],
+        [
+          6,
+          9
+        ],
+        [
+          6,
+          10
+        ]
+      ],
+      "walls": [],
+      "actions": {
+        "agent_0": [
+          1,
+          0
+        ],
+        "agent_1": [
+          2,
+          0
+        ],
+        "agent_2": [
+          4,
+          0
+        ],
+        "agent_3": [
+          2,
+          0
+        ]
+      },
+      "reward": -0.01,
+      "success": false,
+      "target_distance": 6,
+      "obstacle_blocking": 0,
+      "target_moved": false,
+      "obstacle_moves": 0
+    },
+    {
+      "step": 13,
+      "agents": {
+        "agent_0": [
+          4,
+          2
+        ],
+        "agent_1": [
+          6,
+          2
+        ],
+        "agent_2": [
+          3,
+          6
+        ],
+        "agent_3": [
+          5,
+          2
+        ]
+      },
+      "objects": [
+        {
+          "id": 0,
+          "x": 4,
+          "y": 3,
+          "width": 3,
+          "height": 2,
+          "is_target": true
+        },
+        {
+          "id": 1,
+          "x": 0,
+          "y": 6,
+          "width": 3,
+          "height": 1,
+          "is_target": false
+        }
+      ],
+      "goal_cells": [
+        [
+          4,
+          9
+        ],
+        [
+          4,
+          10
+        ],
+        [
+          5,
+          9
+        ],
+        [
+          5,
+          10
+        ],
+        [
+          6,
+          9
+        ],
+        [
+          6,
+          10
+        ]
+      ],
+      "walls": [],
+      "actions": {
+        "agent_0": [
+          2,
+          0
+        ],
+        "agent_1": [
+          3,
+          0
+        ],
+        "agent_2": [
+          4,
+          0
+        ],
+        "agent_3": [
+          0,
+          0
+        ]
+      },
+      "reward": -0.01,
+      "success": false,
+      "target_distance": 6,
+      "obstacle_blocking": 0,
+      "target_moved": false,
+      "obstacle_moves": 0
+    },
+    {
+      "step": 14,
+      "agents": {
+        "agent_0": [
+          4,
+          3
+        ],
+        "agent_1": [
+          6,
+          3
+        ],
+        "agent_2": [
+          3,
+          6
+        ],
+        "agent_3": [
+          5,
+          3
+        ]
+      },
+      "objects": [
+        {
+          "id": 0,
+          "x": 4,
+          "y": 4,
+          "width": 3,
+          "height": 2,
+          "is_target": true
+        },
+        {
+          "id": 1,
+          "x": 0,
+          "y": 6,
+          "width": 3,
+          "height": 1,
+          "is_target": false
+        }
+      ],
+      "goal_cells": [
+        [
+          4,
+          9
+        ],
+        [
+          4,
+          10
+        ],
+        [
+          5,
+          9
+        ],
+        [
+          5,
+          10
+        ],
+        [
+          6,
+          9
+        ],
+        [
+          6,
+          10
+        ]
+      ],
+      "walls": [],
+      "actions": {
+        "agent_0": [
+          3,
+          0
+        ],
+        "agent_1": [
+          3,
+          0
+        ],
+        "agent_2": [
+          4,
+          0
+        ],
+        "agent_3": [
+          3,
+          0
+        ]
+      },
+      "reward": 0.19,
+      "success": false,
+      "target_distance": 5,
+      "obstacle_blocking": 0,
+      "target_moved": true,
+      "obstacle_moves": 0
+    },
+    {
+      "step": 15,
+      "agents": {
+        "agent_0": [
+          4,
+          4
+        ],
+        "agent_1": [
+          6,
+          4
+        ],
+        "agent_2": [
+          3,
+          6
+        ],
+        "agent_3": [
+          5,
+          4
+        ]
+      },
+      "objects": [
+        {
+          "id": 0,
+          "x": 4,
+          "y": 5,
+          "width": 3,
+          "height": 2,
+          "is_target": true
+        },
+        {
+          "id": 1,
+          "x": 0,
+          "y": 6,
+          "width": 3,
+          "height": 1,
+          "is_target": false
+        }
+      ],
+      "goal_cells": [
+        [
+          4,
+          9
+        ],
+        [
+          4,
+          10
+        ],
+        [
+          5,
+          9
+        ],
+        [
+          5,
+          10
+        ],
+        [
+          6,
+          9
+        ],
+        [
+          6,
+          10
+        ]
+      ],
+      "walls": [],
+      "actions": {
+        "agent_0": [
+          3,
+          0
+        ],
+        "agent_1": [
+          3,
+          0
+        ],
+        "agent_2": [
+          4,
+          0
+        ],
+        "agent_3": [
+          3,
+          0
+        ]
+      },
+      "reward": 0.19,
+      "success": false,
+      "target_distance": 4,
+      "obstacle_blocking": 0,
+      "target_moved": true,
+      "obstacle_moves": 0
+    },
+    {
+      "step": 16,
+      "agents": {
+        "agent_0": [
+          4,
+          5
+        ],
+        "agent_1": [
+          6,
+          5
+        ],
+        "agent_2": [
+          3,
+          5
+        ],
+        "agent_3": [
+          5,
+          5
+        ]
+      },
+      "objects": [
+        {
+          "id": 0,
+          "x": 4,
+          "y": 6,
+          "width": 3,
+          "height": 2,
+          "is_target": true
+        },
+        {
+          "id": 1,
+          "x": 0,
+          "y": 6,
+          "width": 3,
+          "height": 1,
+          "is_target": false
+        }
+      ],
+      "goal_cells": [
+        [
+          4,
+          9
+        ],
+        [
+          4,
+          10
+        ],
+        [
+          5,
+          9
+        ],
+        [
+          5,
+          10
+        ],
+        [
+          6,
+          9
+        ],
+        [
+          6,
+          10
+        ]
+      ],
+      "walls": [],
+      "actions": {
+        "agent_0": [
+          3,
+          0
+        ],
+        "agent_1": [
+          3,
+          0
+        ],
+        "agent_2": [
+          1,
+          0
+        ],
+        "agent_3": [
+          3,
+          0
+        ]
+      },
+      "reward": 0.19,
+      "success": false,
+      "target_distance": 3,
+      "obstacle_blocking": 0,
+      "target_moved": true,
+      "obstacle_moves": 0
+    },
+    {
+      "step": 17,
+      "agents": {
+        "agent_0": [
+          4,
+          6
+        ],
+        "agent_1": [
+          6,
+          6
+        ],
+        "agent_2": [
+          3,
+          6
+        ],
+        "agent_3": [
+          5,
+          6
+        ]
+      },
+      "objects": [
+        {
+          "id": 0,
+          "x": 4,
+          "y": 7,
+          "width": 3,
+          "height": 2,
+          "is_target": true
+        },
+        {
+          "id": 1,
+          "x": 0,
+          "y": 6,
+          "width": 3,
+          "height": 1,
+          "is_target": false
+        }
+      ],
+      "goal_cells": [
+        [
+          4,
+          9
+        ],
+        [
+          4,
+          10
+        ],
+        [
+          5,
+          9
+        ],
+        [
+          5,
+          10
+        ],
+        [
+          6,
+          9
+        ],
+        [
+          6,
+          10
+        ]
+      ],
+      "walls": [],
+      "actions": {
+        "agent_0": [
+          3,
+          0
+        ],
+        "agent_1": [
+          3,
+          0
+        ],
+        "agent_2": [
+          3,
+          0
+        ],
+        "agent_3": [
+          3,
+          0
+        ]
+      },
+      "reward": 0.19,
+      "success": false,
+      "target_distance": 2,
+      "obstacle_blocking": 0,
+      "target_moved": true,
+      "obstacle_moves": 0
+    },
+    {
+      "step": 18,
+      "agents": {
+        "agent_0": [
+          4,
+          7
+        ],
+        "agent_1": [
+          6,
+          7
+        ],
+        "agent_2": [
+          4,
+          6
+        ],
+        "agent_3": [
+          5,
+          7
+        ]
+      },
+      "objects": [
+        {
+          "id": 0,
+          "x": 4,
+          "y": 8,
+          "width": 3,
+          "height": 2,
+          "is_target": true
+        },
+        {
+          "id": 1,
+          "x": 0,
+          "y": 6,
+          "width": 3,
+          "height": 1,
+          "is_target": false
+        }
+      ],
+      "goal_cells": [
+        [
+          4,
+          9
+        ],
+        [
+          4,
+          10
+        ],
+        [
+          5,
+          9
+        ],
+        [
+          5,
+          10
+        ],
+        [
+          6,
+          9
+        ],
+        [
+          6,
+          10
+        ]
+      ],
+      "walls": [],
+      "actions": {
+        "agent_0": [
+          3,
+          0
+        ],
+        "agent_1": [
+          3,
+          0
+        ],
+        "agent_2": [
+          2,
+          0
+        ],
+        "agent_3": [
+          3,
+          0
+        ]
+      },
+      "reward": 0.19,
+      "success": false,
+      "target_distance": 1,
+      "obstacle_blocking": 0,
+      "target_moved": true,
+      "obstacle_moves": 0
+    },
+    {
+      "step": 19,
+      "agents": {
+        "agent_0": [
+          4,
+          8
+        ],
+        "agent_1": [
+          6,
+          8
+        ],
+        "agent_2": [
+          4,
+          7
+        ],
+        "agent_3": [
+          5,
+          8
+        ]
+      },
+      "objects": [
+        {
+          "id": 0,
+          "x": 4,
+          "y": 9,
+          "width": 3,
+          "height": 2,
+          "is_target": true
+        },
+        {
+          "id": 1,
+          "x": 0,
+          "y": 6,
+          "width": 3,
+          "height": 1,
+          "is_target": false
+        }
+      ],
+      "goal_cells": [
+        [
+          4,
+          9
+        ],
+        [
+          4,
+          10
+        ],
+        [
+          5,
+          9
+        ],
+        [
+          5,
+          10
+        ],
+        [
+          6,
+          9
+        ],
+        [
+          6,
+          10
+        ]
+      ],
+      "walls": [],
+      "actions": {
+        "agent_0": [
+          3,
+          0
+        ],
+        "agent_1": [
+          3,
+          0
+        ],
+        "agent_2": [
+          3,
+          0
+        ],
+        "agent_3": [
+          3,
+          0
+        ]
+      },
+      "reward": 10.19,
+      "success": true,
+      "target_distance": 0,
+      "obstacle_blocking": 0,
+      "target_moved": true,
+      "obstacle_moves": 0
+    }
+  ]
+}

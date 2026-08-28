@@ -1,3 +1,5 @@
+import numpy as np
+
 from env import (
     CooperativeTransportEnv,
 )
@@ -5,17 +7,20 @@ from env import (
 
 def main():
 
-    env = CooperativeTransportEnv(
-        width=12,
-        height=12,
-        num_agents=4,
-        vision_size=5,
-        max_steps=200,
-        render_mode="human",
+    env = (
+        CooperativeTransportEnv(
+            curriculum_stage=3,
+
+            spawn_level=2,
+
+            render_mode="human",
+        )
     )
 
     observations, infos = (
-        env.reset(seed=42)
+        env.reset(
+            seed=42
+        )
     )
 
     while env.agents:
@@ -26,7 +31,8 @@ def main():
                     agent
                 ).sample()
 
-            for agent in env.agents
+            for agent
+            in env.agents
         }
 
         (
@@ -35,7 +41,9 @@ def main():
             terminations,
             truncations,
             infos,
-        ) = env.step(actions)
+        ) = env.step(
+            actions
+        )
 
     env.close()
 

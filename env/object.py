@@ -17,7 +17,6 @@ Position = Tuple[int, int]
 class RectObject:
     object_id: int
 
-    # left-top cell
     x: int
     y: int
 
@@ -38,7 +37,9 @@ class RectObject:
         direction: int,
     ) -> Set[Position]:
 
-        dx, dy = ACTION_TO_DELTA[direction]
+        dx, dy = ACTION_TO_DELTA[
+            direction
+        ]
 
         return {
             (x + dx, y + dy)
@@ -50,45 +51,56 @@ class RectObject:
         direction: int,
     ) -> Set[Position]:
 
-        # object moves RIGHT
-        # agents must fill left face
+        # RIGHT:
+        # agents must stand on left face
         if direction == RIGHT:
             return {
-                (self.x - 1, self.y + dy)
-                for dy in range(self.height)
+                (
+                    self.x - 1,
+                    self.y + dy,
+                )
+                for dy in range(
+                    self.height
+                )
             }
 
-        # object moves LEFT
-        # agents must fill right face
+        # LEFT:
+        # agents must stand on right face
         if direction == LEFT:
             return {
                 (
                     self.x + self.width,
                     self.y + dy,
                 )
-                for dy in range(self.height)
+                for dy in range(
+                    self.height
+                )
             }
 
-        # object moves DOWN
-        # agents must fill upper face
+        # DOWN:
+        # agents must stand above object
         if direction == DOWN:
             return {
                 (
                     self.x + dx,
                     self.y - 1,
                 )
-                for dx in range(self.width)
+                for dx in range(
+                    self.width
+                )
             }
 
-        # object moves UP
-        # agents must fill lower face
+        # UP:
+        # agents must stand below object
         if direction == UP:
             return {
                 (
                     self.x + dx,
                     self.y + self.height,
                 )
-                for dx in range(self.width)
+                for dx in range(
+                    self.width
+                )
             }
 
         return set()
@@ -98,7 +110,9 @@ class RectObject:
         direction: int,
     ) -> None:
 
-        dx, dy = ACTION_TO_DELTA[direction]
+        dx, dy = ACTION_TO_DELTA[
+            direction
+        ]
 
         self.x += dx
         self.y += dy
