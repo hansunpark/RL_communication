@@ -2,9 +2,11 @@ import argparse
 import os
 import shutil
 
-from collections import defaultdict
+from evaluation.evaluator import (
+    PolicyEvaluator,
+)
 
-from .benchmark_scenarios import (
+from evaluation.benchmark_scenarios import (
     IID_SCENARIOS,
     OBSTACLE_SCENARIOS,
     TARGET_GOAL_SCENARIOS,
@@ -12,441 +14,458 @@ from .benchmark_scenarios import (
     STRESS_SCENARIOS,
 )
 
-from .evaluator import (
-    PolicyEvaluator,
-    save_csv,
-    save_json,
-)
 
+def parse_args():
 
-def print_summary(
-    name,
-    summary,
-):
-    print()
-    print(
-        "-" * 65
-    )
-
-    print(name)
-
-    print(
-        "-" * 65
-    )
-
-    print(
-        f"Episodes: "
-        f"{summary['episodes']}"
-    )
-
-    print(
-        f"Success Rate: "
-        f"{summary['success_rate'] * 100:.2f}%"
-    )
-
-    print(
-        f"Mean Episode Length: "
-        f"{summary['mean_episode_length']:.2f}"
-    )
-
-    success_length = (
-        summary[
-            "mean_success_length"
-        ]
-    )
-
-    if success_length is None:
-
-        print(
-            "Mean Success Length: "
-            "N/A"
-        )
-
-    else:
-
-        print(
-            f"Mean Success Length: "
-            f"{success_length:.2f}"
-        )
-
-    print(
-        f"Mean Return: "
-        f"{summary['mean_return']:.3f}"
-    )
-
-    print(
-        f"Mean Target Moves: "
-        f"{summary['mean_target_moves']:.2f}"
-    )
-
-    print(
-        f"Mean Obstacle Moves: "
-        f"{summary['mean_obstacle_moves']:.2f}"
-    )
-
-
-def run_group(
-    evaluator,
-    group_name,
-    scenarios,
-    episodes_per_scenario,
-    seed_base,
-    trajectory_dir,
-    record_examples,
-):
-    group_rows = []
-
-    scenario_summaries = {}
-
-    for index, scenario in enumerate(
-        scenarios
-    ):
-        print()
-        print(
-            f"[{group_name}] "
-            f"{scenario.name}"
-        )
-
-        seed_start = (
-            seed_base
-            +
-            index
-            * 100000
-        )
-
-        results = (
-            evaluator.evaluate_scenario(
-                scenario=scenario,
-                episodes=
-                    episodes_per_scenario,
-                seed_start=
-                    seed_start,
-                record_examples=
-                    record_examples,
-                trajectory_dir=
-                    trajectory_dir,
-            )
-        )
-
-        summary = (
-            evaluator.summarize(
-                results
-            )
-        )
-
-        scenario_summaries[
-            scenario.name
-        ] = summary
-
-        group_rows.extend(
-            results
-        )
-
-        print(
-            f"  success="
-            f"{summary['success_rate'] * 100:.1f}% "
-            f"mean_len="
-            f"{summary['mean_episode_length']:.1f}"
-        )
-
-    group_summary = (
-        evaluator.summarize(
-            group_rows
-        )
-    )
-
-    return (
-        group_rows,
-        group_summary,
-        scenario_summaries,
-    )
-
-
-def main():
-
-    parser = (
-        argparse.ArgumentParser()
-    )
+    parser = argparse.ArgumentParser()
 
     parser.add_argument(
         "--checkpoint",
-
         type=str,
+        required=True,
+    )
 
-        default=(
-            "checkpoints/"
-            "stage_6_mastered.pt"
-        ),
+    parser.add_argument(
+        "--mode",
+        type=str,
+        choices=[
+            "stochastic",
+            "deterministic",
+        ],
+        default="stochastic",
+    )
+
+    parser.add_argument(
+        "--groups",
+        nargs="+",
+        choices=[
+            "iid",
+            "obstacle_ood",
+            "target_goal_ood",
+            "combined_ood",
+            "stress",
+            "all",
+        ],
+        default=["all"],
     )
 
     parser.add_argument(
         "--iid-episodes",
-
         type=int,
-
         default=1000,
     )
 
     parser.add_argument(
         "--episodes-per-scenario",
-
         type=int,
-
         default=100,
     )
 
     parser.add_argument(
-        "--output",
-
-        type=str,
-
-        default=(
-            "evaluation_results"
-        ),
-    )
-
-    parser.add_argument(
         "--no-trajectories",
-
         action="store_true",
     )
 
-    args = parser.parse_args()
-
-    os.makedirs(
-        args.output,
-        exist_ok=True,
+    parser.add_argument(
+        "--device",
+        type=str,
+        default=None,
     )
 
-    trajectory_dir = (
-        os.path.join(
-            args.output,
-            "trajectories",
-        )
-    )
+    return parser.parse_args()
 
-    os.makedirs(
-        trajectory_dir,
-        exist_ok=True,
-    )
 
-    # ======================================================
-    # Freeze baseline checkpoint
-    # ======================================================
+def main():
 
-    baseline_checkpoint = (
-        os.path.join(
-            "checkpoints",
-            "baseline_no_comm_stage6.pt",
-        )
-    )
+    args = parse_args()
 
-    if (
-        not os.path.exists(
-            baseline_checkpoint
-        )
-    ):
-        shutil.copy2(
-            args.checkpoint,
-            baseline_checkpoint,
-        )
+    # ========================================================
+    # Groups
+    # ========================================================
 
-        print(
-            f"Baseline checkpoint copied:\n"
-            f"{baseline_checkpoint}"
-        )
+    if "all" in args.groups:
+
+        groups = [
+            "iid",
+            "obstacle_ood",
+            "target_goal_ood",
+            "combined_ood",
+            "stress",
+        ]
 
     else:
 
+        groups = list(
+            args.groups
+        )
+
+    # ========================================================
+    # Result directory
+    # ========================================================
+
+    output_root = os.path.join(
+        "evaluation_results",
+        args.mode,
+    )
+
+    trajectory_dir = os.path.join(
+        output_root,
+        "trajectories",
+    )
+
+    os.makedirs(
+        output_root,
+        exist_ok=True,
+    )
+
+    if not args.no_trajectories:
+
+        os.makedirs(
+            trajectory_dir,
+            exist_ok=True,
+        )
+
+    # ========================================================
+    # Freeze checkpoint
+    #
+    # 현재 실행에서 사용한 모델을 결과 폴더에 같이 복사.
+    # 매번 덮어써서 stale checkpoint 문제 방지.
+    # ========================================================
+
+    frozen_checkpoint = os.path.join(
+        output_root,
+        "baseline_checkpoint.pt",
+    )
+
+    shutil.copy2(
+        args.checkpoint,
+        frozen_checkpoint,
+    )
+
+    print(
+        f"Checkpoint copied:"
+    )
+
+    print(
+        frozen_checkpoint
+    )
+
+    # ========================================================
+    # Evaluator
+    # ========================================================
+
+    evaluator = PolicyEvaluator(
+        checkpoint=
+            frozen_checkpoint,
+
+        device=
+            args.device,
+
+        action_mode=
+            args.mode,
+    )
+
+    grouped_results = {}
+
+    seed_base = 100000
+
+    # ========================================================
+    # IID
+    # ========================================================
+
+    if "iid" in groups:
+
+        print()
         print(
-            f"Using existing baseline:\n"
-            f"{baseline_checkpoint}"
+            "#" * 70
         )
 
-    evaluator = (
-        PolicyEvaluator(
-            checkpoint=
-                baseline_checkpoint
-        )
-    )
-
-    all_rows = []
-
-    complete_summary = {}
-
-    record_examples = (
-        not args.no_trajectories
-    )
-
-    print()
-    print(
-        "=" * 70
-    )
-
-    print(
-        "NO-COMMUNICATION BASELINE BENCHMARK"
-    )
-
-    print(
-        "=" * 70
-    )
-
-    # ======================================================
-    # A. IID
-    # ======================================================
-
-    iid_results = (
-        evaluator.evaluate_scenario(
-            scenario=
-                IID_SCENARIOS[0],
-
-            episodes=
-                args.iid_episodes,
-
-            seed_start=
-                100000,
-
-            record_examples=
-                record_examples,
-
-            trajectory_dir=
-                trajectory_dir,
-        )
-    )
-
-    iid_summary = (
-        evaluator.summarize(
-            iid_results
-        )
-    )
-
-    all_rows.extend(
-        iid_results
-    )
-
-    complete_summary[
-        "iid"
-    ] = {
-        "overall":
-            iid_summary,
-
-        "scenarios": {
-            "iid_stage6":
-                iid_summary
-        },
-    }
-
-    print_summary(
-        "A. IID Stage 6",
-        iid_summary,
-    )
-
-    # ======================================================
-    # B-E
-    # ======================================================
-
-    groups = [
-        (
-            "obstacle_ood",
-            "B. Obstacle Generalization",
-            OBSTACLE_SCENARIOS,
-            200000,
-        ),
-
-        (
-            "target_goal_ood",
-            "C. Target / Goal Generalization",
-            TARGET_GOAL_SCENARIOS,
-            300000,
-        ),
-
-        (
-            "combined_ood",
-            "D. Combined Generalization",
-            COMBINED_SCENARIOS,
-            400000,
-        ),
-
-        (
-            "stress",
-            "E. Stress Test",
-            STRESS_SCENARIOS,
-            500000,
-        ),
-    ]
-
-    for (
-        key,
-        display_name,
-        scenarios,
-        seed_base,
-    ) in groups:
-
-        (
-            rows,
-            group_summary,
-            scenario_summaries,
-        ) = run_group(
-            evaluator=evaluator,
-            group_name=
-                display_name,
-            scenarios=scenarios,
-            episodes_per_scenario=
-                args.episodes_per_scenario,
-            seed_base=
-                seed_base,
-            trajectory_dir=
-                trajectory_dir,
-            record_examples=
-                record_examples,
+        print(
+            "# IID STAGE 6"
         )
 
-        all_rows.extend(
-            rows
+        print(
+            "#" * 70
         )
 
-        complete_summary[
-            key
-        ] = {
-            "overall":
-                group_summary,
+        results = (
+            evaluator.evaluate_scenarios(
+                scenarios=
+                    IID_SCENARIOS,
 
-            "scenarios":
-                scenario_summaries,
-        }
+                episodes_per_scenario=
+                    args.iid_episodes,
 
-        print_summary(
-            display_name,
-            group_summary,
+                seed_start=
+                    seed_base,
+
+                trajectory_dir=(
+                    None
+                    if args.no_trajectories
+                    else trajectory_dir
+                ),
+            )
         )
 
-    # ======================================================
-    # Save
-    # ======================================================
+        grouped_results[
+            "iid"
+        ] = results
 
-    csv_path = (
-        os.path.join(
-            args.output,
-            "baseline_episodes.csv",
+        seed_base += (
+            args.iid_episodes
+            * len(
+                IID_SCENARIOS
+            )
+            + 1000
         )
+
+    # ========================================================
+    # Obstacle OOD
+    # ========================================================
+
+    if "obstacle_ood" in groups:
+
+        print()
+        print(
+            "#" * 70
+        )
+
+        print(
+            "# OBSTACLE OOD"
+        )
+
+        print(
+            "#" * 70
+        )
+
+        results = (
+            evaluator.evaluate_scenarios(
+                scenarios=
+                    OBSTACLE_SCENARIOS,
+
+                episodes_per_scenario=
+                    args.
+                    episodes_per_scenario,
+
+                seed_start=
+                    seed_base,
+
+                trajectory_dir=(
+                    None
+                    if args.no_trajectories
+                    else trajectory_dir
+                ),
+            )
+        )
+
+        grouped_results[
+            "obstacle_ood"
+        ] = results
+
+        seed_base += (
+            args.episodes_per_scenario
+            *
+            len(
+                OBSTACLE_SCENARIOS
+            )
+            + 1000
+        )
+
+    # ========================================================
+    # Target / Goal OOD
+    # ========================================================
+
+    if "target_goal_ood" in groups:
+
+        print()
+        print(
+            "#" * 70
+        )
+
+        print(
+            "# TARGET / GOAL OOD"
+        )
+
+        print(
+            "#" * 70
+        )
+
+        results = (
+            evaluator.evaluate_scenarios(
+                scenarios=
+                    TARGET_GOAL_SCENARIOS,
+
+                episodes_per_scenario=
+                    args.
+                    episodes_per_scenario,
+
+                seed_start=
+                    seed_base,
+
+                trajectory_dir=(
+                    None
+                    if args.no_trajectories
+                    else trajectory_dir
+                ),
+            )
+        )
+
+        grouped_results[
+            "target_goal_ood"
+        ] = results
+
+        seed_base += (
+            args.episodes_per_scenario
+            *
+            len(
+                TARGET_GOAL_SCENARIOS
+            )
+            + 1000
+        )
+
+    # ========================================================
+    # Combined OOD
+    # ========================================================
+
+    if "combined_ood" in groups:
+
+        print()
+        print(
+            "#" * 70
+        )
+
+        print(
+            "# COMBINED OOD"
+        )
+
+        print(
+            "#" * 70
+        )
+
+        results = (
+            evaluator.evaluate_scenarios(
+                scenarios=
+                    COMBINED_SCENARIOS,
+
+                episodes_per_scenario=
+                    args.
+                    episodes_per_scenario,
+
+                seed_start=
+                    seed_base,
+
+                trajectory_dir=(
+                    None
+                    if args.no_trajectories
+                    else trajectory_dir
+                ),
+            )
+        )
+
+        grouped_results[
+            "combined_ood"
+        ] = results
+
+        seed_base += (
+            args.episodes_per_scenario
+            *
+            len(
+                COMBINED_SCENARIOS
+            )
+            + 1000
+        )
+
+    # ========================================================
+    # Stress
+    # ========================================================
+
+    if "stress" in groups:
+
+        print()
+        print(
+            "#" * 70
+        )
+
+        print(
+            "# STRESS"
+        )
+
+        print(
+            "#" * 70
+        )
+
+        results = (
+            evaluator.evaluate_scenarios(
+                scenarios=
+                    STRESS_SCENARIOS,
+
+                episodes_per_scenario=
+                    args.
+                    episodes_per_scenario,
+
+                seed_start=
+                    seed_base,
+
+                trajectory_dir=(
+                    None
+                    if args.no_trajectories
+                    else trajectory_dir
+                ),
+            )
+        )
+
+        grouped_results[
+            "stress"
+        ] = results
+
+    # ========================================================
+    # Merge results
+    # ========================================================
+
+    all_results = []
+
+    for results in (
+        grouped_results.values()
+    ):
+        all_results.extend(
+            results
+        )
+
+    # ========================================================
+    # CSV
+    # ========================================================
+
+    csv_path = os.path.join(
+        output_root,
+        "baseline_episodes.csv",
     )
 
-    json_path = (
-        os.path.join(
-            args.output,
-            "baseline_summary.json",
-        )
-    )
-
-    save_csv(
-        all_rows,
+    evaluator.save_csv(
+        all_results,
         csv_path,
     )
 
-    save_json(
-        complete_summary,
-        json_path,
+    # ========================================================
+    # JSON summary
+    # ========================================================
+
+    summary = evaluator.build_summary(
+        grouped_results
     )
+
+    summary_path = os.path.join(
+        output_root,
+        "baseline_summary.json",
+    )
+
+    evaluator.save_json(
+        summary,
+        summary_path,
+    )
+
+    # ========================================================
+    # Finish
+    # ========================================================
 
     print()
     print(
@@ -454,29 +473,24 @@ def main():
     )
 
     print(
-        "BENCHMARK COMPLETE"
+        f"Finished"
+    )
+
+    print(
+        f"Mode    : {args.mode}"
+    )
+
+    print(
+        f"CSV     : {csv_path}"
+    )
+
+    print(
+        f"Summary : {summary_path}"
     )
 
     print(
         "=" * 70
     )
-
-    print(
-        f"Episode CSV:\n"
-        f"{csv_path}"
-    )
-
-    print(
-        f"\nSummary JSON:\n"
-        f"{json_path}"
-    )
-
-    if record_examples:
-
-        print(
-            f"\nTrajectory examples:\n"
-            f"{trajectory_dir}"
-        )
 
 
 if __name__ == "__main__":

@@ -1,623 +1,641 @@
 from dataclasses import dataclass
-from typing import List, Dict, Tuple
-
-
-Position = Tuple[int, int]
+from typing import Optional
 
 
 @dataclass
 class BenchmarkScenario:
-
     name: str
-    category: str
-
-    target_x: int
-    target_y: int
-    target_width: int
-    target_height: int
-
-    goal_x: int
-    goal_y: int
-
-    obstacles: List[Dict]
-
-    description: str = ""
-
-    def goal_cells(self):
-
-        return [
-            (
-                self.goal_x + dx,
-                self.goal_y + dy,
-            )
-
-            for dy in range(
-                self.target_height
-            )
-
-            for dx in range(
-                self.target_width
-            )
-        ]
+    config: Optional[dict] = None
 
     def to_env_dict(self):
-
-        return {
-            "name":
-                self.name,
-
-            "target": {
-                "x":
-                    self.target_x,
-
-                "y":
-                    self.target_y,
-
-                "width":
-                    self.target_width,
-
-                "height":
-                    self.target_height,
-            },
-
-            "goal_cells":
-                self.goal_cells(),
-
-            "obstacles":
-                self.obstacles,
-
-            "walls": [],
-
-            "random_agents":
-                True,
-
-            "agent_positions":
-                None,
-
-            "reward_mode":
-                "obstacle_shaping",
-        }
+        return self.config
 
 
-def obstacle(
-    x,
-    y,
-    width,
-    height,
-):
-    return {
-        "x": x,
-        "y": y,
-        "width": width,
-        "height": height,
-    }
-
-
-# ==========================================================
-# A. IID Stage 6
-# ==========================================================
+# ============================================================
+# IID
+#
+# config=None:
+# custom scenario를 만들지 않고,
+# 원래 Stage 6 환경을 그대로 사용한다.
+# ============================================================
 
 IID_SCENARIOS = [
-
     BenchmarkScenario(
         name="iid_stage6",
-        category="iid",
-
-        target_x=4,
-        target_y=2,
-        target_width=3,
-        target_height=2,
-
-        goal_x=4,
-        goal_y=9,
-
-        obstacles=[
-            obstacle(
-                4,
-                6,
-                3,
-                1,
-            ),
-
-            obstacle(
-                8,
-                5,
-                1,
-                2,
-            ),
-        ],
-
-        description=(
-            "Exactly the Stage 6 "
-            "training layout with "
-            "new agent spawn seeds."
-        ),
-    ),
+        config=None,
+    )
 ]
 
 
-# ==========================================================
-# B. Obstacle position generalization
-# ==========================================================
+# ============================================================
+# Obstacle OOD
+#
+# Stage 6:
+# target = (4, 2), 3x2
+# goal   = x=4~6, y=9~10
+#
+# obstacle 위치만 변경
+# ============================================================
 
 OBSTACLE_SCENARIOS = [
 
     BenchmarkScenario(
         name="obstacle_left",
-        category="obstacle_ood",
+        config={
+            "target": {
+                "x": 4,
+                "y": 2,
+                "width": 3,
+                "height": 2,
+            },
 
-        target_x=4,
-        target_y=2,
-        target_width=3,
-        target_height=2,
+            "obstacles": [
+                {
+                    "x": 3,
+                    "y": 6,
+                    "width": 3,
+                    "height": 1,
+                },
+                {
+                    "x": 8,
+                    "y": 5,
+                    "width": 1,
+                    "height": 2,
+                },
+            ],
 
-        goal_x=4,
-        goal_y=9,
-
-        obstacles=[
-            obstacle(
-                3,
-                6,
-                3,
-                1,
-            ),
-        ],
-
-        description=(
-            "Blocking obstacle shifted "
-            "one cell left."
-        ),
+            "goal_cells": [
+                [4, 9],
+                [5, 9],
+                [6, 9],
+                [4, 10],
+                [5, 10],
+                [6, 10],
+            ],
+        },
     ),
 
     BenchmarkScenario(
         name="obstacle_right",
-        category="obstacle_ood",
+        config={
+            "target": {
+                "x": 4,
+                "y": 2,
+                "width": 3,
+                "height": 2,
+            },
 
-        target_x=4,
-        target_y=2,
-        target_width=3,
-        target_height=2,
+            "obstacles": [
+                {
+                    "x": 5,
+                    "y": 6,
+                    "width": 3,
+                    "height": 1,
+                },
+                {
+                    "x": 8,
+                    "y": 5,
+                    "width": 1,
+                    "height": 2,
+                },
+            ],
 
-        goal_x=4,
-        goal_y=9,
-
-        obstacles=[
-            obstacle(
-                5,
-                6,
-                3,
-                1,
-            ),
-        ],
-
-        description=(
-            "Blocking obstacle shifted "
-            "one cell right."
-        ),
+            "goal_cells": [
+                [4, 9],
+                [5, 9],
+                [6, 9],
+                [4, 10],
+                [5, 10],
+                [6, 10],
+            ],
+        },
     ),
 
     BenchmarkScenario(
         name="obstacle_far_left",
-        category="obstacle_ood",
+        config={
+            "target": {
+                "x": 4,
+                "y": 2,
+                "width": 3,
+                "height": 2,
+            },
 
-        target_x=4,
-        target_y=2,
-        target_width=3,
-        target_height=2,
+            "obstacles": [
+                {
+                    "x": 1,
+                    "y": 6,
+                    "width": 3,
+                    "height": 1,
+                },
+                {
+                    "x": 8,
+                    "y": 5,
+                    "width": 1,
+                    "height": 2,
+                },
+            ],
 
-        goal_x=4,
-        goal_y=9,
-
-        obstacles=[
-            obstacle(
-                2,
-                6,
-                3,
-                1,
-            ),
-        ],
-
-        description=(
-            "Obstacle partially blocks "
-            "left side of corridor."
-        ),
+            "goal_cells": [
+                [4, 9],
+                [5, 9],
+                [6, 9],
+                [4, 10],
+                [5, 10],
+                [6, 10],
+            ],
+        },
     ),
 
     BenchmarkScenario(
         name="obstacle_far_right",
-        category="obstacle_ood",
+        config={
+            "target": {
+                "x": 4,
+                "y": 2,
+                "width": 3,
+                "height": 2,
+            },
 
-        target_x=4,
-        target_y=2,
-        target_width=3,
-        target_height=2,
+            "obstacles": [
+                {
+                    "x": 8,
+                    "y": 6,
+                    "width": 3,
+                    "height": 1,
+                },
+                {
+                    "x": 2,
+                    "y": 5,
+                    "width": 1,
+                    "height": 2,
+                },
+            ],
 
-        goal_x=4,
-        goal_y=9,
-
-        obstacles=[
-            obstacle(
-                6,
-                6,
-                3,
-                1,
-            ),
-        ],
-
-        description=(
-            "Obstacle partially blocks "
-            "right side of corridor."
-        ),
+            "goal_cells": [
+                [4, 9],
+                [5, 9],
+                [6, 9],
+                [4, 10],
+                [5, 10],
+                [6, 10],
+            ],
+        },
     ),
 
     BenchmarkScenario(
         name="obstacle_near_target",
-        category="obstacle_ood",
+        config={
+            "target": {
+                "x": 4,
+                "y": 2,
+                "width": 3,
+                "height": 2,
+            },
 
-        target_x=4,
-        target_y=2,
-        target_width=3,
-        target_height=2,
+            "obstacles": [
+                {
+                    "x": 4,
+                    "y": 5,
+                    "width": 3,
+                    "height": 1,
+                },
+                {
+                    "x": 8,
+                    "y": 5,
+                    "width": 1,
+                    "height": 2,
+                },
+            ],
 
-        goal_x=4,
-        goal_y=9,
-
-        obstacles=[
-            obstacle(
-                4,
-                5,
-                3,
-                1,
-            ),
-        ],
-
-        description=(
-            "Blocking obstacle is closer "
-            "to target than during training."
-        ),
+            "goal_cells": [
+                [4, 9],
+                [5, 9],
+                [6, 9],
+                [4, 10],
+                [5, 10],
+                [6, 10],
+            ],
+        },
     ),
 
     BenchmarkScenario(
         name="obstacle_near_goal",
-        category="obstacle_ood",
+        config={
+            "target": {
+                "x": 4,
+                "y": 2,
+                "width": 3,
+                "height": 2,
+            },
 
-        target_x=4,
-        target_y=2,
-        target_width=3,
-        target_height=2,
+            "obstacles": [
+                {
+                    "x": 4,
+                    "y": 8,
+                    "width": 3,
+                    "height": 1,
+                },
+                {
+                    "x": 8,
+                    "y": 5,
+                    "width": 1,
+                    "height": 2,
+                },
+            ],
 
-        goal_x=4,
-        goal_y=9,
-
-        obstacles=[
-            obstacle(
-                4,
-                7,
-                3,
-                1,
-            ),
-        ],
-
-        description=(
-            "Blocking obstacle is closer "
-            "to goal."
-        ),
+            "goal_cells": [
+                [4, 9],
+                [5, 9],
+                [6, 9],
+                [4, 10],
+                [5, 10],
+                [6, 10],
+            ],
+        },
     ),
 
     BenchmarkScenario(
         name="obstacle_off_path",
-        category="obstacle_ood",
+        config={
+            "target": {
+                "x": 4,
+                "y": 2,
+                "width": 3,
+                "height": 2,
+            },
 
-        target_x=4,
-        target_y=2,
-        target_width=3,
-        target_height=2,
+            "obstacles": [
+                {
+                    "x": 8,
+                    "y": 6,
+                    "width": 3,
+                    "height": 1,
+                },
+                {
+                    "x": 1,
+                    "y": 5,
+                    "width": 1,
+                    "height": 2,
+                },
+            ],
 
-        goal_x=4,
-        goal_y=9,
-
-        obstacles=[
-            obstacle(
-                8,
-                6,
-                3,
-                1,
-            ),
-        ],
-
-        description=(
-            "Obstacle does not block "
-            "the direct path."
-        ),
+            "goal_cells": [
+                [4, 9],
+                [5, 9],
+                [6, 9],
+                [4, 10],
+                [5, 10],
+                [6, 10],
+            ],
+        },
     ),
 ]
 
 
-# ==========================================================
-# C. Target / Goal positional generalization
-# ==========================================================
+# ============================================================
+# Target / Goal OOD
+# ============================================================
 
 TARGET_GOAL_SCENARIOS = [
 
     BenchmarkScenario(
         name="lane_left",
-        category="target_goal_ood",
+        config={
+            "target": {
+                "x": 2,
+                "y": 2,
+                "width": 3,
+                "height": 2,
+            },
 
-        target_x=2,
-        target_y=2,
-        target_width=3,
-        target_height=2,
+            "obstacles": [
+                {
+                    "x": 2,
+                    "y": 6,
+                    "width": 3,
+                    "height": 1,
+                },
+                {
+                    "x": 8,
+                    "y": 5,
+                    "width": 1,
+                    "height": 2,
+                },
+            ],
 
-        goal_x=2,
-        goal_y=9,
-
-        obstacles=[
-            obstacle(
-                2,
-                6,
-                3,
-                1,
-            ),
-        ],
-
-        description=(
-            "Entire transport lane shifted "
-            "left."
-        ),
+            "goal_cells": [
+                [2, 9],
+                [3, 9],
+                [4, 9],
+                [2, 10],
+                [3, 10],
+                [4, 10],
+            ],
+        },
     ),
 
     BenchmarkScenario(
         name="lane_right",
-        category="target_goal_ood",
+        config={
+            "target": {
+                "x": 6,
+                "y": 2,
+                "width": 3,
+                "height": 2,
+            },
 
-        target_x=6,
-        target_y=2,
-        target_width=3,
-        target_height=2,
+            "obstacles": [
+                {
+                    "x": 6,
+                    "y": 6,
+                    "width": 3,
+                    "height": 1,
+                },
+                {
+                    "x": 2,
+                    "y": 5,
+                    "width": 1,
+                    "height": 2,
+                },
+            ],
 
-        goal_x=6,
-        goal_y=9,
-
-        obstacles=[
-            obstacle(
-                6,
-                6,
-                3,
-                1,
-            ),
-        ],
-
-        description=(
-            "Entire transport lane shifted "
-            "right."
-        ),
+            "goal_cells": [
+                [6, 9],
+                [7, 9],
+                [8, 9],
+                [6, 10],
+                [7, 10],
+                [8, 10],
+            ],
+        },
     ),
 
     BenchmarkScenario(
         name="target_lower",
-        category="target_goal_ood",
+        config={
+            "target": {
+                "x": 4,
+                "y": 3,
+                "width": 3,
+                "height": 2,
+            },
 
-        target_x=4,
-        target_y=3,
-        target_width=3,
-        target_height=2,
+            "obstacles": [
+                {
+                    "x": 4,
+                    "y": 6,
+                    "width": 3,
+                    "height": 1,
+                },
+                {
+                    "x": 8,
+                    "y": 5,
+                    "width": 1,
+                    "height": 2,
+                },
+            ],
 
-        goal_x=4,
-        goal_y=9,
-
-        obstacles=[
-            obstacle(
-                4,
-                6,
-                3,
-                1,
-            ),
-        ],
-
-        description=(
-            "Target starts one row lower."
-        ),
+            "goal_cells": [
+                [4, 9],
+                [5, 9],
+                [6, 9],
+                [4, 10],
+                [5, 10],
+                [6, 10],
+            ],
+        },
     ),
 
     BenchmarkScenario(
         name="goal_higher",
-        category="target_goal_ood",
+        config={
+            "target": {
+                "x": 4,
+                "y": 2,
+                "width": 3,
+                "height": 2,
+            },
 
-        target_x=4,
-        target_y=2,
-        target_width=3,
-        target_height=2,
+            "obstacles": [
+                {
+                    "x": 4,
+                    "y": 5,
+                    "width": 3,
+                    "height": 1,
+                },
+                {
+                    "x": 8,
+                    "y": 5,
+                    "width": 1,
+                    "height": 2,
+                },
+            ],
 
-        goal_x=4,
-        goal_y=8,
-
-        obstacles=[
-            obstacle(
-                4,
-                6,
-                3,
-                1,
-            ),
-        ],
-
-        description=(
-            "Goal starts one row higher."
-        ),
+            "goal_cells": [
+                [4, 8],
+                [5, 8],
+                [6, 8],
+                [4, 9],
+                [5, 9],
+                [6, 9],
+            ],
+        },
     ),
 ]
 
 
-# ==========================================================
-# D. Combined generalization
-# ==========================================================
+# ============================================================
+# Combined OOD
+# ============================================================
 
 COMBINED_SCENARIOS = [
 
     BenchmarkScenario(
         name="combined_left_shift",
-        category="combined_ood",
+        config={
+            "target": {
+                "x": 2,
+                "y": 2,
+                "width": 3,
+                "height": 2,
+            },
 
-        target_x=2,
-        target_y=2,
-        target_width=3,
-        target_height=2,
+            "obstacles": [
+                {
+                    "x": 2,
+                    "y": 5,
+                    "width": 3,
+                    "height": 1,
+                },
+                {
+                    "x": 7,
+                    "y": 6,
+                    "width": 1,
+                    "height": 2,
+                },
+            ],
 
-        goal_x=2,
-        goal_y=9,
-
-        obstacles=[
-            obstacle(
-                3,
-                6,
-                3,
-                1,
-            ),
-        ],
-
-        description=(
-            "New lane and shifted obstacle."
-        ),
+            "goal_cells": [
+                [2, 9],
+                [3, 9],
+                [4, 9],
+                [2, 10],
+                [3, 10],
+                [4, 10],
+            ],
+        },
     ),
 
     BenchmarkScenario(
         name="combined_right_shift",
-        category="combined_ood",
+        config={
+            "target": {
+                "x": 6,
+                "y": 2,
+                "width": 3,
+                "height": 2,
+            },
 
-        target_x=6,
-        target_y=2,
-        target_width=3,
-        target_height=2,
+            "obstacles": [
+                {
+                    "x": 6,
+                    "y": 5,
+                    "width": 3,
+                    "height": 1,
+                },
+                {
+                    "x": 2,
+                    "y": 6,
+                    "width": 1,
+                    "height": 2,
+                },
+            ],
 
-        goal_x=6,
-        goal_y=9,
-
-        obstacles=[
-            obstacle(
-                5,
-                6,
-                3,
-                1,
-            ),
-        ],
-
-        description=(
-            "New right lane and shifted "
-            "blocking obstacle."
-        ),
+            "goal_cells": [
+                [6, 9],
+                [7, 9],
+                [8, 9],
+                [6, 10],
+                [7, 10],
+                [8, 10],
+            ],
+        },
     ),
 
     BenchmarkScenario(
         name="combined_shorter",
-        category="combined_ood",
+        config={
+            "target": {
+                "x": 4,
+                "y": 3,
+                "width": 3,
+                "height": 2,
+            },
 
-        target_x=2,
-        target_y=3,
-        target_width=3,
-        target_height=2,
+            "obstacles": [
+                {
+                    "x": 4,
+                    "y": 6,
+                    "width": 3,
+                    "height": 1,
+                },
+                {
+                    "x": 9,
+                    "y": 4,
+                    "width": 1,
+                    "height": 2,
+                },
+            ],
 
-        goal_x=2,
-        goal_y=8,
-
-        obstacles=[
-            obstacle(
-                2,
-                6,
-                3,
-                1,
-            ),
-        ],
-
-        description=(
-            "Shifted lane and different "
-            "transport distance."
-        ),
+            "goal_cells": [
+                [4, 8],
+                [5, 8],
+                [6, 8],
+                [4, 9],
+                [5, 9],
+                [6, 9],
+            ],
+        },
     ),
 ]
 
 
-# ==========================================================
-# E. Stress tests
-# ==========================================================
+# ============================================================
+# Stress
+# ============================================================
 
 STRESS_SCENARIOS = [
 
     BenchmarkScenario(
         name="stress_two_blocks",
-        category="stress",
+        config={
+            "target": {
+                "x": 4,
+                "y": 2,
+                "width": 3,
+                "height": 2,
+            },
 
-        target_x=4,
-        target_y=1,
-        target_width=3,
-        target_height=2,
+            "obstacles": [
+                {
+                    "x": 4,
+                    "y": 5,
+                    "width": 3,
+                    "height": 1,
+                },
+                {
+                    "x": 4,
+                    "y": 7,
+                    "width": 3,
+                    "height": 1,
+                },
+            ],
 
-        goal_x=4,
-        goal_y=9,
-
-        obstacles=[
-            obstacle(
-                4,
-                4,
-                3,
-                1,
-            ),
-
-            obstacle(
-                4,
-                7,
-                3,
-                1,
-            ),
-        ],
-
-        description=(
-            "Two sequential blocking "
-            "obstacles."
-        ),
+            "goal_cells": [
+                [4, 9],
+                [5, 9],
+                [6, 9],
+                [4, 10],
+                [5, 10],
+                [6, 10],
+            ],
+        },
     ),
 
     BenchmarkScenario(
         name="stress_partial_double",
-        category="stress",
+        config={
+            "target": {
+                "x": 4,
+                "y": 2,
+                "width": 3,
+                "height": 2,
+            },
 
-        target_x=4,
-        target_y=1,
-        target_width=3,
-        target_height=2,
+            "obstacles": [
+                {
+                    "x": 3,
+                    "y": 5,
+                    "width": 3,
+                    "height": 1,
+                },
+                {
+                    "x": 6,
+                    "y": 7,
+                    "width": 3,
+                    "height": 1,
+                },
+            ],
 
-        goal_x=4,
-        goal_y=9,
-
-        obstacles=[
-            obstacle(
-                3,
-                5,
-                3,
-                1,
-            ),
-
-            obstacle(
-                6,
-                7,
-                3,
-                1,
-            ),
-        ],
-
-        description=(
-            "Two offset partial blockers."
-        ),
+            "goal_cells": [
+                [4, 9],
+                [5, 9],
+                [6, 9],
+                [4, 10],
+                [5, 10],
+                [6, 10],
+            ],
+        },
     ),
 ]
-
-
-ALL_SCENARIOS = (
-    IID_SCENARIOS
-    +
-    OBSTACLE_SCENARIOS
-    +
-    TARGET_GOAL_SCENARIOS
-    +
-    COMBINED_SCENARIOS
-    +
-    STRESS_SCENARIOS
-)

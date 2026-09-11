@@ -1,0 +1,70 @@
+{
+  "checkpoint": "checkpoints/stage_7_mastered.pt",
+  "episodes_per_lane": 50,
+  "results": [
+    {
+      "lane_x": 1,
+      "episodes": 50,
+      "success_rate": 0.0,
+      "avg_length": 200.0,
+      "avg_return": -1.9740000000000015,
+      "avg_obstacle_moves": 2.54
+    },
+    {
+      "lane_x": 2,
+      "episodes": 50,
+      "success_rate": 0.0,
+      "avg_length": 200.0,
+      "avg_return": -1.8420000000000014,
+      "avg_obstacle_moves": 3.64
+    },
+    {
+      "lane_x": 3,
+      "episodes": 50,
+      "success_rate": 0.72,
+      "avg_length": 112.2,
+      "avg_return": 7.515999999999999,
+      "avg_obstacle_moves": 3.28
+    },
+    {
+      "lane_x": 4,
+      "episodes": 50,
+      "success_rate": 0.98,
+      "avg_length": 60.94,
+      "avg_return": 10.8826,
+      "avg_obstacle_moves": 3.76
+    },
+    {
+      "lane_x": 5,
+      "episodes": 50,
+      "success_rate": 1.0,
+      "avg_length": 42.66,
+      "avg_return": 11.273399999999999,
+      "avg_obstacle_moves": 3.88
+    },
+    {
+      "lane_x": 6,
+      "episodes": 50,
+      "success_rate": 0.92,
+      "avg_length": 64.12,
+      "avg_return": 10.1828,
+      "avg_obstacle_moves": 3.04
+    },
+    {
+      "lane_x": 7,
+      "episodes": 50,
+      "success_rate": 1.0,
+      "avg_length": 50.52,
+      "avg_return": 11.194799999999997,
+      "avg_obstacle_moves": 4.2
+    },
+    {
+      "lane_x": 8,
+      "episodes": 50,
+      "success_rate": 0.9,
+      "avg_length": 77.48,
+      "avg_return": 9.833199999999998,
+      "avg_obstacle_moves": 4.58
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "iid": {
+    "action_mode": "deterministic",
+    "overall": {
+      "episodes": 100,
+      "success_rate": 0.0,
+      "mean_episode_length": 200.0,
+      "mean_return": -1.8390000000000015,
+      "mean_target_moves": 0.12,
+      "mean_obstacle_moves": 2.97,
+      "mean_successful_pushes": 3.09,
+      "mean_success_length": null
+    },
+    "scenarios": {
+      "iid_stage6": {
+        "episodes": 100,
+        "success_rate": 0.0,
+        "mean_episode_length": 200.0,
+        "mean_return": -1.8390000000000015,
+        "mean_target_moves": 0.12,
+        "mean_obstacle_moves": 2.97,
+        "mean_successful_pushes": 3.09,
+        "mean_success_length": null
+      }
+    }
+  }
+}

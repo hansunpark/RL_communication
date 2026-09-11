@@ -1,5 +1,4 @@
 import os
-import random
 
 from collections import deque
 
@@ -7,7 +6,6 @@ import numpy as np
 import torch
 
 from gymnasium.spaces import (
-    flatten,
     flatdim,
 )
 
@@ -23,10 +21,15 @@ from env.constants import (
     NO_MESSAGE,
 )
 
-from .ppo import PPO
+from ...ppo import PPO
 
-from .rollout_buffer import (
+from ...rollout_buffer import (
     MultiAgentRolloutBuffer,
+)
+
+from ..common import (
+    set_seed,
+    flatten_obs,
 )
 
 from .curriculum import (
@@ -73,40 +76,6 @@ STAGE4_BASELINE_PATIENCE = 600
 SAVE_INTERVAL = 200
 
 STOP_WHEN_MASTERED = True
-
-
-# ==========================================================
-# Utility
-# ==========================================================
-
-def set_seed(seed):
-
-    random.seed(seed)
-
-    np.random.seed(seed)
-
-    torch.manual_seed(seed)
-
-    if torch.cuda.is_available():
-
-        torch.cuda.manual_seed_all(
-            seed
-        )
-
-
-def flatten_obs(
-    space,
-    observation,
-):
-
-    return np.asarray(
-        flatten(
-            space,
-            observation,
-        ),
-
-        dtype=np.float32,
-    )
 
 
 # ==========================================================

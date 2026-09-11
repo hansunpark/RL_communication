@@ -1,0 +1,237 @@
+Device: cpu
+Observation dim: 129
+Loading Stage 6 checkpoint: checkpoints/stage_6_mastered.pt
+[Episode    10] stage_7A_shift1      scenario=original(x=4)    success100=0.700 avg_len=135.5 return=7.105 Tmove=5.80 Omove=5.80
+[Episode    20] stage_7A_shift1      scenario=shifted(x=5)     success100=0.700 avg_len=131.1 return=7.089 Tmove=5.65 Omove=5.50
+[Episode    30] stage_7A_shift1      scenario=original(x=4)    success100=0.800 avg_len=107.7 return=8.423 Tmove=6.10 Omove=5.80
+[Episode    40] stage_7A_shift1      scenario=original(x=4)    success100=0.825 avg_len=98.8 return=8.787 Tmove=6.20 Omove=6.03
+[Episode    50] stage_7A_shift1      scenario=shifted(x=5)     success100=0.820 avg_len=94.1 return=8.773 Tmove=6.16 Omove=5.98
+[Episode    60] stage_7A_shift1      scenario=original(x=4)    success100=0.817 avg_len=93.2 return=8.755 Tmove=6.20 Omove=5.80
+[Episode    70] stage_7A_shift1      scenario=shifted(x=5)     success100=0.843 avg_len=91.1 return=9.063 Tmove=6.31 Omove=5.87
+[Episode    80] stage_7A_shift1      scenario=original(x=4)    success100=0.850 avg_len=88.5 return=9.167 Tmove=6.34 Omove=5.90
+[Episode    90] stage_7A_shift1      scenario=original(x=4)    success100=0.856 avg_len=87.7 return=9.233 Tmove=6.36 Omove=5.79
+[Episode   100] stage_7A_shift1      scenario=shifted(x=3)     success100=0.870 avg_len=85.4 return=9.415 Tmove=6.42 Omove=5.87
+[Episode   110] stage_7A_shift1      scenario=shifted(x=5)     success100=0.880 avg_len=80.4 return=9.569 Tmove=6.44 Omove=5.84
+[Episode   120] stage_7A_shift1      scenario=shifted(x=5)     success100=0.910 avg_len=72.3 return=9.986 Tmove=6.59 Omove=5.82
+[Episode   130] stage_7A_shift1      scenario=original(x=4)    success100=0.900 avg_len=74.9 return=9.854 Tmove=6.56 Omove=5.65
+[Episode   140] stage_7A_shift1      scenario=original(x=4)    success100=0.890 avg_len=76.0 return=9.748 Tmove=6.58 Omove=5.46
+[Episode   150] stage_7A_shift1      scenario=shifted(x=5)     success100=0.900 avg_len=76.0 return=9.868 Tmove=6.67 Omove=5.41
+[Episode   160] stage_7A_shift1      scenario=original(x=4)    success100=0.900 avg_len=75.5 return=9.880 Tmove=6.69 Omove=5.49
+[Episode   170] stage_7A_shift1      scenario=shifted(x=3)     success100=0.900 avg_len=73.9 return=9.896 Tmove=6.69 Omove=5.46
+[Episode   180] stage_7A_shift1      scenario=shifted(x=5)     success100=0.890 avg_len=75.0 return=9.772 Tmove=6.64 Omove=5.44
+[Episode   190] stage_7A_shift1      scenario=shifted(x=3)     success100=0.900 avg_len=73.0 return=9.905 Tmove=6.69 Omove=5.49
+[Episode   200] stage_7A_shift1      scenario=shifted(x=3)     success100=0.880 avg_len=74.2 return=9.679 Tmove=6.62 Omove=5.40
+
+======================================================================
+stage_7A_shift1 mastered! success rate=0.880
+======================================================================
+
+Moving to stage_7B_shift2
+[Episode   210] stage_7B_shift2      scenario=shifted(x=6)     success100=0.800 avg_len=93.0 return=8.550 Tmove=6.00 Omove=6.40
+[Episode   220] stage_7B_shift2      scenario=shifted(x=5)     success100=0.850 avg_len=87.3 return=9.162 Tmove=6.25 Omove=6.20
+[Episode   230] stage_7B_shift2      scenario=shifted(x=3)     success100=0.833 avg_len=95.8 return=8.892 Tmove=6.17 Omove=6.33
+[Episode   240] stage_7B_shift2      scenario=shifted(x=6)     success100=0.825 avg_len=94.0 return=8.818 Tmove=6.12 Omove=6.28
+[Episode   250] stage_7B_shift2      scenario=shifted(x=5)     success100=0.820 avg_len=96.4 return=8.740 Tmove=6.10 Omove=6.26
+[Episode   260] stage_7B_shift2      scenario=shifted(x=6)     success100=0.800 avg_len=99.8 return=8.485 Tmove=6.00 Omove=6.27
+[Episode   270] stage_7B_shift2      scenario=original(x=4)    success100=0.786 avg_len=99.6 return=8.323 Tmove=5.94 Omove=6.29
+[Episode   280] stage_7B_shift2      scenario=shifted(x=5)     success100=0.800 avg_len=97.7 return=8.501 Tmove=6.01 Omove=6.30
+[Episode   290] stage_7B_shift2      scenario=shifted(x=6)     success100=0.811 avg_len=97.1 return=8.630 Tmove=6.07 Omove=6.40
+[Episode   300] stage_7B_shift2      scenario=original(x=4)    success100=0.790 avg_len=100.8 return=8.358 Tmove=5.96 Omove=6.33
+[Episode   310] stage_7B_shift2      scenario=shifted(x=5)     success100=0.780 avg_len=102.0 return=8.232 Tmove=5.91 Omove=6.31
+[Episode   320] stage_7B_shift2      scenario=shifted(x=2)     success100=0.780 avg_len=102.5 return=8.227 Tmove=5.91 Omove=6.41
+[Episode   330] stage_7B_shift2      scenario=shifted(x=3)     success100=0.750 avg_len=104.1 return=7.880 Tmove=5.75 Omove=6.43
+[Episode   340] stage_7B_shift2      scenario=original(x=4)    success100=0.710 avg_len=108.7 return=7.386 Tmove=5.54 Omove=6.29
+[Episode   350] stage_7B_shift2      scenario=shifted(x=6)     success100=0.700 avg_len=108.2 return=7.270 Tmove=5.47 Omove=6.27
+[Episode   360] stage_7B_shift2      scenario=original(x=4)    success100=0.710 avg_len=106.3 return=7.399 Tmove=5.52 Omove=6.34
+[Episode   370] stage_7B_shift2      scenario=original(x=4)    success100=0.710 avg_len=106.5 return=7.400 Tmove=5.51 Omove=6.29
+[Episode   380] stage_7B_shift2      scenario=original(x=4)    success100=0.720 avg_len=105.2 return=7.524 Tmove=5.56 Omove=6.27
+[Episode   390] stage_7B_shift2      scenario=shifted(x=3)     success100=0.690 avg_len=107.9 return=7.160 Tmove=5.41 Omove=6.08
+[Episode   400] stage_7B_shift2      scenario=original(x=4)    success100=0.720 avg_len=101.0 return=7.564 Tmove=5.56 Omove=6.08
+[Episode   410] stage_7B_shift2      scenario=shifted(x=3)     success100=0.710 avg_len=103.7 return=7.424 Tmove=5.51 Omove=5.88
+[Episode   420] stage_7B_shift2      scenario=original(x=4)    success100=0.700 avg_len=105.5 return=7.290 Tmove=5.44 Omove=5.69
+[Episode   430] stage_7B_shift2      scenario=shifted(x=3)     success100=0.740 avg_len=100.6 return=7.784 Tmove=5.66 Omove=5.63
+[Episode   440] stage_7B_shift2      scenario=shifted(x=5)     success100=0.770 avg_len=97.8 return=8.150 Tmove=5.82 Omove=5.66
+[Episode   450] stage_7B_shift2      scenario=shifted(x=6)     success100=0.770 avg_len=97.9 return=8.148 Tmove=5.80 Omove=5.63
+[Episode   460] stage_7B_shift2      scenario=original(x=4)    success100=0.770 avg_len=97.7 return=8.145 Tmove=5.78 Omove=5.54
+[Episode   470] stage_7B_shift2      scenario=shifted(x=3)     success100=0.750 avg_len=100.5 return=7.886 Tmove=5.66 Omove=5.37
+[Episode   480] stage_7B_shift2      scenario=shifted(x=3)     success100=0.720 avg_len=103.1 return=7.525 Tmove=5.51 Omove=5.17
+[Episode   490] stage_7B_shift2      scenario=shifted(x=6)     success100=0.710 avg_len=104.5 return=7.397 Tmove=5.46 Omove=4.87
+[Episode   500] stage_7B_shift2      scenario=original(x=4)    success100=0.710 avg_len=105.7 return=7.384 Tmove=5.46 Omove=4.78
+[Episode   510] stage_7B_shift2      scenario=original(x=4)    success100=0.710 avg_len=103.8 return=7.406 Tmove=5.46 Omove=4.75
+[Episode   520] stage_7B_shift2      scenario=shifted(x=2)     success100=0.690 avg_len=105.2 return=7.164 Tmove=5.32 Omove=4.72
+[Episode   530] stage_7B_shift2      scenario=original(x=4)    success100=0.670 avg_len=110.9 return=6.875 Tmove=5.17 Omove=4.66
+[Episode   540] stage_7B_shift2      scenario=shifted(x=5)     success100=0.690 avg_len=107.4 return=7.132 Tmove=5.27 Omove=4.59
+[Episode   550] stage_7B_shift2      scenario=shifted(x=6)     success100=0.690 avg_len=106.8 return=7.140 Tmove=5.29 Omove=4.53
+[Episode   560] stage_7B_shift2      scenario=shifted(x=3)     success100=0.700 avg_len=105.7 return=7.263 Tmove=5.34 Omove=4.48
+[Episode   570] stage_7B_shift2      scenario=shifted(x=5)     success100=0.720 avg_len=103.2 return=7.514 Tmove=5.44 Omove=4.51
+[Episode   580] stage_7B_shift2      scenario=original(x=4)    success100=0.720 avg_len=103.2 return=7.510 Tmove=5.44 Omove=4.46
+[Episode   590] stage_7B_shift2      scenario=shifted(x=3)     success100=0.750 avg_len=98.5 return=7.895 Tmove=5.59 Omove=4.60
+[Episode   600] stage_7B_shift2      scenario=original(x=4)    success100=0.710 avg_len=103.5 return=7.402 Tmove=5.41 Omove=4.47
+[Episode   610] stage_7B_shift2      scenario=shifted(x=5)     success100=0.710 avg_len=105.5 return=7.380 Tmove=5.40 Omove=4.45
+[Episode   620] stage_7B_shift2      scenario=shifted(x=3)     success100=0.730 avg_len=102.9 return=7.649 Tmove=5.60 Omove=4.49
+[Episode   630] stage_7B_shift2      scenario=original(x=4)    success100=0.730 avg_len=101.0 return=7.683 Tmove=5.67 Omove=4.30
+[Episode   640] stage_7B_shift2      scenario=shifted(x=2)     success100=0.690 avg_len=106.4 return=7.180 Tmove=5.47 Omove=4.16
+[Episode   650] stage_7B_shift2      scenario=original(x=4)    success100=0.670 avg_len=110.7 return=6.913 Tmove=5.35 Omove=4.09
+[Episode   660] stage_7B_shift2      scenario=shifted(x=6)     success100=0.660 avg_len=110.9 return=6.805 Tmove=5.32 Omove=3.97
+[Episode   670] stage_7B_shift2      scenario=shifted(x=2)     success100=0.660 avg_len=109.2 return=6.837 Tmove=5.38 Omove=3.95
+[Episode   680] stage_7B_shift2      scenario=shifted(x=2)     success100=0.650 avg_len=110.2 return=6.715 Tmove=5.31 Omove=3.92
+[Episode   690] stage_7B_shift2      scenario=original(x=4)    success100=0.630 avg_len=112.1 return=6.470 Tmove=5.20 Omove=3.86
+[Episode   700] stage_7B_shift2      scenario=original(x=4)    success100=0.640 avg_len=110.7 return=6.585 Tmove=5.20 Omove=3.84
+[Episode   710] stage_7B_shift2      scenario=original(x=4)    success100=0.640 avg_len=109.5 return=6.594 Tmove=5.19 Omove=3.82
+[Episode   720] stage_7B_shift2      scenario=original(x=4)    success100=0.630 avg_len=110.1 return=6.460 Tmove=5.08 Omove=3.73
+[Episode   730] stage_7B_shift2      scenario=shifted(x=6)     success100=0.640 avg_len=107.0 return=6.588 Tmove=5.08 Omove=3.73
+[Episode   740] stage_7B_shift2      scenario=shifted(x=6)     success100=0.670 avg_len=102.4 return=6.966 Tmove=5.21 Omove=3.85
+[Episode   750] stage_7B_shift2      scenario=original(x=4)    success100=0.700 avg_len=96.2 return=7.364 Tmove=5.37 Omove=3.86
+[Episode   760] stage_7B_shift2      scenario=shifted(x=5)     success100=0.680 avg_len=98.1 return=7.115 Tmove=5.26 Omove=3.81
+[Episode   770] stage_7B_shift2      scenario=shifted(x=3)     success100=0.640 avg_len=106.2 return=6.561 Tmove=4.93 Omove=3.66
+[Episode   780] stage_7B_shift2      scenario=shifted(x=3)     success100=0.660 avg_len=105.3 return=6.796 Tmove=5.03 Omove=3.66
+[Episode   790] stage_7B_shift2      scenario=shifted(x=3)     success100=0.650 avg_len=109.7 return=6.636 Tmove=4.97 Omove=3.69
+[Episode   800] stage_7B_shift2      scenario=shifted(x=2)     success100=0.670 avg_len=108.0 return=6.877 Tmove=5.07 Omove=3.83
+[Episode   810] stage_7B_shift2      scenario=shifted(x=2)     success100=0.670 avg_len=109.3 return=6.861 Tmove=5.05 Omove=3.85
+[Episode   820] stage_7B_shift2      scenario=original(x=4)    success100=0.660 avg_len=113.3 return=6.711 Tmove=4.98 Omove=3.81
+[Episode   830] stage_7B_shift2      scenario=shifted(x=2)     success100=0.630 avg_len=117.7 return=6.334 Tmove=4.83 Omove=3.69
+[Episode   840] stage_7B_shift2      scenario=shifted(x=6)     success100=0.610 avg_len=121.3 return=6.068 Tmove=4.68 Omove=3.76
+[Episode   850] stage_7B_shift2      scenario=original(x=4)    success100=0.610 avg_len=123.5 return=6.054 Tmove=4.71 Omove=3.89
+[Episode   860] stage_7B_shift2      scenario=original(x=4)    success100=0.630 avg_len=123.5 return=6.276 Tmove=4.78 Omove=3.99
+[Episode   870] stage_7B_shift2      scenario=shifted(x=2)     success100=0.650 avg_len=120.3 return=6.542 Tmove=4.93 Omove=4.08
+[Episode   880] stage_7B_shift2      scenario=shifted(x=2)     success100=0.640 avg_len=120.1 return=6.437 Tmove=4.90 Omove=4.12
+[Episode   890] stage_7B_shift2      scenario=original(x=4)    success100=0.650 avg_len=116.5 return=6.591 Tmove=4.97 Omove=4.09
+[Episode   900] stage_7B_shift2      scenario=shifted(x=2)     success100=0.620 avg_len=121.4 return=6.205 Tmove=4.81 Omove=4.03
+[Episode   910] stage_7B_shift2      scenario=shifted(x=6)     success100=0.600 avg_len=122.9 return=5.970 Tmove=4.75 Omove=4.03
+[Episode   920] stage_7B_shift2      scenario=original(x=4)    success100=0.610 avg_len=119.7 return=6.114 Tmove=4.84 Omove=4.12
+[Episode   930] stage_7B_shift2      scenario=original(x=4)    success100=0.620 avg_len=120.2 return=6.216 Tmove=4.89 Omove=4.25
+[Episode   940] stage_7B_shift2      scenario=shifted(x=3)     success100=0.630 avg_len=119.7 return=6.346 Tmove=5.01 Omove=4.26
+[Episode   950] stage_7B_shift2      scenario=original(x=4)    success100=0.590 avg_len=124.5 return=5.845 Tmove=4.78 Omove=4.15
+[Episode   960] stage_7B_shift2      scenario=original(x=4)    success100=0.580 avg_len=123.8 return=5.739 Tmove=4.73 Omove=3.98
+[Episode   970] stage_7B_shift2      scenario=shifted(x=6)     success100=0.610 avg_len=120.0 return=6.110 Tmove=4.88 Omove=4.17
+[Episode   980] stage_7B_shift2      scenario=shifted(x=3)     success100=0.610 avg_len=122.4 return=6.078 Tmove=4.84 Omove=4.27
+[Episode   990] stage_7B_shift2      scenario=original(x=4)    success100=0.650 avg_len=117.0 return=6.580 Tmove=5.04 Omove=4.46
+[Episode  1000] stage_7B_shift2      scenario=shifted(x=2)     success100=0.650 avg_len=115.8 return=6.588 Tmove=5.02 Omove=4.51
+[Episode  1010] stage_7B_shift2      scenario=shifted(x=5)     success100=0.710 avg_len=107.6 return=7.344 Tmove=5.32 Omove=4.59
+[Episode  1020] stage_7B_shift2      scenario=shifted(x=3)     success100=0.710 avg_len=107.5 return=7.349 Tmove=5.30 Omove=4.58
+[Episode  1030] stage_7B_shift2      scenario=shifted(x=2)     success100=0.730 avg_len=106.0 return=7.588 Tmove=5.38 Omove=4.69
+[Episode  1040] stage_7B_shift2      scenario=shifted(x=3)     success100=0.740 avg_len=106.1 return=7.692 Tmove=5.41 Omove=4.79
+[Episode  1050] stage_7B_shift2      scenario=shifted(x=3)     success100=0.780 avg_len=101.3 return=8.188 Tmove=5.62 Omove=4.81
+[Episode  1060] stage_7B_shift2      scenario=shifted(x=5)     success100=0.800 avg_len=100.1 return=8.428 Tmove=5.74 Omove=4.89
+[Episode  1070] stage_7B_shift2      scenario=original(x=4)    success100=0.800 avg_len=102.1 return=8.408 Tmove=5.74 Omove=4.79
+[Episode  1080] stage_7B_shift2      scenario=shifted(x=2)     success100=0.790 avg_len=102.6 return=8.285 Tmove=5.67 Omove=4.73
+[Episode  1090] stage_7B_shift2      scenario=shifted(x=5)     success100=0.780 avg_len=107.6 return=8.122 Tmove=5.62 Omove=4.58
+[Episode  1100] stage_7B_shift2      scenario=original(x=4)    success100=0.800 avg_len=103.7 return=8.399 Tmove=5.78 Omove=4.55
+[Episode  1110] stage_7B_shift2      scenario=shifted(x=3)     success100=0.800 avg_len=103.5 return=8.401 Tmove=5.78 Omove=4.52
+[Episode  1120] stage_7B_shift2      scenario=original(x=4)    success100=0.810 avg_len=103.1 return=8.514 Tmove=5.83 Omove=4.41
+[Episode  1130] stage_7B_shift2      scenario=shifted(x=2)     success100=0.780 avg_len=103.2 return=8.174 Tmove=5.65 Omove=4.33
+[Episode  1140] stage_7B_shift2      scenario=shifted(x=5)     success100=0.770 avg_len=101.0 return=8.087 Tmove=5.62 Omove=4.09
+[Episode  1150] stage_7B_shift2      scenario=original(x=4)    success100=0.770 avg_len=102.8 return=8.065 Tmove=5.62 Omove=3.98
+[Episode  1160] stage_7B_shift2      scenario=shifted(x=6)     success100=0.770 avg_len=100.4 return=8.089 Tmove=5.62 Omove=3.97
+[Episode  1170] stage_7B_shift2      scenario=shifted(x=3)     success100=0.790 avg_len=95.3 return=8.370 Tmove=5.76 Omove=3.89
+[Episode  1180] stage_7B_shift2      scenario=original(x=4)    success100=0.790 avg_len=94.2 return=8.392 Tmove=5.80 Omove=3.90
+[Episode  1190] stage_7B_shift2      scenario=original(x=4)    success100=0.770 avg_len=93.5 return=8.168 Tmove=5.66 Omove=3.91
+[Episode  1200] stage_7B_shift2      scenario=shifted(x=6)     success100=0.750 avg_len=96.6 return=7.908 Tmove=5.53 Omove=3.90
+[Episode  1210] stage_7B_shift2      scenario=shifted(x=6)     success100=0.740 avg_len=98.2 return=7.776 Tmove=5.46 Omove=3.87
+[Episode  1220] stage_7B_shift2      scenario=shifted(x=6)     success100=0.730 avg_len=97.8 return=7.670 Tmove=5.41 Omove=3.94
+[Episode  1230] stage_7B_shift2      scenario=original(x=4)    success100=0.740 avg_len=98.5 return=7.780 Tmove=5.49 Omove=4.00
+[Episode  1240] stage_7B_shift2      scenario=original(x=4)    success100=0.760 avg_len=98.3 return=8.002 Tmove=5.57 Omove=4.02
+[Episode  1250] stage_7B_shift2      scenario=original(x=4)    success100=0.770 avg_len=94.9 return=8.150 Tmove=5.62 Omove=4.03
+[Episode  1260] stage_7B_shift2      scenario=shifted(x=3)     success100=0.770 avg_len=95.9 return=8.140 Tmove=5.62 Omove=4.02
+[Episode  1270] stage_7B_shift2      scenario=original(x=4)    success100=0.760 avg_len=97.0 return=8.014 Tmove=5.55 Omove=4.12
+[Episode  1280] stage_7B_shift2      scenario=original(x=4)    success100=0.780 avg_len=93.8 return=8.275 Tmove=5.68 Omove=4.12
+[Episode  1290] stage_7B_shift2      scenario=shifted(x=6)     success100=0.800 avg_len=90.8 return=8.539 Tmove=5.82 Omove=4.18
+[Episode  1300] stage_7B_shift2      scenario=shifted(x=2)     success100=0.780 avg_len=93.7 return=8.274 Tmove=5.67 Omove=4.09
+[Episode  1310] stage_7B_shift2      scenario=original(x=4)    success100=0.740 avg_len=99.1 return=7.763 Tmove=5.41 Omove=4.03
+[Episode  1320] stage_7B_shift2      scenario=original(x=4)    success100=0.760 avg_len=96.2 return=8.017 Tmove=5.53 Omove=4.00
+[Episode  1330] stage_7B_shift2      scenario=original(x=4)    success100=0.760 avg_len=95.8 return=8.026 Tmove=5.55 Omove=4.01
+[Episode  1340] stage_7B_shift2      scenario=shifted(x=2)     success100=0.730 avg_len=97.2 return=7.668 Tmove=5.34 Omove=4.02
+[Episode  1350] stage_7B_shift2      scenario=shifted(x=5)     success100=0.730 avg_len=96.4 return=7.676 Tmove=5.34 Omove=4.07
+[Episode  1360] stage_7B_shift2      scenario=shifted(x=6)     success100=0.720 avg_len=99.0 return=7.540 Tmove=5.29 Omove=4.14
+[Episode  1370] stage_7B_shift2      scenario=original(x=4)    success100=0.720 avg_len=97.0 return=7.559 Tmove=5.29 Omove=4.05
+[Episode  1380] stage_7B_shift2      scenario=shifted(x=2)     success100=0.730 avg_len=96.5 return=7.668 Tmove=5.31 Omove=4.16
+[Episode  1390] stage_7B_shift2      scenario=original(x=4)    success100=0.730 avg_len=103.1 return=7.596 Tmove=5.29 Omove=4.18
+[Episode  1400] stage_7B_shift2      scenario=shifted(x=6)     success100=0.800 avg_len=94.8 return=8.475 Tmove=5.72 Omove=4.27
+[Episode  1410] stage_7B_shift2      scenario=shifted(x=3)     success100=0.840 avg_len=89.7 return=8.988 Tmove=6.00 Omove=4.28
+
+======================================================================
+stage_7B_shift2 mastered! success rate=0.850
+======================================================================
+
+Moving to stage_7C_all_lanes
+[Episode  1420] stage_7C_all_lanes   scenario=original(x=4)    success100=0.667 avg_len=109.0 return=7.021 Tmove=5.78 Omove=4.78
+[Episode  1430] stage_7C_all_lanes   scenario=original(x=4)    success100=0.632 avg_len=110.1 return=6.594 Tmove=5.58 Omove=4.42
+[Episode  1440] stage_7C_all_lanes   scenario=original(x=4)    success100=0.690 avg_len=99.6 return=7.300 Tmove=5.66 Omove=4.28
+[Episode  1450] stage_7C_all_lanes   scenario=shifted(x=6)     success100=0.692 avg_len=97.2 return=7.316 Tmove=5.51 Omove=4.18
+[Episode  1460] stage_7C_all_lanes   scenario=original(x=4)    success100=0.735 avg_len=94.3 return=7.804 Tmove=5.67 Omove=4.31
+[Episode  1470] stage_7C_all_lanes   scenario=shifted(x=1)     success100=0.746 avg_len=94.7 return=7.909 Tmove=5.66 Omove=4.37
+[Episode  1480] stage_7C_all_lanes   scenario=shifted(x=2)     success100=0.768 avg_len=91.0 return=8.191 Tmove=5.75 Omove=4.48
+[Episode  1490] stage_7C_all_lanes   scenario=original(x=4)    success100=0.759 avg_len=90.7 return=8.096 Tmove=5.68 Omove=4.46
+[Episode  1500] stage_7C_all_lanes   scenario=original(x=4)    success100=0.764 avg_len=90.1 return=8.161 Tmove=5.74 Omove=4.45
+[Episode  1510] stage_7C_all_lanes   scenario=original(x=4)    success100=0.778 avg_len=87.7 return=8.335 Tmove=5.80 Omove=4.36
+[Episode  1520] stage_7C_all_lanes   scenario=original(x=4)    success100=0.800 avg_len=84.8 return=8.597 Tmove=5.85 Omove=4.43
+[Episode  1530] stage_7C_all_lanes   scenario=shifted(x=2)     success100=0.820 avg_len=81.2 return=8.851 Tmove=5.92 Omove=4.47
+[Episode  1540] stage_7C_all_lanes   scenario=original(x=4)    success100=0.820 avg_len=82.4 return=8.847 Tmove=5.96 Omove=4.46
+[Episode  1550] stage_7C_all_lanes   scenario=shifted(x=1)     success100=0.810 avg_len=85.5 return=8.708 Tmove=5.91 Omove=4.54
+[Episode  1560] stage_7C_all_lanes   scenario=original(x=4)    success100=0.790 avg_len=88.0 return=8.452 Tmove=5.77 Omove=4.49
+[Episode  1570] stage_7C_all_lanes   scenario=shifted(x=7)     success100=0.810 avg_len=83.5 return=8.728 Tmove=5.91 Omove=4.39
+[Episode  1580] stage_7C_all_lanes   scenario=shifted(x=5)     success100=0.780 avg_len=88.2 return=8.342 Tmove=5.73 Omove=4.32
+[Episode  1590] stage_7C_all_lanes   scenario=original(x=4)    success100=0.790 avg_len=90.5 return=8.440 Tmove=5.83 Omove=4.27
+[Episode  1600] stage_7C_all_lanes   scenario=original(x=4)    success100=0.770 avg_len=94.0 return=8.174 Tmove=5.69 Omove=4.27
+[Episode  1610] stage_7C_all_lanes   scenario=shifted(x=1)     success100=0.740 avg_len=101.0 return=7.756 Tmove=5.48 Omove=4.31
+[Episode  1620] stage_7C_all_lanes   scenario=shifted(x=7)     success100=0.740 avg_len=100.3 return=7.763 Tmove=5.48 Omove=4.17
+[Episode  1630] stage_7C_all_lanes   scenario=shifted(x=1)     success100=0.720 avg_len=105.0 return=7.471 Tmove=5.29 Omove=4.08
+[Episode  1640] stage_7C_all_lanes   scenario=original(x=4)    success100=0.730 avg_len=102.5 return=7.599 Tmove=5.30 Omove=4.12
+[Episode  1650] stage_7C_all_lanes   scenario=original(x=4)    success100=0.750 avg_len=99.1 return=7.856 Tmove=5.42 Omove=4.05
+[Episode  1660] stage_7C_all_lanes   scenario=original(x=4)    success100=0.750 avg_len=99.1 return=7.856 Tmove=5.42 Omove=4.11
+[Episode  1670] stage_7C_all_lanes   scenario=shifted(x=2)     success100=0.730 avg_len=103.1 return=7.584 Tmove=5.28 Omove=4.13
+[Episode  1680] stage_7C_all_lanes   scenario=shifted(x=8)     success100=0.720 avg_len=106.1 return=7.433 Tmove=5.22 Omove=4.08
+[Episode  1690] stage_7C_all_lanes   scenario=shifted(x=7)     success100=0.730 avg_len=103.4 return=7.561 Tmove=5.23 Omove=4.15
+[Episode  1700] stage_7C_all_lanes   scenario=shifted(x=3)     success100=0.760 avg_len=98.3 return=7.948 Tmove=5.40 Omove=4.10
+[Episode  1710] stage_7C_all_lanes   scenario=original(x=4)    success100=0.780 avg_len=94.5 return=8.220 Tmove=5.55 Omove=4.21
+[Episode  1720] stage_7C_all_lanes   scenario=shifted(x=1)     success100=0.740 avg_len=99.7 return=7.721 Tmove=5.33 Omove=4.24
+[Episode  1730] stage_7C_all_lanes   scenario=original(x=4)    success100=0.760 avg_len=96.1 return=7.996 Tmove=5.49 Omove=4.20
+[Episode  1740] stage_7C_all_lanes   scenario=shifted(x=8)     success100=0.730 avg_len=101.8 return=7.603 Tmove=5.32 Omove=4.18
+[Episode  1750] stage_7C_all_lanes   scenario=shifted(x=1)     success100=0.730 avg_len=101.4 return=7.610 Tmove=5.32 Omove=4.21
+[Episode  1760] stage_7C_all_lanes   scenario=shifted(x=3)     success100=0.720 avg_len=102.8 return=7.487 Tmove=5.29 Omove=4.09
+[Episode  1770] stage_7C_all_lanes   scenario=shifted(x=1)     success100=0.680 avg_len=110.0 return=6.964 Tmove=5.04 Omove=4.27
+[Episode  1780] stage_7C_all_lanes   scenario=original(x=4)    success100=0.690 avg_len=106.8 return=7.111 Tmove=5.09 Omove=4.28
+[Episode  1790] stage_7C_all_lanes   scenario=shifted(x=2)     success100=0.660 avg_len=109.3 return=6.742 Tmove=4.90 Omove=4.22
+[Episode  1800] stage_7C_all_lanes   scenario=shifted(x=6)     success100=0.670 avg_len=108.6 return=6.861 Tmove=4.95 Omove=4.23
+[Episode  1810] stage_7C_all_lanes   scenario=original(x=4)    success100=0.690 avg_len=105.1 return=7.125 Tmove=5.08 Omove=4.08
+[Episode  1820] stage_7C_all_lanes   scenario=shifted(x=2)     success100=0.720 avg_len=102.6 return=7.488 Tmove=5.26 Omove=4.04
+[Episode  1830] stage_7C_all_lanes   scenario=shifted(x=3)     success100=0.720 avg_len=102.9 return=7.479 Tmove=5.24 Omove=4.05
+[Episode  1840] stage_7C_all_lanes   scenario=original(x=4)    success100=0.730 avg_len=101.2 return=7.600 Tmove=5.27 Omove=4.11
+[Episode  1850] stage_7C_all_lanes   scenario=shifted(x=6)     success100=0.720 avg_len=101.9 return=7.473 Tmove=5.18 Omove=4.18
+[Episode  1860] stage_7C_all_lanes   scenario=shifted(x=6)     success100=0.730 avg_len=99.2 return=7.619 Tmove=5.25 Omove=4.17
+[Episode  1870] stage_7C_all_lanes   scenario=original(x=4)    success100=0.780 avg_len=91.0 return=8.266 Tmove=5.57 Omove=4.11
+[Episode  1880] stage_7C_all_lanes   scenario=shifted(x=8)     success100=0.780 avg_len=92.6 return=8.249 Tmove=5.55 Omove=4.27
+[Episode  1890] stage_7C_all_lanes   scenario=original(x=4)    success100=0.800 avg_len=90.6 return=8.504 Tmove=5.70 Omove=4.24
+[Episode  1900] stage_7C_all_lanes   scenario=original(x=4)    success100=0.750 avg_len=97.8 return=7.859 Tmove=5.37 Omove=4.30
+[Episode  1910] stage_7C_all_lanes   scenario=original(x=4)    success100=0.710 avg_len=103.1 return=7.365 Tmove=5.17 Omove=4.38
+[Episode  1920] stage_7C_all_lanes   scenario=shifted(x=2)     success100=0.710 avg_len=100.9 return=7.381 Tmove=5.14 Omove=4.36
+[Episode  1930] stage_7C_all_lanes   scenario=original(x=4)    success100=0.710 avg_len=100.5 return=7.393 Tmove=5.17 Omove=4.43
+[Episode  1940] stage_7C_all_lanes   scenario=shifted(x=7)     success100=0.690 avg_len=102.7 return=7.143 Tmove=5.05 Omove=4.32
+[Episode  1950] stage_7C_all_lanes   scenario=shifted(x=5)     success100=0.710 avg_len=101.8 return=7.382 Tmove=5.19 Omove=4.18
+[Episode  1960] stage_7C_all_lanes   scenario=original(x=4)    success100=0.720 avg_len=100.7 return=7.500 Tmove=5.22 Omove=4.28
+[Episode  1970] stage_7C_all_lanes   scenario=shifted(x=5)     success100=0.700 avg_len=101.8 return=7.259 Tmove=5.08 Omove=4.15
+[Episode  1980] stage_7C_all_lanes   scenario=original(x=4)    success100=0.740 avg_len=92.5 return=7.814 Tmove=5.36 Omove=3.97
+[Episode  1990] stage_7C_all_lanes   scenario=shifted(x=1)     success100=0.720 avg_len=94.5 return=7.553 Tmove=5.19 Omove=3.92
+[Episode  2000] stage_7C_all_lanes   scenario=shifted(x=3)     success100=0.760 avg_len=87.2 return=8.094 Tmove=5.49 Omove=3.81
+[Episode  2010] stage_7C_all_lanes   scenario=original(x=4)    success100=0.790 avg_len=83.0 return=8.464 Tmove=5.64 Omove=3.81
+[Episode  2020] stage_7C_all_lanes   scenario=original(x=4)    success100=0.770 avg_len=86.2 return=8.200 Tmove=5.50 Omove=3.76
+[Episode  2030] stage_7C_all_lanes   scenario=shifted(x=3)     success100=0.760 avg_len=87.5 return=8.065 Tmove=5.40 Omove=3.80
+[Episode  2040] stage_7C_all_lanes   scenario=shifted(x=5)     success100=0.800 avg_len=83.3 return=8.570 Tmove=5.68 Omove=3.84
+[Episode  2050] stage_7C_all_lanes   scenario=original(x=4)    success100=0.800 avg_len=82.7 return=8.576 Tmove=5.68 Omove=3.89
+[Episode  2060] stage_7C_all_lanes   scenario=shifted(x=1)     success100=0.790 avg_len=85.0 return=8.435 Tmove=5.61 Omove=3.82
+[Episode  2070] stage_7C_all_lanes   scenario=shifted(x=6)     success100=0.810 avg_len=86.8 return=8.661 Tmove=5.81 Omove=3.96
+[Episode  2080] stage_7C_all_lanes   scenario=shifted(x=6)     success100=0.780 avg_len=95.3 return=8.229 Tmove=5.60 Omove=4.01
+[Episode  2090] stage_7C_all_lanes   scenario=shifted(x=5)     success100=0.790 avg_len=92.7 return=8.374 Tmove=5.67 Omove=4.14
+[Episode  2100] stage_7C_all_lanes   scenario=original(x=4)    success100=0.770 avg_len=95.9 return=8.102 Tmove=5.49 Omove=4.20
+[Episode  2110] stage_7C_all_lanes   scenario=shifted(x=8)     success100=0.770 avg_len=94.9 return=8.112 Tmove=5.49 Omove=4.15
+[Episode  2120] stage_7C_all_lanes   scenario=original(x=4)    success100=0.800 avg_len=92.3 return=8.485 Tmove=5.70 Omove=4.24
+[Episode  2130] stage_7C_all_lanes   scenario=original(x=4)    success100=0.830 avg_len=87.3 return=8.880 Tmove=5.91 Omove=4.20
+[Episode  2140] stage_7C_all_lanes   scenario=shifted(x=8)     success100=0.830 avg_len=86.8 return=8.881 Tmove=5.89 Omove=4.22
+[Episode  2150] stage_7C_all_lanes   scenario=shifted(x=3)     success100=0.840 avg_len=83.1 return=9.034 Tmove=5.96 Omove=4.16
+
+======================================================================
+stage_7C_all_lanes mastered! success rate=0.850
+======================================================================
+
+Stage 7 curriculum completed!
+Stage 7 training complete.

@@ -1,0 +1,352 @@
+Checkpoint copied:
+evaluation_results/stochastic/baseline_checkpoint.pt
+============================================================
+Device      : cpu
+Action mode : stochastic
+Checkpoint  : evaluation_results/stochastic/baseline_checkpoint.pt
+Obs dim     : 129
+============================================================
+
+######################################################################
+# IID STAGE 6
+######################################################################
+
+======================================================================
+Scenario : iid_stage6
+Mode     : stochastic
+======================================================================
+Episode   20 / 1000 | success=0.900
+Episode   40 / 1000 | success=0.925
+Episode   60 / 1000 | success=0.917
+Episode   80 / 1000 | success=0.938
+Episode  100 / 1000 | success=0.940
+Episode  120 / 1000 | success=0.950
+Episode  140 / 1000 | success=0.950
+Episode  160 / 1000 | success=0.956
+Episode  180 / 1000 | success=0.961
+Episode  200 / 1000 | success=0.965
+Episode  220 / 1000 | success=0.964
+Episode  240 / 1000 | success=0.967
+Episode  260 / 1000 | success=0.969
+Episode  280 / 1000 | success=0.968
+Episode  300 / 1000 | success=0.970
+Episode  320 / 1000 | success=0.972
+Episode  340 / 1000 | success=0.971
+Episode  360 / 1000 | success=0.972
+Episode  380 / 1000 | success=0.974
+Episode  400 / 1000 | success=0.975
+Episode  420 / 1000 | success=0.974
+Episode  440 / 1000 | success=0.975
+Episode  460 / 1000 | success=0.974
+Episode  480 / 1000 | success=0.975
+Episode  500 / 1000 | success=0.974
+Episode  520 / 1000 | success=0.975
+Episode  540 / 1000 | success=0.976
+Episode  560 / 1000 | success=0.975
+Episode  580 / 1000 | success=0.976
+Episode  600 / 1000 | success=0.975
+Episode  620 / 1000 | success=0.974
+Episode  640 / 1000 | success=0.975
+Episode  660 / 1000 | success=0.976
+Episode  680 / 1000 | success=0.975
+Episode  700 / 1000 | success=0.976
+Episode  720 / 1000 | success=0.976
+Episode  740 / 1000 | success=0.977
+Episode  760 / 1000 | success=0.975
+Episode  780 / 1000 | success=0.973
+Episode  800 / 1000 | success=0.974
+Episode  820 / 1000 | success=0.973
+Episode  840 / 1000 | success=0.974
+Episode  860 / 1000 | success=0.974
+Episode  880 / 1000 | success=0.975
+Episode  900 / 1000 | success=0.974
+Episode  920 / 1000 | success=0.974
+Episode  940 / 1000 | success=0.974
+Episode  960 / 1000 | success=0.975
+Episode  980 / 1000 | success=0.976
+Episode 1000 / 1000 | success=0.975
+
+Success rate          : 0.975
+Average length        : 52.78
+Average return        : 10.906
+Average target moves  : 6.92
+Average obstacle moves: 4.19
+
+######################################################################
+# OBSTACLE OOD
+######################################################################
+
+======================================================================
+Scenario : obstacle_left
+Mode     : stochastic
+======================================================================
+Episode   20 / 100 | success=1.000
+Episode   40 / 100 | success=1.000
+Episode   60 / 100 | success=0.983
+Episode   80 / 100 | success=0.988
+Episode  100 / 100 | success=0.990
+
+Success rate          : 0.990
+Average length        : 45.68
+Average return        : 11.041
+Average target moves  : 6.99
+Average obstacle moves: 2.97
+
+======================================================================
+Scenario : obstacle_right
+Mode     : stochastic
+======================================================================
+Episode   20 / 100 | success=0.550
+Episode   40 / 100 | success=0.725
+Episode   60 / 100 | success=0.783
+Episode   80 / 100 | success=0.825
+Episode  100 / 100 | success=0.850
+
+Success rate          : 0.850
+Average length        : 127.81
+Average return        : 8.630
+Average target moves  : 6.17
+Average obstacle moves: 6.45
+
+======================================================================
+Scenario : obstacle_far_left
+Mode     : stochastic
+======================================================================
+Episode   20 / 100 | success=1.000
+Episode   40 / 100 | success=0.975
+Episode   60 / 100 | success=0.967
+Episode   80 / 100 | success=0.975
+Episode  100 / 100 | success=0.970
+
+Success rate          : 0.970
+Average length        : 40.10
+Average return        : 10.681
+Average target moves  : 6.91
+Average obstacle moves: 0.63
+
+======================================================================
+Scenario : obstacle_far_right
+Mode     : stochastic
+======================================================================
+Episode   20 / 100 | success=0.700
+Episode   40 / 100 | success=0.800
+Episode   60 / 100 | success=0.800
+Episode   80 / 100 | success=0.750
+Episode  100 / 100 | success=0.780
+
+Success rate          : 0.780
+Average length        : 68.57
+Average return        : 8.290
+Average target moves  : 6.04
+Average obstacle moves: 1.23
+
+======================================================================
+Scenario : obstacle_near_target
+Mode     : stochastic
+======================================================================
+Episode   20 / 100 | success=0.850
+Episode   40 / 100 | success=0.875
+Episode   60 / 100 | success=0.917
+Episode   80 / 100 | success=0.900
+Episode  100 / 100 | success=0.920
+
+Success rate          : 0.920
+Average length        : 63.03
+Average return        : 10.207
+Average target moves  : 6.72
+Average obstacle moves: 4.28
+
+======================================================================
+Scenario : obstacle_near_goal
+Mode     : stochastic
+======================================================================
+Episode   20 / 100 | success=0.000
+Episode   40 / 100 | success=0.000
+Episode   60 / 100 | success=0.000
+Episode   80 / 100 | success=0.013
+Episode  100 / 100 | success=0.010
+
+Success rate          : 0.010
+Average length        : 198.31
+Average return        : -1.036
+Average target moves  : 4.02
+Average obstacle moves: 3.03
+
+======================================================================
+Scenario : obstacle_off_path
+Mode     : stochastic
+======================================================================
+Episode   20 / 100 | success=0.900
+Episode   40 / 100 | success=0.800
+Episode   60 / 100 | success=0.800
+Episode   80 / 100 | success=0.800
+Episode  100 / 100 | success=0.770
+
+Success rate          : 0.770
+Average length        : 74.36
+Average return        : 8.130
+Average target moves  : 5.96
+Average obstacle moves: 1.50
+
+######################################################################
+# TARGET / GOAL OOD
+######################################################################
+
+======================================================================
+Scenario : lane_left
+Mode     : stochastic
+======================================================================
+Episode   20 / 100 | success=0.000
+Episode   40 / 100 | success=0.000
+Episode   60 / 100 | success=0.000
+Episode   80 / 100 | success=0.000
+Episode  100 / 100 | success=0.000
+
+Success rate          : 0.000
+Average length        : 200.00
+Average return        : -1.787
+Average target moves  : 0.26
+Average obstacle moves: 4.35
+
+======================================================================
+Scenario : lane_right
+Mode     : stochastic
+======================================================================
+Episode   20 / 100 | success=0.900
+Episode   40 / 100 | success=0.875
+Episode   60 / 100 | success=0.833
+Episode   80 / 100 | success=0.838
+Episode  100 / 100 | success=0.840
+
+Success rate          : 0.840
+Average length        : 79.95
+Average return        : 9.143
+Average target moves  : 6.22
+Average obstacle moves: 3.15
+
+======================================================================
+Scenario : target_lower
+Mode     : stochastic
+======================================================================
+Episode   20 / 100 | success=1.000
+Episode   40 / 100 | success=1.000
+Episode   60 / 100 | success=1.000
+Episode   80 / 100 | success=1.000
+Episode  100 / 100 | success=1.000
+
+Success rate          : 1.000
+Average length        : 37.58
+Average return        : 11.124
+Average target moves  : 6.00
+Average obstacle moves: 4.43
+
+======================================================================
+Scenario : goal_higher
+Mode     : stochastic
+======================================================================
+Episode   20 / 100 | success=0.950
+Episode   40 / 100 | success=0.975
+Episode   60 / 100 | success=0.950
+Episode   80 / 100 | success=0.963
+Episode  100 / 100 | success=0.970
+
+Success rate          : 0.970
+Average length        : 41.47
+Average return        : 10.767
+Average target moves  : 5.91
+Average obstacle moves: 4.35
+
+######################################################################
+# COMBINED OOD
+######################################################################
+
+======================================================================
+Scenario : combined_left_shift
+Mode     : stochastic
+======================================================================
+Episode   20 / 100 | success=0.000
+Episode   40 / 100 | success=0.000
+Episode   60 / 100 | success=0.000
+Episode   80 / 100 | success=0.000
+Episode  100 / 100 | success=0.000
+
+Success rate          : 0.000
+Average length        : 200.00
+Average return        : -1.794
+Average target moves  : 0.03
+Average obstacle moves: 3.95
+
+======================================================================
+Scenario : combined_right_shift
+Mode     : stochastic
+======================================================================
+Episode   20 / 100 | success=0.900
+Episode   40 / 100 | success=0.900
+Episode   60 / 100 | success=0.917
+Episode   80 / 100 | success=0.925
+Episode  100 / 100 | success=0.930
+
+Success rate          : 0.930
+Average length        : 81.17
+Average return        : 10.109
+Average target moves  : 6.66
+Average obstacle moves: 4.30
+
+======================================================================
+Scenario : combined_shorter
+Mode     : stochastic
+======================================================================
+Episode   20 / 100 | success=0.950
+Episode   40 / 100 | success=0.875
+Episode   60 / 100 | success=0.833
+Episode   80 / 100 | success=0.812
+Episode  100 / 100 | success=0.830
+
+Success rate          : 0.830
+Average length        : 97.59
+Average return        : 8.483
+Average target moves  : 4.34
+Average obstacle moves: 3.38
+
+######################################################################
+# STRESS
+######################################################################
+
+======================================================================
+Scenario : stress_two_blocks
+Mode     : stochastic
+======================================================================
+Episode   20 / 100 | success=0.700
+Episode   40 / 100 | success=0.750
+Episode   60 / 100 | success=0.717
+Episode   80 / 100 | success=0.662
+Episode  100 / 100 | success=0.640
+
+Success rate          : 0.640
+Average length        : 138.95
+Average return        : 6.683
+Average target moves  : 5.58
+Average obstacle moves: 6.80
+
+======================================================================
+Scenario : stress_partial_double
+Mode     : stochastic
+======================================================================
+Episode   20 / 100 | success=0.600
+Episode   40 / 100 | success=0.600
+Episode   60 / 100 | success=0.633
+Episode   80 / 100 | success=0.625
+Episode  100 / 100 | success=0.600
+
+Success rate          : 0.600
+Average length        : 150.80
+Average return        : 5.816
+Average target moves  : 5.35
+Average obstacle moves: 7.79
+
+======================================================================
+Finished
+Mode    : stochastic
+CSV     : evaluation_results/stochastic/baseline_episodes.csv
+Summary : evaluation_results/stochastic/baseline_summary.json
+======================================================================

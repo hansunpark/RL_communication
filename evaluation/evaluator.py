@@ -1,5 +1,3 @@
-from __future__ import annotations
-
 import csv
 import json
 import os
@@ -8,14 +6,17 @@ from collections import defaultdict
 
 import numpy as np
 import torch
-from torch.distributions import Categorical
 
-from gymnasium.spaces import (
+from gymnasium.spaces.utils import (
     flatten,
     flatdim,
 )
 
-from env import (
+from torch.distributions import (
+    Categorical,
+)
+
+from env.cooperative_transport_env import (
     CooperativeTransportEnv,
 )
 
@@ -25,22 +26,9 @@ from env.constants import (
 
 from train.ppo import PPO
 
-from .trajectory import (
+from evaluation.trajectory import (
     TrajectoryRecorder,
 )
-
-
-def flatten_obs(
-    space,
-    observation,
-):
-    return np.asarray(
-        flatten(
-            space,
-            observation,
-        ),
-        dtype=np.float32,
-    )
 
 
 class PolicyEvaluator:
@@ -49,89 +37,288 @@ class PolicyEvaluator:
         self,
         checkpoint,
         device=None,
+        action_mode="stochastic",
     ):
-        if device is None:
 
+        # ====================================================
+        # Device
+        # ====================================================
+
+        if device is None:
             device = (
                 "cuda"
                 if torch.cuda.is_available()
-                else
-                "cpu"
+                else "cpu"
             )
 
-        self.device = device
+        self.device = torch.device(
+            device
+        )
+
+        # ====================================================
+        # Action mode
+        # ====================================================
+
+        if action_mode not in [
+            "stochastic",
+            "deterministic",
+        ]:
+            raise ValueError(
+                "action_mode must be "
+                "'stochastic' or "
+                "'deterministic'"
+            )
+
+        self.action_mode = (
+            action_mode
+        )
+
+        # ====================================================
+        # Environment
+        #
+        # 중요:
+        # 네 환경은 __init__(stage=...)
+        # 형태가 아니다.
+        # ====================================================
 
         self.env = (
-            CooperativeTransportEnv(
-                num_agents=4,
-                vision_size=5,
-                max_steps=200,
-                curriculum_stage=6,
-                reward_mode=(
-                    "obstacle_shaping"
-                ),
-            )
+            CooperativeTransportEnv()
         )
+
+        self.env.set_curriculum(
+            stage=6,
+            spawn_level=2,
+            reward_mode=
+                "obstacle_shaping",
+        )
+
+        # ====================================================
+        # Observation dimension
+        # ====================================================
 
         sample_agent = (
-            self.env.possible_agents[
-                0
-            ]
+            self.env.possible_agents[0]
         )
 
-        obs_dim = flatdim(
+        observation_space = (
             self.env.observation_space(
                 sample_agent
             )
         )
 
+        obs_dim = flatdim(
+            observation_space
+        )
+
+        # ====================================================
+        # PPO
+        # ====================================================
+
         self.ppo = PPO(
             obs_dim=obs_dim,
             num_actions=5,
-            device=device,
+            device=self.device,
         )
 
-        self.ppo.load(
-            checkpoint,
-            load_optimizer=False,
-        )
+        # PPO.load() 시그니처가
+        # 현재 코드 버전에 따라 다를 수 있으므로
+        # 두 방식 모두 대응
+        try:
+            self.ppo.load(
+                checkpoint,
+                load_optimizer=False,
+            )
+
+        except TypeError:
+            self.ppo.load(
+                checkpoint
+            )
 
         self.ppo.network.eval()
 
-    @torch.no_grad()
-    def policy_action(
+        print(
+            "=" * 60
+        )
+
+        print(
+            f"Device      : "
+            f"{self.device}"
+        )
+
+        print(
+            f"Action mode : "
+            f"{self.action_mode}"
+        )
+
+        print(
+            f"Checkpoint  : "
+            f"{checkpoint}"
+        )
+
+        print(
+            f"Obs dim     : "
+            f"{obs_dim}"
+        )
+
+        print(
+            "=" * 60
+        )
+
+    # ========================================================
+    # Observation → Tensor
+    # ========================================================
+
+    def _observation_to_tensor(
         self,
         agent,
         observation,
-        deterministic=False,
     ):
-        flat = flatten_obs(
-            self.env.observation_space(agent),
+
+        flat_observation = flatten(
+            self.env.observation_space(
+                agent
+            ),
             observation,
         )
 
         tensor = torch.tensor(
-            flat,
+            flat_observation,
             dtype=torch.float32,
             device=self.device,
-        ).unsqueeze(0)
+        )
 
-        logits, _ = self.ppo.network(tensor)
+        return tensor.unsqueeze(0)
 
-        if deterministic:
+    # ========================================================
+    # Policy
+    # ========================================================
+
+    @torch.no_grad()
+    def select_action(
+        self,
+        agent,
+        observation,
+    ):
+
+        obs_tensor = (
+            self._observation_to_tensor(
+                agent,
+                observation,
+            )
+        )
+
+        logits, _ = (
+            self.ppo.network(
+                obs_tensor
+            )
+        )
+
+        probabilities = (
+            torch.softmax(
+                logits,
+                dim=-1,
+            )
+        )
+
+        if (
+            self.action_mode
+            == "deterministic"
+        ):
+
             action = torch.argmax(
                 logits,
                 dim=-1,
             )
+
         else:
-            distribution = Categorical(
-                logits=logits
+
+            distribution = (
+                Categorical(
+                    logits=logits
+                )
             )
 
-            action = distribution.sample()
+            action = (
+                distribution.sample()
+            )
 
-        return int(action.item())
+        action_int = int(
+            action.item()
+        )
 
+        probabilities_np = (
+            probabilities
+            .squeeze(0)
+            .cpu()
+            .numpy()
+        )
+
+        return (
+            action_int,
+            probabilities_np,
+        )
+
+    # ========================================================
+    # Environment reset
+    # ========================================================
+
+    def _reset_environment(
+        self,
+        scenario,
+        seed,
+    ):
+
+        # ----------------------------------------------------
+        # IID
+        #
+        # config=None이면 원래 Stage 6를 그대로 사용.
+        # custom scenario를 만들지 않는다.
+        # ----------------------------------------------------
+
+        if scenario.config is None:
+
+            self.env.set_curriculum(
+                stage=6,
+                spawn_level=2,
+                reward_mode=
+                    "obstacle_shaping",
+            )
+
+            observations, infos = (
+                self.env.reset(
+                    seed=seed
+                )
+            )
+
+            return (
+                observations,
+                infos,
+            )
+
+        # ----------------------------------------------------
+        # OOD custom scenario
+        # ----------------------------------------------------
+
+        observations, infos = (
+            self.env.reset(
+                seed=seed,
+                options={
+                    "scenario":
+                        scenario.to_env_dict()
+                },
+            )
+        )
+
+        return (
+            observations,
+            infos,
+        )
+
+    # ========================================================
+    # Single episode
+    # ========================================================
+
+    @torch.no_grad()
     def run_episode(
         self,
         scenario,
@@ -139,24 +326,56 @@ class PolicyEvaluator:
         record_trajectory=False,
         trajectory_path=None,
     ):
-        np.random.seed(seed)
-        torch.manual_seed(seed)
+
+        # ====================================================
+        # Random seed
+        #
+        # 환경 randomness뿐 아니라
+        # stochastic policy sampling도 재현 가능하게 함.
+        # ====================================================
+
+        np.random.seed(
+            seed
+        )
+
+        torch.manual_seed(
+            seed
+        )
 
         if torch.cuda.is_available():
-            torch.cuda.manual_seed_all(seed)
-        scenario_dict = (
-            scenario.to_env_dict()
+            torch.cuda.manual_seed_all(
+                seed
+            )
+
+        # ====================================================
+        # Reset
+        # ====================================================
+
+        (
+            observations,
+            _,
+        ) = self._reset_environment(
+            scenario,
+            seed,
         )
 
-        observations, _ = (
-            self.env.reset(
-                seed=seed,
-                options={
-                    "scenario":
-                        scenario_dict
-                },
-            )
-        )
+        episode_return = 0.0
+
+        episode_length = 0
+
+        episode_target_moves = 0
+
+        episode_obstacle_moves = 0
+
+        episode_successful_pushes = 0
+
+        success = False
+
+        last_info = {}
+
+        # ====================================================
+        # Trajectory recorder
+        # ====================================================
 
         recorder = None
 
@@ -167,61 +386,70 @@ class PolicyEvaluator:
                     scenario_name=
                         scenario.name,
 
-                    seed=seed,
+                    seed=
+                        seed,
 
                     width=
                         self.env.width,
 
                     height=
                         self.env.height,
+
+                    action_mode=
+                        self.action_mode,
                 )
             )
 
-            recorder.record_initial(
-                self.env
-            )
-
-        episode_return = 0.0
-        episode_length = 0
-
-        target_moves = 0
-        obstacle_moves = 0
-        successful_pushes = 0
-
-        success = False
-
-        final_target_distance = None
-        final_blocking = None
+        # ====================================================
+        # Episode loop
+        # ====================================================
 
         while self.env.agents:
 
-            current_agents = (
-                self.env.agents[:]
+            current_agents = list(
+                self.env.agents
             )
 
             actions = {}
 
-            for agent in (
-                current_agents
-            ):
-                physical_action = self.policy_action(
+            action_probabilities = {}
+
+            # ------------------------------------------------
+            # Agent actions
+            # ------------------------------------------------
+
+            for agent in current_agents:
+
+                (
+                    physical_action,
+                    probabilities,
+                ) = self.select_action(
                     agent,
                     observations[agent],
-                    deterministic=False,
                 )
 
-                actions[
-                    agent
-                ] = np.array(
-                    [
-                        physical_action,
-                        NO_MESSAGE,
-                    ],
-                    dtype=np.int64,
+                actions[agent] = (
+                    np.array(
+                        [
+                            physical_action,
+                            NO_MESSAGE,
+                        ],
+                        dtype=np.int64,
+                    )
                 )
+
+                action_probabilities[
+                    agent
+                ] = (
+                    probabilities.tolist()
+                )
+
+            # ------------------------------------------------
+            # Environment step
+            # ------------------------------------------------
 
             (
-                observations,
+                next_observations,
                 rewards,
                 terminations,
                 truncations,
@@ -230,228 +458,469 @@ class PolicyEvaluator:
                 actions
             )
 
-            first_agent = (
-                current_agents[0]
-            )
+            # ------------------------------------------------
+            # Team reward
+            #
+            # 모든 agent가 공유 reward를 받으므로
+            # agent 수만큼 더하면 안 된다.
+            # ------------------------------------------------
 
-            reward = (
-                rewards[
-                    first_agent
-                ]
-            )
+            step_reward = 0.0
 
-            info = (
-                infos[
-                    first_agent
-                ]
-            )
+            if current_agents:
 
-            episode_return += reward
+                first_agent = (
+                    current_agents[0]
+                )
+
+                step_reward = float(
+                    rewards.get(
+                        first_agent,
+                        0.0,
+                    )
+                )
+
+                last_info = (
+                    infos.get(
+                        first_agent,
+                        {},
+                    )
+                )
+
+                episode_return += (
+                    step_reward
+                )
+
+                episode_target_moves += (
+                    int(
+                        last_info.get(
+                            "target_moved",
+                            0,
+                        )
+                    )
+                )
+
+                episode_obstacle_moves += (
+                    int(
+                        last_info.get(
+                            "obstacle_moves",
+                            0,
+                        )
+                    )
+                )
+
+                episode_successful_pushes += (
+                    int(
+                        last_info.get(
+                            "successful_pushes",
+                            0,
+                        )
+                    )
+                )
+
+                success = bool(
+                    last_info.get(
+                        "success",
+                        False,
+                    )
+                )
+
             episode_length += 1
 
-            target_moves += int(
-                info[
-                    "target_moved"
-                ]
-            )
-
-            obstacle_moves += int(
-                info[
-                    "obstacle_moves"
-                ]
-            )
-
-            successful_pushes += int(
-                info[
-                    "successful_pushes"
-                ]
-            )
-
-            success = bool(
-                info["success"]
-            )
-
-            final_target_distance = (
-                info[
-                    "target_distance"
-                ]
-            )
-
-            final_blocking = (
-                info[
-                    "obstacle_blocking"
-                ]
-            )
+            # ------------------------------------------------
+            # Trajectory
+            # ------------------------------------------------
 
             if recorder is not None:
 
-                recorder.record_step(
+                recorder.record_frame(
                     env=self.env,
-                    step=episode_length,
                     actions=actions,
-                    reward=reward,
-                    info=info,
+                    reward=step_reward,
+                    info=last_info,
+                    action_probabilities=
+                        action_probabilities,
                 )
+
+            observations = (
+                next_observations
+            )
+
+            # 안전 장치
+            if (
+                episode_length
+                >= self.env.max_steps
+            ):
+                break
+
+        # ====================================================
+        # Save trajectory
+        # ====================================================
 
         if recorder is not None:
 
             recorder.finish(
-                success=success,
+                success=
+                    success,
+
                 episode_length=
                     episode_length,
+
                 episode_return=
                     episode_return,
             )
 
-            recorder.save(
-                trajectory_path
-            )
+            if trajectory_path:
+                recorder.save(
+                    trajectory_path
+                )
+
+        # ====================================================
+        # Episode result
+        # ====================================================
 
         return {
-            "category":
-                scenario.category,
-
             "scenario":
                 scenario.name,
 
             "seed":
                 int(seed),
 
+            "action_mode":
+                self.action_mode,
+
             "success":
                 int(success),
 
             "episode_length":
-                episode_length,
+                int(
+                    episode_length
+                ),
 
             "return":
-                episode_return,
+                float(
+                    episode_return
+                ),
 
             "target_moves":
-                target_moves,
+                int(
+                    episode_target_moves
+                ),
 
             "obstacle_moves":
-                obstacle_moves,
+                int(
+                    episode_obstacle_moves
+                ),
 
             "successful_pushes":
-                successful_pushes,
+                int(
+                    episode_successful_pushes
+                ),
 
             "final_target_distance":
-                final_target_distance,
+                last_info.get(
+                    "target_distance",
+                    None,
+                ),
 
             "final_obstacle_blocking":
-                final_blocking,
+                last_info.get(
+                    "obstacle_blocking",
+                    None,
+                ),
         }
 
-    def evaluate_scenario(
+    # ========================================================
+    # Multiple episodes
+    # ========================================================
+
+    def evaluate_scenarios(
         self,
-        scenario,
-        episodes,
-        seed_start,
-        record_examples=False,
+        scenarios,
+        episodes_per_scenario,
+        seed_start=100000,
         trajectory_dir=None,
+        max_success_trajectories=3,
+        max_failure_trajectories=3,
     ):
-        results = []
 
-        saved_success = 0
-        saved_failure = 0
+        all_results = []
 
-        for episode_idx in range(
-            episodes
-        ):
-            seed = (
-                seed_start
-                +
-                episode_idx
+        seed_counter = (
+            seed_start
+        )
+
+        for scenario in scenarios:
+
+            print()
+            print(
+                "=" * 70
             )
 
-            result = self.run_episode(
-                scenario=scenario,
-                seed=seed,
+            print(
+                f"Scenario : "
+                f"{scenario.name}"
             )
 
-            results.append(
-                result
+            print(
+                f"Mode     : "
+                f"{self.action_mode}"
             )
 
-            # -----------------------------------------
-            # Save a few example trajectories
-            # -----------------------------------------
+            print(
+                "=" * 70
+            )
 
-            if record_examples:
+            scenario_results = []
 
-                should_save = False
+            saved_successes = 0
+
+            saved_failures = 0
+
+            for episode in range(
+                episodes_per_scenario
+            ):
+
+                seed = seed_counter
+
+                seed_counter += 1
+
+                result = (
+                    self.run_episode(
+                        scenario=
+                            scenario,
+
+                        seed=
+                            seed,
+
+                        record_trajectory=
+                            False,
+                    )
+                )
+
+                all_results.append(
+                    result
+                )
+
+                scenario_results.append(
+                    result
+                )
+
+                # --------------------------------------------
+                # Representative trajectories
+                #
+                # stochastic도 같은 seed를 다시 주므로
+                # 동일 action sample sequence가 재현된다.
+                # --------------------------------------------
+
+                record_this = False
+
+                label = None
 
                 if (
                     result["success"]
                     and
-                    saved_success < 3
+                    saved_successes
+                    <
+                    max_success_trajectories
                 ):
-                    should_save = True
-                    saved_success += 1
+                    record_this = True
+
+                    label = "success"
+
+                    saved_successes += 1
 
                 elif (
                     not result["success"]
                     and
-                    saved_failure < 3
+                    saved_failures
+                    <
+                    max_failure_trajectories
                 ):
-                    should_save = True
-                    saved_failure += 1
+                    record_this = True
 
-                if should_save:
+                    label = "failure"
 
-                    outcome = (
-                        "success"
-                        if result["success"]
-                        else
-                        "failure"
-                    )
+                    saved_failures += 1
 
-                    filename = (
-                        f"{scenario.name}_"
-                        f"{outcome}_"
-                        f"seed{seed}.json"
-                    )
+                if (
+                    record_this
+                    and
+                    trajectory_dir
+                    is not None
+                ):
 
-                    path = os.path.join(
+                    os.makedirs(
                         trajectory_dir,
-                        filename,
+                        exist_ok=True,
                     )
 
-                    # Re-run deterministic episode.
+                    trajectory_path = (
+                        os.path.join(
+                            trajectory_dir,
+
+                            f"{scenario.name}_"
+                            f"{label}_"
+                            f"seed{seed}.json"
+                        )
+                    )
+
                     self.run_episode(
-                        scenario=scenario,
-                        seed=seed,
-                        record_trajectory=True,
-                        trajectory_path=path,
+                        scenario=
+                            scenario,
+
+                        seed=
+                            seed,
+
+                        record_trajectory=
+                            True,
+
+                        trajectory_path=
+                            trajectory_path,
                     )
 
-        return results
+                # --------------------------------------------
+                # progress print
+                # --------------------------------------------
+
+                if (
+                    (episode + 1)
+                    % 20
+                    == 0
+                    or
+                    episode + 1
+                    ==
+                    episodes_per_scenario
+                ):
+
+                    success_rate = (
+                        np.mean(
+                            [
+                                r["success"]
+                                for r
+                                in scenario_results
+                            ]
+                        )
+                    )
+
+                    print(
+                        f"Episode "
+                        f"{episode + 1:4d} / "
+                        f"{episodes_per_scenario} "
+                        f"| success="
+                        f"{success_rate:.3f}"
+                    )
+
+            summary = (
+                self.aggregate(
+                    scenario_results
+                )
+            )
+
+            print()
+
+            print(
+                f"Success rate          : "
+                f"{summary['success_rate']:.3f}"
+            )
+
+            print(
+                f"Average length        : "
+                f"{summary['mean_episode_length']:.2f}"
+            )
+
+            print(
+                f"Average return        : "
+                f"{summary['mean_return']:.3f}"
+            )
+
+            print(
+                f"Average target moves  : "
+                f"{summary['mean_target_moves']:.2f}"
+            )
+
+            print(
+                f"Average obstacle moves: "
+                f"{summary['mean_obstacle_moves']:.2f}"
+            )
+
+        return all_results
+
+    # ========================================================
+    # Aggregate
+    # ========================================================
 
     @staticmethod
-    def summarize(
-        results,
+    def aggregate(
+        results
     ):
-        if not results:
-            return {}
 
-        successes = [
-            row
-            for row in results
-            if row["success"]
+        if not results:
+            return {
+                "episodes": 0,
+
+                "success_rate":
+                    0.0,
+
+                "mean_episode_length":
+                    None,
+
+                "mean_return":
+                    None,
+
+                "mean_target_moves":
+                    None,
+
+                "mean_obstacle_moves":
+                    None,
+
+                "mean_successful_pushes":
+                    None,
+
+                "mean_success_length":
+                    None,
+            }
+
+        successful = [
+            r
+            for r in results
+            if r["success"] == 1
         ]
 
-        success_rate = (
-            len(successes)
-            /
-            len(results)
-        )
+        if successful:
+            mean_success_length = (
+                float(
+                    np.mean(
+                        [
+                            r[
+                                "episode_length"
+                            ]
+                            for r
+                            in successful
+                        ]
+                    )
+                )
+            )
 
-        summary = {
+        else:
+            mean_success_length = (
+                None
+            )
+
+        return {
             "episodes":
                 len(results),
 
             "success_rate":
-                success_rate,
+                float(
+                    np.mean(
+                        [
+                            r["success"]
+                            for r
+                            in results
+                        ]
+                    )
+                ),
 
             "mean_episode_length":
                 float(
@@ -515,84 +984,150 @@ class PolicyEvaluator:
                         ]
                     )
                 ),
+
+            "mean_success_length":
+                mean_success_length,
         }
 
-        if successes:
+    # ========================================================
+    # Build summary
+    # ========================================================
 
-            summary[
-                "mean_success_length"
-            ] = float(
-                np.mean(
-                    [
-                        r[
-                            "episode_length"
-                        ]
-                        for r
-                        in successes
-                    ]
+    def build_summary(
+        self,
+        grouped_results,
+    ):
+
+        output = {}
+
+        for (
+            group_name,
+            results,
+        ) in (
+            grouped_results.items()
+        ):
+
+            scenario_groups = (
+                defaultdict(list)
+            )
+
+            for result in results:
+
+                scenario_groups[
+                    result["scenario"]
+                ].append(
+                    result
+                )
+
+            output[
+                group_name
+            ] = {
+                "action_mode":
+                    self.action_mode,
+
+                "overall":
+                    self.aggregate(
+                        results
+                    ),
+
+                "scenarios": {
+                    scenario_name:
+                        self.aggregate(
+                            scenario_results
+                        )
+
+                    for (
+                        scenario_name,
+                        scenario_results,
+                    )
+                    in
+                    scenario_groups.items()
+                },
+            }
+
+        return output
+
+    # ========================================================
+    # Save CSV
+    # ========================================================
+
+    @staticmethod
+    def save_csv(
+        results,
+        path,
+    ):
+
+        if not results:
+            return
+
+        directory = (
+            os.path.dirname(
+                path
+            )
+        )
+
+        if directory:
+            os.makedirs(
+                directory,
+                exist_ok=True,
+            )
+
+        with open(
+            path,
+            "w",
+            newline="",
+            encoding="utf-8",
+        ) as f:
+
+            writer = (
+                csv.DictWriter(
+                    f,
+                    fieldnames=
+                        list(
+                            results[
+                                0
+                            ].keys()
+                        ),
                 )
             )
 
-        else:
+            writer.writeheader()
 
-            summary[
-                "mean_success_length"
-            ] = None
+            writer.writerows(
+                results
+            )
 
-        return summary
+    # ========================================================
+    # Save JSON
+    # ========================================================
 
-
-def save_csv(
-    rows,
-    path,
-):
-    if not rows:
-        return
-
-    os.makedirs(
-        os.path.dirname(path),
-        exist_ok=True,
-    )
-
-    with open(
+    @staticmethod
+    def save_json(
+        data,
         path,
-        "w",
-        newline="",
-        encoding="utf-8",
-    ) as f:
+    ):
 
-        writer = csv.DictWriter(
-            f,
-            fieldnames=list(
-                rows[0].keys()
-            ),
+        directory = (
+            os.path.dirname(
+                path
+            )
         )
 
-        writer.writeheader()
+        if directory:
+            os.makedirs(
+                directory,
+                exist_ok=True,
+            )
 
-        writer.writerows(
-            rows
-        )
+        with open(
+            path,
+            "w",
+            encoding="utf-8",
+        ) as f:
 
-
-def save_json(
-    data,
-    path,
-):
-    os.makedirs(
-        os.path.dirname(path),
-        exist_ok=True,
-    )
-
-    with open(
-        path,
-        "w",
-        encoding="utf-8",
-    ) as f:
-
-        json.dump(
-            data,
-            f,
-            indent=2,
-            ensure_ascii=False,
-        )
+            json.dump(
+                data,
+                f,
+                indent=2,
+                ensure_ascii=False,
+            )

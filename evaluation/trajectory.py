@@ -1,8 +1,6 @@
 import json
 import os
 
-from copy import deepcopy
-
 
 class TrajectoryRecorder:
 
@@ -12,66 +10,194 @@ class TrajectoryRecorder:
         seed,
         width,
         height,
+        action_mode,
     ):
-        self.data = {
-            "scenario":
-                scenario_name,
-
-            "seed":
-                seed,
-
-            "width":
-                width,
-
-            "height":
-                height,
-
-            "success":
-                False,
-
-            "episode_length":
-                0,
-
-            "return":
-                0.0,
-
-            "frames": [],
-        }
-
-    def record_initial(
-        self,
-        env,
-    ):
-        self.data[
-            "frames"
-        ].append(
-            self._make_frame(
-                env=env,
-                step=0,
-                actions=None,
-                reward=0.0,
-                info=None,
-            )
+        self.scenario_name = (
+            scenario_name
         )
 
-    def record_step(
+        self.seed = seed
+
+        self.width = width
+
+        self.height = height
+
+        self.action_mode = action_mode
+
+        self.frames = []
+
+        self.summary = {}
+
+    def record_frame(
         self,
         env,
-        step,
         actions,
         reward,
         info,
+        action_probabilities=None,
     ):
-        self.data[
-            "frames"
-        ].append(
-            self._make_frame(
-                env=env,
-                step=step,
-                actions=actions,
-                reward=reward,
-                info=info,
+        agents = {}
+
+        agent_positions = getattr(
+            env,
+            "agent_positions",
+            {},
+        )
+
+        for agent, pos in (
+            agent_positions.items()
+        ):
+            agents[agent] = [
+                int(pos[0]),
+                int(pos[1]),
+            ]
+
+        objects = []
+
+        for obj in getattr(
+            env,
+            "objects",
+            [],
+        ):
+            objects.append(
+                {
+                    "id":
+                        int(
+                            obj.object_id
+                        ),
+
+                    "x":
+                        int(obj.x),
+
+                    "y":
+                        int(obj.y),
+
+                    "width":
+                        int(
+                            obj.width
+                        ),
+
+                    "height":
+                        int(
+                            obj.height
+                        ),
+
+                    "is_target":
+                        bool(
+                            obj.is_target
+                        ),
+                }
             )
+
+        goal_cells = []
+
+        for cell in getattr(
+            env,
+            "goal_cells",
+            [],
+        ):
+            goal_cells.append(
+                [
+                    int(cell[0]),
+                    int(cell[1]),
+                ]
+            )
+
+        walls = []
+
+        for cell in getattr(
+            env,
+            "walls",
+            [],
+        ):
+            walls.append(
+                [
+                    int(cell[0]),
+                    int(cell[1]),
+                ]
+            )
+
+        converted_actions = {}
+
+        for agent, action in (
+            actions.items()
+        ):
+            if hasattr(
+                action,
+                "tolist",
+            ):
+                converted_actions[
+                    agent
+                ] = action.tolist()
+
+            else:
+                converted_actions[
+                    agent
+                ] = action
+
+        frame = {
+            "step":
+                len(self.frames),
+
+            "agents":
+                agents,
+
+            "objects":
+                objects,
+
+            "goal":
+                goal_cells,
+
+            "walls":
+                walls,
+
+            "actions":
+                converted_actions,
+
+            "action_probabilities":
+                (
+                    action_probabilities
+                    if action_probabilities
+                    is not None
+                    else {}
+                ),
+
+            "reward":
+                float(reward),
+
+            "target_distance":
+                info.get(
+                    "target_distance",
+                    None,
+                ),
+
+            "obstacle_blocking":
+                info.get(
+                    "obstacle_blocking",
+                    None,
+                ),
+
+            "target_moved":
+                info.get(
+                    "target_moved",
+                    0,
+                ),
+
+            "obstacle_moves":
+                info.get(
+                    "obstacle_moves",
+                    0,
+                ),
+
+            "success":
+                info.get(
+                    "success",
+                    False,
+                ),
+        }
+
+        self.frames.append(
+            frame
         )
 
     def finish(
@@ -80,164 +206,20 @@ class TrajectoryRecorder:
         episode_length,
         episode_return,
     ):
-        self.data[
-            "success"
-        ] = bool(success)
+        self.summary = {
+            "success":
+                bool(success),
 
-        self.data[
-            "episode_length"
-        ] = int(
-            episode_length
-        )
+            "episode_length":
+                int(
+                    episode_length
+                ),
 
-        self.data[
-            "return"
-        ] = float(
-            episode_return
-        )
-
-    def _make_frame(
-        self,
-        env,
-        step,
-        actions,
-        reward,
-        info,
-    ):
-        objects = []
-
-        for obj in env.objects:
-
-            objects.append(
-                {
-                    "id":
-                        obj.object_id,
-
-                    "x":
-                        obj.x,
-
-                    "y":
-                        obj.y,
-
-                    "width":
-                        obj.width,
-
-                    "height":
-                        obj.height,
-
-                    "is_target":
-                        obj.is_target,
-                }
-            )
-
-        formatted_actions = None
-
-        if actions is not None:
-
-            formatted_actions = {
-                agent: [
-                    int(
-                        action[0]
-                    ),
-                    int(
-                        action[1]
-                    ),
-                ]
-
-                for agent, action
-                in actions.items()
-            }
-
-        frame = {
-            "step":
-                int(step),
-
-            "agents": {
-                agent: [
-                    int(pos[0]),
-                    int(pos[1]),
-                ]
-
-                for agent, pos
-                in env.agent_positions.items()
-            },
-
-            "objects":
-                objects,
-
-            "goal_cells": [
-                [
-                    int(x),
-                    int(y),
-                ]
-
-                for x, y
-                in sorted(
-                    env.goal_cells
-                )
-            ],
-
-            "walls": [
-                [
-                    int(x),
-                    int(y),
-                ]
-
-                for x, y
-                in sorted(
-                    env.walls
-                )
-            ],
-
-            "actions":
-                formatted_actions,
-
-            "reward":
-                float(reward),
+            "episode_return":
+                float(
+                    episode_return
+                ),
         }
-
-        if info is not None:
-
-            frame.update(
-                {
-                    "success":
-                        bool(
-                            info[
-                                "success"
-                            ]
-                        ),
-
-                    "target_distance":
-                        int(
-                            info[
-                                "target_distance"
-                            ]
-                        ),
-
-                    "obstacle_blocking":
-                        int(
-                            info[
-                                "obstacle_blocking"
-                            ]
-                        ),
-
-                    "target_moved":
-                        bool(
-                            info[
-                                "target_moved"
-                            ]
-                        ),
-
-                    "obstacle_moves":
-                        int(
-                            info[
-                                "obstacle_moves"
-                            ]
-                        ),
-                }
-            )
-
-        return frame
 
     def save(
         self,
@@ -253,14 +235,36 @@ class TrajectoryRecorder:
                 exist_ok=True,
             )
 
+        data = {
+            "scenario":
+                self.scenario_name,
+
+            "seed":
+                self.seed,
+
+            "width":
+                self.width,
+
+            "height":
+                self.height,
+
+            "action_mode":
+                self.action_mode,
+
+            "summary":
+                self.summary,
+
+            "frames":
+                self.frames,
+        }
+
         with open(
             path,
             "w",
             encoding="utf-8",
         ) as f:
-
             json.dump(
-                self.data,
+                data,
                 f,
                 indent=2,
                 ensure_ascii=False,

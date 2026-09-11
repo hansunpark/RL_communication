@@ -22,36 +22,33 @@ ACTION_NAMES = {
 }
 
 
-def load_trajectory(
-    path,
-):
-    with open(
-        path,
-        "r",
-        encoding="utf-8",
-    ) as f:
-
-        return json.load(f)
-
-
 class TrajectoryVisualizer:
 
     def __init__(
         self,
-        trajectory,
+        trajectory_path,
     ):
-        self.data = trajectory
+
+        with open(
+            trajectory_path,
+            "r",
+            encoding="utf-8",
+        ) as f:
+
+            self.data = json.load(
+                f
+            )
 
         self.width = (
-            trajectory["width"]
+            self.data["width"]
         )
 
         self.height = (
-            trajectory["height"]
+            self.data["height"]
         )
 
         self.frames = (
-            trajectory["frames"]
+            self.data["frames"]
         )
 
         self.fig, self.ax = (
@@ -59,17 +56,32 @@ class TrajectoryVisualizer:
                 figsize=(8, 8)
             )
         )
-        self.animation=None
+
+        # 매우 중요:
+        # animation object가 garbage collection
+        # 되는 것을 막는다.
+        self.animation = None
+
+    # ========================================================
+    # Draw one frame
+    # ========================================================
 
     def draw_frame(
         self,
-        index,
+        frame_index,
     ):
-        frame = (
-            self.frames[index]
-        )
 
         self.ax.clear()
+
+        frame = (
+            self.frames[
+                frame_index
+            ]
+        )
+
+        # ----------------------------------------------------
+        # Axis
+        # ----------------------------------------------------
 
         self.ax.set_xlim(
             0,
@@ -98,71 +110,59 @@ class TrajectoryVisualizer:
         )
 
         self.ax.grid(
-            True
+            True,
+            linewidth=0.5,
         )
 
-        self.ax.set_xticklabels(
-            []
-        )
-
-        self.ax.set_yticklabels(
-            []
-        )
-
-        # ==============================================
+        # ----------------------------------------------------
         # Goal
-        # ==============================================
+        # ----------------------------------------------------
 
-        for x, y in (
-            frame[
-                "goal_cells"
-            ]
+        for x, y in frame.get(
+            "goal",
+            [],
         ):
+
             rect = Rectangle(
                 (x, y),
                 1,
                 1,
-                alpha=0.25,
+                fill=False,
+                linewidth=2,
             )
 
             self.ax.add_patch(
                 rect
             )
 
-            self.ax.text(
-                x + 0.5,
-                y + 0.5,
-                "G",
-                ha="center",
-                va="center",
-                fontsize=8,
-            )
-
-        # ==============================================
+        # ----------------------------------------------------
         # Walls
-        # ==============================================
+        # ----------------------------------------------------
 
-        for x, y in (
-            frame["walls"]
+        for x, y in frame.get(
+            "walls",
+            [],
         ):
+
             rect = Rectangle(
                 (x, y),
                 1,
                 1,
-                alpha=0.8,
             )
 
             self.ax.add_patch(
                 rect
             )
 
-        # ==============================================
+        # ----------------------------------------------------
         # Objects
-        # ==============================================
+        # ----------------------------------------------------
 
-        for obj in (
-            frame["objects"]
+        for obj in frame.get(
+            "objects",
+            [],
         ):
+
             rect = Rectangle(
                 (
                     obj["x"],
@@ -170,7 +170,8 @@ class TrajectoryVisualizer:
                 ),
                 obj["width"],
                 obj["height"],
-                alpha=0.55,
+                fill=False,
+                linewidth=3,
             )
 
             self.ax.add_patch(
@@ -183,150 +184,188 @@ class TrajectoryVisualizer:
                     "is_target"
                 ]
                 else
-                f"OBS {obj['id']}"
+                f"O{obj['id']}"
             )
 
             self.ax.text(
                 obj["x"]
-                +
-                obj["width"]
-                / 2,
+                + obj["width"] / 2,
 
                 obj["y"]
-                +
-                obj["height"]
-                / 2,
+                + obj["height"] / 2,
 
                 label,
 
-                ha="center",
-                va="center",
-                fontsize=9,
-                weight="bold",
+                horizontalalignment=
+                    "center",
+
+                verticalalignment=
+                    "center",
             )
 
-        # ==============================================
+        # ----------------------------------------------------
         # Agents
-        # ==============================================
+        # ----------------------------------------------------
 
-        actions = (
-            frame.get(
-                "actions"
+        for (
+            agent,
+            position,
+        ) in frame.get(
+            "agents",
+            {},
+        ).items():
+
+            x, y = position
+
+            self.ax.scatter(
+                x + 0.5,
+                y + 0.5,
+                s=200,
             )
-        )
 
-        for agent, (
-            x,
-            y,
-        ) in (
-            frame[
-                "agents"
-            ].items()
-        ):
-            circle = (
-                plt.Circle(
-                    (
-                        x + 0.5,
-                        y + 0.5,
-                    ),
-                    0.32,
-                    fill=False,
-                    linewidth=2,
+            action_text = ""
+
+            action_data = (
+                frame.get(
+                    "actions",
+                    {},
+                ).get(
+                    agent
                 )
             )
 
-            self.ax.add_patch(
-                circle
-            )
+            if (
+                action_data
+                is not None
+            ):
 
-            label = agent.replace(
-                "agent_",
-                "A",
-            )
+                if isinstance(
+                    action_data,
+                    list,
+                ):
+                    physical_action = (
+                        action_data[0]
+                    )
 
-            if actions:
+                else:
+                    physical_action = (
+                        action_data
+                    )
 
-                action_id = (
-                    actions[
-                        agent
-                    ][0]
-                )
-
-                action_name = (
-                    ACTION_NAMES[
-                        action_id
-                    ]
-                )
-
-                label += (
-                    f"\n{action_name}"
+                action_text = (
+                    ACTION_NAMES.get(
+                        physical_action,
+                        str(
+                            physical_action
+                        ),
+                    )
                 )
 
             self.ax.text(
                 x + 0.5,
-                y + 0.5,
-                label,
-                ha="center",
-                va="center",
+                y + 0.25,
+                agent.replace(
+                    "agent_",
+                    "A",
+                ),
+
+                horizontalalignment=
+                    "center",
+            )
+
+            self.ax.text(
+                x + 0.5,
+                y + 0.78,
+                action_text,
+
+                horizontalalignment=
+                    "center",
+
                 fontsize=8,
             )
 
-        # ==============================================
-        # Information
-        # ==============================================
+        # ----------------------------------------------------
+        # Title
+        # ----------------------------------------------------
 
-        title = (
-            f"{self.data['scenario']} | "
-            f"seed={self.data['seed']} | "
-            f"step={frame['step']}"
+        success = frame.get(
+            "success",
+            False,
         )
 
-        if (
-            "target_distance"
-            in frame
-        ):
-            title += (
-                f"\nreward="
-                f"{frame['reward']:.2f}"
-                f" | distance="
-                f"{frame['target_distance']}"
-                f" | blocking="
-                f"{frame['obstacle_blocking']}"
+        target_distance = (
+            frame.get(
+                "target_distance"
             )
+        )
+
+        blocking = frame.get(
+            "obstacle_blocking"
+        )
 
         self.ax.set_title(
-            title
+            f"{self.data['scenario']} | "
+            f"{self.data['action_mode']}\n"
+            f"step={frame_index} | "
+            f"target_distance="
+            f"{target_distance} | "
+            f"blocking={blocking} | "
+            f"success={success}"
         )
 
-    def show(self, interval=250):
+    # ========================================================
+    # GUI
+    # ========================================================
 
-        self.animation = FuncAnimation(
-            self.fig,
-            self.draw_frame,
-            frames=len(self.frames),
-            interval=interval,
-            repeat=False,
+    def show(
+        self,
+        interval=250,
+    ):
+
+        self.animation = (
+            FuncAnimation(
+                self.fig,
+                self.draw_frame,
+                frames=
+                    len(
+                        self.frames
+                    ),
+                interval=
+                    interval,
+                repeat=False,
+            )
         )
 
         plt.show()
 
-        return self.animation
-    
+    # ========================================================
+    # GIF
+    # ========================================================
+
     def save_gif(
         self,
         output_path,
         fps=5,
     ):
-        self.animation = FuncAnimation(
-            self.fig,
-            self.draw_frame,
-            frames=len(self.frames),
-            interval=1000 / fps,
-            repeat=False,
+
+        self.animation = (
+            FuncAnimation(
+                self.fig,
+                self.draw_frame,
+                frames=
+                    len(
+                        self.frames
+                    ),
+                interval=
+                    1000 / fps,
+                repeat=False,
+            )
         )
 
-        writer = PillowWriter(
-            fps=fps
+        writer = (
+            PillowWriter(
+                fps=fps
+            )
         )
 
         self.animation.save(
@@ -335,23 +374,24 @@ class TrajectoryVisualizer:
         )
 
         print(
-            f"GIF saved to {output_path}"
+            f"GIF saved: "
+            f"{output_path}"
         )
 
 
 def main():
 
-    parser = (
-        argparse.ArgumentParser()
-    )
+    parser = argparse.ArgumentParser()
 
     parser.add_argument(
         "--trajectory",
+        type=str,
         required=True,
     )
 
     parser.add_argument(
         "--gif",
+        type=str,
         default=None,
     )
 
@@ -363,23 +403,20 @@ def main():
 
     args = parser.parse_args()
 
-    trajectory = (
-        load_trajectory(
-            args.trajectory
-        )
-    )
-
     visualizer = (
         TrajectoryVisualizer(
-            trajectory
+            args.trajectory
         )
     )
 
     if args.gif:
 
         visualizer.save_gif(
-            args.gif,
-            fps=args.fps,
+            output_path=
+                args.gif,
+
+            fps=
+                args.fps,
         )
 
     else:
