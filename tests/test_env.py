@@ -198,6 +198,85 @@ def test_help_broadcast():
         )
 
 
+def test_spawn_split():
+
+    env = (
+        CooperativeTransportEnv(
+            curriculum_stage=0
+        )
+    )
+
+    scenario = {
+        "name": "split_test",
+
+        "target": {
+            "x": 4,
+            "y": 4,
+            "width": 3,
+            "height": 2,
+        },
+
+        "goal_cells": [
+            [4, 9],
+            [5, 9],
+            [6, 9],
+        ],
+
+        "obstacles": [],
+
+        "spawn_mode": {
+            "type": "split",
+            "near_count": 1,
+            "near_radius": 2,
+            "far_min_distance": 6,
+        },
+    }
+
+    env.reset(
+        seed=7,
+        options={
+            "scenario": scenario
+        },
+    )
+
+    target = env._target_object()
+
+    reference_cells = (
+        target.cells()
+    )
+
+    def distance(pos):
+
+        x, y = pos
+
+        return min(
+            abs(x - rx) + abs(y - ry)
+            for rx, ry in reference_cells
+        )
+
+    positions = list(
+        env.agent_positions.values()
+    )
+
+    # No overlaps.
+    assert len(set(positions)) == len(
+        positions
+    )
+
+    distances = sorted(
+        distance(pos)
+        for pos in positions
+    )
+
+    # 1 near agent within radius 2.
+    assert distances[0] <= 2
+
+    # remaining 3 agents at least
+    # far_min_distance away.
+    for d in distances[1:]:
+        assert d >= 6
+
+
 def test_parallel_api():
 
     env = (

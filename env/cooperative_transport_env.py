@@ -436,6 +436,12 @@ class CooperativeTransportEnv(ParallelEnv):
             )
         )
 
+        spawn_mode = (
+            scenario.get(
+                "spawn_mode"
+            )
+        )
+
         if agent_positions:
 
             self.agent_positions = {
@@ -450,6 +456,32 @@ class CooperativeTransportEnv(ParallelEnv):
             }
 
             self._validate_agent_positions()
+
+        elif (
+            spawn_mode is not None
+            and
+            spawn_mode.get("type")
+            == "split"
+        ):
+            self._spawn_split(
+                near_count=
+                    spawn_mode.get(
+                        "near_count",
+                        1,
+                    ),
+
+                near_radius=
+                    spawn_mode.get(
+                        "near_radius",
+                        self.vision_radius,
+                    ),
+
+                far_min_distance=
+                    spawn_mode.get(
+                        "far_min_distance",
+                        6,
+                    ),
+            )
 
         else:
             self._randomize_agents()
@@ -909,6 +941,136 @@ class CooperativeTransportEnv(ParallelEnv):
             in zip(
                 self.possible_agents,
                 selected,
+            )
+        }
+
+    def _spawn_split(
+        self,
+        near_count,
+        near_radius,
+        far_min_distance,
+    ):
+        """
+        near_count agents spawn within near_radius of the target
+        object; the remaining agents spawn at least
+        far_min_distance away from it (Manhattan distance).
+
+        Used to create information asymmetry: only the "near"
+        agents can see the target/goal without moving, so the
+        rest must rely on a HELP broadcast from a near agent to
+        know where to go.
+        """
+
+        reference_cells = (
+            self._target_object().cells()
+        )
+
+        forbidden = (
+            self._forbidden_cells()
+        )
+
+        def distance_to_reference(pos):
+
+            x, y = pos
+
+            return min(
+                abs(x - rx)
+                + abs(y - ry)
+
+                for rx, ry
+                in reference_cells
+            )
+
+        all_cells = [
+            (x, y)
+
+            for y in range(self.height)
+            for x in range(self.width)
+        ]
+
+        near_candidates = [
+            pos
+            for pos in all_cells
+
+            if pos not in forbidden
+            and distance_to_reference(pos)
+            <= near_radius
+        ]
+
+        if (
+            len(near_candidates)
+            < near_count
+        ):
+            raise RuntimeError(
+                "Not enough near "
+                "spawn cells."
+            )
+
+        near_selected = (
+            self.rng.choice(
+                len(near_candidates),
+                size=near_count,
+                replace=False,
+            )
+        )
+
+        near_positions = [
+            near_candidates[i]
+            for i in near_selected
+        ]
+
+        used = set(near_positions)
+
+        far_count = (
+            self.num_agents
+            - near_count
+        )
+
+        far_candidates = [
+            pos
+            for pos in all_cells
+
+            if pos not in forbidden
+            and pos not in used
+            and distance_to_reference(pos)
+            >= far_min_distance
+        ]
+
+        if (
+            len(far_candidates)
+            < far_count
+        ):
+            raise RuntimeError(
+                "Not enough far "
+                "spawn cells. Reduce "
+                "far_min_distance or "
+                "near_count."
+            )
+
+        far_selected = (
+            self.rng.choice(
+                len(far_candidates),
+                size=far_count,
+                replace=False,
+            )
+        )
+
+        far_positions = [
+            far_candidates[i]
+            for i in far_selected
+        ]
+
+        positions = (
+            near_positions
+            + far_positions
+        )
+
+        self.agent_positions = {
+            agent: positions[i]
+
+            for i, agent
+            in enumerate(
+                self.possible_agents
             )
         }
 
