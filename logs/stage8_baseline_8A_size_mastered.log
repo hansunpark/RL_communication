@@ -1,0 +1,15 @@
+============================================================
+Device      : cpu
+Action mode : deterministic
+Checkpoint  : checkpoints/stage_8A_size_mastered.pt
+Obs dim     : 129
+============================================================
+stage_8A_size                  success_rate=0.755 n=200
+stage_8B1_position_r2          success_rate=0.030 n=200
+stage_8B2_position_r5          success_rate=0.000 n=200
+stage_8B3_position_full        success_rate=0.005 n=200
+stage_8B4_size_and_position    success_rate=0.000 n=200
+stage_8C_obstacles             success_rate=0.000 n=200
+stage_8D_full                  success_rate=0.000 n=200
+
+Saved: evaluation_results\stage8_baseline\stage_8A_size_mastered\deterministic

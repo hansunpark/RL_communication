@@ -242,6 +242,7 @@ def main():
 
                 (
                     action,
+                    comm_action,
                     log_prob,
                     value,
                 ) = ppo.act(flat)
@@ -264,6 +265,7 @@ def main():
                     agent
                 ] = (
                     action,
+                    comm_action,
                     log_prob,
                     value,
                 )
@@ -314,6 +316,7 @@ def main():
 
                 (
                     action,
+                    comm_action,
                     log_prob,
                     value,
                 ) = transition_data[
@@ -327,6 +330,8 @@ def main():
                             agent
                         ],
                     action=action,
+                    comm_action=
+                        comm_action,
                     log_prob=
                         log_prob,
                     reward=

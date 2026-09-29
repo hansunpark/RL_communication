@@ -319,6 +319,7 @@ def main():
 
                 (
                     action,
+                    comm_action,
                     log_prob,
                     value,
                 ) = (
@@ -327,6 +328,10 @@ def main():
                     )
                 )
 
+                # comm_action은 샘플링만 하고 버리지 않는다
+                # (buffer에는 저장해서 log_prob과 일관되게
+                # 유지) - 다만 환경에는 항상 NO_MESSAGE를
+                # 보내 Phase 1의 "통신 없음" 조건을 지킨다.
                 actions[
                     agent
                 ] = np.array(
@@ -346,6 +351,7 @@ def main():
                     agent
                 ] = (
                     action,
+                    comm_action,
                     log_prob,
                     value,
                 )
@@ -408,6 +414,7 @@ def main():
 
                 (
                     action,
+                    comm_action,
                     log_prob,
                     value,
                 ) = (
@@ -425,6 +432,9 @@ def main():
                         ],
 
                     action=action,
+
+                    comm_action=
+                        comm_action,
 
                     log_prob=
                         log_prob,

@@ -223,7 +223,7 @@ def main():
                         .unsqueeze(0)
                     )
 
-                    logits, _ = ppo.network(
+                    logits, _, _ = ppo.network(
                         obs_tensor
                     )
 

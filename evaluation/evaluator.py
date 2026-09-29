@@ -38,7 +38,17 @@ class PolicyEvaluator:
         checkpoint,
         device=None,
         action_mode="stochastic",
+        disable_communication=False,
     ):
+
+        # disable_communication=True: HELP를 강제로
+        # NO_MESSAGE로 마스킹한다 (통신 ablation). 통신이
+        # 실제로 성능에 기여하는지 확인하려면 같은 체크포인트를
+        # 이 옵션 켠 것과 끈 것 둘 다로 평가해서 성공률을
+        # 비교하면 된다.
+        self.disable_communication = (
+            disable_communication
+        )
 
         # ====================================================
         # Device
@@ -207,7 +217,7 @@ class PolicyEvaluator:
             )
         )
 
-        logits, _ = (
+        logits, comm_logits, _ = (
             self.ppo.network(
                 obs_tensor
             )
@@ -230,6 +240,11 @@ class PolicyEvaluator:
                 dim=-1,
             )
 
+            comm_action = torch.argmax(
+                comm_logits,
+                dim=-1,
+            )
+
         else:
 
             distribution = (
@@ -242,8 +257,26 @@ class PolicyEvaluator:
                 distribution.sample()
             )
 
+            comm_distribution = (
+                Categorical(
+                    logits=comm_logits
+                )
+            )
+
+            comm_action = (
+                comm_distribution.sample()
+            )
+
         action_int = int(
             action.item()
+        )
+
+        comm_action_int = (
+            NO_MESSAGE
+            if self.disable_communication
+            else int(
+                comm_action.item()
+            )
         )
 
         probabilities_np = (
@@ -255,6 +288,7 @@ class PolicyEvaluator:
 
         return (
             action_int,
+            comm_action_int,
             probabilities_np,
         )
 
@@ -422,6 +456,7 @@ class PolicyEvaluator:
 
                 (
                     physical_action,
+                    comm_action,
                     probabilities,
                 ) = self.select_action(
                     agent,
@@ -432,7 +467,7 @@ class PolicyEvaluator:
                     np.array(
                         [
                             physical_action,
-                            NO_MESSAGE,
+                            comm_action,
                         ],
                         dtype=np.int64,
                     )

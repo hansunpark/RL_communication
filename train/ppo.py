@@ -35,9 +35,9 @@ class PPO:
 
         self.network = (
             ActorCritic(
-                obs_dim,
-                num_actions,
-                hidden_dim,
+                obs_dim=obs_dim,
+                num_actions=num_actions,
+                hidden_dim=hidden_dim,
             ).to(
                 self.device
             )
@@ -93,6 +93,7 @@ class PPO:
 
         (
             action,
+            comm_action,
             log_prob,
             _,
             value,
@@ -106,6 +107,10 @@ class PPO:
         return (
             int(
                 action.item()
+            ),
+
+            int(
+                comm_action.item()
             ),
 
             float(
@@ -131,7 +136,7 @@ class PPO:
             device=self.device,
         ).unsqueeze(0)
 
-        _, value = (
+        _, _, value = (
             self.network(obs)
         )
 
@@ -149,6 +154,7 @@ class PPO:
         (
             observations,
             actions,
+            comm_actions,
             old_log_probs,
             advantages,
             returns,
@@ -211,6 +217,7 @@ class PPO:
 
                 (
                     _,
+                    _,
                     new_log_prob,
                     entropy,
                     new_value,
@@ -222,6 +229,10 @@ class PPO:
                         ],
 
                         actions[
+                            batch_idx
+                        ],
+
+                        comm_actions[
                             batch_idx
                         ],
                     )
@@ -376,11 +387,51 @@ class PPO:
             )
         )
 
-        self.network.load_state_dict(
-            checkpoint[
-                "network"
-            ]
+        # strict=False: comm_actor head가 없는 구 체크포인트
+        # (통신 도입 이전, 예: stage_8A_size_mastered.pt)를
+        # warm-start로 불러올 때 이동 관련 가중치(encoder/
+        # actor/critic)만 옮겨오고 comm_actor는 새로 초기화된
+        # 상태로 둔다.
+        load_result = (
+            self.network.load_state_dict(
+                checkpoint[
+                    "network"
+                ],
+
+                strict=False,
+            )
         )
+
+        if (
+            load_result.missing_keys
+            or
+            load_result.unexpected_keys
+        ):
+
+            print(
+                "PPO.load(): checkpoint "
+                "architecture differs from "
+                "current network."
+            )
+
+            if load_result.missing_keys:
+
+                print(
+                    "  missing (freshly "
+                    "initialized): "
+                    f"{load_result.missing_keys}"
+                )
+
+            if (
+                load_result
+                .unexpected_keys
+            ):
+
+                print(
+                    "  unexpected "
+                    "(ignored): "
+                    f"{load_result.unexpected_keys}"
+                )
 
         if (
             load_optimizer
@@ -389,8 +440,22 @@ class PPO:
             in checkpoint
         ):
 
-            self.optimizer.load_state_dict(
-                checkpoint[
-                    "optimizer"
-                ]
-            )
+            try:
+                self.optimizer.load_state_dict(
+                    checkpoint[
+                        "optimizer"
+                    ]
+                )
+
+            except (
+                ValueError,
+                RuntimeError,
+            ) as error:
+
+                print(
+                    "PPO.load(): optimizer "
+                    "state incompatible "
+                    "with current network "
+                    "(architecture changed), "
+                    f"skipping: {error}"
+                )

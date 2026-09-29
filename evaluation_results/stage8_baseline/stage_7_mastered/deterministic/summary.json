@@ -1,0 +1,388 @@
+{
+  "checkpoint": "checkpoints/stage_7_mastered.pt",
+  "mode": "deterministic",
+  "overall": {
+    "episodes": 1400,
+    "success_rate": 0.06142857142857143,
+    "mean_episode_length": 188.84214285714285,
+    "mean_return": -1.1562071428571437,
+    "mean_target_moves": 0.7671428571428571,
+    "mean_obstacle_moves": 0.09857142857142857,
+    "mean_successful_pushes": 0.8657142857142858,
+    "mean_success_length": 18.36046511627907
+  },
+  "by_level": {
+    "stage_8A_size": {
+      "episodes": 200,
+      "success_rate": 0.4,
+      "mean_episode_length": 127.305,
+      "mean_return": 3.3109499999999996,
+      "mean_target_moves": 2.92,
+      "mean_obstacle_moves": 0.0,
+      "mean_successful_pushes": 2.92,
+      "mean_success_length": 18.2625
+    },
+    "stage_8B1_position_r2": {
+      "episodes": 200,
+      "success_rate": 0.02,
+      "mean_episode_length": 196.495,
+      "mean_return": -1.6099500000000009,
+      "mean_target_moves": 1.015,
+      "mean_obstacle_moves": 0.0,
+      "mean_successful_pushes": 1.015,
+      "mean_success_length": 24.75
+    },
+    "stage_8B2_position_r5": {
+      "episodes": 200,
+      "success_rate": 0.0,
+      "mean_episode_length": 200.0,
+      "mean_return": -1.9800000000000006,
+      "mean_target_moves": 0.45,
+      "mean_obstacle_moves": 0.0,
+      "mean_successful_pushes": 0.45,
+      "mean_success_length": null
+    },
+    "stage_8B3_position_full": {
+      "episodes": 200,
+      "success_rate": 0.0,
+      "mean_episode_length": 200.0,
+      "mean_return": -1.9760000000000009,
+      "mean_target_moves": 0.38,
+      "mean_obstacle_moves": 0.0,
+      "mean_successful_pushes": 0.38,
+      "mean_success_length": null
+    },
+    "stage_8B4_size_and_position": {
+      "episodes": 200,
+      "success_rate": 0.005,
+      "mean_episode_length": 199.035,
+      "mean_return": -1.9133500000000006,
+      "mean_target_moves": 0.335,
+      "mean_obstacle_moves": 0.0,
+      "mean_successful_pushes": 0.335,
+      "mean_success_length": 7.0
+    },
+    "stage_8C_obstacles": {
+      "episodes": 200,
+      "success_rate": 0.005,
+      "mean_episode_length": 199.06,
+      "mean_return": -1.9336000000000007,
+      "mean_target_moves": 0.175,
+      "mean_obstacle_moves": 0.27,
+      "mean_successful_pushes": 0.445,
+      "mean_success_length": 12.0
+    },
+    "stage_8D_full": {
+      "episodes": 200,
+      "success_rate": 0.0,
+      "mean_episode_length": 200.0,
+      "mean_return": -1.9915000000000007,
+      "mean_target_moves": 0.095,
+      "mean_obstacle_moves": 0.42,
+      "mean_successful_pushes": 0.515,
+      "mean_success_length": null
+    }
+  },
+  "by_bucket": {
+    "small_d0-2_obs0": {
+      "episodes": 258,
+      "success_rate": 0.29069767441860467,
+      "mean_episode_length": 147.13178294573643,
+      "mean_return": 1.936434108527131,
+      "mean_target_moves": 2.806201550387597,
+      "mean_obstacle_moves": 0.0,
+      "mean_successful_pushes": 2.806201550387597,
+      "mean_success_length": 18.133333333333333
+    },
+    "large_d0-2_obs0": {
+      "episodes": 113,
+      "success_rate": 0.07964601769911504,
+      "mean_episode_length": 185.69026548672565,
+      "mean_return": -0.9312389380530985,
+      "mean_target_moves": 0.6637168141592921,
+      "mean_obstacle_moves": 0.0,
+      "mean_successful_pushes": 0.6637168141592921,
+      "mean_success_length": 20.333333333333332
+    },
+    "small_d3-5_obs0": {
+      "episodes": 332,
+      "success_rate": 0.0030120481927710845,
+      "mean_episode_length": 199.46987951807228,
+      "mean_return": -1.9073493975903622,
+      "mean_target_moves": 0.6234939759036144,
+      "mean_obstacle_moves": 0.0,
+      "mean_successful_pushes": 0.6234939759036144,
+      "mean_success_length": 24.0
+    },
+    "small_d6+_obs0": {
+      "episodes": 260,
+      "success_rate": 0.0038461538461538464,
+      "mean_episode_length": 199.27692307692308,
+      "mean_return": -1.9596923076923085,
+      "mean_target_moves": 0.1346153846153846,
+      "mean_obstacle_moves": 0.0,
+      "mean_successful_pushes": 0.1346153846153846,
+      "mean_success_length": 12.0
+    },
+    "large_d6+_obs0": {
+      "episodes": 67,
+      "success_rate": 0.0,
+      "mean_episode_length": 200.0,
+      "mean_return": -2.0000000000000013,
+      "mean_target_moves": 0.0,
+      "mean_obstacle_moves": 0.0,
+      "mean_successful_pushes": 0.0,
+      "mean_success_length": null
+    },
+    "large_d3-5_obs0": {
+      "episodes": 51,
+      "success_rate": 0.0,
+      "mean_episode_length": 200.0,
+      "mean_return": -2.0000000000000013,
+      "mean_target_moves": 0.0,
+      "mean_obstacle_moves": 0.0,
+      "mean_successful_pushes": 0.0,
+      "mean_success_length": null
+    },
+    "large_d0-2_obs2": {
+      "episodes": 7,
+      "success_rate": 0.0,
+      "mean_episode_length": 200.0,
+      "mean_return": -2.0000000000000013,
+      "mean_target_moves": 0.0,
+      "mean_obstacle_moves": 0.0,
+      "mean_successful_pushes": 0.0,
+      "mean_success_length": null
+    },
+    "large_d3-5_obs1": {
+      "episodes": 32,
+      "success_rate": 0.0,
+      "mean_episode_length": 200.0,
+      "mean_return": -1.9937500000000012,
+      "mean_target_moves": 0.0,
+      "mean_obstacle_moves": 0.3125,
+      "mean_successful_pushes": 0.3125,
+      "mean_success_length": null
+    },
+    "large_d3-5_obs3": {
+      "episodes": 16,
+      "success_rate": 0.0,
+      "mean_episode_length": 200.0,
+      "mean_return": -2.0000000000000013,
+      "mean_target_moves": 0.0,
+      "mean_obstacle_moves": 0.125,
+      "mean_successful_pushes": 0.125,
+      "mean_success_length": null
+    },
+    "small_d3-5_obs1": {
+      "episodes": 11,
+      "success_rate": 0.0,
+      "mean_episode_length": 200.0,
+      "mean_return": -1.8545454545454556,
+      "mean_target_moves": 0.6363636363636364,
+      "mean_obstacle_moves": 0.0,
+      "mean_successful_pushes": 0.6363636363636364,
+      "mean_success_length": null
+    },
+    "small_d6+_obs2": {
+      "episodes": 31,
+      "success_rate": 0.0,
+      "mean_episode_length": 200.0,
+      "mean_return": -2.000000000000001,
+      "mean_target_moves": 0.0,
+      "mean_obstacle_moves": 0.0967741935483871,
+      "mean_successful_pushes": 0.0967741935483871,
+      "mean_success_length": null
+    },
+    "large_d6+_obs2": {
+      "episodes": 28,
+      "success_rate": 0.0,
+      "mean_episode_length": 200.0,
+      "mean_return": -2.000000000000001,
+      "mean_target_moves": 0.0,
+      "mean_obstacle_moves": 0.7857142857142857,
+      "mean_successful_pushes": 0.7857142857142857,
+      "mean_success_length": null
+    },
+    "small_d3-5_obs2": {
+      "episodes": 15,
+      "success_rate": 0.0,
+      "mean_episode_length": 200.0,
+      "mean_return": -2.000000000000001,
+      "mean_target_moves": 0.0,
+      "mean_obstacle_moves": 0.13333333333333333,
+      "mean_successful_pushes": 0.13333333333333333,
+      "mean_success_length": null
+    },
+    "large_d0-2_obs3": {
+      "episodes": 9,
+      "success_rate": 0.0,
+      "mean_episode_length": 200.0,
+      "mean_return": -2.0000000000000013,
+      "mean_target_moves": 0.0,
+      "mean_obstacle_moves": 0.7777777777777778,
+      "mean_successful_pushes": 0.7777777777777778,
+      "mean_success_length": null
+    },
+    "small_d3-5_obs3": {
+      "episodes": 13,
+      "success_rate": 0.0,
+      "mean_episode_length": 200.0,
+      "mean_return": -2.000000000000001,
+      "mean_target_moves": 0.0,
+      "mean_obstacle_moves": 0.3076923076923077,
+      "mean_successful_pushes": 0.3076923076923077,
+      "mean_success_length": null
+    },
+    "small_d6+_obs1": {
+      "episodes": 21,
+      "success_rate": 0.0,
+      "mean_episode_length": 200.0,
+      "mean_return": -2.01904761904762,
+      "mean_target_moves": 0.09523809523809523,
+      "mean_obstacle_moves": 0.0,
+      "mean_successful_pushes": 0.09523809523809523,
+      "mean_success_length": null
+    },
+    "small_d6+_obs3": {
+      "episodes": 20,
+      "success_rate": 0.0,
+      "mean_episode_length": 200.0,
+      "mean_return": -2.0100000000000007,
+      "mean_target_moves": 0.0,
+      "mean_obstacle_moves": 1.05,
+      "mean_successful_pushes": 1.05,
+      "mean_success_length": null
+    },
+    "large_d3-5_obs2": {
+      "episodes": 21,
+      "success_rate": 0.0,
+      "mean_episode_length": 200.0,
+      "mean_return": -2.0142857142857147,
+      "mean_target_moves": 0.0,
+      "mean_obstacle_moves": 0.6666666666666666,
+      "mean_successful_pushes": 0.6666666666666666,
+      "mean_success_length": null
+    },
+    "large_d6+_obs1": {
+      "episodes": 13,
+      "success_rate": 0.0,
+      "mean_episode_length": 200.0,
+      "mean_return": -2.000000000000001,
+      "mean_target_moves": 0.0,
+      "mean_obstacle_moves": 0.0,
+      "mean_successful_pushes": 0.0,
+      "mean_success_length": null
+    },
+    "large_d6+_obs3": {
+      "episodes": 18,
+      "success_rate": 0.0,
+      "mean_episode_length": 200.0,
+      "mean_return": -2.005555555555557,
+      "mean_target_moves": 0.0,
+      "mean_obstacle_moves": 0.4444444444444444,
+      "mean_successful_pushes": 0.4444444444444444,
+      "mean_success_length": null
+    },
+    "large_d0-2_obs1": {
+      "episodes": 4,
+      "success_rate": 0.0,
+      "mean_episode_length": 200.0,
+      "mean_return": -2.0000000000000013,
+      "mean_target_moves": 0.0,
+      "mean_obstacle_moves": 0.5,
+      "mean_successful_pushes": 0.5,
+      "mean_success_length": null
+    },
+    "small_d0-2_obs2": {
+      "episodes": 9,
+      "success_rate": 0.0,
+      "mean_episode_length": 200.0,
+      "mean_return": -1.6777777777777791,
+      "mean_target_moves": 1.5555555555555556,
+      "mean_obstacle_moves": 0.4444444444444444,
+      "mean_successful_pushes": 2.0,
+      "mean_success_length": null
+    },
+    "small_d0-2_obs1": {
+      "episodes": 3,
+      "success_rate": 0.0,
+      "mean_episode_length": 200.0,
+      "mean_return": -2.0000000000000013,
+      "mean_target_moves": 2.0,
+      "mean_obstacle_moves": 2.0,
+      "mean_successful_pushes": 4.0,
+      "mean_success_length": null
+    },
+    "small_d0-2_obs3": {
+      "episodes": 5,
+      "success_rate": 0.0,
+      "mean_episode_length": 200.0,
+      "mean_return": -1.9600000000000015,
+      "mean_target_moves": 0.6,
+      "mean_obstacle_moves": 0.0,
+      "mean_successful_pushes": 0.6,
+      "mean_success_length": null
+    },
+    "large_d3-5_obs4": {
+      "episodes": 10,
+      "success_rate": 0.0,
+      "mean_episode_length": 200.0,
+      "mean_return": -2.000000000000001,
+      "mean_target_moves": 0.0,
+      "mean_obstacle_moves": 0.7,
+      "mean_successful_pushes": 0.7,
+      "mean_success_length": null
+    },
+    "small_d3-5_obs4": {
+      "episodes": 6,
+      "success_rate": 0.0,
+      "mean_episode_length": 200.0,
+      "mean_return": -2.033333333333334,
+      "mean_target_moves": 0.16666666666666666,
+      "mean_obstacle_moves": 0.0,
+      "mean_successful_pushes": 0.16666666666666666,
+      "mean_success_length": null
+    },
+    "small_d6+_obs4": {
+      "episodes": 11,
+      "success_rate": 0.0,
+      "mean_episode_length": 200.0,
+      "mean_return": -2.000000000000001,
+      "mean_target_moves": 0.0,
+      "mean_obstacle_moves": 1.4545454545454546,
+      "mean_successful_pushes": 1.4545454545454546,
+      "mean_success_length": null
+    },
+    "large_d6+_obs4": {
+      "episodes": 12,
+      "success_rate": 0.0,
+      "mean_episode_length": 200.0,
+      "mean_return": -2.0000000000000004,
+      "mean_target_moves": 0.0,
+      "mean_obstacle_moves": 0.8333333333333334,
+      "mean_successful_pushes": 0.8333333333333334,
+      "mean_success_length": null
+    },
+    "small_d0-2_obs4": {
+      "episodes": 1,
+      "success_rate": 0.0,
+      "mean_episode_length": 200.0,
+      "mean_return": -2.0000000000000013,
+      "mean_target_moves": 0.0,
+      "mean_obstacle_moves": 0.0,
+      "mean_successful_pushes": 0.0,
+      "mean_success_length": null
+    },
+    "large_d0-2_obs4": {
+      "episodes": 3,
+      "success_rate": 0.0,
+      "mean_episode_length": 200.0,
+      "mean_return": -2.0000000000000013,
+      "mean_target_moves": 0.0,
+      "mean_obstacle_moves": 0.0,
+      "mean_successful_pushes": 0.0,
+      "mean_success_length": null
+    }
+  }
+}

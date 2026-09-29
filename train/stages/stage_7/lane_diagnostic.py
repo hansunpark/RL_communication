@@ -111,7 +111,7 @@ def run_lane(
                     ],
                 )
 
-                action, _, _ = (
+                action, _, _, _ = (
                     ppo.act(flat)
                 )
 

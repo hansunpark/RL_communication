@@ -58,6 +58,7 @@ class CooperativeTransportEnv(ParallelEnv):
         distance_reward_coef=0.2,
         obstacle_reward_coef=0.1,
         success_reward=10.0,
+        help_penalty=0.002,
         render_mode=None,
     ):
         super().__init__()
@@ -82,6 +83,13 @@ class CooperativeTransportEnv(ParallelEnv):
         self.distance_reward_coef = distance_reward_coef
         self.obstacle_reward_coef = obstacle_reward_coef
         self.success_reward = success_reward
+
+        # HELP를 누를 때마다 내는 개별 페널티. 팀 공유 보상과
+        # 별도로, 보낸 에이전트에게만 적용된다. 아무 비용 없이
+        # 항상 켜놓는 쪽으로 수렴하지 않고 실제로 필요할 때만
+        # 쓰도록 유도하기 위한 작은 값. (연구 진행에 따라 점차
+        # 올릴 예정 - 지금은 일부러 작게 잡는다.)
+        self.help_penalty = help_penalty
 
         self.possible_agents = [
             f"agent_{i}"
@@ -1189,7 +1197,18 @@ class CooperativeTransportEnv(ParallelEnv):
             )
 
         rewards = {
-            agent: reward
+            agent:
+                reward
+                - (
+                    self.help_penalty
+                    if
+                    communication_actions[
+                        agent
+                    ]
+                    == HELP
+                    else 0.0
+                )
+
             for agent
             in current_agents
         }

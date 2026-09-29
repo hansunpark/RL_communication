@@ -34,6 +34,7 @@ class MultiAgentRolloutBuffer:
         agent,
         observation,
         action,
+        comm_action,
         log_prob,
         reward,
         done,
@@ -53,6 +54,9 @@ class MultiAgentRolloutBuffer:
 
                 "action":
                     int(action),
+
+                "comm_action":
+                    int(comm_action),
 
                 "log_prob":
                     float(log_prob),
@@ -83,6 +87,7 @@ class MultiAgentRolloutBuffer:
 
         all_observations = []
         all_actions = []
+        all_comm_actions = []
         all_log_probs = []
         all_advantages = []
         all_returns = []
@@ -176,6 +181,12 @@ class MultiAgentRolloutBuffer:
                     ]
                 )
 
+                all_comm_actions.append(
+                    transition[
+                        "comm_action"
+                    ]
+                )
+
                 all_log_probs.append(
                     transition[
                         "log_prob"
@@ -214,6 +225,14 @@ class MultiAgentRolloutBuffer:
             device=self.device,
         )
 
+        comm_actions = torch.tensor(
+            all_comm_actions,
+
+            dtype=torch.long,
+
+            device=self.device,
+        )
+
         old_log_probs = (
             torch.tensor(
                 all_log_probs,
@@ -245,6 +264,7 @@ class MultiAgentRolloutBuffer:
         return (
             observations,
             actions,
+            comm_actions,
             old_log_probs,
             advantages,
             returns,

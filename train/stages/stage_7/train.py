@@ -346,6 +346,7 @@ def main():
 
                 (
                     action,
+                    comm_action,
                     log_prob,
                     value,
                 ) = (
@@ -373,6 +374,7 @@ def main():
                     agent
                 ] = (
                     action,
+                    comm_action,
                     log_prob,
                     value,
                 )
@@ -435,6 +437,7 @@ def main():
 
                 (
                     action,
+                    comm_action,
                     log_prob,
                     value,
                 ) = (
@@ -452,6 +455,9 @@ def main():
                         ],
 
                     action=action,
+
+                    comm_action=
+                        comm_action,
 
                     log_prob=
                         log_prob,
