@@ -45,6 +45,7 @@ class ScratchScenarioGenerator:
         obstacle_in_path_size_range=None,
         obstacle_in_path_max_area=None,
         obstacle_in_path_off_wall=False,
+        extra_obstacle_count_range=None,
     ):
         """
         target_size: (w, h) 고정. None이면 target_size_range
@@ -70,6 +71,9 @@ class ScratchScenarioGenerator:
             있으면 통로의 한 칸을 반드시 덮도록 놓는다.
         obstacle_in_path_max_area: 이 면적보다 큰 obstacle은 다시 뽑는다
             (얇은 obstacle만 쓰는 발판용).
+        extra_obstacle_count_range: obstacle_in_path일 때 경로 obstacle
+            말고 맵의 다른 곳에 더 놓을 obstacle 수 범위 (크기는
+            obstacle_size_range). None이면 없음.
         obstacle_in_path_off_wall: True면 obstacle이 벽에 붙지 않게
             놓는다 (벽에 붙은 obstacle은 벽 반대쪽으로 밀 수 없다).
         obstacle_in_path: True면 obstacle_count_range 대신 1x1
@@ -130,6 +134,10 @@ class ScratchScenarioGenerator:
 
         self.obstacle_in_path_off_wall = (
             obstacle_in_path_off_wall
+        )
+
+        self.extra_obstacle_count_range = (
+            extra_obstacle_count_range
         )
 
     # --------------------------------------------------------
@@ -600,6 +608,32 @@ class ScratchScenarioGenerator:
                     continue
 
                 obstacles = [placed]
+
+                if self.extra_obstacle_count_range:
+
+                    blocked = set(occupied) | (
+                        self._cells(
+                            placed["x"],
+                            placed["y"],
+                            placed["width"],
+                            placed["height"],
+                        )
+                    )
+
+                    saved = self.obstacle_count_range
+
+                    self.obstacle_count_range = (
+                        self.extra_obstacle_count_range
+                    )
+
+                    try:
+                        obstacles += (
+                            self._place_obstacles(
+                                blocked
+                            )
+                        )
+                    finally:
+                        self.obstacle_count_range = saved
 
             else:
                 obstacles = (

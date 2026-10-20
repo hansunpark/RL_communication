@@ -88,6 +88,11 @@ from .scenario import (
 # 약한 "큰 target + goal 9칸 이상" 버킷에서 obstacle 1개 77%, 2개 45%. 랜덤
 # 스폰에서 obstacle 수만 먼저 늘리는 S10e를 둔다.
 #
+# S10f (2026-10-21, GRU): S10e도 같은 버킷(큰 target + goal 9칸 이상 + obstacle)에서
+# 느렸다. 시간 제한(200 -> 400 step에도 성공 그대로)도, 풀 수 없는 배치(BFS로
+# 600개 모두 풀림)도 아니어서, obstacle 두 개를 차례로 처리하는 발판을 둔다.
+# 긴 레벨이라 entropy는 기본값(8C0a에서 0.03이 붕괴를 불렀다).
+#
 # S10b 분할 (2026-09-29): S10a 다음 S10b에서 goal 거리(2-5 -> 무제한), 스폰
 # (근처 -> 랜덤), obstacle 크기(작음 -> 보통) 세 축을 한꺼번에 바꿨더니
 # 5,000 episode에 최저 버킷 18/28/41%. 한 레벨에 한 축씩으로 다시 쪼갠다.
@@ -115,6 +120,7 @@ from .scenario import (
 #   S10b goal 무제한 (근처 스폰, 작은 obstacle 1개)     (goal 거리)
 #   S10c 스폰 랜덤                                        (스폰)
 #   S10d obstacle 보통 크기 (1-3 x 1-2)                   (obstacle 크기)
+#   S10f 발판: 경로 obstacle + 다른 obstacle 1개 (총 2개) (obstacle 수)
 #   S10e 랜덤 스폰 + obstacle 0-2개                      (obstacle 수)
 #   S10 split 1near + obstacle 0-2개                     (스폰)
 #   S11 obstacle 0-4개                                  (obstacle)
@@ -402,6 +408,23 @@ LEVELS = [
         "help_penalty": HELP_PENALTY,
     },
     {
+        "name": "S10f_two_obstacles_scaffold",
+        "target_size": RANDOM_SIZE,
+        "goal_distance_range": (4, 8),
+        "goal_axis": "straight",
+        "obstacle_in_path": True,
+        "obstacle_in_path_size_range": DEFAULT_OBSTACLE_SIZE_RANGE,
+        "obstacle_in_path_off_wall": True,
+        "extra_obstacle_count_range": (1, 1),
+        "spawn": {
+            "type": "near",
+            "radius": NEAR_RADIUS,
+        },
+        "obstacle_count_range": (1, 1),
+        "help_penalty": HELP_PENALTY,
+        "max_steps": 150,
+    },
+    {
         "name": "S10e_obstacles_0-2_random_spawn",
         "target_size": RANDOM_SIZE,
         "goal_distance_range": None,
@@ -518,6 +541,9 @@ class CommScratchSampler:
             obstacle_in_path_off_wall=config.get(
                 "obstacle_in_path_off_wall",
                 False,
+            ),
+            extra_obstacle_count_range=config.get(
+                "extra_obstacle_count_range"
             ),
         )
 

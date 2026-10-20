@@ -1436,3 +1436,32 @@ def test_scratch_thin_obstacle_scaffold_shapes():
             obstacle["y"] + obstacle["height"]
             < 12
         )
+
+
+def test_scratch_two_obstacle_scaffold():
+
+    random.seed(2)
+
+    sampler = CommScratchSampler()
+
+    sampler.level = sampler.LEVEL_NAMES.index(
+        "S10f_two_obstacles_scaffold"
+    )
+
+    env = CooperativeTransportEnv(
+        num_agents=4,
+        reward_mode="obstacle_shaping",
+    )
+
+    for episode in range(100):
+
+        scenario = sampler.sample()
+
+        assert len(scenario["obstacles"]) == 2
+
+        env.reset(
+            seed=episode,
+            options={"scenario": scenario},
+        )
+
+        assert env._obstacle_blocking_score() > 0

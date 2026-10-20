@@ -46,6 +46,8 @@
 | 2026-10-21 | S10b 13,434 episode (처음 70,205), S10c 7,312 episode (처음 40,628)에 다시 통과. ablation S10b: 0.93 / 0.58, RC 0.54 / 0.44, CPR 0.68 / 0.59. S10c: 0.91 / 0.56, RC 0.47 / 0.44, CPR 0.71 / 0.62. |
 | 2026-10-21 | **S10d를 60,093 episode에 통과** (발판 추가 전 200,000 episode 정체). ablation: 성공률 0.88 / 0.50 (+0.38), RC 0.45 / 0.41, CPR 0.71 / 0.71. 다음은 S10(split 1near + obstacle 0-2개), S11(obstacle 0-4개). |
 | 2026-10-21 | S10이 100,000 episode에 16개 버킷 중 11개, 최저 61-65%로 거의 정체. 가장 약한 "큰 target + goal 9칸 이상 + near1"에서 obstacle 1개 77%, **2개 45%**, 경로 위 50%. S10은 S10d 대비 스폰(랜덤 → split 1near)과 obstacle 수(1 → 0-2) 두 축을 함께 바꾼다. → S10d와 S10 사이에 **S10e**(랜덤 스폰 + obstacle 0-2개)를 넣고 S10 100k 체크포인트(`comm_scratch_gru_S10_100k.pt`)에서 S10e(레벨 21)부터 재시작. 로그 `logs/comm_scratch_gru_train_part3_S10a3a_to_S10.log`. |
+| 2026-10-21 | S10e 20,000 episode: 16개 버킷 중 11개, 최저 "큰 target + goal 9칸 이상 + obstacle" 58% (S10과 같은 곳). 진단 두 가지: (1) **시간 제한이 아니다** — max_steps를 200 → 400으로 늘려도 큰 target + 먼 goal + obstacle 2개 성공 102/200 그대로. (2) **풀 수 없는 배치도 아니다** — 에이전트를 무시하고 물체 배치만으로 BFS 해 보니 S10d/S10e 샘플 600개 모두 풀 수 있었다. 남은 원인은 obstacle 두 개를 차례로 처리하는 기술 부족. 100,000 episode까지 보고 정체하면 obstacle 2개 발판을 넣는다. |
+| 2026-10-21 | S10e 100,000 episode: 12/16, 최저 66%로 정체. → S10d와 S10e 사이에 **S10f**(경로 막는 보통 크기 obstacle + 다른 곳 obstacle 1개, 같은 행/열 goal 4-8칸, 근처 스폰, max_steps 150, entropy 기본값) 추가. S10e 100k 체크포인트(`comm_scratch_gru_S10e_100k.pt`)에서 S10f(레벨 21)부터 재시작. 로그 `logs/comm_scratch_gru_train_part4_S10e.log`. |
 
 ```
 .venv\Scripts\python.exe -u -m train.stages.comm_scratch.train --recurrent --start-level 15 ^
