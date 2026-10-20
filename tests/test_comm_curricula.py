@@ -834,6 +834,7 @@ def test_scratch_entropy_raised_only_for_new_coordination_levels():
         "S10a_one_small_obstacle_near",
         "S10a1_clear_obstacle_small_target_scaffold",
         "S10a2_clear_obstacle_in_path_scaffold",
+        "S10a3_clear_big_obstacle_scaffold",
     ]
 
 
@@ -1357,3 +1358,45 @@ def test_small_target_clear_obstacle_scaffold(
         )
 
         assert env._obstacle_blocking_score() > 0
+
+
+def test_scratch_big_obstacle_in_path_scaffold():
+
+    random.seed(0)
+
+    sampler = CommScratchSampler()
+
+    sampler.level = sampler.LEVEL_NAMES.index(
+        "S10a3_clear_big_obstacle_scaffold"
+    )
+
+    env = CooperativeTransportEnv(
+        num_agents=4,
+        reward_mode="obstacle_shaping",
+    )
+
+    sizes = set()
+
+    for episode in range(150):
+
+        scenario = sampler.sample()
+
+        assert len(scenario["obstacles"]) == 1
+
+        obstacle = scenario["obstacles"][0]
+
+        sizes.add(
+            (obstacle["width"], obstacle["height"])
+        )
+
+        env.reset(
+            seed=episode,
+            options={"scenario": scenario},
+        )
+
+        assert env._obstacle_blocking_score() > 0
+
+    # 1x1만이 아니라 큰 obstacle도 나온다
+    assert any(
+        w * h > 1 for w, h in sizes
+    )

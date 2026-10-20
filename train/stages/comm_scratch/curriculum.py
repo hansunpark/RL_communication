@@ -74,6 +74,12 @@ from .scenario import (
 # 시작한 S0, 2칸 폭부터 시작한 위로 밀기처럼 작은 target(2x1, 2x2) 전용
 # 발판을 앞에 둔다 — 통로가 2칸 이하라 한 번 옆으로 밀면 비워진다.
 #
+# S10a3 (2026-10-21, GRU): S10d(보통 크기 obstacle 1개, goal 무제한, 랜덤 스폰)가
+# 150,000 episode에 최저 버킷 74-84%로 오르내렸다. 가장 약한 "큰 target + goal
+# 9칸 이상" 버킷을 나눠 보면 obstacle이 경로 위면 58%, 큰 obstacle이면 62%였다
+# (경로 밖 76%, 작은 obstacle 73%). S10a2 발판은 1x1 obstacle만 경로에
+# 두었으므로, 보통 크기 obstacle이 경로를 막는 발판을 하나 더 둔다.
+#
 # S10b 분할 (2026-09-29): S10a 다음 S10b에서 goal 거리(2-5 -> 무제한), 스폰
 # (근처 -> 랜덤), obstacle 크기(작음 -> 보통) 세 축을 한꺼번에 바꿨더니
 # 5,000 episode에 최저 버킷 18/28/41%. 한 레벨에 한 축씩으로 다시 쪼갠다.
@@ -96,6 +102,7 @@ from .scenario import (
 #   S10a 근처 스폰, goal 2-5, 작은 obstacle 정확히 1개   (obstacle)
 #   S10a1 발판: 작은 target(2x1, 2x2)으로 경로 위 obstacle 치우기
 #   S10a2 발판: 경로 위 1x1 obstacle 치우기 (모든 크기)  (새 협동 동작)
+#   S10a3 발판: 경로 위 보통 크기 obstacle 치우기       (obstacle 크기)
 #   S10b goal 무제한 (근처 스폰, 작은 obstacle 1개)     (goal 거리)
 #   S10c 스폰 랜덤                                        (스폰)
 #   S10d obstacle 보통 크기 (1-3 x 1-2)                   (obstacle 크기)
@@ -321,6 +328,22 @@ LEVELS = [
         "max_steps": 100,
     },
     {
+        "name": "S10a3_clear_big_obstacle_scaffold",
+        "entropy_coef": NEW_COORDINATION_ENTROPY_COEF,
+        "target_size": RANDOM_SIZE,
+        "goal_distance_range": (3, 5),
+        "goal_axis": "straight",
+        "obstacle_in_path": True,
+        "obstacle_in_path_size_range": DEFAULT_OBSTACLE_SIZE_RANGE,
+        "spawn": {
+            "type": "near",
+            "radius": NEAR_RADIUS,
+        },
+        "obstacle_count_range": (1, 1),
+        "help_penalty": HELP_PENALTY,
+        "max_steps": 100,
+    },
+    {
         "name": "S10b_small_obstacle_goal_any",
         "target_size": RANDOM_SIZE,
         "goal_distance_range": None,
@@ -448,6 +471,9 @@ class CommScratchSampler:
             obstacle_in_path=config.get(
                 "obstacle_in_path",
                 False,
+            ),
+            obstacle_in_path_size_range=config.get(
+                "obstacle_in_path_size_range"
             ),
         )
 

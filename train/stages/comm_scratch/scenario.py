@@ -42,6 +42,7 @@ class ScratchScenarioGenerator:
         goal_axis=None,
         allow_goal_overlap=False,
         obstacle_in_path=False,
+        obstacle_in_path_size_range=None,
     ):
         """
         target_size: (w, h) 고정. None이면 target_size_range
@@ -62,6 +63,9 @@ class ScratchScenarioGenerator:
         goal_axis: None이면 goal 방향 제한 없음. "horizontal"이면
             goal을 target과 같은 행에만, "straight"면 같은 행 또는
             같은 열에만 둔다.
+        obstacle_in_path_size_range: obstacle_in_path일 때 obstacle 크기
+            범위 ((w_min, w_max), (h_min, h_max)). None이면 1x1. 크기가
+            있으면 통로의 한 칸을 반드시 덮도록 놓는다.
         obstacle_in_path: True면 obstacle_count_range 대신 1x1
             obstacle 하나를 target과 goal 사이 통로(target이 지나갈
             칸) 위에 둔다. goal_axis="straight"와 함께 쓴다. 경로를
@@ -108,6 +112,10 @@ class ScratchScenarioGenerator:
 
         self.obstacle_in_path = (
             obstacle_in_path
+        )
+
+        self.obstacle_in_path_size_range = (
+            obstacle_in_path_size_range
         )
 
     # --------------------------------------------------------
@@ -318,6 +326,66 @@ class ScratchScenarioGenerator:
             in enumerate(chosen)
         }
 
+    def _place_in_path(
+        self,
+        corridor,
+        occupied,
+    ):
+        """
+        통로 칸 하나를 반드시 덮는 obstacle 하나. 크기 범위가 없으면
+        1x1. target/goal과 겹치지 않고 맵 안에 들어가야 한다.
+        """
+
+        if self.obstacle_in_path_size_range is None:
+
+            ox, oy = random.choice(corridor)
+
+            return {
+                "x": ox,
+                "y": oy,
+                "width": 1,
+                "height": 1,
+            }
+
+        (w_min, w_max), (h_min, h_max) = (
+            self.obstacle_in_path_size_range
+        )
+
+        for _ in range(self.max_attempts):
+
+            width = random.randint(w_min, w_max)
+            height = random.randint(h_min, h_max)
+
+            cx, cy = random.choice(corridor)
+
+            x = cx - random.randint(0, width - 1)
+            y = cy - random.randint(0, height - 1)
+
+            if (
+                x < 0
+                or y < 0
+                or x + width > self.map_width
+                or y + height > self.map_height
+            ):
+                continue
+
+            if not self._cells(
+                x,
+                y,
+                width,
+                height,
+            ).isdisjoint(occupied):
+                continue
+
+            return {
+                "x": x,
+                "y": y,
+                "width": width,
+                "height": height,
+            }
+
+        return None
+
     @staticmethod
     def _corridor_cells(
         target_x,
@@ -493,18 +561,15 @@ class ScratchScenarioGenerator:
                 if not corridor:
                     continue
 
-                ox, oy = random.choice(
-                    sorted(corridor)
+                placed = self._place_in_path(
+                    sorted(corridor),
+                    occupied,
                 )
 
-                obstacles = [
-                    {
-                        "x": ox,
-                        "y": oy,
-                        "width": 1,
-                        "height": 1,
-                    }
-                ]
+                if placed is None:
+                    continue
+
+                obstacles = [placed]
 
             else:
                 obstacles = (
