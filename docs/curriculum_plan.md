@@ -1,224 +1,342 @@
-# 일반화 커리큘럼 계획 (Stage 8-9)
+# 통신 협동 운반 커리큘럼
 
-> 목적: Stage 0-7 커리큘럼이 사실상 "고정된 기하학 구조 + 미미한 lane shift"에서만
-> 검증됐다는 한계를 넘어서, (a) 임의의 target/obstacle 개수·크기·배치에 대해
-> 일반화하고 (b) 통신(HELP 액션)이 실제로 성능에 기여하도록 만든다.
+> **목적.** Stage 0-7은 사실상 고정된 배치(target (4,2), goal은 그 바로 아래)에서만 검증됐다.
+> 이를 넘어 (a) target/goal/obstacle의 크기·위치·개수와 스폰 위치가 모두 랜덤인 조건으로
+> 일반화하고, (b) 통신(HELP 액션)이 실제로 학습되어 성능에 기여하게 만든다.
 >
-> 범위 합의 (2026-09-17): 맵 크기(12x12)와 에이전트 수(4)는 고정한다.
-> 그 외 모든 기하학적 요소(target 크기/위치, obstacle 개수/크기/위치, 스폰
-> 위치)는 랜덤화 대상이다. 통신은 "있으면 되는" 부가 기능이 아니라 실제로
-> 학습되고 성능에 기여해야 하는 목표로 취급한다.
+> **범위 (2026-09-17 합의).** 맵 크기 12x12, 에이전트 4명은 고정. 나머지 기하학 요소는 모두
+> 랜덤화 대상. 통신은 "있으면 좋은" 기능이 아니라 학습되고 기여해야 하는 목표다.
 
-## 현재 상태 요약
+---
 
-- Stage 0-6 (`train/stages/stage_0_6`): 고정 좌표 target, obstacle 0~2개,
-  스폰 반경만 단계적으로 확대. `stage_N_mastered.pt` 체크포인트 존재.
-- Stage 7 (`train/stages/stage_7`): Stage 6 기하학을 x축으로만 평행 이동
-  (`stage_7A/B/C`). `stage_7_mastered.pt`, `stage_7_left_focus_final.pt` 존재.
-- 통신: `env/cooperative_transport_env.py`의 HELP 액션과 `messages` 관측은
-  구현되어 있지만, 모든 학습/평가 스크립트가 `communication_actions`를
-  `NO_MESSAGE`로 고정 전송한다 (`train/stages/*/train.py`,
-  `evaluation/evaluator.py` 참고). 즉 지금까지 통신은 한 번도 학습된 적이 없다.
-- 알아둬야 할 제약:
-  - `_check_success()`는 `target.cells() == goal_cells` **완전 일치**를
-    요구한다 → target 크기를 랜덤화하면 goal_cells도 반드시 동일 shape로
-    같이 생성해야 한다.
-  - HELP 메시지는 "발신자의 나에 대한 상대 좌표"를 **거리 제한 없이 전원에게
-    방송**한다. target/goal의 절대 위치를 직접 전달하는 필드는 없다. 따라서
-    통신의 자연스러운 용도는 "먼저 target을 발견한 에이전트가 나머지를
-    자신의 위치로 불러모으는 것"이다.
-  - target이 3x2일 때 세로로 밀려면 3명, 가로로 밀려면 2명이 필요 → 4명 중
-    1~2명은 항상 남는다. 이 잉여 인원이 "정찰/호출" 역할을 맡을 여지가
-    이미 구조적으로 존재한다.
+## 1. 현재 상태 (2026-10-20)
 
-## 사전 준비 (커리큘럼 코드 작성 전에 필요한 변경)
+두 트랙을 **지금 레벨까지만** 학습하도록 재개했다 (`--resume --stop-after-current-level`). 레벨을
+통과하면 다음 레벨로 넘어간 상태를 `_latest`에 저장하고 멈춘다. Track B는 S10a1을 통과하고
+멈췄고, Track A는 8C0s1에서 상한(재개 후 60,000 episode)에 걸려 멈췄다. **지금 도는 학습은 없다.**
 
-| 항목 | 내용 | 위치 | 상태 |
-|---|---|---|---|
-| `RandomScenarioGenerator` | target 크기(w,h) 랜덤 샘플링 + 동일 shape의 goal_cells 자동 생성, obstacle 0~N개를 서로/target/goal과 겹치지 않게 랜덤 배치. 기존 `_configure_custom_scenario`가 받는 dict 포맷을 그대로 출력 | `train/stages/stage_8/scenario.py` | ✅ 구현 + 테스트 완료 |
-| `_spawn_split()` | 일부 에이전트는 target 근처(vision 반경 내) 확정 스폰, 나머지는 맵 반대편/원거리에 랜덤 스폰. split 비율과 최소 거리를 파라미터화 | `env/cooperative_transport_env.py` (`_configure_custom_scenario`의 `spawn_mode: {"type": "split", ...}`) | ✅ 구현 + 테스트 완료 (Stage 9에서 실사용 예정, 지금은 env 기능만 존재) |
-| 버킷형 커리큘럼 매니저 | Stage 7의 `LeftLaneFocusCurriculumManager` 패턴을 일반화: 평균 성공률이 아니라 임의 버킷별로 독립 추적/판정 | `train/stages/bucketed_curriculum.py` (`BucketedCurriculumManager`) | ✅ 구현 + 테스트 완료 |
-| 통신 ablation 평가 모드 | `PolicyEvaluator`에 "HELP 액션을 강제로 NO_MESSAGE로 마스킹" 옵션 추가 → 통신 on/off 성공률 차이를 정량 비교 | `evaluation/evaluator.py` | ⬜ 미구현 (아래 "새로 발견한 선행 작업" 참고) |
-
-**Stage 8 학습 스크립트도 함께 구현됨**: `train/stages/stage_8/curriculum.py`
-(`Stage8ScenarioSampler`, 8A→8B1→8B2→8B3→8C→8D 6단계 레벨 진행 + 버킷 키
-규칙)와 `train/stages/stage_8/train.py` (`stage_7_mastered.pt`에서
-warm-start, 통신은 계속 `NO_MESSAGE` 고정, `BucketedCurriculumManager`로
-mastery 판정). `python -m train.stages.stage_8.train`으로 바로 실행
-가능. 6개 substage 전체에 대해 짧은 통합 스모크 테스트(수동, pytest
-아님)로 예외 없이 동작하는 것을 확인함.
-
-## 통신 아키텍처 구현 (2026-09-22, 완료)
-
-Phase 2(Stage 9) 설계 당시 놓쳤던 부분을 구현했다: 기존
-`train/network.py`의 `ActorCritic`은 이동 액션(5-way)만 출력했고,
-모든 학습/평가 스크립트가 `communication_actions`를 코드로
-`NO_MESSAGE` 고정해서 보내고 있었다. 아래를 구현/수정함:
-
-1. `ActorCritic`(`train/network.py`)에 통신(2-way) categorical head를
-   추가. `forward()`는 `(logits, comm_logits, value)` 3-tuple을,
-   `get_action_and_value()`는 `(action, comm_action, log_prob, entropy, value)`를
-   반환 (log_prob/entropy는 두 head의 합).
-2. `PPO`(`train/ppo.py`): `act()`가 `(action, comm_action, log_prob, value)`를
-   반환하도록 변경. `update()`가 결합 액션을 다루도록 수정.
-   `load()`는 `strict=False`로 불러와서, comm head가 없는 구 체크포인트
-   (예: `stage_8A_size_mastered.pt`)를 warm-start할 때 이동 관련
-   가중치만 옮기고 comm head는 새로 초기화하도록 함. optimizer state도
-   구조가 다르면(구 체크포인트) 조용히 skip.
-3. `MultiAgentRolloutBuffer`(`train/rollout_buffer.py`): `add()`에
-   `comm_action` 파라미터 추가, `compute()`가 `comm_actions` 텐서도
-   반환.
-4. `env/cooperative_transport_env.py`: `help_penalty` 생성자 파라미터
-   추가 (기본값 0.002, 작게 시작 — 연구 진행에 따라 점차 올릴 예정).
-   HELP를 누른 에이전트에게만 개별 적용 (팀 공유 보상과 별개).
-5. Stage 0-8 학습 스크립트(`stage_0_6/train.py`, `stage_7/train.py`,
-   `stage_7/finetune_left_lanes.py`, `stage_7/lane_diagnostic.py`,
-   `stage_8/train.py`, `train/evaluate.py`)는 새 4-tuple/3-tuple
-   시그니처에 맞게 최소 수정만 하고, 환경에는 계속 `NO_MESSAGE`를
-   보내서 기존 동작(통신 없음)을 그대로 유지.
-6. `evaluation/evaluator.py`: `PolicyEvaluator`에
-   `disable_communication` 옵션 추가 (통신 ablation). 기본은 정책이
-   실제로 선택한 comm_action을 사용하고, `True`로 주면 HELP를 강제로
-   NO_MESSAGE로 마스킹. `run_stage8_baseline.py`는 Stage 8 체크포인트의
-   comm head가 학습된 적 없는 무작위 값이므로 `disable_communication=True`로
-   고정해서 baseline 노이즈를 없앴다.
-
-**버그 하나 발견/수정**: `PPO.__init__`이 `ActorCritic(obs_dim, num_actions, hidden_dim)`을
-위치 인자로 호출하고 있었는데, `num_comm_actions` 파라미터가
-중간에 끼어들면서 `hidden_dim` 값이 `num_comm_actions` 자리로 밀려
-들어가 comm head가 256-way로 생성되는 버그가 있었다.
-`tests/test_communication.py::test_ppo_act_returns_movement_and_comm`이
-이를 즉시 잡아냈다 (모든 신규 코드 변경마다 테스트를 먼저 돌리는 게
-왜 중요한지 보여주는 사례) — 키워드 인자로 고침.
-
-## Stage 9 설계 재검토: "통신이 필요해지려면 위치도 랜덤이어야 한다"
-
-Stage 9를 구현하려던 중 중요한 의존성을 발견했다: HELP 메시지는
-"발신자(동료)의 상대 좌표"만 전달할 수 있고 target/goal의 절대 위치는
-전달하지 못한다. 그런데 지금 멈춘 지점(`stage_8A_size_mastered.pt`)은
-target 위치가 여전히 Stage 0-6 기본값으로 고정되어 있다. **위치가
-고정이면 멀리 스폰된 에이전트도 학습을 통해 이미 "거기로 가면 된다"는
-prior를 갖고 있을 수 있어서, 통신이 애초에 필요하지 않은 문제가 된다.**
-즉 Phase 2(통신 필요성 검증)는 Phase 1의 위치 일반화(8B1~)가 최소한
-어느 정도 끝난 뒤에야 의미가 생긴다 — 원래 계획서에 이미 "9C: Phase 1의
-랜덤 기하학 + split spawn 결합"으로 적어뒀던 의존 관계인데, 구현
-순서상 먼저 부딪힌 것.
-
-**결정 (2026-09-22):** 지금 당장은 Stage 8 8B1~을 마저 돌리지 않고,
-**target 위치를 고정한 채로 통신 파이프라인(결합 액션 학습, HELP
-페널티, split-spawn)이 기계적으로 정상 작동하는지만 검증**하기로
-했다. 이 상태에서 나오는 "성공률"이나 "통신이 도움이 됐다"는 결과는
-의미가 없다 (위치를 이미 알고 있으므로) — 오직 코드가 안 깨지고
-학습이 굴러가는지만 본다. **진짜 필요성 검증은 Stage 8 위치
-일반화(8B1~)를 마친 뒤, 이 스폰 방식(`_spawn_split`)을 랜덤 위치
-시나리오 위에 다시 얹어서 재실행해야 한다.**
-
-## Stage 9 (파이프라인 검증 버전)
-
-`train/stages/stage_9/` 구현 완료:
-
-- `scenario.py`: `make_stage9_scenario()` — target/goal은 Stage 0-6
-  기본값 고정, `spawn_mode: {"type": "split", ...}`만 새로 도입.
-- `curriculum.py`: `Stage9LevelSampler` — near_count를 **쉬운 쪽부터**
-  진행 (9A: 3near/1far → 9B: 2near/2far → 9C: 1near/3far). Stage
-  8에서 "한 레벨 = 한 새 축"을 어겼다가 정체됐던 교훈에 따라, 여기서도
-  난이도를 한 번에 최댓값(1near/3far)으로 시작하지 않는다.
-- `train.py`: `stage_8A_size_mastered.pt`에서 warm-start, comm_action을
-  실제로 환경에 전달(다른 stage들과 다른 유일한 지점), `help_rate`를
-  TensorBoard에 기록. mastery 판정은 `Stage7CurriculumManager` 재사용
-  (레벨마다 조건이 하나뿐이라 버킷형 매니저는 불필요).
-
-**스모크 테스트 결과**(각 레벨 20 episode, 512 스텝마다 update):
-3개 레벨 모두 성공률 95~100%, `help_rate` 20~24%로 붕괴(0% 또는
-100% 고정) 없이 비퇴화 상태 확인. 파이프라인 자체는 정상 동작함이
-확인됐다. (예상대로 성공률이 이미 높은 것 자체가 "위치를 이미 알고
-있어서 통신이 굳이 없어도 풀린다"는 위 우려를 재확인시켜준다.)
-
-## Phase 1 — 공간 일반화 (통신 없이)
-
-시작점: `stage_7_mastered.pt` (또는 `stage_7_left_focus_final.pt`)에서 이어서 학습.
-통신 액션은 이 Phase 동안 계속 `NO_MESSAGE`로 고정 — "통신 없이 얼마나
-일반화되는가"를 먼저 분리해서 확인한다.
-
-| Sub-stage | 랜덤화 축 | Mastery 판정 |
+| | Track A `stage8_comm` | Track B `comm_scratch` |
 |---|---|---|
-| 8A | target 크기(w,h)만 랜덤, 위치는 기본값 고정, obstacle 없음 | 버킷별 성공률 ≥ 0.85 |
-| 8B1 | 크기는 다시 기본값(3x2)으로 고정, 위치만 기본 위치 기준 반경 2 안에서 랜덤화 | 버킷별 성공률 |
-| 8B2 | 반경 5로 확대 (크기는 계속 고정) | 버킷별 성공률 |
-| 8B3 | 반경 제한 없이 완전 랜덤 위치 (크기는 계속 고정) | 버킷별 성공률 |
-| 8B4 | 8A(크기)와 8B3(위치)를 재결합: 크기 랜덤 + 위치 완전 랜덤 동시에 | 버킷별 성공률 |
-| 8C | obstacle 0~3개 랜덤 개수/크기/위치 추가 | 버킷별 성공률. Stage 4처럼 target-only reward 먼저 시도 → 실패 시 obstacle_shaping 활성화 |
-| 8D | obstacle 0~4개까지 확대 (사실상 8C와 유사하지만 독립 substage로 분리) | 버킷별 성공률 |
+| 출발점 | `stage_8A_size_mastered.pt` (Stage 0-8A 계열, 통신 없이 학습됨) | 무작위 초기화 |
+| 통신 | 8B 레벨부터 on | 처음부터 on |
+| 마지막 통과 레벨 | **8B4** (크기 + 위치 완전 랜덤, obstacle 없음) | **S10a1** (작은 target으로 경로 막은 obstacle 치우기) |
+| 상태 | 8C0s1 (S10a1과 같은 발판)에서 정체로 멈춤 (버킷 57/59/70%). `--resume`하면 8C0s1을 다시 60,000 episode | 멈춤. `--resume`하면 S10a2부터 |
+| 통과한 최고 난도 ablation | 8B4: on 0.86 / off 0.61 (**+0.25**) | S9: on 0.89 / off 0.47 (**+0.43**) |
 
-**8B 관련 실전 실패 2건 및 수정 (2026-09-17):**
+주요 체크포인트 (`checkpoints/`):
 
-1차 시도 — 8B를 "완전 랜덤 위치" 단일 단계로 구현해서 실행했는데,
-`stage_7_mastered.pt`에서 warm-start한 저엔트로피 정책이 새로 옮겨진
-target 위치를 전혀 탐색하지 못해 1300+ episode 동안 성공률 0.0,
-`avg_len` 200 고정(매 episode 타임아웃), `return`이
-`step_penalty × 200`에서 전혀 안 움직이는 상태로 멈췄다 (target을
-단 한 번도 건드리지 못함 → 학습 신호 자체가 없음). 원인: 이 환경의
-관측에는 target/goal의 전역 위치 정보가 전혀 없고(로컬 5x5 시야 +
-자기 위치뿐), Stage 0-7 내내 target이 거의 고정 좌표였기 때문에
-정책이 "탐색"이 아니라 "그 고정 좌표로 가는 법"을 배운 상태였다.
-→ Stage 3가 스폰 반경을 3 → 5 → 완전 랜덤으로 늘렸던 것과 같은
-방식으로, 8B를 반경 2 → 반경 5 → 완전 랜덤으로 쪼갰다.
-`RandomScenarioGenerator`에 `position_radius` 파라미터를 추가.
-
-2차 시도 — 위치를 반경 2로만 쪼갰는데도, 그 8B1 레벨 자체가
-"크기 랜덤 + 위치 랜덤"을 **동시에** 새로 도입하고 있었다(8A에서
-이미 크기가 랜덤이었기 때문에). `large` 크기 버킷은 1700+ episode
-동안 0%, `small` 버킷도 5~8%에서 벗어나지 못하고 정체됐다. 원인:
-한 레벨에서 두 개의 새로운 축(크기, 위치)이 동시에 바뀌어서 난이도
-점프가 너무 컸다. → 8B1~8B3에서는 크기를 다시 기본값(3x2)으로
-고정하고 위치만 새 축으로 다루도록 수정했고, 위치가 완전히
-일반화된 뒤(8B3) 크기와 위치를 재결합하는 8B4를 새로 추가했다.
-
-버킷 키에는 target이 기본 위치에서 얼마나 떨어졌는지를 나타내는
-거리 버킷(`d0-2`/`d3-5`/`d6+`)도 포함시켜서, 이후 단계에서도 "먼
-거리 또는 큰 크기만 계속 실패"가 평균에 가려지지 않게 했다.
-
-**교훈**: 도메인 랜덤화 커리큘럼에서는 "한 레벨 = 한 개의 새로운
-축"을 지켜야 한다. 여러 축을 동시에 새로 도입하면 각 축이 개별적으로
-쉬운 문제여도 조합 난이도가 급격히 뛰어서 저엔트로피 warm-start
-정책이 탐색 자체를 못 할 수 있다.
-
-## Phase 2 — 통신을 실제로 필요하게 만들기 ("Stage 9")
-
-| Sub-stage | 설계 | 통신이 필요해지는 이유 |
+| 용도 | Track A | Track B |
 |---|---|---|
-| 9A | `_spawn_split()`: 1명은 target 근처(vision 내) 확정 스폰, 3명은 맵 반대편 랜덤 스폰. `max_steps`를 "맹목적 탐색이 통계적으로 자주 실패"할 만큼 축소 | 무작위 탐색만으로는 시간 내 도착 불가. HELP로 위치를 부른 팀만 안정적으로 성공 |
-| 9B | split 비율을 점진적으로 완화 (2/2 → 1/3 → 완전 랜덤이되 max_steps는 유지) | 정보 비대칭 정도에 대한 일반화 |
-| 9C | Phase 1의 랜덤 기하학(크기/개수) + split spawn 결합 | 공간 일반화와 통신 필요성을 동시에 요구하는 최종 형태 |
+| 마지막 통과 레벨 | `stage8_comm_stage_8B4_size_and_position_comm_mastered.pt` | `comm_scratch_S10a1_clear_obstacle_small_target_scaffold_mastered.pt` |
+| obstacle 없는 최종 모델 | 위와 같음 | `comm_scratch_S9_split_1near_mastered.pt` |
+| 일시정지 지점 (2026-09-29) | `stage8_comm_paused_8C0s1.pt` | `comm_scratch_paused_S10a1.pt` |
+| 마지막 학습 지점 (2026-10-20) | `stage8_comm_stage_8C0s1_clear_obstacle_small_target_comm_stalled.pt` (= `_latest.pt`) | `comm_scratch_latest.pt` (S10a1 통과 직후) |
+| 쓰지 말 것 | `stage8_comm_8C0a_collapsed.pt` (붕괴) | `comm_scratch_S4_collapsed_15k.pt` (붕괴) |
 
-**검증 필수**: 9A~9C 각각 학습 완료 후, 통신 ablation 평가(HELP → 강제
-NO_MESSAGE)로 같은 체크포인트의 성공률을 재측정한다. 성공률이 유의미하게
-떨어지지 않으면 "통신 없이도 풀고 있다"는 뜻이므로 mastery로 인정하지 않고
-난이도(max_steps, split 거리/비율)를 다시 조정한다. Stage 7에서 평균
-성공률이 특정 lane의 완전 실패를 가렸던 실패를 반복하지 않기 위함이다.
+### 실행 방법
 
-## Phase 3 — 결합 OOD 평가
+```
+python -m train.stages.stage_8_comm.train [--resume] [--start-level N --start-checkpoint PATH] [--stop-after-current-level]
+python -m train.stages.comm_scratch.train [--resume] [--start-level N --start-checkpoint PATH] [--stop-after-current-level]
+```
 
-`evaluation/benchmark_scenarios.py`를 확장하여 (obstacle 개수 × target 크기 ×
-spawn split 정도) 조합 그리드로 평가하고, 각 조합마다 통신 on/off 성공률을
-함께 기록한다. `train/stages/stage_7/lane_diagnostic.py`의 "버킷별 개별 진단"
-패턴을 그대로 일반화해서 재사용한다.
+- `--resume`: `checkpoints/<run>_latest.pt/.json`에서 레벨까지 그대로 이어감.
+- 진행 상황: `logs/<run>_train.log`, `logs/<run>_status.json`(현재 레벨, 버킷별 성공률, 통과 이력).
+- TensorBoard: `python -m tensorboard.main --logdir runs --port 6006`. 지금 학습 중인 것만 보려면
+  실행 필터에 `^(stage8_comm|comm_scratch)$`. 재시작 때 이전 기록은 `runs/<run>_attemptN`,
+  `runs/<run>_partN`으로 옮겨 두므로 같은 화면에서 비교할 수 있다.
+- 레벨 통과 시 ablation 결과: `evaluation_results/<run>/ablation_<level>_mastered.json`.
 
-## 진행 순서 제안
+---
 
-1. 사전 준비 표의 4개 항목 구현 (특히 `RandomScenarioGenerator`, `_spawn_split`)
-2. Phase 1 (8A → 8D) 학습 및 버킷별 검증
-3. Phase 2 (9A → 9C) 학습 + 통신 ablation 검증
-4. Phase 3 평가 스위트 확장
+## 2. 환경에서 알아둘 제약
 
-## 열린 질문 / 리스크
+- **성공 조건**은 `target.cells() == goal_cells` 완전 일치. goal은 항상 target과 같은 모양으로 만든다.
+- **밀기 규칙**: 미는 방향 반대쪽 면의 **모든** 칸에 에이전트가 서서 같은 step에 같은 방향을 골라야
+  한다 (`env/object.py::contact_cells`). 3x2를 아래로 밀려면 3명, 옆으로 밀려면 2명. 폭 4칸 target을
+  세로로 밀려면 4명 전원이 필요하다.
+- **벽에 붙은 target은 벽 반대 방향으로 밀 수 없다** (밀 면이 맵 밖). 그래서 모든 생성기는 target을
+  벽에서 1칸 이상 떨어뜨린다. goal은 벽에 붙어도 된다.
+- **obstacle도 같은 규칙으로 밀린다.** target이 obstacle 쪽으로 밀리면 연쇄로 밀리지 않고 막힌다.
+- **관측**: 5x5 로컬 시야 + 자기 좌표 + 직전 step에 받은 HELP 메시지. target/goal의 전역 위치는 없다.
+  정책은 **메모리 없는 MLP**라서 시야 밖으로 나간 것은 기억하지 못한다.
+- **HELP 메시지**는 "발신자의 나에 대한 상대 좌표"를 거리 제한 없이 전원에게 방송한다. target/goal 좌표를
+  직접 보내는 필드는 없다. 자연스러운 용도는 "target(또는 goal)을 본 에이전트가 나머지를 불러모으기"다.
+  `help_penalty`(기본 0.002)는 보낸 에이전트에게만 적용된다.
 
-- 9A의 `max_steps` 축소 폭과 split 거리를 얼마나 타이트하게 잡아야 "통신 없이는
-  거의 항상 실패, 통신하면 대체로 성공"하는 지점을 찾을 수 있는지는 실험적으로
-  튜닝이 필요하다 (너무 널널하면 통신이 필요 없고, 너무 타이트하면 통신을
-  써도 실패해서 학습 신호 자체가 사라진다).
-- HELP 메시지가 "발신자 자신의 상대 좌표"만 전달 가능하다는 스키마 제약상,
-  에이전트는 "target/goal 위치"가 아니라 "동료 위치"만 공유할 수 있다. 따라서
-  학습되는 프로토콜은 "발견자에게 집결"이지, target 좌표를 직접 릴레이하는
-  것이 아니다. 이후 더 풍부한 통신(예: 목표 좌표 자체를 인코딩)을 원한다면
-  메시지 스키마 자체를 확장하는 별도 논의가 필요하다.
+---
+
+## 3. 코드 구성
+
+| 파일 | 역할 |
+|---|---|
+| `train/stages/comm_runner.py` | 두 트랙 공용 러너. env 16개를 batch로 돌림, 레벨별 mastery, ablation, rehearsal, 재개, 상태 기록 |
+| `train/stages/stage_8_comm/` | Track A 레벨 정의(`LATERAL_LEVELS`, `MAIN_LEVELS`)와 실행 스크립트 |
+| `train/stages/comm_scratch/` | Track B 생성기(`ScratchScenarioGenerator`), 레벨 정의(`LEVELS`), 실행 스크립트 |
+| `train/stages/stage_8/scenario.py` | Stage 8 생성기 (`target_wall_margin=1` 수정 포함) |
+| `train/stages/bucketed_curriculum.py` | 버킷별 독립 mastery 판정 |
+| `train/ppo.py`, `train/network.py` | 이동/통신 2-head 정책, PPO |
+| `train/recurrent_ppo.py`, `train/recurrent_buffer.py` | GRU 메모리 정책용 PPO와 시퀀스 rollout 버퍼 (아래 "GRU 실험 준비") |
+| `tests/test_comm_curricula.py` | 두 트랙 레벨·생성기·PPO 변경 테스트 |
+
+### 러너 기능 (`RunConfig`)
+
+| 기능 | 설명 |
+|---|---|
+| 벡터화 | env 16개 x 에이전트 4명을 forward 한 번으로 처리. 초당 env-step 약 870 → 약 3,800. CPU가 GPU보다 빠르다(병목이 Python env). |
+| mastery | 버킷별 최근 100 episode 성공률이 모두 0.85 이상 + 레벨당 최소 1,000 episode |
+| 정체 | 레벨당 60,000 episode를 넘기면 `_stalled.pt`를 남기고 멈춤 |
+| ablation | 레벨 통과(또는 정체) 때마다 같은 시나리오 300개를 통신 on/off로 비교 |
+| `rehearsal_prob=0.25` | episode의 25%를 이미 통과한 레벨에서 뽑아 학습 (mastery 통계에서는 제외) |
+| `critic_warmup_updates` | warm-start 직후 처음 N번은 critic head만 학습 (Track A 30) |
+| `train_settings()` / `env_settings()` | 레벨별 이동 entropy 계수, `max_steps`, `help_penalty` |
+| `stop_after_current_level` | 지금 레벨을 통과하면 멈춤 |
+| 저장 | 임시 파일 + `os.replace` + 재시도 (Windows 파일 잠금 대응) |
+
+### PPO 변경
+
+- 통신 2-way head 추가 (`get_action_and_value`, `evaluate_actions`, `act_batch`).
+- `comm_entropy_coef`: 이동/통신 head의 entropy 계수 분리.
+- `target_kl`: update 중 approx KL이 1.5배를 넘으면 남은 epoch 생략.
+- `update(update_policy=False)`: critic head만 학습 (warmup용).
+- 두 트랙 공통 설정: `lr=1e-4`, `target_kl=0.02`, 이동 entropy 0.01(발판 레벨만 0.03),
+  통신 entropy 0.01, `device="cpu"`.
+
+### GRU 실험 준비 (2026-10-20)
+
+메모리 없는 MLP가 시야 밖으로 나간 target/goal과 직전 step에만 유효한 HELP를 기억하지 못해서,
+obstacle 치우기처럼 여러 단계가 필요한 레벨(Track B S10a2, Track A 8C0s1)에서 정체했다는 가설을
+시험하기 위한 준비다.
+
+- **`RecurrentActorCritic`** (`train/network.py`): MLP encoder 뒤에 잔차 GRU 분기를 붙인다
+  (feature + W·h). W를 0으로 초기화하므로 **MLP 체크포인트를 불러온 직후에는 MLP와 출력이 완전히
+  같다.** 파라미터 이름이 ActorCritic과 같아서 MLP 체크포인트가 그대로 로드되고, 새로 생기는 것은
+  `rnn`(GRUCell, hidden 128)과 `memory_proj`뿐이다.
+- **`RecurrentPPO`** (`train/recurrent_ppo.py`): PPO와 같은 손실(clip, 이동/통신 entropy 분리,
+  `target_kl`, critic warmup). rollout 때 매 step의 hidden을 저장하고 길이 32 조각으로 다시 펼치는
+  truncated BPTT. minibatch 크기(512 transition)와 update당 gradient step 수는 MLP와 같다.
+- **러너**: `RunConfig.recurrent=True`일 때만 새 경로. episode가 끝난 행은 다음 step 직전에 hidden을
+  0으로 초기화한다. ablation 평가도 hidden을 들고 다닌다. MLP 경로는 바뀌지 않았다.
+- **실행**: 두 train 스크립트에 `--recurrent`. 실행 이름에 `_gru`가 붙어 체크포인트/로그/TensorBoard가
+  MLP와 섞이지 않는다.
+- **속도**: env 16개 기준 MLP 3,616, GRU 1,688 env-step/s (약 2.1배 느림). 같은 체크포인트에서
+  시작한 처음 500 episode 성능은 둘이 같았다 (0-init 확인).
+- **테스트**: `tests/test_recurrent.py` (0-init 동등성, step과 unroll 일치, 저장한 hidden에서 다시
+  펼친 log_prob 일치, GAE 종료 처리, KL 조기 종료, critic warmup, MLP 체크포인트 로드, 러너
+  정지/재개를 MLP와 GRU 모두).
+
+실험 계획 (같은 체크포인트에서 MLP와 GRU 비교):
+
+| 트랙 | 명령 | 비교 대상 (MLP) |
+|---|---|---|
+| B | `python -m train.stages.comm_scratch.train --recurrent --start-level 15 --start-checkpoint checkpoints/comm_scratch_S10a1_clear_obstacle_small_target_scaffold_mastered.pt` | 같은 체크포인트에서 시작한 MLP S10a2: 53,800 episode 동안 큰 target 0-4%, 작은 target 29-37% (`logs/comm_scratch_train.log`) |
+| A | `python -m train.stages.stage_8_comm.train --recurrent --start-level 16 --start-checkpoint checkpoints/stage8_comm_stage_8C0s1_clear_obstacle_small_target_comm_stalled.pt` | MLP 8C0s1: 약 85,000 episode에 버킷 57-70%로 정체 |
+
+### 맵 생성 방식
+
+학습 맵은 **매 episode 새로 무작위 생성**한다 (고정 학습 맵 목록 없음). mastery 판정도 새로 생성된
+episode로 한다. ablation은 평가마다 고정 seed로 시나리오 300개를 만들어 통신 on/off에 같은 목록을 쓴다.
+학습에 쓰지 않은 고정 테스트 세트(held-out benchmark)는 아직 없다.
+
+---
+
+## 4. Track A — `stage8_comm`
+
+`stage_8A_size_mastered.pt`(크기 랜덤, 위치 고정, 통신 없음)에서 이어서 통신을 켠다. Stage 8의
+기하학을 그대로 쓰되, Stage 0-7에서 배운 적 없는 동작을 먼저 가르치는 레벨(8B0*)을 앞에 붙였다.
+`episode`는 그 레벨을 마지막으로 통과할 때 걸린 수다.
+
+| # | 레벨 | 내용 | episode | 통신 on | off |
+|---|---|---|---|---|---|
+| 0 | 8B0sL | 옆으로 밀기 발판, 왼쪽 75%, 2명을 옆면에 미리 세움, max_steps 60 | 3,670 | 0.93 | 0.94 |
+| 1 | 8B0s | 옆으로 밀기 발판, 좌우 균등 | 1,000 | 0.98 | 0.96 |
+| 2 | 8B0 | 옆으로만 밀기, 미리 세우지 않음 | 1,000 | 0.98 | 0.93 |
+| 3 | 8B0a | goal 아래 7칸 + 옆 1칸 | 1,064 | 0.97 | 0.93 |
+| 4 | 8B0b | goal 아래 7칸 + 옆 2칸 | 1,000 | 0.93 | 0.91 |
+| 5 | 8B0uS2 | 위로 밀기 발판, 2칸 폭 target, 2명 미리 세움 | 1,629 | 0.92 | 0.83 |
+| 6 | 8B0uS | 위로 밀기 발판, 3칸 폭 | 1,772 | 0.92 | 0.80 |
+| 7 | 8B0u | 위로 밀기, 미리 세우지 않음 | 1,000 | 0.98 | 0.95 |
+| 8 | 8B0uLs | 위로 1-3칸, target 위치 랜덤, 발판 | 2,607 | 0.96 | 0.87 |
+| 9 | 8B0uL | 위로 2-5칸, target 위치 랜덤 | 1,000 | 0.97 | 0.95 |
+| 10 | 8B0tS | 세로로 긴 target(2x3/3x3/4x3) 옆으로, 3명 발판 | 3,723 | 0.95 | 0.87 |
+| 11 | 8B0t | 같은 배치, 미리 세우지 않음 | 1,000 | 0.94 | 0.96 |
+| 12 | 8B1 | target 위치 반경 2 | 1,000 | 1.00 | 0.96 |
+| 13 | 8B2 | 반경 5 | 1,153 | 0.89 | 0.87 |
+| 14 | 8B3 | 위치 완전 랜덤 | 3,857 | 0.83 | 0.67 |
+| 15 | **8B4** | 크기 + 위치 완전 랜덤 | 40,611 | 0.86 | 0.61 |
+| 16 | 8C0s1 | 경로 막은 1x1 obstacle 치우기, 작은 target(2x1, 2x2), 근처 스폰 | **정체** (약 85,000, 버킷 57-70%) | 0.63 | 0.60 |
+| 17 | 8C0s | 같은 발판, 모든 크기 | | | |
+| 18 | 8C0a | goal 2-5칸 + 작은 obstacle 1개 | (이전 정체: 0.76 / 0.66) | | |
+| 19 | 8C0a2 | goal 무제한 + 작은 obstacle 1개 | | | |
+| 20 | 8C0b | 보통 크기 obstacle 1개 | | | |
+| 21 | 8C | obstacle 0-3개 | | | |
+| 22 | 8D | obstacle 0-4개 | | | |
+| 23-25 | 9 split | 8D 위에 split spawn 3near → 2near → 1near | | | |
+
+발판 레벨(0, 1, 5, 6, 8, 10, 16, 17)과 가로/위로 밀기 레벨(0-11)은 이동 entropy 0.03, 나머지는 0.01.
+가로/위로 밀기 전용 레벨에는 8A 과제(goal 바로 아래)를 30-50% 섞는다 (`below_mix`, 망각 방지).
+
+---
+
+## 5. Track B — `comm_scratch`
+
+무작위 초기화에서 새 커리큘럼으로 학습한다. 설계 원칙:
+
+1. target 위치는 첫 레벨부터 맵 전체에서 랜덤. 난이도는 크기 / goal 거리 / 스폰 / obstacle로 조절한다.
+2. 한 레벨에서는 한 축만 바꾼다.
+3. 통신은 처음부터 켜되, goal이 시야 안에 있는 동안(S0-S3b)은 `help_penalty=0`, S4부터 0.002.
+4. split spawn은 위치가 이미 랜덤인 상태 위에 얹는다.
+
+| # | 레벨 | 바뀌는 축 | episode | 통신 on | off |
+|---|---|---|---|---|---|
+| 0 | S0 | 2x1 target, goal 2-3칸, 근처 스폰(r2) | 31,470 | 0.84 | 0.75 |
+| 1 | S1 | goal 2-5칸 | 1,050 | 0.87 | 0.84 |
+| 2 | S2 | 3x2 target | 3,673 | 0.84 | 0.67 |
+| 3 | S3s | 발판: 세로로 긴 target 옆으로 1-2칸, 3명 미리 세움 | 20,239 | 0.96 | 0.97 |
+| 4 | S3t | 같은 배치, 근처 랜덤 스폰 | 6,319 | 0.99 | 1.00 |
+| 5 | S3a | 크기 2-3 x 2-3 | 5,839 | 0.83 | 0.70 |
+| 6 | S3b | 크기 2-4 x 2-3 | 7,835 | 0.81 | 0.62 |
+| 7 | S4 | goal 2-8칸, help_penalty 켬 | 19,896 | 0.82 | 0.66 |
+| 8 | S5 | goal 무제한 | 47,188 | 0.92 | 0.55 |
+| 9 | S6 | 스폰 반경 5 | 4,844 | 0.90 | 0.56 |
+| 10 | S7 | 스폰 완전 랜덤 | 4,980 | 0.90 | 0.60 |
+| 11 | S8 | split 2near/2far | 7,538 | 0.89 | 0.52 |
+| 12 | **S9** | split 1near/3far | 5,029 | 0.89 | 0.47 |
+| 13 | **S10a** | 근처 스폰, goal 2-5칸, 작은 obstacle 1개 | 약 67,000 | 0.83 | 0.45 |
+| 14 | **S10a1** | 발판: 경로 막은 1x1 obstacle, 작은 target(2x1, 2x2) | 약 29,900 | 0.78 | 0.70 |
+| 15 | S10a2 | 같은 발판, 모든 크기 | | | |
+| 16 | S10b | goal 무제한 (근처 스폰, 작은 obstacle) | | | |
+| 17 | S10c | 스폰 완전 랜덤 | | | |
+| 18 | S10d | obstacle 보통 크기(1-3 x 1-2) | | | |
+| 19 | S10 | split 1near + obstacle 0-2개 | | | |
+| 20 | S11 | obstacle 0-4개 | | | |
+
+이동 entropy 0.03은 S3s, S3t, S10a, S10a1, S10a2에만 쓴다.
+
+---
+
+## 6. 통신 효과 (ablation)
+
+같은 체크포인트, 같은 시나리오 300개에서 통신을 켠 성공률과 끈(HELP를 NO_MESSAGE로 강제) 성공률의 차이.
+
+| 조건 | 격차 |
+|---|---|
+| 모두 target 근처에서 시작, goal 가까움 (Track B S1, S3s, S3t; Track A 8B0, 8B1) | 0에서 +0.04 |
+| 큰 target, 여러 명을 모아야 함 (Track B S2, S3a, S3b) | +0.12에서 +0.18 |
+| 미는 에이전트가 goal을 못 봄 (Track A 위로 밀기 8B0uS2, 8B0uS) | +0.09에서 +0.12 |
+| target/goal이 맵 전체 랜덤 (Track A 8B3, 8B4) | +0.16에서 +0.25 |
+| goal 무제한 + 스폰 분산 (Track B S5-S8) | +0.30에서 +0.36 |
+| **target을 본 에이전트 1명 + 멀리 3명 (Track B S9)** | **+0.43** |
+| 작은 obstacle 1개 (Track B S10a) | +0.39 |
+
+**결론.** 두 모델 모두 통신을 실제로 쓰는 협동을 학습했다. 격차는 target/goal이 시야 밖에 있거나
+여러 명을 불러모아야 할 때 커지고, 모두가 target 근처에서 시작하면 거의 없다. Track B S9에서 통신을
+끄면 성공률이 절반 아래로 떨어진다 — 원래 Phase 2가 목표로 한 "발견자에게 집결" 프로토콜의 가장 강한
+증거다. 단, 어떤 메시지 패턴이 학습됐는지는 아직 직접 분석하지 않았다.
+
+---
+
+## 7. 교훈
+
+1. **풀 수 없는 episode부터 의심한다.** Stage 8 생성기가 target을 벽에 붙여 놓아, 8B1의 19%, 8B3 이후
+   32-34%가 원리적으로 풀 수 없었다. 버킷 기준 0.85를 넘을 수 없었던 Stage 8 8B1 실패의 한 원인.
+2. **"위치 랜덤화"는 숨은 새 기술을 요구한다.** Stage 0-7은 goal이 항상 target 바로 아래였고 target이
+   (4,2)였다. 그 결과 옆으로 밀기 0%, 위로 밀기 0%였고, 위로 밀기를 가르쳐도 (4,2)에서만 동작했다.
+   방향마다, 그리고 랜덤 위치에서 따로 가르쳐야 했다.
+3. **한 레벨에 한 축.** 여러 축을 동시에 바꾼 레벨(Stage 8 8B1 2차, Track B S3, S10b 원안, Track A
+   8C0a 원안)은 모두 막혔다. 특히 새 축은 쉬운 기반(goal 가까움, 근처 스폰) 위에서 들여야 한다.
+4. **여러 명이 동시에 미는 새 동작에는 발판이 필요하다.** 밀어야 할 면에 에이전트를 미리 세우고
+   episode를 짧게(60-100 step) 끊는 발판 → 미리 세우지 않는 단계 → 원래 레벨 순서로 풀렸다
+   (가로 밀기, 위로 밀기, 세로로 긴 target 옆으로 밀기). 작은 target(2칸 폭)부터 시작하면 더 쉽다.
+   이 발견 단계에서만 이동 entropy 0.03이 필요했다.
+5. **망각.** 새 레벨이 이전 기술을 쓰지 않으면 통째로 잊는다 (가로 전용 레벨 후 아래로 밀기 0%).
+   이전 과제를 섞고(`below_mix`, rehearsal 25%) 그 버킷을 mastery 조건에 넣는다.
+6. **학습 안정성.** lr 3e-4는 후반 레벨에서 이미 하던 과제까지 잃는 붕괴를 반복했다 → lr 1e-4 +
+   `target_kl=0.02`. entropy 0.03은 짧은 발판 레벨에서만 안전하고, 긴 레벨에서는 붕괴를 부른다.
+   warm-start 직후에는 critic이 이전 성공률에 맞춰져 있어서 critic warmup이 필요했다.
+7. **실패를 쪼개서 본다.** 정체 원인은 모두 "버킷 평균"이 아니라 방향, 모양, obstacle 위치별로 나눠
+   봤을 때 드러났다 (예: 8B2 정체 = goal이 target 위에 있는 경우만 0/58).
+
+---
+
+## 8. 시행착오 기록
+
+### Track A
+
+| 차수 | 문제 | 진단 | 조치 | 로그 / 체크포인트 |
+|---|---|---|---|---|
+| 1 | 8B1 24% → 5% | 통신 on/off 둘 다 하락 → fine-tune 자체가 망가뜨림. critic이 "거의 항상 성공"에 맞춰짐 | critic warmup 30회, lr 1e-4 | `logs/stage8_comm_train_attempt1_degraded.log` |
+| 2 | 8B1 20% 정체 | goal이 바로 아래면 88%, 옆으로 1칸만 어긋나도 0/230 | 옆으로 밀기 레벨 8B0a/8B0b 추가 | `..._attempt2_no_lateral.log` |
+| 3 | 8B0a에서 옆 0% | 아래로 밀기만으로 보상 대부분을 받음 | 같은 행 옆으로만 미는 8B0 추가 | `..._attempt3_8B0a_no_lateral.log` |
+| 4 | 8B0 0% | 8A 정책은 어떤 배치에서도 아래로만 밂 (3,000번 중 옆 0번) | 2명을 옆면에 세우는 발판 + entropy 0.03 (0.01은 0%) | `..._attempt4_8B0_no_lateral.log` |
+| 5 | 8B0a에서 dx=0까지 0% | 아래로 밀기를 잊음 | 가로 레벨에 8A 과제 50% 혼합 | `checkpoints/archive_stage8_comm_attempt5_forgetting/` |
+| 6 | 왼쪽 밀기 0% | 오른쪽 면 2명의 LEFT 확률 3-4%, 대신 RIGHT 52% | 왼쪽 75% 발판 8B0sL, max_steps 60 | `..._attempt6_no_left.log` |
+| 7 | 8B2 정체 (먼 버킷 50%) | goal이 target 위면 0/58, 위로 민 적 0번 | 위로 밀기 발판 추가 | `..._attempt7_8B0sL_to_8B2.log` |
+| 8 | 3칸 폭 위로 밀기 발판 0% | 미는 에이전트가 goal을 못 봄 + 3명 동시 UP 확률 0.08% | 2칸 폭 발판 8B0uS2 먼저 | `..._attempt8_uS_3wide.log` |
+| 9 | 8B3 정체 (위로 0/63) | 위로 밀기가 (4,2) 좌표에 묶임 | target 위치 랜덤인 위로 밀기 8B0uLs/8B0uL | `..._attempt9_uS2_to_8B3.log` |
+| 10 | 8B4에서 세로 3칸 target 11-21% | 3명이 옆면에 줄 서서 밀기 | 세로로 긴 target 발판 8B0tS/8B0t → 8B4 통과 | `..._attempt10_uLs_to_8B4.log` |
+| 11 | 8C obstacle 3개 0-3% | obstacle을 한 번에 0-3개 | 8C 앞에 obstacle 1개 레벨 | `..._attempt11_tS_to_8C.log` |
+| 12 | 8C0a(entropy 0.03) 붕괴 | 긴 레벨에서 0.03 | entropy 0.01 + `target_kl` | `..._attempt12_8C0a_collapse.log` |
+| 13 | 8C0a 23-39% 정체 | 가장 어려운 기하학 위에 obstacle | goal 2-5칸으로 쉬운 기반 | `..._attempt13_8C0a_hard.log` |
+| 14 | 8C0a 상한 도달 (73-83%) | obstacle이 경로 위면 1/15 | obstacle 치우기 발판 8C0s | `..._attempt14_8C0a_stalled.log` |
+| 15 | 8C0s 26-31% | 큰 target은 통로가 3칸 높이 | 작은 target 발판 8C0s1 | `..._attempt15_8C0s.log` |
+| 15b | 8C0s1 정체 (버킷 57-70%, 상한 도달) | 같은 발판을 Track B는 약 29,900 episode에 통과. 원인 미분석 | 아직 없음 | `..._attempt15b_8C0s1_part1.log`, `logs/stage8_comm_train.log` |
+
+로그 파일은 모두 `logs/stage8_comm_train_*`.
+
+### Track B
+
+| 부 | 문제 | 진단 | 조치 | 로그 / 체크포인트 |
+|---|---|---|---|---|
+| 1 | S0이 31,000 episode | 가로(1명) 96%, 세로(2명 동시) 42% | 시간이 해결 | `logs/comm_scratch_train_part1_S0-S3.log` |
+| 1 | S3 붕괴 (작은 target까지 25-39%) | 크기 2-4 x 2-3을 한 번에 (4명 전원 필요) | S3a/S3b 분할 + rehearsal | 같은 로그 |
+| 2 | 저장 중 프로세스 사망 | Windows 오류 1224 (파일 잠금) | `_safe_save` | `..._part2_crash.log` |
+| 4-6 | S3a 정체 | 세로로 긴 target 옆으로 밀기 22% | 발판 S3s → 중간 S3t → S3a 통과 | `..._part4_*`, `..._part5_*`, `..._part6_S3s.log` |
+| 7 | S4 붕괴 (S3b 과제 85% → 18%) | help_penalty 아님 (성능 하락이 먼저). lr 3e-4 | lr 1e-4 + `target_kl` → S4-S9 무붕괴 | `..._part7_S3t_to_S4collapse.log`, `checkpoints/comm_scratch_S4_collapsed_15k.pt` |
+| 8 | S10 obstacle 7-17% | obstacle 0개 88%, 1개 34%, 2개 9% | S10a(쉬운 기반 + obstacle 1개) | `..._part8_S4_to_S10.log` |
+| 10 | S10b 18-41% | 세 축을 한꺼번에 바꿈 | S10b/S10c/S10d로 분할 | `..._part10_S10a_S10b3axes.log` |
+| 11 | 새 S10b 42-64% 정체 | 경로 위 obstacle 0-38%, 경로 밖이어도 먼 goal 45-63% | obstacle 치우기 발판 S10a2 | `..._part11_S10b.log`, `checkpoints/comm_scratch_S10b_45k.pt` |
+| 12 | S10a2 큰 target 0-4% | 통로가 3칸 높이 | 작은 target 발판 S10a1 → 약 29,900 episode에 통과 (2026-10-20) | `..._part12_S10a2.log`, `..._part13_S10a1_part1.log`, `logs/comm_scratch_train.log` |
+
+로그 파일은 모두 `logs/comm_scratch_train_*`.
+
+---
+
+## 9. 다음에 할 일 / 열린 질문
+
+- **obstacle 단계 마무리.** Track B는 작은 target 발판(S10a1)을 통과했고 다음은 모든 크기 발판(S10a2).
+  Track A는 작은 target 발판(8C0s1)에서 정체했다 (약 85,000 episode, 버킷 57-70%). 같은 발판을
+  Track B는 통과했으므로, Track A 쪽 실패 유형부터 나눠 볼 필요가 있다. 큰 target까지 넘어가면
+  남은 obstacle 레벨(Track A 8C0a-8D, Track B S10b-S11)과 Track A의 split 레벨이 남는다.
+- **no-comm 대조군.** 같은 커리큘럼을 `comm_enabled=False`로 학습해서, "학습 후 통신을 끈 모델"이
+  아니라 "통신 없이 학습한 모델"과 비교한다.
+- **고정 테스트 세트.** 학습에 쓰지 않은 고정 시나리오 세트로 두 트랙과 대조군을 함께 평가한다
+  (`evaluation/benchmark_scenarios.py` 확장).
+- **HELP 사용 패턴 분석.** 누가, 언제(target/goal을 본 상태인지), 받은 쪽이 어떻게 움직이는지.
+- **통신을 mastery 조건에 넣을지.** 지금은 ablation을 기록만 한다. `max_steps`를 줄여 통신이 꼭
+  필요하게 만드는 튜닝은 하지 않았다.
+- **메모리 없는 정책의 한계.** target/goal이 시야 밖으로 나가면 기억하지 못한다. 먼 goal + obstacle
+  조합이 가장 약한 것도 이와 관련 있을 수 있다. GRU 실험 준비는 끝났다 (3장 "GRU 실험 준비").
+  centralized critic(MAPPO)은 GRU 결과를 본 뒤 하나씩 얹는다 (둘을 동시에 넣으면 무엇이 효과를
+  냈는지 구분할 수 없다).
+- **Track B 중단 지점.** 세션 종료로 MLP S10a2 실행이 53,800 episode에서 멈췄다 (큰 target 0-4%).
+  `comm_scratch_latest.pt`가 그 지점이다.
+
+---
+
+## 부록: 배경 (2026-09-17 - 09-29 이전)
+
+- **Stage 0-6** (`train/stages/stage_0_6`): 고정 좌표 target, obstacle 0-2개, 스폰 반경만 단계적 확대.
+- **Stage 7** (`train/stages/stage_7`): Stage 6 기하학을 x축으로 평행 이동 (target과 goal을 같이 이동).
+- **Stage 8 (통신 없음)** (`train/stages/stage_8`): 8A(크기 랜덤)는 통과(`stage_8A_size_mastered.pt`).
+  8B(위치 랜덤)는 세 번 실패했다 — 완전 랜덤 위치를 한 번에(탐색 실패), 크기와 위치를 동시에(정체),
+  크기 고정 반경 2(성공률 40% → 4%). 나중에 원인은 풀 수 없는 episode 19%, entropy 0.03 폭주,
+  옆으로 밀기를 배운 적 없음 세 가지로 밝혀졌다.
+- **통신 아키텍처 (2026-09-22)**: 정책에 통신 head 추가, `PPO.load(strict=False)`로 comm head 없는
+  구 체크포인트를 warm-start, `help_penalty`, `PolicyEvaluator(disable_communication=...)`. 이전의
+  모든 학습 스크립트는 env에 `NO_MESSAGE`를 보내 기존 동작을 유지한다. 이때 `PPO.__init__`이
+  `ActorCritic`을 위치 인자로 호출해 comm head가 256-way로 만들어지던 버그를 테스트가 잡아냈다.
+- **원래 Stage 9 (파이프라인 검증판)** (`train/stages/stage_9`): target 위치를 고정한 채 split spawn만
+  얹어 파이프라인이 돌아가는지만 확인했다 (성공률 95-100%, help_rate 20-24%). 위치가 고정이면 통신이
+  필요 없으므로 성능 결론은 내리지 않았다. 진짜 필요성 검증은 위치 일반화 이후로 미뤘고, 이것이
+  지금의 두 트랙이 됐다.

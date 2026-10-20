@@ -29,6 +29,7 @@ class RandomScenarioGenerator:
         target_size_range=((2, 4), (2, 3)),
         obstacle_size_range=((1, 3), (1, 2)),
         max_attempts=200,
+        target_wall_margin=1,
     ):
         self.map_width = map_width
         self.map_height = map_height
@@ -64,6 +65,20 @@ class RandomScenarioGenerator:
         )
 
         self.max_attempts = max_attempts
+
+        # target은 벽에서 최소 이 칸수만큼 떨어뜨려 배치한다.
+        #
+        # 버그 수정 (2026-09-29): 미는 방향 반대쪽 면의 모든 칸에
+        # 에이전트가 서 있어야 밀 수 있으므로, target이 벽에 붙어
+        # 있으면 벽에서 멀어지는 방향으로는 영원히 못 민다 (예:
+        # y=0이면 위쪽 면이 맵 밖이라 아래로 못 민다). 이전에는
+        # 이런 풀 수 없는 episode가 8B1에서 19%, 8B3 이후
+        # 32~34% 섞여 있어서 버킷별 0.85 기준을 원리적으로 넘을
+        # 수 없었다. goal은 벽에 붙어도 괜찮다 (내부에서 벽
+        # 쪽으로는 밀 수 있음).
+        self.target_wall_margin = (
+            target_wall_margin
+        )
 
         # Stage 0-6 기본 배치.
         # randomize_size / randomize_position이
@@ -108,28 +123,36 @@ class RandomScenarioGenerator:
         width,
         height,
         forbidden_cells,
+        margin=0,
     ):
         """
-        맵 안에 완전히 들어가고 forbidden_cells와 겹치지
-        않는 (x, y)를 찾는다. 실패하면 None.
+        맵 안에 완전히 들어가고(벽에서 margin칸 이상 떨어짐)
+        forbidden_cells와 겹치지 않는 (x, y)를 찾는다.
+        실패하면 None.
         """
 
         if (
-            width > self.map_width
-            or height > self.map_height
+            width + 2 * margin
+            > self.map_width
+            or height + 2 * margin
+            > self.map_height
         ):
             return None
 
         for _ in range(self.max_attempts):
 
             x = random.randint(
-                0,
-                self.map_width - width,
+                margin,
+                self.map_width
+                - width
+                - margin,
             )
 
             y = random.randint(
-                0,
-                self.map_height - height,
+                margin,
+                self.map_height
+                - height
+                - margin,
             )
 
             cells = {
@@ -152,11 +175,12 @@ class RandomScenarioGenerator:
         width,
         height,
         forbidden_cells,
+        margin=0,
     ):
         """
         anchor(x, y) 기준 +-position_radius 범위 안에서
-        맵 안에 들어가고 forbidden_cells와 겹치지 않는
-        (x, y)를 찾는다.
+        맵 안에 들어가고(벽에서 margin칸 이상 떨어짐)
+        forbidden_cells와 겹치지 않는 (x, y)를 찾는다.
 
         position_radius가 None이면 맵 전체에서
         _sample_rect_position와 동일하게 동작한다.
@@ -167,25 +191,26 @@ class RandomScenarioGenerator:
                 width,
                 height,
                 forbidden_cells,
+                margin=margin,
             )
 
         x_min = max(
-            0,
+            margin,
             anchor_x - self.position_radius,
         )
 
         x_max = min(
-            self.map_width - width,
+            self.map_width - width - margin,
             anchor_x + self.position_radius,
         )
 
         y_min = max(
-            0,
+            margin,
             anchor_y - self.position_radius,
         )
 
         y_max = min(
-            self.map_height - height,
+            self.map_height - height - margin,
             anchor_y + self.position_radius,
         )
 
@@ -239,6 +264,8 @@ class RandomScenarioGenerator:
                     target_width,
                     target_height,
                     forbidden_cells=set(),
+                    margin=
+                        self.target_wall_margin,
                 )
             )
 
