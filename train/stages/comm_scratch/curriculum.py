@@ -92,6 +92,9 @@ from .scenario import (
 # 느렸다. 시간 제한(200 -> 400 step에도 성공 그대로)도, 풀 수 없는 배치(BFS로
 # 600개 모두 풀림)도 아니어서, obstacle 두 개를 차례로 처리하는 발판을 둔다.
 # 긴 레벨이라 entropy는 기본값(8C0a에서 0.03이 붕괴를 불렀다).
+# S10f도 (max_steps를 200으로 고친 뒤에도) 약 100,000 episode 동안 0/4 버킷,
+# 최저 52-68%. S10a3를 얇은/보통 크기로 쪼개서 풀었던 것처럼 앞에 S10f1
+# (goal 3-5칸, 얇은 경로 obstacle, 작은 추가 obstacle)을 둔다.
 #
 # S10b 분할 (2026-09-29): S10a 다음 S10b에서 goal 거리(2-5 -> 무제한), 스폰
 # (근처 -> 랜덤), obstacle 크기(작음 -> 보통) 세 축을 한꺼번에 바꿨더니
@@ -120,6 +123,7 @@ from .scenario import (
 #   S10b goal 무제한 (근처 스폰, 작은 obstacle 1개)     (goal 거리)
 #   S10c 스폰 랜덤                                        (스폰)
 #   S10d obstacle 보통 크기 (1-3 x 1-2)                   (obstacle 크기)
+#   S10f1 발판: 얇은 경로 obstacle + 작은 obstacle 1개, goal 3-5칸
 #   S10f 발판: 경로 obstacle + 다른 obstacle 1개 (총 2개) (obstacle 수)
 #   S10e 랜덤 스폰 + obstacle 0-2개                      (obstacle 수)
 #   S10 split 1near + obstacle 0-2개                     (스폰)
@@ -404,6 +408,25 @@ LEVELS = [
         "target_size": RANDOM_SIZE,
         "goal_distance_range": None,
         "spawn": {"type": "random"},
+        "obstacle_count_range": (1, 1),
+        "help_penalty": HELP_PENALTY,
+    },
+    {
+        "name": "S10f1_two_small_obstacles_scaffold",
+        "target_size": RANDOM_SIZE,
+        "goal_distance_range": (3, 5),
+        "goal_axis": "straight",
+        "obstacle_in_path": True,
+        "obstacle_in_path_size_range": DEFAULT_OBSTACLE_SIZE_RANGE,
+        "obstacle_in_path_max_area": 3,
+        "obstacle_in_path_off_wall": True,
+        "extra_obstacle_count_range": (1, 1),
+        # 추가 obstacle 크기 (generator의 obstacle_size_range)
+        "obstacle_size_range": ((1, 2), (1, 1)),
+        "spawn": {
+            "type": "near",
+            "radius": NEAR_RADIUS,
+        },
         "obstacle_count_range": (1, 1),
         "help_penalty": HELP_PENALTY,
     },

@@ -1465,3 +1465,27 @@ def test_scratch_two_obstacle_scaffold():
         )
 
         assert env._obstacle_blocking_score() > 0
+
+
+def test_scratch_two_small_obstacles_scaffold():
+
+    random.seed(3)
+
+    sampler = CommScratchSampler()
+
+    sampler.level = sampler.LEVEL_NAMES.index(
+        "S10f1_two_small_obstacles_scaffold"
+    )
+
+    for _ in range(100):
+
+        scenario = sampler.sample()
+
+        assert len(scenario["obstacles"]) == 2
+
+        for obstacle in scenario["obstacles"]:
+            assert (
+                obstacle["width"]
+                * obstacle["height"]
+                <= 3
+            )
