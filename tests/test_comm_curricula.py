@@ -1545,5 +1545,7 @@ def test_scratch_final_levels_use_relaxed_mastery():
     assert relaxed == [
         "S10e_obstacles_0-2_random_spawn",
         "S10_obstacles_0-2",
+        "S11a_small_obstacles_0-4",
+        "S11b_obstacles_0-3",
         "S11_obstacles_0-4",
     ]

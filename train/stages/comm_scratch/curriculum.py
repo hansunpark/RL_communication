@@ -145,7 +145,7 @@ DEFAULT_OBSTACLE_SIZE_RANGE = ((1, 3), (1, 2))
 
 NEW_COORDINATION_ENTROPY_COEF = 0.03
 
-# obstacle 0-N개 랜덤인 마지막 레벨들(S10e, S10, S11)의 mastery 기준.
+# obstacle 0-N개 랜덤인 마지막 레벨들(S10e, S10, S11a, S11b, S11)의 mastery 기준.
 # 다른 레벨은 "모든 버킷 >= 0.85". 여기서는 "최근 400 episode 전체
 # >= 0.85 + 모든 버킷 >= 0.6"으로 바꾼다.
 #
@@ -488,6 +488,46 @@ LEVELS = [
                 FAR_MIN_DISTANCE,
         },
         "obstacle_count_range": (0, 2),
+        "help_penalty": HELP_PENALTY,
+    },
+    # S11 정체 (2026-10-21, GRU): 55,000 episode에 전체 0.67-0.68, obstacle
+    # 3-4개 버킷 13-62%. BFS로 보면 S11 배치 600개 모두 풀 수 있고 obstacle을
+    # 꼭 밀어야 하는 배치도 적다(최악 버킷 37%). 개수/크기를 따로 바꿔 재 보니
+    # 크기가 더 크다: 3개 작은 0.71 / 보통 0.48, 4개 작은 0.59 / 보통 0.30.
+    # 스폰을 근처로 바꾸면 모이기는 빨라지지만(91 -> 48 step) 성공은 0.38로
+    # 그대로라 큰 obstacle 사이로 target을 돌려 미는 것이 문제다.
+    # -> 작은 obstacle 0-4개(S11a), 보통 크기 0-3개(S11b)를 거쳐 S11로.
+    {
+        "name": "S11a_small_obstacles_0-4",
+        "bucket_threshold": FINAL_BUCKET_THRESHOLD,
+        "overall_threshold": FINAL_OVERALL_THRESHOLD,
+        "target_size": RANDOM_SIZE,
+        "goal_distance_range": None,
+        "spawn": {
+            "type": "split",
+            "near_count": 1,
+            "near_radius": NEAR_RADIUS,
+            "far_min_distance":
+                FAR_MIN_DISTANCE,
+        },
+        "obstacle_count_range": (0, 4),
+        "obstacle_size_range": ((1, 2), (1, 1)),
+        "help_penalty": HELP_PENALTY,
+    },
+    {
+        "name": "S11b_obstacles_0-3",
+        "bucket_threshold": FINAL_BUCKET_THRESHOLD,
+        "overall_threshold": FINAL_OVERALL_THRESHOLD,
+        "target_size": RANDOM_SIZE,
+        "goal_distance_range": None,
+        "spawn": {
+            "type": "split",
+            "near_count": 1,
+            "near_radius": NEAR_RADIUS,
+            "far_min_distance":
+                FAR_MIN_DISTANCE,
+        },
+        "obstacle_count_range": (0, 3),
         "help_penalty": HELP_PENALTY,
     },
     {
