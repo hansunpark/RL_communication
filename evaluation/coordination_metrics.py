@@ -30,6 +30,14 @@ from env.constants import (
 #   분자: 그 step에서 접촉 칸의 에이전트 전원이 d를 고른 경우.
 #   (행동 선택 기준이다. 다른 에이전트와 칸이 겹쳐 실제 이동이
 #    취소되는 경우도 "동기화된 시도"로 센다.)
+#
+# rally_steps / rally_rate (모이는 속도): episode 시작부터 처음으로
+#   "유효 push가 가능한 접촉 배치"(CPR 분모 조건)가 갖춰질 때까지의
+#   step 수 평균. 끝까지 한 번도 없으면 episode 길이로 센다(중도 절단).
+#   rally_rate는 그런 배치가 한 번이라도 생긴 episode 비율.
+#   추가 이유: Track B MLP 체크포인트에서 통신 on/off의 성공률 차이는
+#   컸지만(S9 0.89 / 0.47) RC/CPR 차이는 작았다(RC 0.48 / 0.44). RC는
+#   step 평균이라 "얼마나 빨리 모이는가"가 드러나지 않는다.
 # ============================================================
 
 
@@ -85,6 +93,9 @@ class CoordinationTracker:
         self.push_opportunities = 0
         self.coordinated_pushes = 0
 
+        self.rally_steps = []
+        self.rallied_episodes = 0
+
     def observe(
         self,
         env,
@@ -92,6 +103,7 @@ class CoordinationTracker:
     ):
         """
         env.step 직전에 부른다. move_actions: {agent: 이동 행동}.
+        이 step이 유효 push 기회였는지(bool)를 돌려준다.
         """
 
         target = env._target_object()
@@ -102,7 +114,7 @@ class CoordinationTracker:
         )
 
         if not directions:
-            return
+            return False
 
         agent_at = {
             position: agent
@@ -151,7 +163,7 @@ class CoordinationTracker:
         self.rc_steps += 1
 
         if not ready:
-            return
+            return False
 
         self.push_opportunities += 1
 
@@ -167,6 +179,29 @@ class CoordinationTracker:
         ):
             self.coordinated_pushes += 1
 
+        return True
+
+    def end_episode(
+        self,
+        first_opportunity_step,
+        episode_length,
+    ):
+        """
+        first_opportunity_step: 처음 push 기회가 생긴 step 번호
+        (0부터), 없었으면 None.
+        """
+
+        if first_opportunity_step is None:
+            self.rally_steps.append(
+                episode_length
+            )
+        else:
+            self.rallied_episodes += 1
+
+            self.rally_steps.append(
+                first_opportunity_step
+            )
+
     def summary(self):
 
         return {
@@ -179,6 +214,18 @@ class CoordinationTracker:
                 self.coordinated_pushes
                 / self.push_opportunities
                 if self.push_opportunities
+                else None
+            ),
+            "rally_steps": (
+                sum(self.rally_steps)
+                / len(self.rally_steps)
+                if self.rally_steps
+                else None
+            ),
+            "rally_rate": (
+                self.rallied_episodes
+                / len(self.rally_steps)
+                if self.rally_steps
                 else None
             ),
             "rc_steps": self.rc_steps,

@@ -429,6 +429,7 @@ def evaluate_level(
         active[env_index] = {
             "obs": observations,
             "length": 0,
+            "first_opportunity": None,
         }
 
         if recurrent:
@@ -559,7 +560,9 @@ def evaluate_level(
         ):
             env = envs[env_index]
 
-            tracker.observe(
+            state = active[env_index]
+
+            opportunity = tracker.observe(
                 env,
                 {
                     agent: int(action[0])
@@ -567,6 +570,17 @@ def evaluate_level(
                     in env_actions.items()
                 },
             )
+
+            if (
+                opportunity
+                and state[
+                    "first_opportunity"
+                ]
+                is None
+            ):
+                state[
+                    "first_opportunity"
+                ] = state["length"]
 
             (
                 observations,
@@ -596,6 +610,13 @@ def evaluate_level(
 
                 lengths.append(
                     state["length"]
+                )
+
+                tracker.end_episode(
+                    state[
+                        "first_opportunity"
+                    ],
+                    state["length"],
                 )
 
                 del active[env_index]

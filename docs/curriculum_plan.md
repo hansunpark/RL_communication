@@ -9,11 +9,48 @@
 
 ---
 
+## 0. 자율 진행 모드 (2026-10-20부터)
+
+사용자가 워크스테이션을 직접 다룰 수 없어서, 크레딧이 남는 동안 Claude가 스스로 진행한다.
+받은 지시:
+
+1. GRU(RNN) 모델로 Track B 끝(S10a1 통과)에서 이어서 단계별 학습을 계속한다. GPU 최적화에
+   몰두하지 않는다 (잘 안 되면 CPU).
+2. 통신 on/off 평가에 **성공률, RC, CPR**을 함께 쓴다 (정의는 3장 "협동 지표").
+3. 정체하면 커리큘럼을 쪼개거나 바꿔서 스스로 풀어 본다.
+4. 끝나기 전에 무슨 일이 있었는지 기록한다 (아래 "자율 진행 기록").
+
+운영 방식:
+
+- 학습은 `Win32_Process.Create`(WMI)로 띄워 Claude 세션이 끝나도 계속 돈다. 띄우는 명령은
+  "자율 진행 기록"에 그대로 남긴다.
+- 푸시는 이 워크스테이션에 GitHub 인증이 없어서 안 된다. 커밋은 로컬 브랜치
+  `comm-curricula-gru`에 쌓인다 (`git push -u origin comm-curricula-gru`를 사람이 한 번 실행해야 함).
+
+### 자율 진행 기록
+
+| 시각 | 내용 |
+|---|---|
+| 2026-10-20 | GRU 준비 완료, 커밋 `b6e7e7f`(코드), `4d89d9d`(결과물). 푸시 실패(인증 없음). |
+| 2026-10-20 | env worker 병렬화(`EnvPool`)와 GPU 큰 batch 옵션 추가. GRU 기준 처리량: env 16개 CPU 1,626 → env 384개, worker 22개, GPU 14,374 env-step/s. RC/CPR 지표 추가. 커밋 `635c7c8`. |
+| 2026-10-20 | **Track B GRU 학습 시작** (`comm_scratch_gru`): S10a1 통과 MLP 체크포인트에서 S10a2(레벨 15)부터. 명령은 아래. |
+
+```
+.venv\Scripts\python.exe -u -m train.stages.comm_scratch.train --recurrent --start-level 15 ^
+  --start-checkpoint checkpoints\comm_scratch_S10a1_clear_obstacle_small_target_scaffold_mastered.pt ^
+  --num-envs 384 --num-workers 22 --rollout-steps 64 --minibatch-size 4096 --device cuda ^
+  --max-episodes-per-level 200000 > logs\comm_scratch_gru_train.log 2>&1
+```
+
+설정 메모: env 384개 x rollout 64 x 에이전트 4 = update당 98,304 transition, minibatch 4,096이면
+epoch당 24번, update당 96번 gradient step (target_kl로 조기 종료 가능). 같은 episode 수에서 update
+횟수가 MLP 기본 설정(env 16개)보다 훨씬 적어서 정체 판정을 레벨당 200,000 episode로 늘렸다.
+MLP 기준선과 batch 설정이 다르다는 점은 비교할 때 감안해야 한다.
+
 ## 1. 현재 상태 (2026-10-20)
 
-두 트랙을 **지금 레벨까지만** 학습하도록 재개했다 (`--resume --stop-after-current-level`). 레벨을
-통과하면 다음 레벨로 넘어간 상태를 `_latest`에 저장하고 멈춘다. Track B는 S10a1을 통과하고
-멈췄고, Track A는 8C0s1에서 상한(재개 후 60,000 episode)에 걸려 멈췄다. **지금 도는 학습은 없다.**
+Track B는 **GRU로 S10a2부터 학습 중**이다 (0장 "자율 진행 기록"). Track A는 8C0s1에서 상한(재개 후
+60,000 episode)에 걸려 멈춘 상태 그대로다. 아래 표는 MLP 기준 마지막 상태다.
 
 | | Track A `stage8_comm` | Track B `comm_scratch` |
 |---|---|---|
@@ -131,6 +168,21 @@ obstacle 치우기처럼 여러 단계가 필요한 레벨(Track B S10a2, Track 
 |---|---|---|
 | B | `python -m train.stages.comm_scratch.train --recurrent --start-level 15 --start-checkpoint checkpoints/comm_scratch_S10a1_clear_obstacle_small_target_scaffold_mastered.pt` | 같은 체크포인트에서 시작한 MLP S10a2: 53,800 episode 동안 큰 target 0-4%, 작은 target 29-37% (`logs/comm_scratch_train.log`) |
 | A | `python -m train.stages.stage_8_comm.train --recurrent --start-level 16 --start-checkpoint checkpoints/stage8_comm_stage_8C0s1_clear_obstacle_small_target_comm_stalled.pt` | MLP 8C0s1: 약 85,000 episode에 버킷 57-70%로 정체 |
+
+### 협동 지표 (RC, CPR)
+
+`evaluation/coordination_metrics.py`. 레벨 통과/정체 시 ablation과 `evaluation/comm_ablation_report.py`가
+통신 on/off 각각에 대해 성공률과 함께 기록한다.
+
+- **유효 방향 D_t**: target을 goal 쪽으로 가깝게 만드는 방향 (target과 goal 좌상단의 x, y 차이 부호.
+  같은 행/열이면 한 방향, 대각선이면 두 방향). "엉뚱한 면을 채운 것"이 점수가 되지 않게 한다.
+- **RC** (모임): 매 step `C_t(o,d) = |F_t(o,d) ∩ P_t| / |F_t(o,d)|`를 유효 방향마다 계산해 최댓값을
+  취하고, 유효 방향이 있는 모든 step에 대해 평균한다. F_t(o,d)는 target o를 d로 밀 때 서야 하는
+  접촉 칸, P_t는 에이전트가 있는 칸.
+- **CPR** (동기화된 밀기): 분모는 어떤 유효 방향 d의 접촉 칸이 모두 차 있고 target이 d로 움직일
+  공간(맵 안, 벽/다른 물체 없음)도 있는 step, 분자는 그중 접촉 칸의 에이전트 전원이 d를 고른 step.
+  행동 선택 기준이라, 다른 에이전트와 칸이 겹쳐 실제 이동이 취소된 경우도 동기화로 센다.
+- 평가 episode의 모든 step을 합쳐 계산한다 (episode 평균이 아니라 step 가중).
 
 ### 맵 생성 방식
 
