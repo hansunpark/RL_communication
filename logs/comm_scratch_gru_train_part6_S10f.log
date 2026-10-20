@@ -1,0 +1,756 @@
+Device: cuda
+Env pool: 384 envs on 22 workers
+Loading start checkpoint: checkpoints\comm_scratch_gru_S10f_50k_150steps.pt
+Observation dim: 129
+Run: comm_scratch_gru envs=384 comm_enabled=True recurrent=True
+[   0.1m ep    333] S10f_two_obstacles_scaffold lvl_ep=200 avg_len=33.0 return=10.81 help=0.381 | ready 0/4 worst: small_g4-5_obs1-2=1.00(85) large_g4-5_obs1-2=1.00(71) small_g6-8_obs1-2=1.00(24)
+[   0.1m ep    624] S10f_two_obstacles_scaffold lvl_ep=400 avg_len=67.7 return=10.52 help=0.348 | ready 2/4 worst: small_g4-5_obs1-2=1.00(100) large_g4-5_obs1-2=1.00(100) small_g6-8_obs1-2=1.00(56)
+[   0.1m ep    863] S10f_two_obstacles_scaffold lvl_ep=600 avg_len=142.2 return=3.60 help=0.355 | ready 0/4 worst: large_g6-8_obs1-2=0.67(100) small_g6-8_obs1-2=0.71(100) small_g4-5_obs1-2=0.73(100)
+[   0.2m ep   1135] S10f_two_obstacles_scaffold lvl_ep=800 avg_len=99.4 return=6.43 help=0.371 | ready 0/4 worst: large_g6-8_obs1-2=0.46(100) small_g6-8_obs1-2=0.54(100) large_g4-5_obs1-2=0.62(100)
+[   0.2m ep   1396] S10f_two_obstacles_scaffold lvl_ep=1000 avg_len=97.7 return=7.06 help=0.362 | ready 0/4 worst: large_g6-8_obs1-2=0.49(100) small_g6-8_obs1-2=0.64(100) small_g4-5_obs1-2=0.73(100)
+[   0.3m ep   1658] S10f_two_obstacles_scaffold lvl_ep=1200 avg_len=119.0 return=5.61 help=0.344 | ready 0/4 worst: large_g6-8_obs1-2=0.53(100) small_g6-8_obs1-2=0.62(100) large_g4-5_obs1-2=0.70(100)
+[   0.3m ep   1946] S10f_two_obstacles_scaffold lvl_ep=1400 avg_len=120.0 return=5.31 help=0.348 | ready 0/4 worst: small_g6-8_obs1-2=0.46(100) large_g6-8_obs1-2=0.53(100) small_g4-5_obs1-2=0.66(100)
+[   0.4m ep   2219] S10f_two_obstacles_scaffold lvl_ep=1600 avg_len=98.8 return=7.15 help=0.375 | ready 0/4 worst: small_g6-8_obs1-2=0.50(100) large_g6-8_obs1-2=0.56(100) small_g4-5_obs1-2=0.74(100)
+[   0.4m ep   2481] S10f_two_obstacles_scaffold lvl_ep=1800 avg_len=102.3 return=6.94 help=0.360 | ready 0/4 worst: large_g6-8_obs1-2=0.58(100) small_g6-8_obs1-2=0.63(100) large_g4-5_obs1-2=0.76(100)
+[   0.4m ep   2759] S10f_two_obstacles_scaffold lvl_ep=2000 avg_len=116.3 return=5.44 help=0.341 | ready 0/4 worst: small_g6-8_obs1-2=0.51(100) large_g6-8_obs1-2=0.55(100) large_g4-5_obs1-2=0.72(100)
+[   0.5m ep   3030] S10f_two_obstacles_scaffold lvl_ep=2200 avg_len=94.3 return=7.04 help=0.346 | ready 0/4 worst: small_g6-8_obs1-2=0.47(100) large_g6-8_obs1-2=0.51(100) small_g4-5_obs1-2=0.79(100)
+[   0.5m ep   3296] S10f_two_obstacles_scaffold lvl_ep=2400 avg_len=113.1 return=5.93 help=0.345 | ready 0/4 worst: large_g6-8_obs1-2=0.53(100) small_g6-8_obs1-2=0.55(100) large_g4-5_obs1-2=0.71(100)
+[   0.6m ep   3571] S10f_two_obstacles_scaffold lvl_ep=2600 avg_len=104.2 return=6.48 help=0.383 | ready 0/4 worst: large_g6-8_obs1-2=0.48(100) small_g6-8_obs1-2=0.55(100) small_g4-5_obs1-2=0.78(100)
+[   0.6m ep   3848] S10f_two_obstacles_scaffold lvl_ep=2800 avg_len=106.8 return=6.30 help=0.344 | ready 0/4 worst: small_g6-8_obs1-2=0.56(100) large_g6-8_obs1-2=0.56(100) small_g4-5_obs1-2=0.74(100)
+[   0.7m ep   4136] S10f_two_obstacles_scaffold lvl_ep=3000 avg_len=104.7 return=6.64 help=0.369 | ready 0/4 worst: small_g6-8_obs1-2=0.54(100) large_g6-8_obs1-2=0.59(100) large_g4-5_obs1-2=0.71(100)
+[   0.7m ep   4417] S10f_two_obstacles_scaffold lvl_ep=3200 avg_len=103.6 return=7.06 help=0.349 | ready 0/4 worst: large_g6-8_obs1-2=0.59(100) small_g6-8_obs1-2=0.71(100) large_g4-5_obs1-2=0.74(100)
+[   0.8m ep   4689] S10f_two_obstacles_scaffold lvl_ep=3400 avg_len=103.5 return=6.54 help=0.369 | ready 0/4 worst: large_g6-8_obs1-2=0.53(100) small_g6-8_obs1-2=0.66(100) small_g4-5_obs1-2=0.81(100)
+[   0.8m ep   4956] S10f_two_obstacles_scaffold lvl_ep=3600 avg_len=109.8 return=6.23 help=0.356 | ready 0/4 worst: large_g6-8_obs1-2=0.46(100) small_g6-8_obs1-2=0.54(100) large_g4-5_obs1-2=0.77(100)
+[   0.8m ep   5229] S10f_two_obstacles_scaffold lvl_ep=3800 avg_len=105.0 return=6.45 help=0.359 | ready 0/4 worst: small_g6-8_obs1-2=0.53(100) large_g6-8_obs1-2=0.54(100) large_g4-5_obs1-2=0.73(100)
+[   0.9m ep   5487] S10f_two_obstacles_scaffold lvl_ep=4000 avg_len=103.6 return=6.60 help=0.375 | ready 0/4 worst: large_g6-8_obs1-2=0.56(100) small_g6-8_obs1-2=0.61(100) small_g4-5_obs1-2=0.69(100)
+[   0.9m ep   5778] S10f_two_obstacles_scaffold lvl_ep=4200 avg_len=93.3 return=7.35 help=0.345 | ready 0/4 worst: large_g6-8_obs1-2=0.53(100) small_g6-8_obs1-2=0.64(100) large_g4-5_obs1-2=0.82(100)
+[   1.0m ep   6034] S10f_two_obstacles_scaffold lvl_ep=4400 avg_len=100.3 return=6.71 help=0.358 | ready 1/4 worst: large_g6-8_obs1-2=0.48(100) small_g6-8_obs1-2=0.62(100) large_g4-5_obs1-2=0.78(100)
+[   1.0m ep   6299] S10f_two_obstacles_scaffold lvl_ep=4600 avg_len=106.7 return=6.23 help=0.366 | ready 0/4 worst: large_g6-8_obs1-2=0.49(100) small_g6-8_obs1-2=0.57(100) large_g4-5_obs1-2=0.75(100)
+[   1.1m ep   6573] S10f_two_obstacles_scaffold lvl_ep=4800 avg_len=96.3 return=7.20 help=0.341 | ready 0/4 worst: small_g6-8_obs1-2=0.53(100) large_g6-8_obs1-2=0.55(100) small_g4-5_obs1-2=0.77(100)
+[   1.1m ep   6840] S10f_two_obstacles_scaffold lvl_ep=5000 avg_len=104.8 return=6.83 help=0.347 | ready 0/4 worst: small_g6-8_obs1-2=0.53(100) large_g6-8_obs1-2=0.59(100) small_g4-5_obs1-2=0.77(100)
+[   1.1m ep   7107] S10f_two_obstacles_scaffold lvl_ep=5200 avg_len=115.0 return=5.44 help=0.345 | ready 0/4 worst: large_g6-8_obs1-2=0.52(100) small_g6-8_obs1-2=0.54(100) small_g4-5_obs1-2=0.68(100)
+[   1.2m ep   7369] S10f_two_obstacles_scaffold lvl_ep=5400 avg_len=98.1 return=7.01 help=0.340 | ready 0/4 worst: large_g6-8_obs1-2=0.47(100) small_g6-8_obs1-2=0.61(100) large_g4-5_obs1-2=0.71(100)
+[   1.2m ep   7641] S10f_two_obstacles_scaffold lvl_ep=5600 avg_len=110.4 return=6.12 help=0.320 | ready 0/4 worst: large_g6-8_obs1-2=0.52(100) small_g6-8_obs1-2=0.57(100) small_g4-5_obs1-2=0.73(100)
+[   1.2m ep   7919] S10f_two_obstacles_scaffold lvl_ep=5800 avg_len=102.6 return=6.75 help=0.319 | ready 0/4 worst: large_g6-8_obs1-2=0.55(100) small_g6-8_obs1-2=0.56(100) small_g4-5_obs1-2=0.75(100)
+[   1.3m ep   8174] S10f_two_obstacles_scaffold lvl_ep=6000 avg_len=94.2 return=7.48 help=0.327 | ready 0/4 worst: large_g6-8_obs1-2=0.61(100) small_g6-8_obs1-2=0.66(100) small_g4-5_obs1-2=0.74(100)
+[   1.3m ep   8440] S10f_two_obstacles_scaffold lvl_ep=6200 avg_len=107.9 return=6.15 help=0.332 | ready 0/4 worst: large_g6-8_obs1-2=0.57(100) small_g6-8_obs1-2=0.58(100) small_g4-5_obs1-2=0.78(100)
+[   1.4m ep   8700] S10f_two_obstacles_scaffold lvl_ep=6400 avg_len=105.0 return=6.84 help=0.345 | ready 0/4 worst: large_g6-8_obs1-2=0.51(100) small_g6-8_obs1-2=0.55(100) small_g4-5_obs1-2=0.76(100)
+[   1.4m ep   8970] S10f_two_obstacles_scaffold lvl_ep=6600 avg_len=96.5 return=7.05 help=0.346 | ready 0/4 worst: large_g6-8_obs1-2=0.53(100) small_g6-8_obs1-2=0.56(100) large_g4-5_obs1-2=0.79(100)
+[   1.5m ep   9233] S10f_two_obstacles_scaffold lvl_ep=6800 avg_len=99.9 return=6.61 help=0.339 | ready 0/4 worst: small_g6-8_obs1-2=0.49(100) large_g6-8_obs1-2=0.57(100) large_g4-5_obs1-2=0.76(100)
+[   1.5m ep   9489] S10f_two_obstacles_scaffold lvl_ep=7000 avg_len=106.0 return=6.50 help=0.321 | ready 0/4 worst: small_g6-8_obs1-2=0.46(100) large_g6-8_obs1-2=0.59(100) large_g4-5_obs1-2=0.77(100)
+[   1.6m ep   9754] S10f_two_obstacles_scaffold lvl_ep=7200 avg_len=98.1 return=7.37 help=0.354 | ready 0/4 worst: small_g6-8_obs1-2=0.51(100) large_g6-8_obs1-2=0.56(100) large_g4-5_obs1-2=0.79(100)
+[   1.6m ep  10008] S10f_two_obstacles_scaffold lvl_ep=7400 avg_len=101.4 return=6.69 help=0.333 | ready 1/4 worst: large_g6-8_obs1-2=0.53(100) small_g6-8_obs1-2=0.55(100) large_g4-5_obs1-2=0.82(100)
+[   1.6m ep  10284] S10f_two_obstacles_scaffold lvl_ep=7600 avg_len=100.5 return=6.81 help=0.325 | ready 1/4 worst: small_g6-8_obs1-2=0.51(100) large_g6-8_obs1-2=0.53(100) large_g4-5_obs1-2=0.81(100)
+[   1.7m ep  10552] S10f_two_obstacles_scaffold lvl_ep=7800 avg_len=101.9 return=6.68 help=0.336 | ready 0/4 worst: large_g6-8_obs1-2=0.49(100) small_g6-8_obs1-2=0.52(100) large_g4-5_obs1-2=0.80(100)
+[   1.7m ep  10842] S10f_two_obstacles_scaffold lvl_ep=8000 avg_len=103.8 return=6.42 help=0.339 | ready 0/4 worst: large_g6-8_obs1-2=0.52(100) small_g6-8_obs1-2=0.63(100) small_g4-5_obs1-2=0.68(100)
+[   1.8m ep  11099] S10f_two_obstacles_scaffold lvl_ep=8200 avg_len=102.9 return=6.98 help=0.365 | ready 0/4 worst: large_g6-8_obs1-2=0.56(100) small_g6-8_obs1-2=0.65(100) small_g4-5_obs1-2=0.70(100)
+[   1.8m ep  11355] S10f_two_obstacles_scaffold lvl_ep=8400 avg_len=105.0 return=6.74 help=0.347 | ready 0/4 worst: small_g6-8_obs1-2=0.61(100) large_g6-8_obs1-2=0.61(100) large_g4-5_obs1-2=0.77(100)
+[   1.9m ep  11612] S10f_two_obstacles_scaffold lvl_ep=8600 avg_len=99.7 return=6.87 help=0.337 | ready 0/4 worst: small_g6-8_obs1-2=0.58(100) large_g6-8_obs1-2=0.61(100) large_g4-5_obs1-2=0.71(100)
+[   1.9m ep  11894] S10f_two_obstacles_scaffold lvl_ep=8800 avg_len=88.7 return=7.61 help=0.332 | ready 1/4 worst: small_g6-8_obs1-2=0.60(100) large_g6-8_obs1-2=0.63(100) large_g4-5_obs1-2=0.79(100)
+[   1.9m ep  12157] S10f_two_obstacles_scaffold lvl_ep=9000 avg_len=110.2 return=6.12 help=0.356 | ready 0/4 worst: small_g6-8_obs1-2=0.57(100) large_g6-8_obs1-2=0.63(100) large_g4-5_obs1-2=0.70(100)
+[   2.0m ep  12440] S10f_two_obstacles_scaffold lvl_ep=9200 avg_len=105.3 return=6.40 help=0.356 | ready 0/4 worst: small_g6-8_obs1-2=0.50(100) large_g6-8_obs1-2=0.57(100) large_g4-5_obs1-2=0.71(100)
+[   2.0m ep  12716] S10f_two_obstacles_scaffold lvl_ep=9400 avg_len=109.1 return=6.39 help=0.354 | ready 0/4 worst: small_g6-8_obs1-2=0.51(100) large_g6-8_obs1-2=0.60(100) large_g4-5_obs1-2=0.76(100)
+[   2.1m ep  12983] S10f_two_obstacles_scaffold lvl_ep=9600 avg_len=115.1 return=5.99 help=0.348 | ready 0/4 worst: small_g6-8_obs1-2=0.54(100) large_g6-8_obs1-2=0.57(100) small_g4-5_obs1-2=0.69(100)
+[   2.1m ep  13238] S10f_two_obstacles_scaffold lvl_ep=9800 avg_len=102.5 return=6.46 help=0.357 | ready 0/4 worst: large_g6-8_obs1-2=0.52(100) small_g6-8_obs1-2=0.55(100) large_g4-5_obs1-2=0.68(100)
+[   2.1m ep  13510] S10f_two_obstacles_scaffold lvl_ep=10000 avg_len=98.6 return=6.85 help=0.374 | ready 1/4 worst: small_g6-8_obs1-2=0.49(100) large_g6-8_obs1-2=0.51(100) large_g4-5_obs1-2=0.79(100)
+[   2.2m ep  13771] S10f_two_obstacles_scaffold lvl_ep=10200 avg_len=107.3 return=6.37 help=0.399 | ready 0/4 worst: large_g6-8_obs1-2=0.47(100) small_g6-8_obs1-2=0.53(100) small_g4-5_obs1-2=0.78(100)
+[   2.2m ep  14048] S10f_two_obstacles_scaffold lvl_ep=10400 avg_len=102.8 return=7.02 help=0.406 | ready 0/4 worst: large_g6-8_obs1-2=0.58(100) small_g6-8_obs1-2=0.61(100) large_g4-5_obs1-2=0.76(100)
+[   2.3m ep  14323] S10f_two_obstacles_scaffold lvl_ep=10600 avg_len=106.8 return=6.25 help=0.397 | ready 0/4 worst: small_g6-8_obs1-2=0.57(100) large_g6-8_obs1-2=0.57(100) large_g4-5_obs1-2=0.76(100)
+[   2.3m ep  14585] S10f_two_obstacles_scaffold lvl_ep=10800 avg_len=113.7 return=6.15 help=0.374 | ready 0/4 worst: small_g6-8_obs1-2=0.50(100) large_g6-8_obs1-2=0.54(100) large_g4-5_obs1-2=0.72(100)
+[   2.3m ep  14836] S10f_two_obstacles_scaffold lvl_ep=11000 avg_len=104.8 return=6.59 help=0.404 | ready 0/4 worst: large_g6-8_obs1-2=0.53(100) small_g6-8_obs1-2=0.55(100) large_g4-5_obs1-2=0.73(100)
+[   2.4m ep  15107] S10f_two_obstacles_scaffold lvl_ep=11200 avg_len=97.2 return=7.11 help=0.407 | ready 1/4 worst: large_g6-8_obs1-2=0.61(100) small_g6-8_obs1-2=0.62(100) large_g4-5_obs1-2=0.68(100)
+[   2.4m ep  15370] S10f_two_obstacles_scaffold lvl_ep=11400 avg_len=99.7 return=7.03 help=0.388 | ready 0/4 worst: large_g6-8_obs1-2=0.58(100) large_g4-5_obs1-2=0.69(100) small_g6-8_obs1-2=0.69(100)
+[   2.5m ep  15634] S10f_two_obstacles_scaffold lvl_ep=11600 avg_len=93.1 return=7.15 help=0.397 | ready 1/4 worst: large_g6-8_obs1-2=0.56(100) small_g6-8_obs1-2=0.59(100) large_g4-5_obs1-2=0.79(100)
+[   2.5m ep  15916] S10f_two_obstacles_scaffold lvl_ep=11800 avg_len=103.6 return=6.31 help=0.411 | ready 0/4 worst: large_g6-8_obs1-2=0.51(100) small_g6-8_obs1-2=0.57(100) large_g4-5_obs1-2=0.75(100)
+[   2.6m ep  16196] S10f_two_obstacles_scaffold lvl_ep=12000 avg_len=103.1 return=6.54 help=0.404 | ready 0/4 worst: large_g6-8_obs1-2=0.46(100) small_g6-8_obs1-2=0.66(100) large_g4-5_obs1-2=0.69(100)
+[   2.6m ep  16443] S10f_two_obstacles_scaffold lvl_ep=12200 avg_len=98.9 return=6.73 help=0.437 | ready 0/4 worst: large_g6-8_obs1-2=0.46(100) small_g6-8_obs1-2=0.69(100) large_g4-5_obs1-2=0.74(100)
+[   2.6m ep  16710] S10f_two_obstacles_scaffold lvl_ep=12400 avg_len=98.3 return=7.01 help=0.404 | ready 0/4 worst: large_g6-8_obs1-2=0.51(100) small_g6-8_obs1-2=0.62(100) large_g4-5_obs1-2=0.75(100)
+[   2.7m ep  16967] S10f_two_obstacles_scaffold lvl_ep=12600 avg_len=98.3 return=7.16 help=0.411 | ready 0/4 worst: large_g6-8_obs1-2=0.54(100) small_g6-8_obs1-2=0.66(100) large_g4-5_obs1-2=0.75(100)
+[   2.7m ep  17228] S10f_two_obstacles_scaffold lvl_ep=12800 avg_len=99.0 return=7.23 help=0.427 | ready 0/4 worst: large_g6-8_obs1-2=0.57(100) small_g6-8_obs1-2=0.65(100) small_g4-5_obs1-2=0.81(100)
+[   2.7m ep  17489] S10f_two_obstacles_scaffold lvl_ep=13000 avg_len=101.8 return=7.30 help=0.423 | ready 1/4 worst: large_g6-8_obs1-2=0.62(100) small_g6-8_obs1-2=0.68(100) small_g4-5_obs1-2=0.74(100)
+[   2.8m ep  17746] S10f_two_obstacles_scaffold lvl_ep=13200 avg_len=103.2 return=6.74 help=0.405 | ready 0/4 worst: large_g6-8_obs1-2=0.62(100) small_g6-8_obs1-2=0.71(100) small_g4-5_obs1-2=0.76(100)
+[   2.8m ep  18010] S10f_two_obstacles_scaffold lvl_ep=13400 avg_len=103.2 return=6.37 help=0.416 | ready 0/4 worst: large_g6-8_obs1-2=0.60(100) small_g6-8_obs1-2=0.62(100) large_g4-5_obs1-2=0.68(100)
+[   2.9m ep  18278] S10f_two_obstacles_scaffold lvl_ep=13600 avg_len=100.4 return=6.84 help=0.416 | ready 0/4 worst: large_g6-8_obs1-2=0.56(100) small_g6-8_obs1-2=0.59(100) large_g4-5_obs1-2=0.75(100)
+[   2.9m ep  18532] S10f_two_obstacles_scaffold lvl_ep=13800 avg_len=99.5 return=7.11 help=0.422 | ready 0/4 worst: large_g6-8_obs1-2=0.55(100) small_g6-8_obs1-2=0.58(100) large_g4-5_obs1-2=0.82(100)
+[   3.0m ep  18795] S10f_two_obstacles_scaffold lvl_ep=14000 avg_len=97.0 return=7.24 help=0.405 | ready 1/4 worst: large_g6-8_obs1-2=0.55(100) small_g6-8_obs1-2=0.60(100) small_g4-5_obs1-2=0.80(100)
+[   3.0m ep  19055] S10f_two_obstacles_scaffold lvl_ep=14200 avg_len=98.8 return=6.74 help=0.399 | ready 0/4 worst: large_g6-8_obs1-2=0.56(100) small_g6-8_obs1-2=0.64(100) large_g4-5_obs1-2=0.78(100)
+[   3.0m ep  19322] S10f_two_obstacles_scaffold lvl_ep=14400 avg_len=97.5 return=6.97 help=0.393 | ready 0/4 worst: large_g6-8_obs1-2=0.58(100) small_g6-8_obs1-2=0.61(100) large_g4-5_obs1-2=0.75(100)
+[   3.1m ep  19592] S10f_two_obstacles_scaffold lvl_ep=14600 avg_len=109.7 return=6.44 help=0.411 | ready 0/4 worst: small_g6-8_obs1-2=0.56(100) large_g6-8_obs1-2=0.60(100) small_g4-5_obs1-2=0.76(100)
+[   3.1m ep  19854] S10f_two_obstacles_scaffold lvl_ep=14800 avg_len=103.6 return=6.81 help=0.420 | ready 0/4 worst: small_g6-8_obs1-2=0.53(100) large_g6-8_obs1-2=0.59(100) large_g4-5_obs1-2=0.80(100)
+[   3.2m ep  20137] S10f_two_obstacles_scaffold lvl_ep=15000 avg_len=103.4 return=6.80 help=0.416 | ready 1/4 worst: large_g6-8_obs1-2=0.51(100) small_g6-8_obs1-2=0.57(100) large_g4-5_obs1-2=0.81(100)
+[   3.2m ep  20405] S10f_two_obstacles_scaffold lvl_ep=15200 avg_len=101.9 return=6.67 help=0.400 | ready 0/4 worst: large_g6-8_obs1-2=0.50(100) small_g6-8_obs1-2=0.64(100) small_g4-5_obs1-2=0.78(100)
+[   3.2m ep  20653] S10f_two_obstacles_scaffold lvl_ep=15400 avg_len=93.0 return=7.37 help=0.414 | ready 0/4 worst: large_g6-8_obs1-2=0.53(100) small_g6-8_obs1-2=0.61(100) small_g4-5_obs1-2=0.79(100)
+[   3.3m ep  20908] S10f_two_obstacles_scaffold lvl_ep=15600 avg_len=99.6 return=6.59 help=0.408 | ready 0/4 worst: small_g6-8_obs1-2=0.55(100) large_g6-8_obs1-2=0.63(100) large_g4-5_obs1-2=0.74(100)
+[   3.3m ep  21180] S10f_two_obstacles_scaffold lvl_ep=15800 avg_len=91.0 return=7.54 help=0.411 | ready 1/4 worst: small_g6-8_obs1-2=0.57(100) large_g6-8_obs1-2=0.68(100) large_g4-5_obs1-2=0.74(100)
+[   3.4m ep  21448] S10f_two_obstacles_scaffold lvl_ep=16000 avg_len=106.8 return=6.18 help=0.401 | ready 0/4 worst: small_g6-8_obs1-2=0.55(100) large_g6-8_obs1-2=0.65(100) large_g4-5_obs1-2=0.71(100)
+[   3.4m ep  21700] S10f_two_obstacles_scaffold lvl_ep=16200 avg_len=102.3 return=6.48 help=0.383 | ready 0/4 worst: small_g6-8_obs1-2=0.60(100) large_g6-8_obs1-2=0.63(100) large_g4-5_obs1-2=0.64(100)
+[   3.4m ep  21969] S10f_two_obstacles_scaffold lvl_ep=16400 avg_len=110.6 return=6.35 help=0.398 | ready 0/4 worst: small_g6-8_obs1-2=0.58(100) large_g6-8_obs1-2=0.60(100) large_g4-5_obs1-2=0.69(100)
+[   3.5m ep  22240] S10f_two_obstacles_scaffold lvl_ep=16600 avg_len=101.9 return=6.78 help=0.400 | ready 0/4 worst: small_g6-8_obs1-2=0.53(100) large_g6-8_obs1-2=0.63(100) large_g4-5_obs1-2=0.71(100)
+[   3.5m ep  22497] S10f_two_obstacles_scaffold lvl_ep=16800 avg_len=91.0 return=7.67 help=0.394 | ready 0/4 worst: small_g6-8_obs1-2=0.59(100) large_g6-8_obs1-2=0.65(100) large_g4-5_obs1-2=0.79(100)
+[   3.6m ep  22758] S10f_two_obstacles_scaffold lvl_ep=17000 avg_len=100.8 return=6.65 help=0.385 | ready 0/4 worst: small_g6-8_obs1-2=0.57(100) large_g6-8_obs1-2=0.61(100) large_g4-5_obs1-2=0.82(100)
+[   3.6m ep  23009] S10f_two_obstacles_scaffold lvl_ep=17200 avg_len=106.8 return=6.64 help=0.357 | ready 0/4 worst: small_g6-8_obs1-2=0.53(100) large_g6-8_obs1-2=0.58(100) small_g4-5_obs1-2=0.74(100)
+[   3.7m ep  23283] S10f_two_obstacles_scaffold lvl_ep=17400 avg_len=104.9 return=6.57 help=0.378 | ready 0/4 worst: small_g6-8_obs1-2=0.57(100) large_g6-8_obs1-2=0.58(100) large_g4-5_obs1-2=0.68(100)
+[   3.7m ep  23553] S10f_two_obstacles_scaffold lvl_ep=17600 avg_len=98.9 return=6.98 help=0.350 | ready 1/4 worst: small_g6-8_obs1-2=0.59(100) large_g6-8_obs1-2=0.59(100) large_g4-5_obs1-2=0.67(100)
+[   3.7m ep  23807] S10f_two_obstacles_scaffold lvl_ep=17800 avg_len=107.3 return=6.42 help=0.378 | ready 0/4 worst: large_g6-8_obs1-2=0.59(100) small_g6-8_obs1-2=0.60(100) large_g4-5_obs1-2=0.69(100)
+[   3.8m ep  24072] S10f_two_obstacles_scaffold lvl_ep=18000 avg_len=96.4 return=7.32 help=0.388 | ready 0/4 worst: small_g6-8_obs1-2=0.57(100) large_g6-8_obs1-2=0.60(100) large_g4-5_obs1-2=0.79(100)
+[   3.8m ep  24339] S10f_two_obstacles_scaffold lvl_ep=18200 avg_len=110.0 return=6.40 help=0.377 | ready 0/4 worst: small_g6-8_obs1-2=0.55(100) large_g6-8_obs1-2=0.58(100) large_g4-5_obs1-2=0.78(100)
+[   3.8m ep  24622] S10f_two_obstacles_scaffold lvl_ep=18400 avg_len=101.4 return=7.10 help=0.384 | ready 0/4 worst: small_g6-8_obs1-2=0.59(100) large_g6-8_obs1-2=0.61(100) large_g4-5_obs1-2=0.69(100)
+[   3.9m ep  24890] S10f_two_obstacles_scaffold lvl_ep=18600 avg_len=103.6 return=6.80 help=0.376 | ready 0/4 worst: large_g6-8_obs1-2=0.59(100) small_g6-8_obs1-2=0.62(100) large_g4-5_obs1-2=0.73(100)
+[   3.9m ep  25157] S10f_two_obstacles_scaffold lvl_ep=18800 avg_len=108.2 return=6.19 help=0.393 | ready 0/4 worst: large_g6-8_obs1-2=0.57(100) small_g6-8_obs1-2=0.62(100) large_g4-5_obs1-2=0.74(100)
+[   4.0m ep  25419] S10f_two_obstacles_scaffold lvl_ep=19000 avg_len=102.4 return=7.26 help=0.385 | ready 0/4 worst: large_g6-8_obs1-2=0.57(100) small_g6-8_obs1-2=0.63(100) large_g4-5_obs1-2=0.73(100)
+[   4.0m ep  25685] S10f_two_obstacles_scaffold lvl_ep=19200 avg_len=105.0 return=6.59 help=0.369 | ready 0/4 worst: large_g6-8_obs1-2=0.56(100) small_g6-8_obs1-2=0.59(100) large_g4-5_obs1-2=0.76(100)
+[   4.1m ep  25953] S10f_two_obstacles_scaffold lvl_ep=19400 avg_len=106.8 return=6.36 help=0.403 | ready 0/4 worst: large_g6-8_obs1-2=0.55(100) small_g6-8_obs1-2=0.58(100) large_g4-5_obs1-2=0.73(100)
+[   4.1m ep  26228] S10f_two_obstacles_scaffold lvl_ep=19600 avg_len=118.8 return=5.64 help=0.387 | ready 0/4 worst: large_g6-8_obs1-2=0.53(100) small_g6-8_obs1-2=0.59(100) large_g4-5_obs1-2=0.67(100)
+[   4.2m ep  26502] S10f_two_obstacles_scaffold lvl_ep=19800 avg_len=99.0 return=7.06 help=0.396 | ready 0/4 worst: large_g6-8_obs1-2=0.56(100) small_g6-8_obs1-2=0.60(100) large_g4-5_obs1-2=0.70(100)
+[   4.2m ep  26765] S10f_two_obstacles_scaffold lvl_ep=20000 avg_len=111.8 return=6.23 help=0.405 | ready 0/4 worst: large_g6-8_obs1-2=0.58(100) small_g6-8_obs1-2=0.62(100) large_g4-5_obs1-2=0.75(100)
+[   4.2m ep  27029] S10f_two_obstacles_scaffold lvl_ep=20200 avg_len=107.2 return=6.18 help=0.377 | ready 0/4 worst: large_g6-8_obs1-2=0.57(100) small_g6-8_obs1-2=0.59(100) large_g4-5_obs1-2=0.70(100)
+[   4.3m ep  27298] S10f_two_obstacles_scaffold lvl_ep=20400 avg_len=107.1 return=6.45 help=0.361 | ready 0/4 worst: large_g6-8_obs1-2=0.50(100) small_g6-8_obs1-2=0.52(100) large_g4-5_obs1-2=0.72(100)
+[   4.3m ep  27579] S10f_two_obstacles_scaffold lvl_ep=20600 avg_len=119.4 return=5.36 help=0.380 | ready 0/4 worst: large_g6-8_obs1-2=0.39(100) small_g6-8_obs1-2=0.57(100) small_g4-5_obs1-2=0.73(100)
+[   4.4m ep  27852] S10f_two_obstacles_scaffold lvl_ep=20800 avg_len=102.6 return=6.33 help=0.387 | ready 0/4 worst: large_g6-8_obs1-2=0.50(100) small_g6-8_obs1-2=0.55(100) small_g4-5_obs1-2=0.67(100)
+[   4.4m ep  28116] S10f_two_obstacles_scaffold lvl_ep=21000 avg_len=111.1 return=5.56 help=0.388 | ready 0/4 worst: large_g6-8_obs1-2=0.53(100) small_g6-8_obs1-2=0.54(100) large_g4-5_obs1-2=0.66(100)
+[   4.5m ep  28401] S10f_two_obstacles_scaffold lvl_ep=21200 avg_len=109.7 return=6.28 help=0.394 | ready 0/4 worst: small_g6-8_obs1-2=0.52(100) large_g6-8_obs1-2=0.52(100) large_g4-5_obs1-2=0.67(100)
+[   4.5m ep  28664] S10f_two_obstacles_scaffold lvl_ep=21400 avg_len=102.1 return=6.49 help=0.350 | ready 0/4 worst: large_g6-8_obs1-2=0.48(100) small_g6-8_obs1-2=0.59(100) small_g4-5_obs1-2=0.75(100)
+[   4.5m ep  28933] S10f_two_obstacles_scaffold lvl_ep=21600 avg_len=102.4 return=6.78 help=0.384 | ready 0/4 worst: large_g6-8_obs1-2=0.49(100) small_g6-8_obs1-2=0.63(100) large_g4-5_obs1-2=0.75(100)
+[   4.6m ep  29221] S10f_two_obstacles_scaffold lvl_ep=21800 avg_len=116.9 return=5.54 help=0.347 | ready 0/4 worst: large_g6-8_obs1-2=0.43(100) small_g6-8_obs1-2=0.58(100) small_g4-5_obs1-2=0.75(100)
+[   4.6m ep  29472] S10f_two_obstacles_scaffold lvl_ep=22000 avg_len=93.1 return=7.17 help=0.379 | ready 0/4 worst: large_g6-8_obs1-2=0.51(100) small_g6-8_obs1-2=0.59(100) large_g4-5_obs1-2=0.75(100)
+[   4.7m ep  29729] S10f_two_obstacles_scaffold lvl_ep=22200 avg_len=113.7 return=5.77 help=0.365 | ready 0/4 worst: large_g6-8_obs1-2=0.46(100) small_g6-8_obs1-2=0.62(100) small_g4-5_obs1-2=0.75(100)
+[   4.7m ep  29998] S10f_two_obstacles_scaffold lvl_ep=22400 avg_len=116.4 return=5.58 help=0.350 | ready 0/4 worst: large_g6-8_obs1-2=0.47(100) small_g6-8_obs1-2=0.56(100) large_g4-5_obs1-2=0.67(100)
+[   4.8m ep  30262] S10f_two_obstacles_scaffold lvl_ep=22600 avg_len=107.3 return=6.15 help=0.372 | ready 0/4 worst: large_g6-8_obs1-2=0.44(100) small_g6-8_obs1-2=0.58(100) large_g4-5_obs1-2=0.67(100)
+[   4.8m ep  30551] S10f_two_obstacles_scaffold lvl_ep=22800 avg_len=106.8 return=6.31 help=0.376 | ready 0/4 worst: large_g6-8_obs1-2=0.41(100) small_g6-8_obs1-2=0.62(100) large_g4-5_obs1-2=0.76(100)
+[   4.9m ep  30814] S10f_two_obstacles_scaffold lvl_ep=23000 avg_len=103.4 return=6.55 help=0.375 | ready 0/4 worst: large_g6-8_obs1-2=0.42(100) small_g6-8_obs1-2=0.67(100) small_g4-5_obs1-2=0.74(100)
+[   4.9m ep  31087] S10f_two_obstacles_scaffold lvl_ep=23200 avg_len=111.1 return=6.05 help=0.365 | ready 0/4 worst: large_g6-8_obs1-2=0.54(100) small_g6-8_obs1-2=0.61(100) small_g4-5_obs1-2=0.69(100)
+[   4.9m ep  31349] S10f_two_obstacles_scaffold lvl_ep=23400 avg_len=99.0 return=6.92 help=0.386 | ready 0/4 worst: small_g6-8_obs1-2=0.50(100) large_g6-8_obs1-2=0.62(100) small_g4-5_obs1-2=0.76(100)
+[   5.0m ep  31606] S10f_two_obstacles_scaffold lvl_ep=23600 avg_len=93.4 return=7.46 help=0.365 | ready 0/4 worst: large_g6-8_obs1-2=0.61(100) small_g6-8_obs1-2=0.66(100) large_g4-5_obs1-2=0.79(100)
+[   5.0m ep  31868] S10f_two_obstacles_scaffold lvl_ep=23800 avg_len=104.3 return=6.55 help=0.372 | ready 0/4 worst: large_g6-8_obs1-2=0.59(100) small_g6-8_obs1-2=0.66(100) large_g4-5_obs1-2=0.73(100)
+[   5.1m ep  32149] S10f_two_obstacles_scaffold lvl_ep=24000 avg_len=100.2 return=6.96 help=0.347 | ready 0/4 worst: large_g6-8_obs1-2=0.58(100) small_g6-8_obs1-2=0.60(100) small_g4-5_obs1-2=0.80(100)
+[   5.1m ep  32415] S10f_two_obstacles_scaffold lvl_ep=24200 avg_len=103.1 return=7.12 help=0.353 | ready 1/4 worst: large_g6-8_obs1-2=0.58(100) small_g6-8_obs1-2=0.60(100) large_g4-5_obs1-2=0.77(100)
+[   5.2m ep  32677] S10f_two_obstacles_scaffold lvl_ep=24400 avg_len=102.7 return=6.77 help=0.340 | ready 0/4 worst: small_g6-8_obs1-2=0.54(100) large_g6-8_obs1-2=0.62(100) large_g4-5_obs1-2=0.79(100)
+[   5.2m ep  32949] S10f_two_obstacles_scaffold lvl_ep=24600 avg_len=105.9 return=6.45 help=0.347 | ready 0/4 worst: small_g6-8_obs1-2=0.51(100) large_g6-8_obs1-2=0.60(100) small_g4-5_obs1-2=0.74(100)
+[   5.2m ep  33220] S10f_two_obstacles_scaffold lvl_ep=24800 avg_len=102.5 return=6.63 help=0.345 | ready 0/4 worst: small_g6-8_obs1-2=0.50(100) large_g6-8_obs1-2=0.59(100) small_g4-5_obs1-2=0.75(100)
+[   5.3m ep  33493] S10f_two_obstacles_scaffold lvl_ep=25000 avg_len=108.3 return=6.24 help=0.339 | ready 0/4 worst: small_g6-8_obs1-2=0.51(100) large_g6-8_obs1-2=0.58(100) large_g4-5_obs1-2=0.76(100)
+[   5.3m ep  33756] S10f_two_obstacles_scaffold lvl_ep=25200 avg_len=97.9 return=7.06 help=0.336 | ready 0/4 worst: small_g6-8_obs1-2=0.53(100) large_g6-8_obs1-2=0.57(100) large_g4-5_obs1-2=0.77(100)
+[   5.4m ep  34022] S10f_two_obstacles_scaffold lvl_ep=25400 avg_len=95.8 return=7.04 help=0.327 | ready 0/4 worst: small_g6-8_obs1-2=0.52(100) large_g6-8_obs1-2=0.58(100) large_g4-5_obs1-2=0.82(100)
+[   5.4m ep  34285] S10f_two_obstacles_scaffold lvl_ep=25600 avg_len=110.7 return=5.85 help=0.316 | ready 0/4 worst: small_g6-8_obs1-2=0.50(100) large_g6-8_obs1-2=0.57(100) large_g4-5_obs1-2=0.72(100)
+[   5.4m ep  34541] S10f_two_obstacles_scaffold lvl_ep=25800 avg_len=105.2 return=6.69 help=0.323 | ready 0/4 worst: small_g6-8_obs1-2=0.48(100) large_g6-8_obs1-2=0.59(100) large_g4-5_obs1-2=0.70(100)
+[   5.5m ep  34809] S10f_two_obstacles_scaffold lvl_ep=26000 avg_len=108.4 return=6.29 help=0.325 | ready 0/4 worst: large_g6-8_obs1-2=0.49(100) small_g6-8_obs1-2=0.53(100) large_g4-5_obs1-2=0.79(100)
+[   5.5m ep  35096] S10f_two_obstacles_scaffold lvl_ep=26200 avg_len=100.3 return=7.08 help=0.324 | ready 1/4 worst: large_g6-8_obs1-2=0.49(100) small_g6-8_obs1-2=0.62(100) large_g4-5_obs1-2=0.83(100)
+[   5.6m ep  35347] S10f_two_obstacles_scaffold lvl_ep=26400 avg_len=97.3 return=6.98 help=0.308 | ready 0/4 worst: large_g6-8_obs1-2=0.48(100) small_g6-8_obs1-2=0.61(100) large_g4-5_obs1-2=0.78(100)
+[   5.6m ep  35619] S10f_two_obstacles_scaffold lvl_ep=26600 avg_len=99.5 return=6.75 help=0.315 | ready 0/4 worst: large_g6-8_obs1-2=0.53(100) small_g6-8_obs1-2=0.64(100) small_g4-5_obs1-2=0.78(100)
+[   5.6m ep  35887] S10f_two_obstacles_scaffold lvl_ep=26800 avg_len=97.8 return=6.72 help=0.312 | ready 0/4 worst: large_g6-8_obs1-2=0.55(100) small_g6-8_obs1-2=0.60(100) small_g4-5_obs1-2=0.75(100)
+[   5.7m ep  36149] S10f_two_obstacles_scaffold lvl_ep=27000 avg_len=97.9 return=6.83 help=0.307 | ready 0/4 worst: small_g6-8_obs1-2=0.54(100) large_g6-8_obs1-2=0.61(100) small_g4-5_obs1-2=0.73(100)
+[   5.7m ep  36407] S10f_two_obstacles_scaffold lvl_ep=27200 avg_len=107.7 return=6.28 help=0.312 | ready 0/4 worst: small_g6-8_obs1-2=0.47(100) large_g6-8_obs1-2=0.64(100) small_g4-5_obs1-2=0.71(100)
+[   5.8m ep  36672] S10f_two_obstacles_scaffold lvl_ep=27400 avg_len=99.7 return=6.62 help=0.319 | ready 0/4 worst: small_g6-8_obs1-2=0.47(100) large_g6-8_obs1-2=0.64(100) small_g4-5_obs1-2=0.78(100)
+[   5.8m ep  36941] S10f_two_obstacles_scaffold lvl_ep=27600 avg_len=97.7 return=6.87 help=0.314 | ready 0/4 worst: large_g6-8_obs1-2=0.52(100) small_g6-8_obs1-2=0.57(100) large_g4-5_obs1-2=0.69(100)
+[   5.9m ep  37196] S10f_two_obstacles_scaffold lvl_ep=27800 avg_len=110.6 return=6.45 help=0.316 | ready 0/4 worst: large_g6-8_obs1-2=0.49(100) small_g6-8_obs1-2=0.62(100) small_g4-5_obs1-2=0.73(100)
+[   5.9m ep  37474] S10f_two_obstacles_scaffold lvl_ep=28000 avg_len=100.3 return=6.54 help=0.317 | ready 0/4 worst: large_g6-8_obs1-2=0.52(100) small_g6-8_obs1-2=0.58(100) small_g4-5_obs1-2=0.75(100)
+[   5.9m ep  37753] S10f_two_obstacles_scaffold lvl_ep=28200 avg_len=103.7 return=6.50 help=0.314 | ready 0/4 worst: large_g6-8_obs1-2=0.49(100) small_g6-8_obs1-2=0.59(100) small_g4-5_obs1-2=0.77(100)
+[   6.0m ep  38026] S10f_two_obstacles_scaffold lvl_ep=28400 avg_len=105.8 return=6.62 help=0.334 | ready 0/4 worst: large_g6-8_obs1-2=0.51(100) small_g6-8_obs1-2=0.60(100) large_g4-5_obs1-2=0.75(100)
+[   6.0m ep  38289] S10f_two_obstacles_scaffold lvl_ep=28600 avg_len=111.3 return=6.05 help=0.321 | ready 0/4 worst: large_g6-8_obs1-2=0.45(100) small_g6-8_obs1-2=0.59(100) small_g4-5_obs1-2=0.73(100)
+[   6.1m ep  38562] S10f_two_obstacles_scaffold lvl_ep=28800 avg_len=95.9 return=6.97 help=0.310 | ready 0/4 worst: large_g6-8_obs1-2=0.51(100) small_g6-8_obs1-2=0.63(100) large_g4-5_obs1-2=0.75(100)
+[   6.1m ep  38830] S10f_two_obstacles_scaffold lvl_ep=29000 avg_len=114.6 return=5.89 help=0.321 | ready 0/4 worst: large_g6-8_obs1-2=0.46(100) small_g6-8_obs1-2=0.63(100) small_g4-5_obs1-2=0.73(100)
+[   6.2m ep  39082] S10f_two_obstacles_scaffold lvl_ep=29200 avg_len=112.8 return=6.03 help=0.303 | ready 0/4 worst: large_g6-8_obs1-2=0.44(100) small_g6-8_obs1-2=0.63(100) small_g4-5_obs1-2=0.70(100)
+[   6.2m ep  39352] S10f_two_obstacles_scaffold lvl_ep=29400 avg_len=106.5 return=6.51 help=0.329 | ready 0/4 worst: large_g6-8_obs1-2=0.52(100) small_g6-8_obs1-2=0.53(100) large_g4-5_obs1-2=0.77(100)
+[   6.2m ep  39602] S10f_two_obstacles_scaffold lvl_ep=29600 avg_len=101.7 return=6.41 help=0.321 | ready 0/4 worst: small_g6-8_obs1-2=0.49(100) large_g6-8_obs1-2=0.52(100) large_g4-5_obs1-2=0.78(100)
+[   6.3m ep  39870] S10f_two_obstacles_scaffold lvl_ep=29800 avg_len=106.1 return=6.47 help=0.310 | ready 0/4 worst: small_g6-8_obs1-2=0.52(100) large_g6-8_obs1-2=0.53(100) large_g4-5_obs1-2=0.76(100)
+[   6.3m ep  40149] S10f_two_obstacles_scaffold lvl_ep=30000 avg_len=93.7 return=7.50 help=0.334 | ready 0/4 worst: small_g6-8_obs1-2=0.58(100) large_g6-8_obs1-2=0.63(100) large_g4-5_obs1-2=0.77(100)
+[   6.3m ep  40402] S10f_two_obstacles_scaffold lvl_ep=30200 avg_len=98.5 return=6.94 help=0.296 | ready 0/4 worst: small_g6-8_obs1-2=0.59(100) large_g6-8_obs1-2=0.67(100) large_g4-5_obs1-2=0.79(100)
+[   6.4m ep  40682] S10f_two_obstacles_scaffold lvl_ep=30400 avg_len=102.2 return=7.06 help=0.345 | ready 0/4 worst: large_g6-8_obs1-2=0.63(100) small_g6-8_obs1-2=0.68(100) large_g4-5_obs1-2=0.77(100)
+[   6.4m ep  40955] S10f_two_obstacles_scaffold lvl_ep=30600 avg_len=107.3 return=6.11 help=0.332 | ready 0/4 worst: large_g6-8_obs1-2=0.60(100) small_g6-8_obs1-2=0.65(100) small_g4-5_obs1-2=0.69(100)
+[   6.5m ep  41230] S10f_two_obstacles_scaffold lvl_ep=30800 avg_len=117.2 return=5.72 help=0.330 | ready 0/4 worst: small_g6-8_obs1-2=0.52(100) large_g6-8_obs1-2=0.61(100) small_g4-5_obs1-2=0.65(100)
+[   6.5m ep  41481] S10f_two_obstacles_scaffold lvl_ep=31000 avg_len=108.4 return=6.34 help=0.338 | ready 0/4 worst: small_g6-8_obs1-2=0.53(100) large_g6-8_obs1-2=0.59(100) large_g4-5_obs1-2=0.70(100)
+[   6.6m ep  41742] S10f_two_obstacles_scaffold lvl_ep=31200 avg_len=94.1 return=7.17 help=0.328 | ready 0/4 worst: large_g6-8_obs1-2=0.55(100) small_g6-8_obs1-2=0.61(100) large_g4-5_obs1-2=0.75(100)
+[   6.6m ep  42011] S10f_two_obstacles_scaffold lvl_ep=31400 avg_len=94.6 return=7.21 help=0.326 | ready 1/4 worst: large_g6-8_obs1-2=0.55(100) small_g6-8_obs1-2=0.56(100) large_g4-5_obs1-2=0.81(100)
+[   6.6m ep  42272] S10f_two_obstacles_scaffold lvl_ep=31600 avg_len=97.9 return=6.82 help=0.334 | ready 0/4 worst: small_g6-8_obs1-2=0.55(100) large_g6-8_obs1-2=0.60(100) large_g4-5_obs1-2=0.78(100)
+[   6.7m ep  42540] S10f_two_obstacles_scaffold lvl_ep=31800 avg_len=109.7 return=6.14 help=0.339 | ready 0/4 worst: small_g6-8_obs1-2=0.56(100) large_g6-8_obs1-2=0.65(100) large_g4-5_obs1-2=0.68(100)
+[   6.7m ep  42798] S10f_two_obstacles_scaffold lvl_ep=32000 avg_len=102.8 return=6.39 help=0.336 | ready 0/4 worst: small_g6-8_obs1-2=0.50(100) large_g6-8_obs1-2=0.63(100) large_g4-5_obs1-2=0.67(100)
+[   6.8m ep  43073] S10f_two_obstacles_scaffold lvl_ep=32200 avg_len=108.3 return=6.42 help=0.332 | ready 1/4 worst: small_g6-8_obs1-2=0.54(100) large_g6-8_obs1-2=0.54(100) large_g4-5_obs1-2=0.67(100)
+[   6.8m ep  43329] S10f_two_obstacles_scaffold lvl_ep=32400 avg_len=106.2 return=6.31 help=0.336 | ready 0/4 worst: large_g6-8_obs1-2=0.51(100) small_g6-8_obs1-2=0.56(100) large_g4-5_obs1-2=0.70(100)
+[   6.9m ep  43588] S10f_two_obstacles_scaffold lvl_ep=32600 avg_len=116.3 return=5.82 help=0.335 | ready 0/4 worst: small_g6-8_obs1-2=0.51(100) large_g6-8_obs1-2=0.54(100) small_g4-5_obs1-2=0.66(100)
+[   6.9m ep  43846] S10f_two_obstacles_scaffold lvl_ep=32800 avg_len=107.6 return=6.02 help=0.313 | ready 0/4 worst: large_g6-8_obs1-2=0.48(100) small_g6-8_obs1-2=0.57(100) large_g4-5_obs1-2=0.67(100)
+[   7.0m ep  44113] S10f_two_obstacles_scaffold lvl_ep=33000 avg_len=93.8 return=7.36 help=0.324 | ready 0/4 worst: large_g6-8_obs1-2=0.53(100) small_g6-8_obs1-2=0.58(100) large_g4-5_obs1-2=0.77(100)
+[   7.0m ep  44372] S10f_two_obstacles_scaffold lvl_ep=33200 avg_len=103.3 return=6.53 help=0.315 | ready 1/4 worst: large_g6-8_obs1-2=0.52(100) small_g6-8_obs1-2=0.54(100) large_g4-5_obs1-2=0.82(100)
+[   7.0m ep  44634] S10f_two_obstacles_scaffold lvl_ep=33400 avg_len=87.7 return=7.89 help=0.321 | ready 1/4 worst: large_g6-8_obs1-2=0.57(100) small_g6-8_obs1-2=0.60(100) large_g4-5_obs1-2=0.79(100)
+[   7.1m ep  44902] S10f_two_obstacles_scaffold lvl_ep=33600 avg_len=101.9 return=6.92 help=0.342 | ready 0/4 worst: large_g6-8_obs1-2=0.60(100) small_g6-8_obs1-2=0.69(100) large_g4-5_obs1-2=0.79(100)
+[   7.1m ep  45181] S10f_two_obstacles_scaffold lvl_ep=33800 avg_len=98.2 return=6.97 help=0.328 | ready 0/4 worst: large_g6-8_obs1-2=0.59(100) small_g6-8_obs1-2=0.64(100) large_g4-5_obs1-2=0.78(100)
+[   7.1m ep  45443] S10f_two_obstacles_scaffold lvl_ep=34000 avg_len=100.8 return=6.61 help=0.343 | ready 0/4 worst: large_g6-8_obs1-2=0.56(100) small_g6-8_obs1-2=0.61(100) large_g4-5_obs1-2=0.75(100)
+[   7.2m ep  45703] S10f_two_obstacles_scaffold lvl_ep=34200 avg_len=99.0 return=6.96 help=0.351 | ready 0/4 worst: large_g6-8_obs1-2=0.54(100) small_g6-8_obs1-2=0.63(100) large_g4-5_obs1-2=0.77(100)
+[   7.2m ep  45973] S10f_two_obstacles_scaffold lvl_ep=34400 avg_len=101.2 return=6.45 help=0.334 | ready 0/4 worst: large_g6-8_obs1-2=0.52(100) small_g6-8_obs1-2=0.61(100) large_g4-5_obs1-2=0.75(100)
+[   7.3m ep  46233] S10f_two_obstacles_scaffold lvl_ep=34600 avg_len=113.0 return=6.27 help=0.340 | ready 0/4 worst: large_g6-8_obs1-2=0.51(100) small_g6-8_obs1-2=0.58(100) large_g4-5_obs1-2=0.74(100)
+[   7.3m ep  46503] S10f_two_obstacles_scaffold lvl_ep=34800 avg_len=100.0 return=7.04 help=0.340 | ready 0/4 worst: large_g6-8_obs1-2=0.56(100) small_g6-8_obs1-2=0.68(100) large_g4-5_obs1-2=0.73(100)
+[   7.4m ep  46773] S10f_two_obstacles_scaffold lvl_ep=35000 avg_len=110.7 return=5.83 help=0.330 | ready 0/4 worst: large_g6-8_obs1-2=0.50(100) small_g6-8_obs1-2=0.64(100) large_g4-5_obs1-2=0.73(100)
+[   7.4m ep  47030] S10f_two_obstacles_scaffold lvl_ep=35200 avg_len=102.1 return=6.68 help=0.336 | ready 0/4 worst: large_g6-8_obs1-2=0.47(100) small_g6-8_obs1-2=0.57(100) small_g4-5_obs1-2=0.75(100)
+[   7.4m ep  47295] S10f_two_obstacles_scaffold lvl_ep=35400 avg_len=109.7 return=6.37 help=0.347 | ready 0/4 worst: large_g6-8_obs1-2=0.56(100) small_g6-8_obs1-2=0.57(100) small_g4-5_obs1-2=0.75(100)
+[   7.5m ep  47553] S10f_two_obstacles_scaffold lvl_ep=35600 avg_len=113.5 return=6.01 help=0.333 | ready 0/4 worst: small_g6-8_obs1-2=0.53(100) large_g6-8_obs1-2=0.54(100) small_g4-5_obs1-2=0.68(100)
+[   7.5m ep  47811] S10f_two_obstacles_scaffold lvl_ep=35800 avg_len=101.3 return=6.79 help=0.342 | ready 0/4 worst: large_g6-8_obs1-2=0.59(100) small_g6-8_obs1-2=0.61(100) large_g4-5_obs1-2=0.73(100)
+[   7.6m ep  48083] S10f_two_obstacles_scaffold lvl_ep=36000 avg_len=90.2 return=7.60 help=0.339 | ready 0/4 worst: large_g6-8_obs1-2=0.59(100) small_g6-8_obs1-2=0.65(100) large_g4-5_obs1-2=0.72(100)
+[   7.6m ep  48363] S10f_two_obstacles_scaffold lvl_ep=36200 avg_len=106.9 return=6.56 help=0.332 | ready 0/4 worst: large_g6-8_obs1-2=0.55(100) small_g6-8_obs1-2=0.65(100) large_g4-5_obs1-2=0.77(100)
+[   7.7m ep  48638] S10f_two_obstacles_scaffold lvl_ep=36400 avg_len=106.0 return=6.24 help=0.314 | ready 0/4 worst: large_g6-8_obs1-2=0.54(100) small_g6-8_obs1-2=0.59(100) large_g4-5_obs1-2=0.69(100)
+[   7.7m ep  48907] S10f_two_obstacles_scaffold lvl_ep=36600 avg_len=103.9 return=6.62 help=0.340 | ready 0/4 worst: large_g6-8_obs1-2=0.49(100) small_g6-8_obs1-2=0.58(100) large_g4-5_obs1-2=0.72(100)
+[   7.7m ep  49162] S10f_two_obstacles_scaffold lvl_ep=36800 avg_len=102.8 return=6.72 help=0.306 | ready 0/4 worst: large_g6-8_obs1-2=0.50(100) small_g6-8_obs1-2=0.63(100) small_g4-5_obs1-2=0.75(100)
+[   7.8m ep  49424] S10f_two_obstacles_scaffold lvl_ep=37000 avg_len=94.8 return=7.02 help=0.294 | ready 0/4 worst: large_g6-8_obs1-2=0.50(100) small_g6-8_obs1-2=0.59(100) large_g4-5_obs1-2=0.78(100)
+[   7.8m ep  49693] S10f_two_obstacles_scaffold lvl_ep=37200 avg_len=93.6 return=7.37 help=0.321 | ready 1/4 worst: large_g6-8_obs1-2=0.58(100) small_g6-8_obs1-2=0.61(100) large_g4-5_obs1-2=0.79(100)
+[   7.9m ep  49941] S10f_two_obstacles_scaffold lvl_ep=37400 avg_len=93.6 return=7.09 help=0.298 | ready 0/4 worst: small_g6-8_obs1-2=0.64(100) large_g6-8_obs1-2=0.64(100) large_g4-5_obs1-2=0.77(100)
+[   7.9m ep  50204] S10f_two_obstacles_scaffold lvl_ep=37600 avg_len=107.0 return=6.30 help=0.299 | ready 0/4 worst: small_g6-8_obs1-2=0.55(100) large_g6-8_obs1-2=0.65(100) small_g4-5_obs1-2=0.76(100)
+[   7.9m ep  50478] S10f_two_obstacles_scaffold lvl_ep=37800 avg_len=104.8 return=6.54 help=0.306 | ready 0/4 worst: small_g6-8_obs1-2=0.57(100) large_g6-8_obs1-2=0.57(100) small_g4-5_obs1-2=0.73(100)
+[   8.0m ep  50757] S10f_two_obstacles_scaffold lvl_ep=38000 avg_len=105.1 return=6.73 help=0.316 | ready 0/4 worst: large_g6-8_obs1-2=0.55(100) small_g6-8_obs1-2=0.69(100) large_g4-5_obs1-2=0.70(100)
+[   8.0m ep  51017] S10f_two_obstacles_scaffold lvl_ep=38200 avg_len=96.5 return=7.12 help=0.305 | ready 0/4 worst: large_g6-8_obs1-2=0.56(100) small_g6-8_obs1-2=0.64(100) large_g4-5_obs1-2=0.76(100)
+[   8.1m ep  51286] S10f_two_obstacles_scaffold lvl_ep=38400 avg_len=98.2 return=7.23 help=0.302 | ready 0/4 worst: large_g6-8_obs1-2=0.60(100) small_g6-8_obs1-2=0.65(100) large_g4-5_obs1-2=0.77(100)
+[   8.1m ep  51547] S10f_two_obstacles_scaffold lvl_ep=38600 avg_len=92.7 return=7.35 help=0.299 | ready 0/4 worst: large_g6-8_obs1-2=0.62(100) small_g6-8_obs1-2=0.68(100) large_g4-5_obs1-2=0.73(100)
+[   8.1m ep  51818] S10f_two_obstacles_scaffold lvl_ep=38800 avg_len=96.7 return=7.30 help=0.294 | ready 0/4 worst: large_g6-8_obs1-2=0.64(100) small_g6-8_obs1-2=0.67(100) small_g4-5_obs1-2=0.73(100)
+[   8.2m ep  52074] S10f_two_obstacles_scaffold lvl_ep=39000 avg_len=98.3 return=6.89 help=0.280 | ready 0/4 worst: small_g6-8_obs1-2=0.58(100) large_g6-8_obs1-2=0.67(100) small_g4-5_obs1-2=0.75(100)
+[   8.2m ep  52343] S10f_two_obstacles_scaffold lvl_ep=39200 avg_len=94.5 return=7.32 help=0.285 | ready 0/4 worst: small_g6-8_obs1-2=0.59(100) large_g6-8_obs1-2=0.67(100) large_g4-5_obs1-2=0.77(100)
+[   8.3m ep  52606] S10f_two_obstacles_scaffold lvl_ep=39400 avg_len=99.8 return=7.04 help=0.266 | ready 0/4 worst: small_g6-8_obs1-2=0.58(100) large_g6-8_obs1-2=0.68(100) large_g4-5_obs1-2=0.77(100)
+[   8.3m ep  52872] S10f_two_obstacles_scaffold lvl_ep=39600 avg_len=105.6 return=6.47 help=0.274 | ready 0/4 worst: small_g6-8_obs1-2=0.62(100) large_g6-8_obs1-2=0.64(100) large_g4-5_obs1-2=0.73(100)
+[   8.4m ep  53151] S10f_two_obstacles_scaffold lvl_ep=39800 avg_len=96.3 return=7.11 help=0.263 | ready 0/4 worst: small_g6-8_obs1-2=0.62(100) large_g6-8_obs1-2=0.63(100) large_g4-5_obs1-2=0.74(100)
+[   8.4m ep  53424] S10f_two_obstacles_scaffold lvl_ep=40000 avg_len=105.7 return=6.20 help=0.286 | ready 0/4 worst: large_g6-8_obs1-2=0.57(100) small_g6-8_obs1-2=0.58(100) small_g4-5_obs1-2=0.75(100)
+[   8.4m ep  53681] S10f_two_obstacles_scaffold lvl_ep=40200 avg_len=105.9 return=6.80 help=0.267 | ready 0/4 worst: small_g6-8_obs1-2=0.54(100) large_g6-8_obs1-2=0.55(100) small_g4-5_obs1-2=0.75(100)
+[   8.5m ep  53945] S10f_two_obstacles_scaffold lvl_ep=40400 avg_len=107.3 return=6.33 help=0.263 | ready 0/4 worst: large_g6-8_obs1-2=0.53(100) small_g6-8_obs1-2=0.56(100) small_g4-5_obs1-2=0.77(100)
+[   8.5m ep  54205] S10f_two_obstacles_scaffold lvl_ep=40600 avg_len=101.7 return=6.61 help=0.296 | ready 0/4 worst: small_g6-8_obs1-2=0.54(100) large_g6-8_obs1-2=0.56(100) large_g4-5_obs1-2=0.73(100)
+[   8.5m ep  54486] S10f_two_obstacles_scaffold lvl_ep=40800 avg_len=101.9 return=6.91 help=0.281 | ready 0/4 worst: small_g6-8_obs1-2=0.57(100) large_g6-8_obs1-2=0.57(100) large_g4-5_obs1-2=0.71(100)
+[   8.6m ep  54753] S10f_two_obstacles_scaffold lvl_ep=41000 avg_len=95.3 return=7.13 help=0.287 | ready 1/4 worst: small_g6-8_obs1-2=0.57(100) large_g6-8_obs1-2=0.57(100) large_g4-5_obs1-2=0.77(100)
+[   8.6m ep  55020] S10f_two_obstacles_scaffold lvl_ep=41200 avg_len=89.9 return=7.80 help=0.299 | ready 1/4 worst: large_g6-8_obs1-2=0.62(100) small_g6-8_obs1-2=0.64(100) large_g4-5_obs1-2=0.77(100)
+[   8.7m ep  55282] S10f_two_obstacles_scaffold lvl_ep=41400 avg_len=105.8 return=6.40 help=0.280 | ready 0/4 worst: small_g6-8_obs1-2=0.59(100) large_g6-8_obs1-2=0.60(100) large_g4-5_obs1-2=0.78(100)
+[   8.7m ep  55542] S10f_two_obstacles_scaffold lvl_ep=41600 avg_len=99.7 return=7.01 help=0.294 | ready 0/4 worst: small_g6-8_obs1-2=0.53(100) large_g6-8_obs1-2=0.60(100) large_g4-5_obs1-2=0.77(100)
+[   8.8m ep  55806] S10f_two_obstacles_scaffold lvl_ep=41800 avg_len=101.6 return=6.89 help=0.308 | ready 0/4 worst: small_g6-8_obs1-2=0.56(100) large_g6-8_obs1-2=0.56(100) large_g4-5_obs1-2=0.77(100)
+[   8.8m ep  56073] S10f_two_obstacles_scaffold lvl_ep=42000 avg_len=95.2 return=7.08 help=0.298 | ready 1/4 worst: large_g6-8_obs1-2=0.55(100) small_g6-8_obs1-2=0.59(100) large_g4-5_obs1-2=0.79(100)
+[   8.8m ep  56344] S10f_two_obstacles_scaffold lvl_ep=42200 avg_len=102.1 return=6.83 help=0.296 | ready 0/4 worst: large_g6-8_obs1-2=0.54(100) small_g6-8_obs1-2=0.57(100) small_g4-5_obs1-2=0.79(100)
+[   8.9m ep  56609] S10f_two_obstacles_scaffold lvl_ep=42400 avg_len=98.4 return=6.82 help=0.282 | ready 0/4 worst: large_g6-8_obs1-2=0.52(100) small_g6-8_obs1-2=0.54(100) small_g4-5_obs1-2=0.81(100)
+[   8.9m ep  56888] S10f_two_obstacles_scaffold lvl_ep=42600 avg_len=102.4 return=6.79 help=0.280 | ready 0/4 worst: large_g6-8_obs1-2=0.55(100) small_g6-8_obs1-2=0.60(100) large_g4-5_obs1-2=0.75(100)
+[   9.0m ep  57156] S10f_two_obstacles_scaffold lvl_ep=42800 avg_len=94.4 return=7.46 help=0.286 | ready 0/4 worst: large_g6-8_obs1-2=0.60(100) small_g6-8_obs1-2=0.63(100) large_g4-5_obs1-2=0.74(100)
+[   9.0m ep  57425] S10f_two_obstacles_scaffold lvl_ep=43000 avg_len=98.2 return=7.41 help=0.287 | ready 1/4 worst: small_g6-8_obs1-2=0.65(100) large_g6-8_obs1-2=0.67(100) large_g4-5_obs1-2=0.74(100)
+[   9.0m ep  57701] S10f_two_obstacles_scaffold lvl_ep=43200 avg_len=109.2 return=6.26 help=0.308 | ready 0/4 worst: small_g6-8_obs1-2=0.63(100) large_g6-8_obs1-2=0.63(100) large_g4-5_obs1-2=0.75(100)
+[   9.1m ep  57962] S10f_two_obstacles_scaffold lvl_ep=43400 avg_len=91.1 return=7.82 help=0.290 | ready 0/4 worst: large_g6-8_obs1-2=0.60(100) small_g6-8_obs1-2=0.65(100) large_g4-5_obs1-2=0.76(100)
+[   9.1m ep  58220] S10f_two_obstacles_scaffold lvl_ep=43600 avg_len=101.1 return=7.02 help=0.292 | ready 0/4 worst: large_g6-8_obs1-2=0.64(100) small_g6-8_obs1-2=0.67(100) large_g4-5_obs1-2=0.77(100)
+[   9.2m ep  58497] S10f_two_obstacles_scaffold lvl_ep=43800 avg_len=95.3 return=7.05 help=0.285 | ready 0/4 worst: small_g6-8_obs1-2=0.65(100) large_g6-8_obs1-2=0.67(100) small_g4-5_obs1-2=0.75(100)
+[   9.2m ep  58752] S10f_two_obstacles_scaffold lvl_ep=44000 avg_len=101.5 return=6.85 help=0.301 | ready 0/4 worst: large_g6-8_obs1-2=0.62(100) small_g6-8_obs1-2=0.67(100) small_g4-5_obs1-2=0.74(100)
+[   9.2m ep  59023] S10f_two_obstacles_scaffold lvl_ep=44200 avg_len=100.1 return=7.17 help=0.308 | ready 0/4 worst: large_g6-8_obs1-2=0.58(100) small_g6-8_obs1-2=0.67(100) small_g4-5_obs1-2=0.77(100)
+[   9.3m ep  59300] S10f_two_obstacles_scaffold lvl_ep=44400 avg_len=107.0 return=6.35 help=0.297 | ready 0/4 worst: large_g6-8_obs1-2=0.59(100) small_g6-8_obs1-2=0.61(100) large_g4-5_obs1-2=0.73(100)
+[   9.3m ep  59589] S10f_two_obstacles_scaffold lvl_ep=44600 avg_len=102.4 return=6.30 help=0.303 | ready 0/4 worst: small_g6-8_obs1-2=0.54(100) large_g6-8_obs1-2=0.58(100) large_g4-5_obs1-2=0.67(100)
+[   9.4m ep  59853] S10f_two_obstacles_scaffold lvl_ep=44800 avg_len=97.7 return=6.89 help=0.320 | ready 0/4 worst: large_g6-8_obs1-2=0.58(100) small_g6-8_obs1-2=0.59(100) large_g4-5_obs1-2=0.72(100)
+[   9.4m ep  60104] S10f_two_obstacles_scaffold lvl_ep=45000 avg_len=106.6 return=6.55 help=0.312 | ready 0/4 worst: large_g6-8_obs1-2=0.55(100) small_g6-8_obs1-2=0.60(100) large_g4-5_obs1-2=0.73(100)
+[   9.4m ep  60358] S10f_two_obstacles_scaffold lvl_ep=45200 avg_len=106.1 return=6.82 help=0.315 | ready 0/4 worst: large_g6-8_obs1-2=0.57(100) small_g6-8_obs1-2=0.60(100) small_g4-5_obs1-2=0.79(100)
+[   9.5m ep  60645] S10f_two_obstacles_scaffold lvl_ep=45400 avg_len=100.5 return=7.08 help=0.327 | ready 0/4 worst: small_g6-8_obs1-2=0.54(100) large_g6-8_obs1-2=0.59(100) large_g4-5_obs1-2=0.82(100)
+[   9.5m ep  60903] S10f_two_obstacles_scaffold lvl_ep=45600 avg_len=96.2 return=7.10 help=0.333 | ready 0/4 worst: large_g6-8_obs1-2=0.56(100) small_g6-8_obs1-2=0.62(100) large_g4-5_obs1-2=0.79(100)
+[   9.6m ep  61155] S10f_two_obstacles_scaffold lvl_ep=45800 avg_len=105.7 return=6.55 help=0.339 | ready 0/4 worst: large_g6-8_obs1-2=0.56(100) small_g6-8_obs1-2=0.62(100) large_g4-5_obs1-2=0.74(100)
+[   9.6m ep  61422] S10f_two_obstacles_scaffold lvl_ep=46000 avg_len=103.9 return=6.43 help=0.312 | ready 0/4 worst: small_g6-8_obs1-2=0.55(100) large_g6-8_obs1-2=0.57(100) large_g4-5_obs1-2=0.74(100)
+[   9.6m ep  61686] S10f_two_obstacles_scaffold lvl_ep=46200 avg_len=105.3 return=6.50 help=0.318 | ready 0/4 worst: small_g6-8_obs1-2=0.51(100) large_g6-8_obs1-2=0.58(100) large_g4-5_obs1-2=0.73(100)
+[   9.7m ep  61955] S10f_two_obstacles_scaffold lvl_ep=46400 avg_len=100.2 return=7.07 help=0.314 | ready 0/4 worst: small_g6-8_obs1-2=0.58(100) large_g6-8_obs1-2=0.61(100) small_g4-5_obs1-2=0.71(100)
+[   9.7m ep  62221] S10f_two_obstacles_scaffold lvl_ep=46600 avg_len=94.1 return=7.22 help=0.326 | ready 0/4 worst: large_g6-8_obs1-2=0.56(100) small_g6-8_obs1-2=0.60(100) small_g4-5_obs1-2=0.81(100)
+[   9.8m ep  62487] S10f_two_obstacles_scaffold lvl_ep=46800 avg_len=103.0 return=7.01 help=0.313 | ready 1/4 worst: small_g6-8_obs1-2=0.60(100) large_g6-8_obs1-2=0.60(100) large_g4-5_obs1-2=0.80(100)
+[   9.8m ep  62764] S10f_two_obstacles_scaffold lvl_ep=47000 avg_len=101.3 return=6.88 help=0.323 | ready 1/4 worst: small_g6-8_obs1-2=0.57(100) large_g6-8_obs1-2=0.62(100) large_g4-5_obs1-2=0.73(100)
+[   9.8m ep  63026] S10f_two_obstacles_scaffold lvl_ep=47200 avg_len=97.4 return=7.31 help=0.335 | ready 1/4 worst: small_g6-8_obs1-2=0.61(100) large_g6-8_obs1-2=0.65(100) large_g4-5_obs1-2=0.71(100)
+[   9.9m ep  63314] S10f_two_obstacles_scaffold lvl_ep=47400 avg_len=109.1 return=6.56 help=0.328 | ready 0/4 worst: large_g6-8_obs1-2=0.54(100) small_g6-8_obs1-2=0.65(100) large_g4-5_obs1-2=0.76(100)
+[   9.9m ep  63582] S10f_two_obstacles_scaffold lvl_ep=47600 avg_len=104.0 return=6.63 help=0.327 | ready 0/4 worst: large_g6-8_obs1-2=0.52(100) small_g6-8_obs1-2=0.67(100) large_g4-5_obs1-2=0.73(100)
+[  10.0m ep  63843] S10f_two_obstacles_scaffold lvl_ep=47800 avg_len=97.7 return=7.13 help=0.343 | ready 0/4 worst: large_g6-8_obs1-2=0.51(100) small_g6-8_obs1-2=0.65(100) small_g4-5_obs1-2=0.75(100)
+[  10.0m ep  64104] S10f_two_obstacles_scaffold lvl_ep=48000 avg_len=98.7 return=6.87 help=0.338 | ready 0/4 worst: large_g6-8_obs1-2=0.54(100) small_g6-8_obs1-2=0.55(100) small_g4-5_obs1-2=0.76(100)
+[  10.1m ep  64384] S10f_two_obstacles_scaffold lvl_ep=48200 avg_len=104.7 return=6.92 help=0.340 | ready 0/4 worst: small_g6-8_obs1-2=0.58(100) large_g6-8_obs1-2=0.65(100) small_g4-5_obs1-2=0.75(100)
+[  10.1m ep  64662] S10f_two_obstacles_scaffold lvl_ep=48400 avg_len=100.3 return=6.84 help=0.334 | ready 0/4 worst: small_g6-8_obs1-2=0.52(100) large_g6-8_obs1-2=0.61(100) small_g4-5_obs1-2=0.76(100)
+[  10.2m ep  64926] S10f_two_obstacles_scaffold lvl_ep=48600 avg_len=114.4 return=6.32 help=0.369 | ready 0/4 worst: large_g6-8_obs1-2=0.56(100) small_g6-8_obs1-2=0.62(100) large_g4-5_obs1-2=0.76(100)
+[  10.2m ep  65195] S10f_two_obstacles_scaffold lvl_ep=48800 avg_len=106.2 return=6.13 help=0.345 | ready 0/4 worst: large_g6-8_obs1-2=0.49(100) small_g6-8_obs1-2=0.58(100) large_g4-5_obs1-2=0.69(100)
+[  10.2m ep  65469] S10f_two_obstacles_scaffold lvl_ep=49000 avg_len=104.7 return=6.37 help=0.362 | ready 0/4 worst: large_g6-8_obs1-2=0.46(100) small_g6-8_obs1-2=0.57(100) small_g4-5_obs1-2=0.76(100)
+[  10.3m ep  65713] S10f_two_obstacles_scaffold lvl_ep=49200 avg_len=97.5 return=7.19 help=0.329 | ready 1/4 worst: large_g6-8_obs1-2=0.53(100) small_g6-8_obs1-2=0.60(100) small_g4-5_obs1-2=0.78(100)
+[  10.3m ep  65984] S10f_two_obstacles_scaffold lvl_ep=49400 avg_len=93.8 return=7.39 help=0.332 | ready 0/4 worst: small_g6-8_obs1-2=0.59(100) large_g6-8_obs1-2=0.63(100) small_g4-5_obs1-2=0.81(100)
+[  10.4m ep  66246] S10f_two_obstacles_scaffold lvl_ep=49600 avg_len=109.1 return=6.52 help=0.325 | ready 0/4 worst: small_g6-8_obs1-2=0.62(100) large_g6-8_obs1-2=0.63(100) large_g4-5_obs1-2=0.73(100)
+[  10.4m ep  66518] S10f_two_obstacles_scaffold lvl_ep=49800 avg_len=110.8 return=6.03 help=0.341 | ready 0/4 worst: small_g6-8_obs1-2=0.60(100) large_g6-8_obs1-2=0.65(100) large_g4-5_obs1-2=0.66(100)
+[  10.5m ep  66791] S10f_two_obstacles_scaffold lvl_ep=50000 avg_len=107.1 return=6.34 help=0.334 | ready 0/4 worst: small_g6-8_obs1-2=0.52(100) large_g6-8_obs1-2=0.58(100) large_g4-5_obs1-2=0.68(100)
+[  10.5m ep  67068] S10f_two_obstacles_scaffold lvl_ep=50200 avg_len=91.4 return=7.70 help=0.345 | ready 1/4 worst: small_g6-8_obs1-2=0.56(100) large_g6-8_obs1-2=0.57(100) large_g4-5_obs1-2=0.74(100)
+[  10.5m ep  67329] S10f_two_obstacles_scaffold lvl_ep=50400 avg_len=94.8 return=7.25 help=0.335 | ready 1/4 worst: small_g6-8_obs1-2=0.56(100) large_g6-8_obs1-2=0.59(100) large_g4-5_obs1-2=0.80(100)
+[  10.6m ep  67601] S10f_two_obstacles_scaffold lvl_ep=50600 avg_len=94.4 return=7.56 help=0.360 | ready 0/4 worst: small_g6-8_obs1-2=0.64(100) large_g6-8_obs1-2=0.70(100) small_g4-5_obs1-2=0.78(100)
+[  10.6m ep  67869] S10f_two_obstacles_scaffold lvl_ep=50800 avg_len=108.9 return=6.50 help=0.367 | ready 0/4 worst: small_g6-8_obs1-2=0.67(100) large_g6-8_obs1-2=0.69(100) small_g4-5_obs1-2=0.70(100)
+[  10.6m ep  68143] S10f_two_obstacles_scaffold lvl_ep=51000 avg_len=102.8 return=6.79 help=0.375 | ready 0/4 worst: large_g6-8_obs1-2=0.62(100) small_g6-8_obs1-2=0.67(100) large_g4-5_obs1-2=0.72(100)
+[  10.7m ep  68410] S10f_two_obstacles_scaffold lvl_ep=51200 avg_len=104.5 return=7.04 help=0.369 | ready 0/4 worst: small_g6-8_obs1-2=0.64(100) large_g6-8_obs1-2=0.64(100) large_g4-5_obs1-2=0.72(100)
+[  10.7m ep  68688] S10f_two_obstacles_scaffold lvl_ep=51400 avg_len=100.8 return=6.51 help=0.353 | ready 0/4 worst: small_g6-8_obs1-2=0.58(100) large_g6-8_obs1-2=0.60(100) large_g4-5_obs1-2=0.77(100)
+[  10.8m ep  68963] S10f_two_obstacles_scaffold lvl_ep=51600 avg_len=98.6 return=6.88 help=0.363 | ready 0/4 worst: small_g6-8_obs1-2=0.56(100) large_g6-8_obs1-2=0.61(100) small_g4-5_obs1-2=0.75(100)
+[  10.8m ep  69238] S10f_two_obstacles_scaffold lvl_ep=51800 avg_len=94.5 return=7.16 help=0.354 | ready 0/4 worst: small_g6-8_obs1-2=0.53(100) large_g6-8_obs1-2=0.60(100) small_g4-5_obs1-2=0.82(100)
+[  10.9m ep  69504] S10f_two_obstacles_scaffold lvl_ep=52000 avg_len=101.5 return=6.40 help=0.348 | ready 0/4 worst: small_g6-8_obs1-2=0.54(100) large_g6-8_obs1-2=0.62(100) large_g4-5_obs1-2=0.75(100)
+[  10.9m ep  69783] S10f_two_obstacles_scaffold lvl_ep=52200 avg_len=95.9 return=7.35 help=0.351 | ready 0/4 worst: small_g6-8_obs1-2=0.59(100) large_g6-8_obs1-2=0.65(100) large_g4-5_obs1-2=0.72(100)
+[  10.9m ep  70047] S10f_two_obstacles_scaffold lvl_ep=52400 avg_len=102.8 return=6.69 help=0.353 | ready 0/4 worst: small_g6-8_obs1-2=0.61(100) large_g6-8_obs1-2=0.66(100) large_g4-5_obs1-2=0.76(100)
+[  11.0m ep  70319] S10f_two_obstacles_scaffold lvl_ep=52600 avg_len=101.8 return=7.05 help=0.340 | ready 0/4 worst: small_g6-8_obs1-2=0.62(100) large_g6-8_obs1-2=0.64(100) large_g4-5_obs1-2=0.79(100)
+[  11.0m ep  70587] S10f_two_obstacles_scaffold lvl_ep=52800 avg_len=91.8 return=7.41 help=0.343 | ready 0/4 worst: large_g6-8_obs1-2=0.52(100) small_g6-8_obs1-2=0.61(100) large_g4-5_obs1-2=0.83(100)
+[  11.1m ep  70851] S10f_two_obstacles_scaffold lvl_ep=53000 avg_len=98.0 return=7.26 help=0.344 | ready 1/4 worst: small_g6-8_obs1-2=0.59(100) large_g6-8_obs1-2=0.63(100) large_g4-5_obs1-2=0.77(100)
+[  11.1m ep  71121] S10f_two_obstacles_scaffold lvl_ep=53200 avg_len=103.5 return=6.74 help=0.321 | ready 0/4 worst: small_g6-8_obs1-2=0.53(100) large_g6-8_obs1-2=0.59(100) large_g4-5_obs1-2=0.76(100)
+[  11.1m ep  71378] S10f_two_obstacles_scaffold lvl_ep=53400 avg_len=94.6 return=7.37 help=0.338 | ready 0/4 worst: small_g6-8_obs1-2=0.60(100) large_g6-8_obs1-2=0.66(100) small_g4-5_obs1-2=0.78(100)
+Process SpawnProcess-3:
+Process SpawnProcess-1:
+Process SpawnProcess-14:
+Process SpawnProcess-15:
+Process SpawnProcess-17:
+Process SpawnProcess-22:
+Process SpawnProcess-16:
+Process SpawnProcess-18:
+Process SpawnProcess-2:
+Process SpawnProcess-7:
+Process SpawnProcess-8:
+Process SpawnProcess-12:
+Process SpawnProcess-5:
+Process SpawnProcess-6:
+Process SpawnProcess-4:
+Process SpawnProcess-9:
+Process SpawnProcess-11:
+Process SpawnProcess-10:
+Process SpawnProcess-13:
+Process SpawnProcess-19:
+Process SpawnProcess-20:
+Process SpawnProcess-21:
+Traceback (most recent call last):
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\connection.py", line 311, in _recv_bytes
+    nread, err = ov.GetOverlappedResult(True)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+BrokenPipeError: [WinError 109] 파이프가 끝났습니다
+Traceback (most recent call last):
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\connection.py", line 311, in _recv_bytes
+    nread, err = ov.GetOverlappedResult(True)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+BrokenPipeError: [WinError 109] 파이프가 끝났습니다
+Traceback (most recent call last):
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\process.py", line 314, in _bootstrap
+    self.run()
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+Traceback (most recent call last):
+Traceback (most recent call last):
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\connection.py", line 311, in _recv_bytes
+    nread, err = ov.GetOverlappedResult(True)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\projects\cooperative_transport\train\stages\vec_env.py", line 239, in _worker
+    connection.recv()
+
+During handling of the above exception, another exception occurred:
+
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\connection.py", line 249, in recv
+    buf = self._recv_bytes()
+          ^^^^^^^^^^^^^^^^^^
+Traceback (most recent call last):
+BrokenPipeError: [WinError 109] 파이프가 끝났습니다
+Traceback (most recent call last):
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\connection.py", line 311, in _recv_bytes
+    nread, err = ov.GetOverlappedResult(True)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\connection.py", line 311, in _recv_bytes
+    nread, err = ov.GetOverlappedResult(True)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+BrokenPipeError: [WinError 109] 파이프가 끝났습니다
+Traceback (most recent call last):
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\connection.py", line 320, in _recv_bytes
+    raise EOFError
+
+During handling of the above exception, another exception occurred:
+
+BrokenPipeError: [WinError 109] 파이프가 끝났습니다
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\connection.py", line 311, in _recv_bytes
+    nread, err = ov.GetOverlappedResult(True)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+EOFError
+
+During handling of the above exception, another exception occurred:
+
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\process.py", line 314, in _bootstrap
+    self.run()
+Traceback (most recent call last):
+Traceback (most recent call last):
+BrokenPipeError: [WinError 109] 파이프가 끝났습니다
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\connection.py", line 311, in _recv_bytes
+    nread, err = ov.GetOverlappedResult(True)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+During handling of the above exception, another exception occurred:
+
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\process.py", line 314, in _bootstrap
+    self.run()
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\connection.py", line 311, in _recv_bytes
+    nread, err = ov.GetOverlappedResult(True)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+BrokenPipeError: [WinError 109] 파이프가 끝났습니다
+BrokenPipeError: [WinError 109] 파이프가 끝났습니다
+Traceback (most recent call last):
+
+During handling of the above exception, another exception occurred:
+
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "C:\Users\user\projects\cooperative_transport\train\stages\vec_env.py", line 239, in _worker
+    connection.recv()
+Traceback (most recent call last):
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\connection.py", line 249, in recv
+    buf = self._recv_bytes()
+          ^^^^^^^^^^^^^^^^^^
+
+During handling of the above exception, another exception occurred:
+
+  File "C:\Users\user\projects\cooperative_transport\train\stages\vec_env.py", line 239, in _worker
+    connection.recv()
+Traceback (most recent call last):
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\connection.py", line 249, in recv
+    buf = self._recv_bytes()
+          ^^^^^^^^^^^^^^^^^^
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\connection.py", line 320, in _recv_bytes
+    raise EOFError
+Traceback (most recent call last):
+Traceback (most recent call last):
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\connection.py", line 311, in _recv_bytes
+    nread, err = ov.GetOverlappedResult(True)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Traceback (most recent call last):
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\connection.py", line 320, in _recv_bytes
+    raise EOFError
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\process.py", line 314, in _bootstrap
+    self.run()
+Traceback (most recent call last):
+Traceback (most recent call last):
+Traceback (most recent call last):
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\process.py", line 314, in _bootstrap
+    self.run()
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\connection.py", line 311, in _recv_bytes
+    nread, err = ov.GetOverlappedResult(True)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\connection.py", line 311, in _recv_bytes
+    nread, err = ov.GetOverlappedResult(True)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+BrokenPipeError: [WinError 109] 파이프가 끝났습니다
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\connection.py", line 311, in _recv_bytes
+    nread, err = ov.GetOverlappedResult(True)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\process.py", line 314, in _bootstrap
+    self.run()
+BrokenPipeError: [WinError 109] 파이프가 끝났습니다
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\process.py", line 314, in _bootstrap
+    self.run()
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\process.py", line 314, in _bootstrap
+    self.run()
+Traceback (most recent call last):
+Traceback (most recent call last):
+Traceback (most recent call last):
+Traceback (most recent call last):
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "C:\Users\user\projects\cooperative_transport\train\stages\vec_env.py", line 239, in _worker
+    connection.recv()
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\connection.py", line 249, in recv
+    buf = self._recv_bytes()
+          ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\connection.py", line 320, in _recv_bytes
+    raise EOFError
+EOFError
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\connection.py", line 311, in _recv_bytes
+    nread, err = ov.GetOverlappedResult(True)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Traceback (most recent call last):
+BrokenPipeError: [WinError 109] 파이프가 끝났습니다
+Traceback (most recent call last):
+Traceback (most recent call last):
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+BrokenPipeError: [WinError 109] 파이프가 끝났습니다
+Traceback (most recent call last):
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\connection.py", line 311, in _recv_bytes
+    nread, err = ov.GetOverlappedResult(True)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Traceback (most recent call last):
+BrokenPipeError: [WinError 109] 파이프가 끝났습니다
+EOFError
+BrokenPipeError: [WinError 109] 파이프가 끝났습니다
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\connection.py", line 311, in _recv_bytes
+    nread, err = ov.GetOverlappedResult(True)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\connection.py", line 311, in _recv_bytes
+    nread, err = ov.GetOverlappedResult(True)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+During handling of the above exception, another exception occurred:
+
+
+During handling of the above exception, another exception occurred:
+
+BrokenPipeError: [WinError 109] 파이프가 끝났습니다
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\connection.py", line 311, in _recv_bytes
+    nread, err = ov.GetOverlappedResult(True)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\connection.py", line 311, in _recv_bytes
+    nread, err = ov.GetOverlappedResult(True)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+
+During handling of the above exception, another exception occurred:
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\connection.py", line 311, in _recv_bytes
+    nread, err = ov.GetOverlappedResult(True)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+During handling of the above exception, another exception occurred:
+
+
+During handling of the above exception, another exception occurred:
+
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\connection.py", line 311, in _recv_bytes
+    nread, err = ov.GetOverlappedResult(True)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\connection.py", line 311, in _recv_bytes
+    nread, err = ov.GetOverlappedResult(True)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+EOFError
+BrokenPipeError: [WinError 109] 파이프가 끝났습니다
+Traceback (most recent call last):
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "C:\Users\user\projects\cooperative_transport\train\stages\vec_env.py", line 239, in _worker
+    connection.recv()
+Traceback (most recent call last):
+
+During handling of the above exception, another exception occurred:
+
+BrokenPipeError: [WinError 109] 파이프가 끝났습니다
+  File "C:\Users\user\projects\cooperative_transport\train\stages\vec_env.py", line 239, in _worker
+    connection.recv()
+  File "C:\Users\user\projects\cooperative_transport\train\stages\vec_env.py", line 239, in _worker
+    connection.recv()
+Traceback (most recent call last):
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\connection.py", line 249, in recv
+    buf = self._recv_bytes()
+          ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\process.py", line 314, in _bootstrap
+    self.run()
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\connection.py", line 320, in _recv_bytes
+    raise EOFError
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\process.py", line 314, in _bootstrap
+    self.run()
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "C:\Users\user\projects\cooperative_transport\train\stages\vec_env.py", line 239, in _worker
+    connection.recv()
+Traceback (most recent call last):
+BrokenPipeError: [WinError 109] 파이프가 끝났습니다
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\connection.py", line 249, in recv
+    buf = self._recv_bytes()
+          ^^^^^^^^^^^^^^^^^^
+
+During handling of the above exception, another exception occurred:
+
+BrokenPipeError: [WinError 109] 파이프가 끝났습니다
+Traceback (most recent call last):
+
+During handling of the above exception, another exception occurred:
+
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\process.py", line 314, in _bootstrap
+    self.run()
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "C:\Users\user\projects\cooperative_transport\train\stages\vec_env.py", line 239, in _worker
+    connection.recv()
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\connection.py", line 249, in recv
+    buf = self._recv_bytes()
+          ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\connection.py", line 320, in _recv_bytes
+    raise EOFError
+BrokenPipeError: [WinError 109] 파이프가 끝났습니다
+EOFError
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\process.py", line 314, in _bootstrap
+    self.run()
+Traceback (most recent call last):
+BrokenPipeError: [WinError 109] 파이프가 끝났습니다
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\process.py", line 314, in _bootstrap
+    self.run()
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\connection.py", line 320, in _recv_bytes
+    raise EOFError
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\connection.py", line 249, in recv
+    buf = self._recv_bytes()
+          ^^^^^^^^^^^^^^^^^^
+Traceback (most recent call last):
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\process.py", line 314, in _bootstrap
+    self.run()
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\connection.py", line 311, in _recv_bytes
+    nread, err = ov.GetOverlappedResult(True)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\projects\cooperative_transport\train\stages\vec_env.py", line 239, in _worker
+    connection.recv()
+
+During handling of the above exception, another exception occurred:
+
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+Traceback (most recent call last):
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\connection.py", line 249, in recv
+    buf = self._recv_bytes()
+          ^^^^^^^^^^^^^^^^^^
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+EOFError
+
+During handling of the above exception, another exception occurred:
+
+  File "C:\Users\user\projects\cooperative_transport\train\stages\vec_env.py", line 239, in _worker
+    connection.recv()
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\process.py", line 314, in _bootstrap
+    self.run()
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\process.py", line 314, in _bootstrap
+    self.run()
+  File "C:\Users\user\projects\cooperative_transport\train\stages\vec_env.py", line 239, in _worker
+    connection.recv()
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\connection.py", line 249, in recv
+    buf = self._recv_bytes()
+          ^^^^^^^^^^^^^^^^^^
+
+During handling of the above exception, another exception occurred:
+
+BrokenPipeError: [WinError 109] 파이프가 끝났습니다
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\process.py", line 314, in _bootstrap
+    self.run()
+  File "C:\Users\user\projects\cooperative_transport\train\stages\vec_env.py", line 239, in _worker
+    connection.recv()
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\connection.py", line 320, in _recv_bytes
+    raise EOFError
+Traceback (most recent call last):
+Traceback (most recent call last):
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\connection.py", line 249, in recv
+    buf = self._recv_bytes()
+          ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\process.py", line 314, in _bootstrap
+    self.run()
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\connection.py", line 320, in _recv_bytes
+    raise EOFError
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+EOFError
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\connection.py", line 320, in _recv_bytes
+    raise EOFError
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\process.py", line 314, in _bootstrap
+    self.run()
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "C:\Users\user\projects\cooperative_transport\train\stages\vec_env.py", line 239, in _worker
+    connection.recv()
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\connection.py", line 249, in recv
+    buf = self._recv_bytes()
+          ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\process.py", line 314, in _bootstrap
+    self.run()
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+EOFError
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\process.py", line 314, in _bootstrap
+    self.run()
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\connection.py", line 320, in _recv_bytes
+    raise EOFError
+EOFError
+  File "C:\Users\user\projects\cooperative_transport\train\stages\vec_env.py", line 239, in _worker
+    connection.recv()
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "C:\Users\user\projects\cooperative_transport\train\stages\vec_env.py", line 239, in _worker
+    connection.recv()
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\connection.py", line 249, in recv
+    buf = self._recv_bytes()
+          ^^^^^^^^^^^^^^^^^^
+EOFError
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\connection.py", line 249, in recv
+    buf = self._recv_bytes()
+          ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\connection.py", line 320, in _recv_bytes
+    raise EOFError
+EOFError
+  File "C:\Users\user\projects\cooperative_transport\train\stages\vec_env.py", line 239, in _worker
+    connection.recv()
+  File "C:\Users\user\projects\cooperative_transport\train\stages\vec_env.py", line 239, in _worker
+    connection.recv()
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\connection.py", line 249, in recv
+    buf = self._recv_bytes()
+          ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\connection.py", line 249, in recv
+    buf = self._recv_bytes()
+          ^^^^^^^^^^^^^^^^^^
+Traceback (most recent call last):
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\connection.py", line 320, in _recv_bytes
+    raise EOFError
+  File "C:\Users\user\projects\cooperative_transport\train\stages\vec_env.py", line 239, in _worker
+    connection.recv()
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\connection.py", line 249, in recv
+    buf = self._recv_bytes()
+          ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\connection.py", line 320, in _recv_bytes
+    raise EOFError
+EOFError
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\connection.py", line 249, in recv
+    buf = self._recv_bytes()
+          ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\connection.py", line 320, in _recv_bytes
+    raise EOFError
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\process.py", line 314, in _bootstrap
+    self.run()
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "C:\Users\user\projects\cooperative_transport\train\stages\vec_env.py", line 239, in _worker
+    connection.recv()
+EOFError
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\connection.py", line 320, in _recv_bytes
+    raise EOFError
+EOFError
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\connection.py", line 320, in _recv_bytes
+    raise EOFError
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\connection.py", line 249, in recv
+    buf = self._recv_bytes()
+          ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\connection.py", line 320, in _recv_bytes
+    raise EOFError
+EOFError
+EOFError
+  File "C:\Users\user\projects\cooperative_transport\train\stages\vec_env.py", line 239, in _worker
+    connection.recv()
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\connection.py", line 249, in recv
+    buf = self._recv_bytes()
+          ^^^^^^^^^^^^^^^^^^
+EOFError
+EOFError
+  File "C:\Users\user\projects\cooperative_transport\train\stages\vec_env.py", line 239, in _worker
+    connection.recv()
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\connection.py", line 249, in recv
+    buf = self._recv_bytes()
+          ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\connection.py", line 320, in _recv_bytes
+    raise EOFError
+EOFError
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\connection.py", line 320, in _recv_bytes
+    raise EOFError
+EOFError
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\connection.py", line 249, in recv
+    buf = self._recv_bytes()
+          ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\connection.py", line 320, in _recv_bytes
+    raise EOFError
+EOFError
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\connection.py", line 320, in _recv_bytes
+    raise EOFError
+EOFError

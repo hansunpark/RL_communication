@@ -1,0 +1,118 @@
+[
+  {
+    "level": "stage_8B1_position_r2_comm",
+    "comm_on": {
+      "episodes": 300,
+      "success_rate": 0.9966666666666667,
+      "avg_length": 31.963333333333335,
+      "help_rate": 0.35478152049223066,
+      "rc": 0.5432439948552178,
+      "cpr": 0.7823218997361477,
+      "rally_steps": 15.313333333333333,
+      "rally_rate": 0.9966666666666667,
+      "rc_steps": 9589,
+      "push_opportunities": 3032,
+      "coordinated_pushes": 2372
+    },
+    "comm_off": {
+      "episodes": 300,
+      "success_rate": 0.9633333333333334,
+      "avg_length": 42.83,
+      "help_rate": 0.0,
+      "rc": 0.5896956961631332,
+      "cpr": 0.6549261083743843,
+      "rally_steps": 16.39666666666667,
+      "rally_rate": 1.0,
+      "rc_steps": 12849,
+      "push_opportunities": 4060,
+      "coordinated_pushes": 2659
+    }
+  },
+  {
+    "level": "stage_8B2_position_r5_comm",
+    "comm_on": {
+      "episodes": 300,
+      "success_rate": 0.8866666666666667,
+      "avg_length": 64.87333333333333,
+      "help_rate": 0.26698181070804644,
+      "rc": 0.4127873120268592,
+      "cpr": 0.6438318017265385,
+      "rally_steps": 21.44,
+      "rally_rate": 1.0,
+      "rc_steps": 19462,
+      "push_opportunities": 3591,
+      "coordinated_pushes": 2312
+    },
+    "comm_off": {
+      "episodes": 300,
+      "success_rate": 0.8666666666666667,
+      "avg_length": 72.1,
+      "help_rate": 0.0,
+      "rc": 0.43100631838496484,
+      "cpr": 0.5949074074074074,
+      "rally_steps": 25.246666666666666,
+      "rally_rate": 0.9933333333333333,
+      "rc_steps": 21630,
+      "push_opportunities": 3888,
+      "coordinated_pushes": 2313
+    }
+  },
+  {
+    "level": "stage_8B3_position_full_comm",
+    "comm_on": {
+      "episodes": 300,
+      "success_rate": 0.83,
+      "avg_length": 88.5,
+      "help_rate": 0.4147457627118644,
+      "rc": 0.4205838041431297,
+      "cpr": 0.5198541329011345,
+      "rally_steps": 23.873333333333335,
+      "rally_rate": 0.99,
+      "rc_steps": 26550,
+      "push_opportunities": 4936,
+      "coordinated_pushes": 2566
+    },
+    "comm_off": {
+      "episodes": 300,
+      "success_rate": 0.6666666666666666,
+      "avg_length": 118.80666666666667,
+      "help_rate": 0.0,
+      "rc": 0.4455371004245908,
+      "cpr": 0.498292220113852,
+      "rally_steps": 40.56,
+      "rally_rate": 0.9466666666666667,
+      "rc_steps": 35642,
+      "push_opportunities": 5270,
+      "coordinated_pushes": 2626
+    }
+  },
+  {
+    "level": "stage_8B4_size_and_position_comm",
+    "comm_on": {
+      "episodes": 300,
+      "success_rate": 0.86,
+      "avg_length": 75.19,
+      "help_rate": 0.43035421376956157,
+      "rc": 0.39376542388910946,
+      "cpr": 0.5958495460440986,
+      "rally_steps": 27.533333333333335,
+      "rally_rate": 0.9766666666666667,
+      "rc_steps": 22557,
+      "push_opportunities": 3855,
+      "coordinated_pushes": 2297
+    },
+    "comm_off": {
+      "episodes": 300,
+      "success_rate": 0.6133333333333333,
+      "avg_length": 116.23666666666666,
+      "help_rate": 0.0,
+      "rc": 0.39392092760937814,
+      "cpr": 0.6305007587253414,
+      "rally_steps": 43.50333333333333,
+      "rally_rate": 0.92,
+      "rc_steps": 34871,
+      "push_opportunities": 3954,
+      "coordinated_pushes": 2493
+    }
+  }
+]

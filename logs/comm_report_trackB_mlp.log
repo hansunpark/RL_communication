@@ -1,0 +1,15 @@
+S0_push_2x1_d2-3                                 success 0.83/0.77 RC 0.40/0.35 CPR 0.23/0.24 rally 5.16/8.09
+S1_goal_d2-5                                     success 0.89/0.82 RC 0.50/0.42 CPR 0.44/0.38 rally 5.74/7.50
+S2_size_3x2                                      success 0.82/0.67 RC 0.47/0.47 CPR 0.32/0.24 rally 26.53/34.47
+S3s_tall_side_push_scaffold                      success 0.96/0.97 RC 0.70/0.71 CPR 0.72/0.75 rally 0.00/0.00
+S3t_tall_side_push_near                          success 0.99/1.00 RC 0.59/0.58 CPR 0.52/0.47 rally 12.62/14.01
+S3a_size_max3                                    success 0.83/0.70 RC 0.42/0.42 CPR 0.47/0.44 rally 22.08/37.75
+S3b_size_random                                  success 0.81/0.62 RC 0.49/0.48 CPR 0.42/0.38 rally 31.98/54.97
+S4_goal_d2-8                                     success 0.82/0.66 RC 0.48/0.46 CPR 0.47/0.51 rally 20.59/35.54
+S5_goal_any                                      success 0.92/0.55 RC 0.53/0.47 CPR 0.56/0.52 rally 13.79/29.51
+S6_spawn_r5                                      success 0.90/0.56 RC 0.48/0.43 CPR 0.58/0.59 rally 16.24/39.83
+S7_spawn_random                                  success 0.90/0.60 RC 0.47/0.44 CPR 0.61/0.61 rally 22.57/51.47
+S8_split_2near                                   success 0.89/0.52 RC 0.49/0.46 CPR 0.54/0.59 rally 18.57/55.61
+S9_split_1near                                   success 0.89/0.47 RC 0.48/0.44 CPR 0.58/0.57 rally 22.71/68.50
+S10a_one_small_obstacle_near                     success 0.83/0.45 RC 0.55/0.42 CPR 0.36/0.31 rally 29.32/74.11
+S10a1_clear_obstacle_small_target_scaffold       success 0.78/0.70 RC 0.57/0.52 CPR 0.50/0.47 rally 15.13/19.48

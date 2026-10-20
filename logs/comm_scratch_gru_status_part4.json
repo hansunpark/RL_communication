@@ -1,0 +1,109 @@
+{
+  "run": "comm_scratch_gru",
+  "level": 21,
+  "level_name": "S10e_obstacles_0-2_random_spawn",
+  "num_levels": 24,
+  "level_episodes": 102200,
+  "total_episodes": 136445,
+  "global_step": 33599200,
+  "elapsed_min": 15.1,
+  "avg_len": 66.215,
+  "avg_return": 9.406889677550645,
+  "help_rate": 0.4140159520098473,
+  "buckets": {
+    "large_g0-3_obs0": {
+      "n": 100,
+      "success_rate": 1.0,
+      "ready": true
+    },
+    "small_g6-8_obs1-2": {
+      "n": 100,
+      "success_rate": 0.86,
+      "ready": true
+    },
+    "large_g4-5_obs0": {
+      "n": 100,
+      "success_rate": 0.98,
+      "ready": true
+    },
+    "small_g4-5_obs0": {
+      "n": 100,
+      "success_rate": 1.0,
+      "ready": true
+    },
+    "small_g0-3_obs1-2": {
+      "n": 100,
+      "success_rate": 0.95,
+      "ready": true
+    },
+    "large_g6-8_obs1-2": {
+      "n": 100,
+      "success_rate": 0.76,
+      "ready": false
+    },
+    "small_g6-8_obs0": {
+      "n": 100,
+      "success_rate": 1.0,
+      "ready": true
+    },
+    "large_g6-8_obs0": {
+      "n": 100,
+      "success_rate": 0.99,
+      "ready": true
+    },
+    "large_g4-5_obs1-2": {
+      "n": 100,
+      "success_rate": 0.88,
+      "ready": true
+    },
+    "large_g0-3_obs1-2": {
+      "n": 100,
+      "success_rate": 0.92,
+      "ready": true
+    },
+    "small_g4-5_obs1-2": {
+      "n": 100,
+      "success_rate": 0.92,
+      "ready": true
+    },
+    "small_g9+_obs0": {
+      "n": 100,
+      "success_rate": 0.98,
+      "ready": true
+    },
+    "large_g9+_obs0": {
+      "n": 100,
+      "success_rate": 0.95,
+      "ready": true
+    },
+    "large_g9+_obs1-2": {
+      "n": 100,
+      "success_rate": 0.74,
+      "ready": false
+    },
+    "small_g0-3_obs0": {
+      "n": 100,
+      "success_rate": 1.0,
+      "ready": true
+    },
+    "small_g9+_obs1-2": {
+      "n": 100,
+      "success_rate": 0.75,
+      "ready": false
+    }
+  },
+  "last_update": {
+    "policy_loss": -0.0016538635439549882,
+    "value_loss": 1.0061466532448928,
+    "entropy": 0.9074205905199051,
+    "move_entropy": 0.7108740011850992,
+    "comm_entropy": 0.19654658933480582,
+    "approx_kl": 0.0069554957878305386,
+    "kl_early_stop": 0.0,
+    "entropy_coef": 0.01
+  },
+  "history": [],
+  "stop_reason": null,
+  "help_rate_target_visible": 0.5157777110662625,
+  "help_rate_target_hidden": 0.05418107689162314
+}

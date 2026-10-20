@@ -1,0 +1,32 @@
+{
+  "run": "comm_scratch_gru",
+  "level": "S10a3b_clear_big_obstacle_scaffold",
+  "tag": "mastered",
+  "comm_on": {
+    "episodes": 300,
+    "success_rate": 0.77,
+    "avg_length": 52.4,
+    "help_rate": 0.44271628498727733,
+    "rc": 0.4821087786259541,
+    "cpr": 0.7177089421391,
+    "rally_steps": 37.58,
+    "rally_rate": 0.85,
+    "rc_steps": 15720,
+    "push_opportunities": 1711,
+    "coordinated_pushes": 1228
+  },
+  "comm_off": {
+    "episodes": 300,
+    "success_rate": 0.5233333333333333,
+    "avg_length": 67.60333333333334,
+    "help_rate": 0.0,
+    "rc": 0.3751417582959376,
+    "cpr": 0.6408045977011494,
+    "rally_steps": 51.91,
+    "rally_rate": 0.6833333333333333,
+    "rc_steps": 20281,
+    "push_opportunities": 1392,
+    "coordinated_pushes": 892
+  },
+  "success_gap": 0.2466666666666667
+}

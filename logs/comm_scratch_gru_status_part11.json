@@ -1,0 +1,149 @@
+{
+  "run": "comm_scratch_gru",
+  "level": 28,
+  "level_name": "S11_obstacles_0-4",
+  "num_levels": 29,
+  "level_episodes": 100800,
+  "total_episodes": 134345,
+  "global_step": 44073620,
+  "elapsed_min": 20.3,
+  "avg_len": 99.76,
+  "avg_return": 7.102199760973454,
+  "help_rate": 0.3184802564854957,
+  "buckets": {
+    "small_g0-3_obs0_near1": {
+      "n": 100,
+      "success_rate": 1.0,
+      "ready": true
+    },
+    "small_g4-5_obs0_near1": {
+      "n": 100,
+      "success_rate": 1.0,
+      "ready": true
+    },
+    "large_g0-3_obs1-2_near1": {
+      "n": 100,
+      "success_rate": 0.94,
+      "ready": true
+    },
+    "small_g4-5_obs3-4_near1": {
+      "n": 100,
+      "success_rate": 0.78,
+      "ready": true
+    },
+    "large_g4-5_obs1-2_near1": {
+      "n": 100,
+      "success_rate": 0.88,
+      "ready": true
+    },
+    "small_g6-8_obs3-4_near1": {
+      "n": 100,
+      "success_rate": 0.56,
+      "ready": false
+    },
+    "large_g6-8_obs1-2_near1": {
+      "n": 100,
+      "success_rate": 0.73,
+      "ready": true
+    },
+    "large_g4-5_obs0_near1": {
+      "n": 100,
+      "success_rate": 1.0,
+      "ready": true
+    },
+    "small_g6-8_obs1-2_near1": {
+      "n": 100,
+      "success_rate": 0.82,
+      "ready": true
+    },
+    "small_g4-5_obs1-2_near1": {
+      "n": 100,
+      "success_rate": 0.97,
+      "ready": true
+    },
+    "large_g6-8_obs0_near1": {
+      "n": 100,
+      "success_rate": 1.0,
+      "ready": true
+    },
+    "small_g6-8_obs0_near1": {
+      "n": 100,
+      "success_rate": 0.99,
+      "ready": true
+    },
+    "large_g0-3_obs0_near1": {
+      "n": 100,
+      "success_rate": 1.0,
+      "ready": true
+    },
+    "large_g9+_obs0_near1": {
+      "n": 100,
+      "success_rate": 0.98,
+      "ready": true
+    },
+    "large_g9+_obs1-2_near1": {
+      "n": 100,
+      "success_rate": 0.65,
+      "ready": true
+    },
+    "large_g0-3_obs3-4_near1": {
+      "n": 100,
+      "success_rate": 0.77,
+      "ready": true
+    },
+    "small_g9+_obs0_near1": {
+      "n": 100,
+      "success_rate": 0.99,
+      "ready": true
+    },
+    "large_g6-8_obs3-4_near1": {
+      "n": 100,
+      "success_rate": 0.46,
+      "ready": false
+    },
+    "large_g4-5_obs3-4_near1": {
+      "n": 100,
+      "success_rate": 0.57,
+      "ready": false
+    },
+    "small_g0-3_obs3-4_near1": {
+      "n": 100,
+      "success_rate": 0.84,
+      "ready": true
+    },
+    "small_g0-3_obs1-2_near1": {
+      "n": 100,
+      "success_rate": 0.96,
+      "ready": true
+    },
+    "small_g9+_obs1-2_near1": {
+      "n": 100,
+      "success_rate": 0.78,
+      "ready": true
+    },
+    "small_g9+_obs3-4_near1": {
+      "n": 100,
+      "success_rate": 0.37,
+      "ready": false
+    },
+    "large_g9+_obs3-4_near1": {
+      "n": 100,
+      "success_rate": 0.18,
+      "ready": false
+    }
+  },
+  "last_update": {
+    "policy_loss": -0.00149210260133259,
+    "value_loss": 0.9327175977329413,
+    "entropy": 1.0779536169332762,
+    "move_entropy": 0.8364937342703342,
+    "comm_entropy": 0.24145988266294202,
+    "approx_kl": 0.007658055583457705,
+    "kl_early_stop": 0.0,
+    "entropy_coef": 0.01
+  },
+  "history": [],
+  "stop_reason": null,
+  "help_rate_target_visible": 0.409643645112003,
+  "help_rate_target_hidden": 0.030461277859827475
+}

@@ -1,0 +1,437 @@
+[
+  {
+    "level": "S0_push_2x1_d2-3",
+    "comm_on": {
+      "episodes": 300,
+      "success_rate": 0.8266666666666667,
+      "avg_length": 62.07666666666667,
+      "help_rate": 0.5583015625839016,
+      "rc": 0.4020565966815228,
+      "cpr": 0.2265953381734811,
+      "rally_steps": 5.156666666666666,
+      "rally_rate": 0.9966666666666667,
+      "rc_steps": 18623,
+      "push_opportunities": 5234,
+      "coordinated_pushes": 1186
+    },
+    "comm_off": {
+      "episodes": 300,
+      "success_rate": 0.77,
+      "avg_length": 72.79333333333334,
+      "help_rate": 0.0,
+      "rc": 0.3502152211741002,
+      "cpr": 0.23582722715001928,
+      "rally_steps": 8.09,
+      "rally_rate": 0.9866666666666667,
+      "rc_steps": 21838,
+      "push_opportunities": 5186,
+      "coordinated_pushes": 1223
+    }
+  },
+  {
+    "level": "S1_goal_d2-5",
+    "comm_on": {
+      "episodes": 300,
+      "success_rate": 0.8933333333333333,
+      "avg_length": 51.153333333333336,
+      "help_rate": 0.6143620487423432,
+      "rc": 0.5023133063990617,
+      "cpr": 0.4377756471716203,
+      "rally_steps": 5.743333333333333,
+      "rally_rate": 0.9933333333333333,
+      "rc_steps": 15346,
+      "push_opportunities": 5215,
+      "coordinated_pushes": 2283
+    },
+    "comm_off": {
+      "episodes": 300,
+      "success_rate": 0.8166666666666667,
+      "avg_length": 68.50333333333333,
+      "help_rate": 0.0,
+      "rc": 0.41988224417303294,
+      "cpr": 0.38404036628667537,
+      "rally_steps": 7.496666666666667,
+      "rally_rate": 0.9866666666666667,
+      "rc_steps": 20551,
+      "push_opportunities": 5351,
+      "coordinated_pushes": 2055
+    }
+  },
+  {
+    "level": "S2_size_3x2",
+    "comm_on": {
+      "episodes": 300,
+      "success_rate": 0.82,
+      "avg_length": 80.89,
+      "help_rate": 0.5172456422301891,
+      "rc": 0.47450584469994084,
+      "cpr": 0.3237443999056826,
+      "rally_steps": 26.533333333333335,
+      "rally_rate": 0.9533333333333334,
+      "rc_steps": 24267,
+      "push_opportunities": 4241,
+      "coordinated_pushes": 1373
+    },
+    "comm_off": {
+      "episodes": 300,
+      "success_rate": 0.6733333333333333,
+      "avg_length": 114.57,
+      "help_rate": 0.0,
+      "rc": 0.4673368052524601,
+      "cpr": 0.23828369089772963,
+      "rally_steps": 34.47,
+      "rally_rate": 0.9366666666666666,
+      "rc_steps": 34371,
+      "push_opportunities": 4801,
+      "coordinated_pushes": 1144
+    }
+  },
+  {
+    "level": "S3s_tall_side_push_scaffold",
+    "comm_on": {
+      "episodes": 300,
+      "success_rate": 0.96,
+      "avg_length": 4.346666666666667,
+      "help_rate": 0.6476226993865031,
+      "rc": 0.6982361963190188,
+      "cpr": 0.7170818505338078,
+      "rally_steps": 0.0,
+      "rally_rate": 1.0,
+      "rc_steps": 1304,
+      "push_opportunities": 562,
+      "coordinated_pushes": 403
+    },
+    "comm_off": {
+      "episodes": 300,
+      "success_rate": 0.9666666666666667,
+      "avg_length": 3.8633333333333333,
+      "help_rate": 0.0,
+      "rc": 0.7138337647397153,
+      "cpr": 0.7527881040892194,
+      "rally_steps": 0.0,
+      "rally_rate": 1.0,
+      "rc_steps": 1159,
+      "push_opportunities": 538,
+      "coordinated_pushes": 405
+    }
+  },
+  {
+    "level": "S3t_tall_side_push_near",
+    "comm_on": {
+      "episodes": 300,
+      "success_rate": 0.9933333333333333,
+      "avg_length": 17.953333333333333,
+      "help_rate": 0.5518937987374675,
+      "rc": 0.5946899368733722,
+      "cpr": 0.5173945225758697,
+      "rally_steps": 12.623333333333333,
+      "rally_rate": 1.0,
+      "rc_steps": 5386,
+      "push_opportunities": 1351,
+      "coordinated_pushes": 699
+    },
+    "comm_off": {
+      "episodes": 300,
+      "success_rate": 0.9966666666666667,
+      "avg_length": 18.866666666666667,
+      "help_rate": 0.0,
+      "rc": 0.5819787985865653,
+      "cpr": 0.47174447174447176,
+      "rally_steps": 14.006666666666666,
+      "rally_rate": 0.9966666666666667,
+      "rc_steps": 5660,
+      "push_opportunities": 1221,
+      "coordinated_pushes": 576
+    }
+  },
+  {
+    "level": "S3a_size_max3",
+    "comm_on": {
+      "episodes": 300,
+      "success_rate": 0.8266666666666667,
+      "avg_length": 69.67666666666666,
+      "help_rate": 0.6615437975410228,
+      "rc": 0.4229456696805917,
+      "cpr": 0.4699913018266164,
+      "rally_steps": 22.076666666666668,
+      "rally_rate": 0.9566666666666667,
+      "rc_steps": 20903,
+      "push_opportunities": 3449,
+      "coordinated_pushes": 1621
+    },
+    "comm_off": {
+      "episodes": 300,
+      "success_rate": 0.7033333333333334,
+      "avg_length": 96.90333333333334,
+      "help_rate": 0.0,
+      "rc": 0.41647460814327447,
+      "cpr": 0.4417910447761194,
+      "rally_steps": 37.75,
+      "rally_rate": 0.91,
+      "rc_steps": 29071,
+      "push_opportunities": 3685,
+      "coordinated_pushes": 1628
+    }
+  },
+  {
+    "level": "S3b_size_random",
+    "comm_on": {
+      "episodes": 300,
+      "success_rate": 0.8066666666666666,
+      "avg_length": 78.10333333333334,
+      "help_rate": 0.4971298706841364,
+      "rc": 0.49150342139330927,
+      "cpr": 0.42359585817383116,
+      "rally_steps": 31.983333333333334,
+      "rally_rate": 0.94,
+      "rc_steps": 23431,
+      "push_opportunities": 3187,
+      "coordinated_pushes": 1350
+    },
+    "comm_off": {
+      "episodes": 300,
+      "success_rate": 0.6233333333333333,
+      "avg_length": 113.08666666666667,
+      "help_rate": 0.0,
+      "rc": 0.4792096523806656,
+      "cpr": 0.3806473364801079,
+      "rally_steps": 54.97,
+      "rally_rate": 0.8466666666666667,
+      "rc_steps": 33926,
+      "push_opportunities": 2966,
+      "coordinated_pushes": 1129
+    }
+  },
+  {
+    "level": "S4_goal_d2-8",
+    "comm_on": {
+      "episodes": 300,
+      "success_rate": 0.8166666666666667,
+      "avg_length": 81.30666666666667,
+      "help_rate": 0.44978886520170547,
+      "rc": 0.4811174428774503,
+      "cpr": 0.46818572656921753,
+      "rally_steps": 20.586666666666666,
+      "rally_rate": 0.9833333333333333,
+      "rc_steps": 24392,
+      "push_opportunities": 4652,
+      "coordinated_pushes": 2178
+    },
+    "comm_off": {
+      "episodes": 300,
+      "success_rate": 0.66,
+      "avg_length": 108.95,
+      "help_rate": 0.0,
+      "rc": 0.45799041354341485,
+      "cpr": 0.5096382360707684,
+      "rally_steps": 35.53666666666667,
+      "rally_rate": 0.9133333333333333,
+      "rc_steps": 32685,
+      "push_opportunities": 3787,
+      "coordinated_pushes": 1930
+    }
+  },
+  {
+    "level": "S5_goal_any",
+    "comm_on": {
+      "episodes": 300,
+      "success_rate": 0.9166666666666666,
+      "avg_length": 61.806666666666665,
+      "help_rate": 0.5789558839391651,
+      "rc": 0.525051235033974,
+      "cpr": 0.5636404595629646,
+      "rally_steps": 13.793333333333333,
+      "rally_rate": 0.9933333333333333,
+      "rc_steps": 18542,
+      "push_opportunities": 4439,
+      "coordinated_pushes": 2502
+    },
+    "comm_off": {
+      "episodes": 300,
+      "success_rate": 0.5533333333333333,
+      "avg_length": 121.11333333333333,
+      "help_rate": 0.0,
+      "rc": 0.46586530522375824,
+      "cpr": 0.5221938182663258,
+      "rally_steps": 29.51,
+      "rally_rate": 0.96,
+      "rc_steps": 36334,
+      "push_opportunities": 4303,
+      "coordinated_pushes": 2247
+    }
+  },
+  {
+    "level": "S6_spawn_r5",
+    "comm_on": {
+      "episodes": 300,
+      "success_rate": 0.8966666666666666,
+      "avg_length": 65.00333333333333,
+      "help_rate": 0.5399723091123532,
+      "rc": 0.47584739244141916,
+      "cpr": 0.5830152671755725,
+      "rally_steps": 16.24,
+      "rally_rate": 0.9933333333333333,
+      "rc_steps": 19501,
+      "push_opportunities": 4192,
+      "coordinated_pushes": 2444
+    },
+    "comm_off": {
+      "episodes": 300,
+      "success_rate": 0.5633333333333334,
+      "avg_length": 122.55333333333333,
+      "help_rate": 0.0,
+      "rc": 0.43426218063791744,
+      "cpr": 0.5933090578060992,
+      "rally_steps": 39.833333333333336,
+      "rally_rate": 0.9333333333333333,
+      "rc_steps": 36766,
+      "push_opportunities": 4394,
+      "coordinated_pushes": 2607
+    }
+  },
+  {
+    "level": "S7_spawn_random",
+    "comm_on": {
+      "episodes": 300,
+      "success_rate": 0.9033333333333333,
+      "avg_length": 68.04333333333334,
+      "help_rate": 0.45851908097780825,
+      "rc": 0.4698639755711231,
+      "cpr": 0.6108173076923077,
+      "rally_steps": 22.566666666666666,
+      "rally_rate": 0.9966666666666667,
+      "rc_steps": 20413,
+      "push_opportunities": 4160,
+      "coordinated_pushes": 2541
+    },
+    "comm_off": {
+      "episodes": 300,
+      "success_rate": 0.6,
+      "avg_length": 123.51333333333334,
+      "help_rate": 0.0,
+      "rc": 0.44444369478778323,
+      "cpr": 0.6144640998959418,
+      "rally_steps": 51.473333333333336,
+      "rally_rate": 0.9233333333333333,
+      "rc_steps": 37054,
+      "push_opportunities": 3844,
+      "coordinated_pushes": 2362
+    }
+  },
+  {
+    "level": "S8_split_2near",
+    "comm_on": {
+      "episodes": 300,
+      "success_rate": 0.8866666666666667,
+      "avg_length": 64.62666666666667,
+      "help_rate": 0.5215081493707447,
+      "rc": 0.49234492125713514,
+      "cpr": 0.5382951103418434,
+      "rally_steps": 18.566666666666666,
+      "rally_rate": 0.9933333333333333,
+      "rc_steps": 19388,
+      "push_opportunities": 4622,
+      "coordinated_pushes": 2488
+    },
+    "comm_off": {
+      "episodes": 300,
+      "success_rate": 0.5233333333333333,
+      "avg_length": 131.38666666666666,
+      "help_rate": 0.0,
+      "rc": 0.4632890196874206,
+      "cpr": 0.5882196162046909,
+      "rally_steps": 55.60666666666667,
+      "rally_rate": 0.87,
+      "rc_steps": 39416,
+      "push_opportunities": 3752,
+      "coordinated_pushes": 2207
+    }
+  },
+  {
+    "level": "S9_split_1near",
+    "comm_on": {
+      "episodes": 300,
+      "success_rate": 0.8933333333333333,
+      "avg_length": 66.86,
+      "help_rate": 0.4821019044770167,
+      "rc": 0.4826378502343198,
+      "cpr": 0.5808986005401424,
+      "rally_steps": 22.713333333333335,
+      "rally_rate": 0.99,
+      "rc_steps": 20058,
+      "push_opportunities": 4073,
+      "coordinated_pushes": 2366
+    },
+    "comm_off": {
+      "episodes": 300,
+      "success_rate": 0.4666666666666667,
+      "avg_length": 141.62,
+      "help_rate": 0.0,
+      "rc": 0.44121985281427634,
+      "cpr": 0.572129255626082,
+      "rally_steps": 68.5,
+      "rally_rate": 0.8366666666666667,
+      "rc_steps": 42486,
+      "push_opportunities": 3466,
+      "coordinated_pushes": 1983
+    }
+  },
+  {
+    "level": "S10a_one_small_obstacle_near",
+    "comm_on": {
+      "episodes": 300,
+      "success_rate": 0.8333333333333334,
+      "avg_length": 75.59,
+      "help_rate": 0.6385985800590908,
+      "rc": 0.5481214446355208,
+      "cpr": 0.3555956678700361,
+      "rally_steps": 29.316666666666666,
+      "rally_rate": 0.9433333333333334,
+      "rc_steps": 22677,
+      "push_opportunities": 3324,
+      "coordinated_pushes": 1182
+    },
+    "comm_off": {
+      "episodes": 300,
+      "success_rate": 0.44666666666666666,
+      "avg_length": 140.14333333333335,
+      "help_rate": 0.0,
+      "rc": 0.42095394397800995,
+      "cpr": 0.30544272948822093,
+      "rally_steps": 74.11333333333333,
+      "rally_rate": 0.7566666666666667,
+      "rc_steps": 42043,
+      "push_opportunities": 2462,
+      "coordinated_pushes": 752
+    }
+  },
+  {
+    "level": "S10a1_clear_obstacle_small_target_scaffold",
+    "comm_on": {
+      "episodes": 300,
+      "success_rate": 0.7766666666666666,
+      "avg_length": 50.09,
+      "help_rate": 0.41195847474545816,
+      "rc": 0.5672788979836295,
+      "cpr": 0.4978883153449085,
+      "rally_steps": 15.13,
+      "rally_rate": 0.9633333333333334,
+      "rc_steps": 15027,
+      "push_opportunities": 4262,
+      "coordinated_pushes": 2122
+    },
+    "comm_off": {
+      "episodes": 300,
+      "success_rate": 0.6966666666666667,
+      "avg_length": 56.18333333333333,
+      "help_rate": 0.0,
+      "rc": 0.5222485909225749,
+      "cpr": 0.4736595645047998,
+      "rally_steps": 19.483333333333334,
+      "rally_rate": 0.9566666666666667,
+      "rc_steps": 16855,
+      "push_opportunities": 4271,
+      "coordinated_pushes": 2023
+    }
+  }
+]

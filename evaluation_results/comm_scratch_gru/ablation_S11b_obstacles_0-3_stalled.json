@@ -1,0 +1,32 @@
+{
+  "run": "comm_scratch_gru",
+  "level": "S11b_obstacles_0-3",
+  "tag": "stalled",
+  "comm_on": {
+    "episodes": 300,
+    "success_rate": 0.8466666666666667,
+    "avg_length": 74.51666666666667,
+    "help_rate": 0.32417803623350483,
+    "rc": 0.4513494371132435,
+    "cpr": 0.7253173483779972,
+    "rally_steps": 31.1,
+    "rally_rate": 0.97,
+    "rc_steps": 22355,
+    "push_opportunities": 2836,
+    "coordinated_pushes": 2057
+  },
+  "comm_off": {
+    "episodes": 300,
+    "success_rate": 0.5366666666666666,
+    "avg_length": 133.52,
+    "help_rate": 0.0,
+    "rc": 0.4253420211703755,
+    "cpr": 0.5701275045537341,
+    "rally_steps": 72.79,
+    "rally_rate": 0.87,
+    "rc_steps": 40056,
+    "push_opportunities": 2745,
+    "coordinated_pushes": 1565
+  },
+  "success_gap": 0.31000000000000005
+}

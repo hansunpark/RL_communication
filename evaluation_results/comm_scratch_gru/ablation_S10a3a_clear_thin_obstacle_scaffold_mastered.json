@@ -1,0 +1,32 @@
+{
+  "run": "comm_scratch_gru",
+  "level": "S10a3a_clear_thin_obstacle_scaffold",
+  "tag": "mastered",
+  "comm_on": {
+    "episodes": 300,
+    "success_rate": 0.82,
+    "avg_length": 49.10333333333333,
+    "help_rate": 0.5075690720249814,
+    "rc": 0.4594958477586953,
+    "cpr": 0.7488789237668162,
+    "rally_steps": 34.593333333333334,
+    "rally_rate": 0.8866666666666667,
+    "rc_steps": 14731,
+    "push_opportunities": 1561,
+    "coordinated_pushes": 1169
+  },
+  "comm_off": {
+    "episodes": 300,
+    "success_rate": 0.49666666666666665,
+    "avg_length": 69.72333333333333,
+    "help_rate": 0.0,
+    "rc": 0.3935156411849931,
+    "cpr": 0.6187683284457478,
+    "rally_steps": 50.28333333333333,
+    "rally_rate": 0.69,
+    "rc_steps": 20917,
+    "push_opportunities": 1364,
+    "coordinated_pushes": 844
+  },
+  "success_gap": 0.3233333333333333
+}

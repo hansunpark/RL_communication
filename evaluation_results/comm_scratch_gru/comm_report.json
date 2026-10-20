@@ -1,0 +1,321 @@
+[
+  {
+    "level": "S10a2_clear_obstacle_in_path_scaffold",
+    "comm_on": {
+      "episodes": 300,
+      "success_rate": 0.8266666666666667,
+      "avg_length": 48.083333333333336,
+      "help_rate": 0.5115944540727903,
+      "rc": 0.5692316580011577,
+      "cpr": 0.6098191214470284,
+      "rally_steps": 31.1,
+      "rally_rate": 0.91,
+      "rc_steps": 14425,
+      "push_opportunities": 1935,
+      "coordinated_pushes": 1180
+    },
+    "comm_off": {
+      "episodes": 300,
+      "success_rate": 0.6,
+      "avg_length": 62.45666666666666,
+      "help_rate": 0.0,
+      "rc": 0.45699240362206517,
+      "cpr": 0.5096097845078625,
+      "rally_steps": 45.31333333333333,
+      "rally_rate": 0.7633333333333333,
+      "rc_steps": 18737,
+      "push_opportunities": 1717,
+      "coordinated_pushes": 875
+    }
+  },
+  {
+    "level": "S10a3a_clear_thin_obstacle_scaffold",
+    "comm_on": {
+      "episodes": 300,
+      "success_rate": 0.7833333333333333,
+      "avg_length": 50.6,
+      "help_rate": 0.5083333333333333,
+      "rc": 0.47358366271409724,
+      "cpr": 0.7533805537669027,
+      "rally_steps": 34.99,
+      "rally_rate": 0.8966666666666666,
+      "rc_steps": 15180,
+      "push_opportunities": 1553,
+      "coordinated_pushes": 1170
+    },
+    "comm_off": {
+      "episodes": 300,
+      "success_rate": 0.49666666666666665,
+      "avg_length": 71.35666666666667,
+      "help_rate": 0.0,
+      "rc": 0.3877547842605992,
+      "cpr": 0.6288515406162465,
+      "rally_steps": 51.68333333333333,
+      "rally_rate": 0.7,
+      "rc_steps": 21407,
+      "push_opportunities": 1428,
+      "coordinated_pushes": 898
+    }
+  },
+  {
+    "level": "S10a3b_clear_big_obstacle_scaffold",
+    "comm_on": {
+      "episodes": 300,
+      "success_rate": 0.77,
+      "avg_length": 52.806666666666665,
+      "help_rate": 0.42508837268021715,
+      "rc": 0.4588698817489319,
+      "cpr": 0.7350029120559115,
+      "rally_steps": 37.63666666666666,
+      "rally_rate": 0.86,
+      "rc_steps": 15842,
+      "push_opportunities": 1717,
+      "coordinated_pushes": 1262
+    },
+    "comm_off": {
+      "episodes": 300,
+      "success_rate": 0.55,
+      "avg_length": 68.01666666666667,
+      "help_rate": 0.0,
+      "rc": 0.3750837213101308,
+      "cpr": 0.6453634085213033,
+      "rally_steps": 51.67333333333333,
+      "rally_rate": 0.7266666666666667,
+      "rc_steps": 20405,
+      "push_opportunities": 1596,
+      "coordinated_pushes": 1030
+    }
+  },
+  {
+    "level": "S10b_small_obstacle_goal_any",
+    "comm_on": {
+      "episodes": 300,
+      "success_rate": 0.9266666666666666,
+      "avg_length": 58.46666666666667,
+      "help_rate": 0.4291049030786773,
+      "rc": 0.5325969213226928,
+      "cpr": 0.671279299632872,
+      "rally_steps": 14.19,
+      "rally_rate": 1.0,
+      "rc_steps": 17540,
+      "push_opportunities": 3541,
+      "coordinated_pushes": 2377
+    },
+    "comm_off": {
+      "episodes": 300,
+      "success_rate": 0.5566666666666666,
+      "avg_length": 119.07,
+      "help_rate": 0.0,
+      "rc": 0.41687896008884673,
+      "cpr": 0.6134273451870018,
+      "rally_steps": 29.913333333333334,
+      "rally_rate": 0.9566666666666667,
+      "rc_steps": 35721,
+      "push_opportunities": 3262,
+      "coordinated_pushes": 2001
+    }
+  },
+  {
+    "level": "S10c_small_obstacle_random_spawn",
+    "comm_on": {
+      "episodes": 300,
+      "success_rate": 0.87,
+      "avg_length": 72.21666666666667,
+      "help_rate": 0.4240480036925917,
+      "rc": 0.47650588506808317,
+      "cpr": 0.675385462555066,
+      "rally_steps": 25.51,
+      "rally_rate": 0.9933333333333333,
+      "rc_steps": 21665,
+      "push_opportunities": 3632,
+      "coordinated_pushes": 2453
+    },
+    "comm_off": {
+      "episodes": 300,
+      "success_rate": 0.5466666666666666,
+      "avg_length": 131.87,
+      "help_rate": 0.0,
+      "rc": 0.42902100553574996,
+      "cpr": 0.6337760910815939,
+      "rally_steps": 49.93,
+      "rally_rate": 0.9433333333333334,
+      "rc_steps": 39561,
+      "push_opportunities": 3162,
+      "coordinated_pushes": 2004
+    }
+  },
+  {
+    "level": "S10d_one_obstacle_random_spawn",
+    "comm_on": {
+      "episodes": 300,
+      "success_rate": 0.9066666666666666,
+      "avg_length": 66.68,
+      "help_rate": 0.4376874625074985,
+      "rc": 0.47325951476371214,
+      "cpr": 0.7110438729198184,
+      "rally_steps": 28.49,
+      "rally_rate": 0.98,
+      "rc_steps": 20004,
+      "push_opportunities": 3305,
+      "coordinated_pushes": 2350
+    },
+    "comm_off": {
+      "episodes": 300,
+      "success_rate": 0.51,
+      "avg_length": 134.62333333333333,
+      "help_rate": 0.0,
+      "rc": 0.4080459058608085,
+      "cpr": 0.702258726899384,
+      "rally_steps": 57.51,
+      "rally_rate": 0.9166666666666666,
+      "rc_steps": 40387,
+      "push_opportunities": 2922,
+      "coordinated_pushes": 2052
+    }
+  },
+  {
+    "level": "S10f1_two_small_obstacles_scaffold",
+    "comm_on": {
+      "episodes": 300,
+      "success_rate": 0.8533333333333334,
+      "avg_length": 69.96333333333334,
+      "help_rate": 0.31915527180904285,
+      "rc": 0.43031270347959993,
+      "cpr": 0.8127705627705628,
+      "rally_steps": 45.88666666666666,
+      "rally_rate": 0.9233333333333333,
+      "rc_steps": 20989,
+      "push_opportunities": 1848,
+      "coordinated_pushes": 1502
+    },
+    "comm_off": {
+      "episodes": 300,
+      "success_rate": 0.6833333333333333,
+      "avg_length": 99.44,
+      "help_rate": 0.0,
+      "rc": 0.38595021006525465,
+      "cpr": 0.6728682170542636,
+      "rally_steps": 58.52333333333333,
+      "rally_rate": 0.8733333333333333,
+      "rc_steps": 29832,
+      "push_opportunities": 1935,
+      "coordinated_pushes": 1302
+    }
+  },
+  {
+    "level": "S10e_obstacles_0-2_random_spawn",
+    "comm_on": {
+      "episodes": 300,
+      "success_rate": 0.83,
+      "avg_length": 68.98333333333333,
+      "help_rate": 0.34114520415559313,
+      "rc": 0.4242127728114661,
+      "cpr": 0.7982621836040801,
+      "rally_steps": 29.623333333333335,
+      "rally_rate": 0.9666666666666667,
+      "rc_steps": 20695,
+      "push_opportunities": 2647,
+      "coordinated_pushes": 2113
+    },
+    "comm_off": {
+      "episodes": 300,
+      "success_rate": 0.5433333333333333,
+      "avg_length": 124.28,
+      "help_rate": 0.0,
+      "rc": 0.4008041876765813,
+      "cpr": 0.6989326463010673,
+      "rally_steps": 52.29,
+      "rally_rate": 0.9333333333333333,
+      "rc_steps": 37284,
+      "push_opportunities": 2717,
+      "coordinated_pushes": 1899
+    }
+  },
+  {
+    "level": "S10_obstacles_0-2",
+    "comm_on": {
+      "episodes": 300,
+      "success_rate": 0.86,
+      "avg_length": 66.65,
+      "help_rate": 0.3921355338834709,
+      "rc": 0.45156289072267014,
+      "cpr": 0.7868290826037305,
+      "rally_steps": 30.086666666666666,
+      "rally_rate": 0.9533333333333334,
+      "rc_steps": 19995,
+      "push_opportunities": 2627,
+      "coordinated_pushes": 2067
+    },
+    "comm_off": {
+      "episodes": 300,
+      "success_rate": 0.55,
+      "avg_length": 125.82666666666667,
+      "help_rate": 0.0,
+      "rc": 0.40935060577160803,
+      "cpr": 0.6979085979860573,
+      "rally_steps": 61.35333333333333,
+      "rally_rate": 0.9,
+      "rc_steps": 37748,
+      "push_opportunities": 2582,
+      "coordinated_pushes": 1802
+    }
+  },
+  {
+    "level": "S11a_small_obstacles_0-4",
+    "comm_on": {
+      "episodes": 300,
+      "success_rate": 0.83,
+      "avg_length": 79.66666666666667,
+      "help_rate": 0.4069665271966527,
+      "rc": 0.4468235704323589,
+      "cpr": 0.7490935460478607,
+      "rally_steps": 32.056666666666665,
+      "rally_rate": 0.9766666666666667,
+      "rc_steps": 23900,
+      "push_opportunities": 2758,
+      "coordinated_pushes": 2066
+    },
+    "comm_off": {
+      "episodes": 300,
+      "success_rate": 0.4633333333333333,
+      "avg_length": 140.86,
+      "help_rate": 0.0,
+      "rc": 0.38902692981211845,
+      "cpr": 0.6434231378763867,
+      "rally_steps": 71.77666666666667,
+      "rally_rate": 0.86,
+      "rc_steps": 42258,
+      "push_opportunities": 2524,
+      "coordinated_pushes": 1624
+    }
+  },
+  {
+    "level": "S11b1_obstacles_0-3_goal_le8",
+    "comm_on": {
+      "episodes": 300,
+      "success_rate": 0.8566666666666667,
+      "avg_length": 67.86333333333333,
+      "help_rate": 0.4121518738641387,
+      "rc": 0.4345170849910766,
+      "cpr": 0.7040302267002518,
+      "rally_steps": 34.05,
+      "rally_rate": 0.96,
+      "rc_steps": 20359,
+      "push_opportunities": 2382,
+      "coordinated_pushes": 1677
+    },
+    "comm_off": {
+      "episodes": 300,
+      "success_rate": 0.4866666666666667,
+      "avg_length": 136.90666666666667,
+      "help_rate": 0.0,
+      "rc": 0.3799668874172392,
+      "cpr": 0.5231481481481481,
+      "rally_steps": 71.41666666666667,
+      "rally_rate": 0.8333333333333334,
+      "rc_steps": 41072,
+      "push_opportunities": 2376,
+      "coordinated_pushes": 1243
+    }
+  }
+]

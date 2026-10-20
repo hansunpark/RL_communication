@@ -1,0 +1,273 @@
+{
+  "run": "comm_scratch_gru",
+  "level": 27,
+  "level_name": "S11b_obstacles_0-3",
+  "num_levels": 29,
+  "level_episodes": 200000,
+  "total_episodes": 312115,
+  "global_step": 88466160,
+  "elapsed_min": 41.3,
+  "avg_len": 81.84,
+  "avg_return": 8.217149701416492,
+  "help_rate": 0.33140457090447173,
+  "buckets": {
+    "small_g0-3_obs1-2_near1": {
+      "n": 100,
+      "success_rate": 0.96,
+      "ready": true
+    },
+    "small_g0-3_obs3-4_near1": {
+      "n": 100,
+      "success_rate": 0.92,
+      "ready": true
+    },
+    "small_g6-8_obs0_near1": {
+      "n": 100,
+      "success_rate": 1.0,
+      "ready": true
+    },
+    "small_g4-5_obs0_near1": {
+      "n": 100,
+      "success_rate": 1.0,
+      "ready": true
+    },
+    "small_g4-5_obs3-4_near1": {
+      "n": 100,
+      "success_rate": 0.8,
+      "ready": true
+    },
+    "large_g4-5_obs1-2_near1": {
+      "n": 100,
+      "success_rate": 0.9,
+      "ready": true
+    },
+    "large_g0-3_obs3-4_near1": {
+      "n": 100,
+      "success_rate": 0.74,
+      "ready": true
+    },
+    "small_g0-3_obs0_near1": {
+      "n": 100,
+      "success_rate": 1.0,
+      "ready": true
+    },
+    "small_g4-5_obs1-2_near1": {
+      "n": 100,
+      "success_rate": 0.95,
+      "ready": true
+    },
+    "small_g6-8_obs1-2_near1": {
+      "n": 100,
+      "success_rate": 0.88,
+      "ready": true
+    },
+    "large_g4-5_obs0_near1": {
+      "n": 100,
+      "success_rate": 0.99,
+      "ready": true
+    },
+    "large_g9+_obs0_near1": {
+      "n": 100,
+      "success_rate": 0.96,
+      "ready": true
+    },
+    "large_g6-8_obs1-2_near1": {
+      "n": 100,
+      "success_rate": 0.8,
+      "ready": true
+    },
+    "large_g6-8_obs0_near1": {
+      "n": 100,
+      "success_rate": 1.0,
+      "ready": true
+    },
+    "small_g9+_obs1-2_near1": {
+      "n": 100,
+      "success_rate": 0.88,
+      "ready": true
+    },
+    "large_g9+_obs1-2_near1": {
+      "n": 100,
+      "success_rate": 0.66,
+      "ready": true
+    },
+    "small_g6-8_obs3-4_near1": {
+      "n": 100,
+      "success_rate": 0.67,
+      "ready": true
+    },
+    "small_g9+_obs0_near1": {
+      "n": 100,
+      "success_rate": 0.98,
+      "ready": true
+    },
+    "large_g0-3_obs1-2_near1": {
+      "n": 100,
+      "success_rate": 0.97,
+      "ready": true
+    },
+    "large_g4-5_obs3-4_near1": {
+      "n": 100,
+      "success_rate": 0.71,
+      "ready": true
+    },
+    "large_g6-8_obs3-4_near1": {
+      "n": 100,
+      "success_rate": 0.54,
+      "ready": false
+    },
+    "large_g9+_obs3-4_near1": {
+      "n": 100,
+      "success_rate": 0.46,
+      "ready": false
+    },
+    "small_g9+_obs3-4_near1": {
+      "n": 100,
+      "success_rate": 0.43,
+      "ready": false
+    },
+    "large_g0-3_obs0_near1": {
+      "n": 100,
+      "success_rate": 1.0,
+      "ready": true
+    }
+  },
+  "last_update": {
+    "policy_loss": -0.0012877517777572696,
+    "value_loss": 0.9956897273659706,
+    "entropy": 0.9864702199896177,
+    "move_entropy": 0.7619562037289143,
+    "comm_entropy": 0.22451401626070341,
+    "approx_kl": 0.007251875412028615,
+    "kl_early_stop": 0.0,
+    "entropy_coef": 0.01
+  },
+  "history": [
+    {
+      "level": "S11b1_obstacles_0-3_goal_le8",
+      "episodes": 33395,
+      "elapsed_min": 5.6,
+      "buckets": {
+        "small_g4-5_obs3-4_near1": {
+          "n": 100,
+          "success_rate": 0.77,
+          "ready": true
+        },
+        "large_g0-3_obs0_near1": {
+          "n": 100,
+          "success_rate": 1.0,
+          "ready": true
+        },
+        "large_g4-5_obs3-4_near1": {
+          "n": 100,
+          "success_rate": 0.72,
+          "ready": true
+        },
+        "large_g0-3_obs3-4_near1": {
+          "n": 100,
+          "success_rate": 0.76,
+          "ready": true
+        },
+        "small_g0-3_obs1-2_near1": {
+          "n": 100,
+          "success_rate": 0.97,
+          "ready": true
+        },
+        "small_g0-3_obs3-4_near1": {
+          "n": 100,
+          "success_rate": 0.85,
+          "ready": true
+        },
+        "small_g0-3_obs0_near1": {
+          "n": 100,
+          "success_rate": 1.0,
+          "ready": true
+        },
+        "small_g6-8_obs0_near1": {
+          "n": 100,
+          "success_rate": 1.0,
+          "ready": true
+        },
+        "large_g4-5_obs0_near1": {
+          "n": 100,
+          "success_rate": 1.0,
+          "ready": true
+        },
+        "large_g4-5_obs1-2_near1": {
+          "n": 100,
+          "success_rate": 0.89,
+          "ready": true
+        },
+        "small_g4-5_obs0_near1": {
+          "n": 100,
+          "success_rate": 1.0,
+          "ready": true
+        },
+        "large_g0-3_obs1-2_near1": {
+          "n": 100,
+          "success_rate": 0.87,
+          "ready": true
+        },
+        "small_g4-5_obs1-2_near1": {
+          "n": 100,
+          "success_rate": 0.87,
+          "ready": true
+        },
+        "small_g6-8_obs1-2_near1": {
+          "n": 100,
+          "success_rate": 0.8,
+          "ready": true
+        },
+        "large_g6-8_obs1-2_near1": {
+          "n": 100,
+          "success_rate": 0.79,
+          "ready": true
+        },
+        "large_g6-8_obs0_near1": {
+          "n": 100,
+          "success_rate": 0.99,
+          "ready": true
+        },
+        "small_g6-8_obs3-4_near1": {
+          "n": 100,
+          "success_rate": 0.6,
+          "ready": true
+        },
+        "large_g6-8_obs3-4_near1": {
+          "n": 100,
+          "success_rate": 0.62,
+          "ready": true
+        }
+      },
+      "ablation": {
+        "comm_on": {
+          "episodes": 300,
+          "success_rate": 0.8533333333333334,
+          "avg_length": 66.79333333333334,
+          "help_rate": 0.4095593372592075,
+          "rc": 0.428011777622519,
+          "cpr": 0.7203728362183754,
+          "rally_steps": 32.89666666666667,
+          "rally_rate": 0.9633333333333334,
+          "rc_steps": 20038,
+          "push_opportunities": 2253,
+          "coordinated_pushes": 1623
+        },
+        "comm_off": {
+          "episodes": 300,
+          "success_rate": 0.49666666666666665,
+          "avg_length": 134.6,
+          "help_rate": 0.0,
+          "rc": 0.3764157173518369,
+          "cpr": 0.6200488997555013,
+          "rally_steps": 73.99333333333334,
+          "rally_rate": 0.8433333333333334,
+          "rc_steps": 40380,
+          "push_opportunities": 2045,
+          "coordinated_pushes": 1268
+        }
+      }
+    }
+  ],
+  "stop_reason": "stalled at S11b_obstacles_0-3"
+}

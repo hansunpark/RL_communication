@@ -1,0 +1,28 @@
+{
+  "run": "comm_scratch_gru",
+  "level": "S10a2_clear_obstacle_in_path_scaffold",
+  "tag": "mastered",
+  "comm_on": {
+    "episodes": 300,
+    "success_rate": 0.8333333333333334,
+    "avg_length": 48.07,
+    "help_rate": 0.5153942167672145,
+    "rc": 0.5638420821487192,
+    "cpr": 0.5846366145354186,
+    "rc_steps": 14421,
+    "push_opportunities": 2174,
+    "coordinated_pushes": 1271
+  },
+  "comm_off": {
+    "episodes": 300,
+    "success_rate": 0.5666666666666667,
+    "avg_length": 66.00666666666666,
+    "help_rate": 0.0,
+    "rc": 0.43892451940881055,
+    "cpr": 0.49942196531791905,
+    "rc_steps": 19802,
+    "push_opportunities": 1730,
+    "coordinated_pushes": 864
+  },
+  "success_gap": 0.2666666666666667
+}
