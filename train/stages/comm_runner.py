@@ -944,6 +944,36 @@ def train(
         )
     )
 
+    def apply_level_mastery():
+        """
+        레벨별 mastery 기준 (sampler.train_settings()의
+        bucket_threshold / overall_threshold). 없으면 config 값.
+        """
+
+        settings = (
+            sampler.train_settings()
+            if hasattr(
+                sampler,
+                "train_settings",
+            )
+            else {}
+        )
+
+        curriculum.default_threshold = (
+            settings.get(
+                "bucket_threshold",
+                config.success_threshold,
+            )
+        )
+
+        curriculum.overall_threshold = (
+            settings.get(
+                "overall_threshold"
+            )
+        )
+
+    apply_level_mastery()
+
     buffer = (
         RecurrentRolloutBuffer(
             device=device
@@ -1513,6 +1543,8 @@ def train(
                     )[:3]
 
                     rates = (
+                        f"overall "
+                        f"{curriculum.overall_rate():.2f} "
                         f"ready {ready_count}/"
                         f"{len(bucket_status)} "
                         "worst: "
@@ -1746,6 +1778,9 @@ def train(
 
                 level_episodes = 0
 
+                # 바뀐 레벨의 mastery 기준
+                # (advance는 아래에서 하므로 그 뒤에 다시 부른다).
+
                 length_window.clear()
                 return_window.clear()
                 help_window.clear()
@@ -1762,6 +1797,8 @@ def train(
                     stop_reason = "completed"
 
                 else:
+                    apply_level_mastery()
+
                     print(
                         f"Moving to "
                         f"{sampler.name}",

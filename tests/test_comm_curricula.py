@@ -822,7 +822,7 @@ def test_scratch_entropy_raised_only_for_new_coordination_levels():
 
     while True:
 
-        if sampler.train_settings():
+        if "entropy_coef" in sampler.train_settings():
             raised.append(sampler.name)
 
         if not sampler.advance():
@@ -1489,3 +1489,61 @@ def test_scratch_two_small_obstacles_scaffold():
                 * obstacle["height"]
                 <= 3
             )
+
+
+def test_overall_threshold_with_bucket_floor():
+
+    from train.stages.bucketed_curriculum import (
+        BucketedCurriculumManager,
+    )
+
+    manager = BucketedCurriculumManager(
+        threshold=0.6,
+        window_size=10,
+        min_total_episodes=0,
+        overall_threshold=0.85,
+        overall_window=40,
+    )
+
+    # 쉬운 버킷 30개 전부 성공, 어려운 버킷 10개 중 7개 성공
+    for _ in range(30):
+        manager.record("easy", True)
+
+    for index in range(10):
+        manager.record("hard", index < 7)
+
+    # 전체 37/40 = 0.925 >= 0.85, 어려운 버킷 0.7 >= 0.6
+    assert manager.mastered()
+
+    # 어려운 버킷이 하한 아래로 떨어지면 통과하지 못한다
+    for _ in range(10):
+        manager.record("hard", False)
+
+    assert not manager.mastered()
+
+
+def test_scratch_final_levels_use_relaxed_mastery():
+
+    sampler = CommScratchSampler()
+
+    relaxed = []
+
+    while True:
+
+        settings = sampler.train_settings()
+
+        if "overall_threshold" in settings:
+            relaxed.append(sampler.name)
+
+            assert settings[
+                "bucket_threshold"
+            ] == pytest.approx(0.6)
+
+        if not sampler.advance():
+            break
+
+    assert relaxed == [
+        "S10e_obstacles_0-2_random_spawn",
+        "S10_obstacles_0-2",
+        "S11_obstacles_0-4",
+    ]

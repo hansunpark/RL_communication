@@ -145,6 +145,21 @@ DEFAULT_OBSTACLE_SIZE_RANGE = ((1, 3), (1, 2))
 
 NEW_COORDINATION_ENTROPY_COEF = 0.03
 
+# obstacle 0-N개 랜덤인 마지막 레벨들(S10e, S10, S11)의 mastery 기준.
+# 다른 레벨은 "모든 버킷 >= 0.85". 여기서는 "최근 400 episode 전체
+# >= 0.85 + 모든 버킷 >= 0.6"으로 바꾼다.
+#
+# 이유 (2026-10-21, GRU): S10e를 100,000 episode 학습한 체크포인트가 S10e
+# 시나리오 600개에서 전체 0.85, obstacle 0/1/2개 0.98/0.90/0.69인데 "큰
+# target + goal 9칸 이상 + obstacle" 버킷만 0.54. 이 조합은 시간을 400 step
+# 으로 늘려도(성공 그대로), BFS로 보면 풀 수 있는 배치이고, 발판(S10f1/S10f)을
+# 세 번 바꿔 넣어도 오르지 않았다 (S10f 학습 후 전체 0.81, 그 버킷 0.55).
+# 버킷 하한(0.6)으로 "한 버킷 완전 실패를 평균이 가리는" 문제는 막으면서
+# 가장 어려운 조합 하나가 레벨 진행 전체를 막지 않게 한다.
+FINAL_BUCKET_THRESHOLD = 0.6
+
+FINAL_OVERALL_THRESHOLD = 0.85
+
 LEVELS = [
     {
         "name": "S0_push_2x1_d2-3",
@@ -451,6 +466,8 @@ LEVELS = [
     },
     {
         "name": "S10e_obstacles_0-2_random_spawn",
+        "bucket_threshold": FINAL_BUCKET_THRESHOLD,
+        "overall_threshold": FINAL_OVERALL_THRESHOLD,
         "target_size": RANDOM_SIZE,
         "goal_distance_range": None,
         "spawn": {"type": "random"},
@@ -459,6 +476,8 @@ LEVELS = [
     },
     {
         "name": "S10_obstacles_0-2",
+        "bucket_threshold": FINAL_BUCKET_THRESHOLD,
+        "overall_threshold": FINAL_OVERALL_THRESHOLD,
         "target_size": RANDOM_SIZE,
         "goal_distance_range": None,
         "spawn": {
@@ -473,6 +492,8 @@ LEVELS = [
     },
     {
         "name": "S11_obstacles_0-4",
+        "bucket_threshold": FINAL_BUCKET_THRESHOLD,
+        "overall_threshold": FINAL_OVERALL_THRESHOLD,
         "target_size": RANDOM_SIZE,
         "goal_distance_range": None,
         "spawn": {
@@ -673,15 +694,15 @@ class CommScratchSampler:
 
     def train_settings(self):
 
-        if "entropy_coef" in self.config:
-            return {
-                "entropy_coef":
-                    self.config[
-                        "entropy_coef"
-                    ],
-            }
-
-        return {}
+        return {
+            key: self.config[key]
+            for key in (
+                "entropy_coef",
+                "bucket_threshold",
+                "overall_threshold",
+            )
+            if key in self.config
+        }
 
     def env_settings(self):
 
