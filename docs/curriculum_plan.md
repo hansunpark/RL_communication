@@ -42,6 +42,10 @@
 | 2026-10-21 | 대응: S10a2와 S10b 사이에 **S10a3**(보통 크기 obstacle이 경로를 막는 발판: 같은 행/열 goal 3-5칸, 근처 스폰, max_steps 100, entropy 0.03) 추가. S10d 정체 체크포인트에서 S10a3(레벨 16)부터 재시작 → S10b, S10c, S10d를 다시 거친다. 같은 설정, 명령은 `--start-level 16 --start-checkpoint checkpoints\comm_scratch_gru_S10d_one_obstacle_random_spawn_stalled.pt`. |
 | 2026-10-21 | 첫 GRU 실행이 끝난 뒤 env worker 하나가 남아 있어서 `EnvPool.close()`가 정상 종료하지 않은 worker를 terminate하도록 고쳤다. |
 | 2026-10-21 | S10a3가 50,000 episode에 버킷 68-76%로 느렸다. obstacle 모양별로 1x1 90%, 2x1 86%, 1x2/3x1 67%, **2x2 25%, 3x2 21%**, **벽에 붙은 obstacle 16%**. 2칸 두께 obstacle은 2-3명이 옆면에서 함께 밀어야 하고, 벽에 붙은 것은 벽 반대쪽으로 밀 수 없다. → S10a3을 **S10a3a**(면적 3 이하 얇은 obstacle) / **S10a3b**(보통 크기 전체)로 쪼개고, 두 발판 모두 obstacle을 벽에서 떨어뜨렸다. S10a3 50k 체크포인트(`comm_scratch_gru_S10a3_50k.pt`)에서 S10a3a(레벨 16)부터 재시작. 로그 `logs/comm_scratch_gru_train_part2_S10a3.log`. |
+| 2026-10-21 | **S10a3a 11,723 episode, S10a3b 27,292 episode에 통과.** ablation S10a3a: 성공률 0.82 / 0.50, RC 0.46 / 0.39, **CPR 0.75 / 0.62 (+0.13, 지금까지 가장 큰 CPR 차이)**. S10a3b: 성공률 0.77 / 0.52, RC 0.48 / 0.38, CPR 0.72 / 0.64. obstacle을 치운 뒤 target을 미는 단계적 작업에서 통신이 동기화에도 쓰이는 것으로 보인다. 이어서 S10b, S10c, S10d를 다시 거친다. |
+| 2026-10-21 | S10b 13,434 episode (처음 70,205), S10c 7,312 episode (처음 40,628)에 다시 통과. ablation S10b: 0.93 / 0.58, RC 0.54 / 0.44, CPR 0.68 / 0.59. S10c: 0.91 / 0.56, RC 0.47 / 0.44, CPR 0.71 / 0.62. |
+| 2026-10-21 | **S10d를 60,093 episode에 통과** (발판 추가 전 200,000 episode 정체). ablation: 성공률 0.88 / 0.50 (+0.38), RC 0.45 / 0.41, CPR 0.71 / 0.71. 다음은 S10(split 1near + obstacle 0-2개), S11(obstacle 0-4개). |
+| 2026-10-21 | S10이 100,000 episode에 16개 버킷 중 11개, 최저 61-65%로 거의 정체. 가장 약한 "큰 target + goal 9칸 이상 + near1"에서 obstacle 1개 77%, **2개 45%**, 경로 위 50%. S10은 S10d 대비 스폰(랜덤 → split 1near)과 obstacle 수(1 → 0-2) 두 축을 함께 바꾼다. → S10d와 S10 사이에 **S10e**(랜덤 스폰 + obstacle 0-2개)를 넣고 S10 100k 체크포인트(`comm_scratch_gru_S10_100k.pt`)에서 S10e(레벨 21)부터 재시작. 로그 `logs/comm_scratch_gru_train_part3_S10a3a_to_S10.log`. |
 
 ```
 .venv\Scripts\python.exe -u -m train.stages.comm_scratch.train --recurrent --start-level 15 ^

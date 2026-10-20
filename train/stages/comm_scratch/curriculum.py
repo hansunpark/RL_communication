@@ -83,6 +83,11 @@ from .scenario import (
 # 2x2 25%, 3x2 21%, 벽에 붙은 obstacle 16%. 그래서 얇은 obstacle(S10a3a) ->
 # 보통 크기(S10a3b)로 쪼개고, 발판에서는 obstacle을 벽에서 떨어뜨린다.
 #
+# S10e (2026-10-21, GRU): S10d(랜덤 스폰, obstacle 정확히 1개) 다음 S10이 스폰
+# (랜덤 -> split 1near)과 obstacle 수(1 -> 0-2) 두 축을 한꺼번에 바꿨다. 가장
+# 약한 "큰 target + goal 9칸 이상" 버킷에서 obstacle 1개 77%, 2개 45%. 랜덤
+# 스폰에서 obstacle 수만 먼저 늘리는 S10e를 둔다.
+#
 # S10b 분할 (2026-09-29): S10a 다음 S10b에서 goal 거리(2-5 -> 무제한), 스폰
 # (근처 -> 랜덤), obstacle 크기(작음 -> 보통) 세 축을 한꺼번에 바꿨더니
 # 5,000 episode에 최저 버킷 18/28/41%. 한 레벨에 한 축씩으로 다시 쪼갠다.
@@ -110,7 +115,8 @@ from .scenario import (
 #   S10b goal 무제한 (근처 스폰, 작은 obstacle 1개)     (goal 거리)
 #   S10c 스폰 랜덤                                        (스폰)
 #   S10d obstacle 보통 크기 (1-3 x 1-2)                   (obstacle 크기)
-#   S10 split 1near + obstacle 0-2개                     (obstacle 수)
+#   S10e 랜덤 스폰 + obstacle 0-2개                      (obstacle 수)
+#   S10 split 1near + obstacle 0-2개                     (스폰)
 #   S11 obstacle 0-4개                                  (obstacle)
 # ============================================================
 
@@ -393,6 +399,14 @@ LEVELS = [
         "goal_distance_range": None,
         "spawn": {"type": "random"},
         "obstacle_count_range": (1, 1),
+        "help_penalty": HELP_PENALTY,
+    },
+    {
+        "name": "S10e_obstacles_0-2_random_spawn",
+        "target_size": RANDOM_SIZE,
+        "goal_distance_range": None,
+        "spawn": {"type": "random"},
+        "obstacle_count_range": (0, 2),
         "help_penalty": HELP_PENALTY,
     },
     {
