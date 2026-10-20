@@ -60,6 +60,7 @@
 | 2026-10-21 | **S11b1을 33,395 episode에 통과.** ablation: 성공률 0.85 / 0.50 (+0.36), RC 0.43 / 0.38, CPR 0.72 / 0.62 (+0.10). 다음은 S11b(goal 무제한)를 다시. |
 | 2026-10-21 | **S11b 두 번째 시도도 상한(200,000 episode)에서 정체로 멈춤.** 전체 0.80-0.82, 버킷 21/24. 남은 3개는 모두 "goal 6칸 이상 + obstacle 3개" (최종: 작은 target + goal 9칸 이상 0.43, 큰 target + goal 9칸 이상 0.28-0.46, 큰 target + goal 6-8칸 0.43-0.54). S11b1 발판은 첫 시도(0.76, 최저 0.26-0.31)보다 조금 나아지게 했지만 0.6 하한까지는 못 올렸다. 정체 ablation: 성공률 0.85 / 0.54, RC 0.45 / 0.43, CPR 0.73 / 0.57. 체크포인트 `comm_scratch_gru_S11b_obstacles_0-3_stalled.pt`, 로그 `logs/comm_scratch_gru_train_part10_S11b1_S11b.log`. |
 | 2026-10-21 | 이 체크포인트를 400 episode로 평가 (on / off): **S11b 0.80 / 0.50**, RC 0.44 / 0.42, CPR 0.68 / 0.58, 모이기 35 / 72 step. **S11 0.77 / 0.45**, RC 0.43 / 0.40, CPR 0.68 / 0.53, 모이기 39 / 78 step. S11을 처음 학습하다 멈춘 체크포인트는 S11에서 0.67-0.71이었으므로 S11a/S11b1/S11b 과정이 마지막 레벨에도 도움이 됐다. 하한을 더 낮춰 통과시키는 대신, 마지막 레벨 S11도 학습해 보기 위해 이 체크포인트에서 S11(레벨 28)부터 시작 (`--start-level 28 --start-checkpoint checkpoints\comm_scratch_gru_S11b_obstacles_0-3_stalled.pt`). |
+| 2026-10-21 | **S11을 100,000 episode 학습했지만 정체** (전체 0.69-0.74, 버킷 19/24, 큰 target + goal 9칸 이상 + obstacle 3-4개 0.18-0.24). 이 체크포인트(`comm_scratch_gru_S11_after_S11b_100k.pt`)는 S11에서 0.75 / 0.38로 S11b 체크포인트(0.77 / 0.45)보다 낫지 않다. 학습을 멈추고 **S11b 정체 체크포인트를 최종 모델로** 정했다. 로그 `logs/comm_scratch_gru_train_part11_S11.log`. 결론과 다음 할 일은 1장 "GRU 최종 결과"와 9장. |
 
 ```
 .venv\Scripts\python.exe -u -m train.stages.comm_scratch.train --recurrent --start-level 15 ^
@@ -73,10 +74,32 @@ epoch당 24번, update당 96번 gradient step (target_kl로 조기 종료 가능
 횟수가 MLP 기본 설정(env 16개)보다 훨씬 적어서 정체 판정을 레벨당 200,000 episode로 늘렸다.
 MLP 기준선과 batch 설정이 다르다는 점은 비교할 때 감안해야 한다.
 
-## 1. 현재 상태 (2026-10-20)
+## 1. 현재 상태 (2026-10-21)
 
-Track B는 **GRU로 S10a2부터 학습 중**이다 (0장 "자율 진행 기록"). Track A는 8C0s1에서 상한(재개 후
-60,000 episode)에 걸려 멈춘 상태 그대로다. 아래 표는 MLP 기준 마지막 상태다.
+**Track B GRU (`comm_scratch_gru`)는 S11b1까지 통과하고 S11b / S11에서 멈췄다** (학습 중인 것 없음).
+요약은 아래 "GRU 최종 결과", 과정은 0장 "자율 진행 기록". Track A는 8C0s1에서 상한(재개 후 60,000
+episode)에 걸려 멈춘 상태 그대로다.
+
+### GRU 최종 결과 (Track B, 2026-10-21)
+
+- 마지막 통과 레벨: **S11b1** (보통 크기 obstacle 0-3개, goal 3-8칸, split 1near 스폰).
+- 최종 모델: `checkpoints/comm_scratch_gru_S11b_obstacles_0-3_stalled.pt` (S11b 200,000 episode).
+  S11을 100,000 episode 더 학습한 `comm_scratch_gru_S11_after_S11b_100k.pt`는 S11에서 오히려 0.75로
+  조금 낮아서 이것을 최종으로 둔다.
+- 최종 모델 평가 (400 episode, 통신 on / off):
+
+| 레벨 | 성공률 | RC | CPR | 모이기 step |
+|---|---|---|---|---|
+| S11b (obstacle 0-3) | 0.80 / 0.50 | 0.44 / 0.42 | 0.68 / 0.58 | 35 / 72 |
+| S11 (obstacle 0-4, 마지막 레벨) | **0.77 / 0.45** | 0.43 / 0.40 | 0.68 / 0.53 | 39 / 78 |
+
+- 남은 약점: "goal 6칸 이상 + obstacle 3-4개", 특히 큰 target (S11 학습 중 18-46%). 시간(400 step),
+  풀이 가능성(BFS로 모두 풀림), 거리 발판(S11b1)을 확인했고, **시야 5x5 + goal은 시야 안에서만 보임
+  + HELP 메시지는 보낸 위치뿐**이라는 관측 한계가 가장 그럴듯한 원인이다 (9장).
+- 통과 기준: S10e부터 마지막 레벨들은 "전체 85% + 모든 버킷 60%"로 완화했다 (0장 기록, 이유 포함).
+  이전 레벨은 모두 "모든 버킷 85%".
+
+아래 표는 MLP 기준 마지막 상태다.
 
 | | Track A `stage8_comm` | Track B `comm_scratch` |
 |---|---|---|
@@ -289,7 +312,27 @@ episode로 한다. ablation은 평가마다 고정 seed로 시나리오 300개�
 | 19 | S10 | split 1near + obstacle 0-2개 | | | |
 | 20 | S11 | obstacle 0-4개 | | | |
 
-이동 entropy 0.03은 S3s, S3t, S10a, S10a1, S10a2에만 쓴다.
+이동 entropy 0.03은 S3s, S3t, S10a, S10a1, S10a2(그리고 GRU에서 넣은 S10a3a/b)에만 쓴다.
+
+위 표의 15번 이후는 MLP 때 계획이다. GRU로 실제 진행한 순서 (레벨 번호는 현재 `LEVELS` 기준,
+통신 on / off는 `evaluation_results/comm_scratch_gru/comm_report.md`와 최종 평가):
+
+| # | 레벨 | 바뀌는 축 | episode | 통신 on | off |
+|---|---|---|---|---|---|
+| 15 | S10a2 | 경로 obstacle 발판, 모든 target 크기 | 70,130 | 0.83 | 0.60 |
+| 16 | S10a3a | 발판: 얇은(면적 3 이하) 경로 obstacle, 벽에서 뗌 | 11,723 | 0.78 | 0.50 |
+| 17 | S10a3b | 발판: 보통 크기 경로 obstacle | 27,292 | 0.77 | 0.55 |
+| 18 | S10b | goal 무제한, 작은 obstacle | 70,205 (2차 13,434) | 0.93 | 0.56 |
+| 19 | S10c | 스폰 완전 랜덤 | 40,628 (2차 7,312) | 0.87 | 0.55 |
+| 20 | S10d | 보통 크기 obstacle 1개 | 200,000 정체 → 발판 후 60,093 | 0.91 | 0.51 |
+| 21 | S10f1 | 발판: 얇은 경로 obstacle + 작은 obstacle 1개, goal 3-5 | 1,420 | 0.85 | 0.68 |
+| 22 | S10f | 발판: 보통 경로 obstacle + 1개, goal 4-8 | 정체 (S10e 직행으로 건너뜀) | | |
+| 23 | S10e | 랜덤 스폰 + obstacle 0-2 (완화 기준) | 100,000 정체 → 완화 후 9,027 | 0.83 | 0.54 |
+| 24 | S10 | split 1near + obstacle 0-2 (완화) | 100,000 정체 → 완화 후 13,533 | 0.86 | 0.55 |
+| 25 | S11a | 작은 obstacle 0-4 (완화) | 49,554 | 0.83 | 0.46 |
+| 26 | S11b1 | 보통 obstacle 0-3, goal 3-8 (완화) | 33,395 | 0.86 | 0.49 |
+| 27 | S11b | 보통 obstacle 0-3 (완화) | 64,000 + 200,000 정체 | 0.80 | 0.50 |
+| 28 | S11 | 보통 obstacle 0-4 (완화) | 68,000 + 100,000 정체 | 0.77 | 0.45 |
 
 ---
 
@@ -391,6 +434,9 @@ episode로 한다. ablation은 평가마다 고정 seed로 시나리오 300개�
    warm-start 직후에는 critic이 이전 성공률에 맞춰져 있어서 critic warmup이 필요했다.
 7. **실패를 쪼개서 본다.** 정체 원인은 모두 "버킷 평균"이 아니라 방향, 모양, obstacle 위치별로 나눠
    봤을 때 드러났다 (예: 8B2 정체 = goal이 target 위에 있는 경우만 0/58).
+8. **쪼개도 안 오르면 관측을 의심한다.** GRU S10e-S11에서 발판을 여러 번 넣어도 "큰 target + 먼 goal +
+   obstacle 여러 개"만 남았다. 시간(step 2배), 풀이 가능성(BFS), 거리 발판을 하나씩 지운 뒤 남은 것은
+   에이전트가 그 상황에서 무엇을 볼 수 있는가였다 (시야 5x5, goal은 시야 안에서만).
 
 ---
 
@@ -439,10 +485,17 @@ episode로 한다. ablation은 평가마다 고정 seed로 시나리오 300개�
 
 ## 9. 다음에 할 일 / 열린 질문
 
-- **obstacle 단계 마무리.** Track B는 작은 target 발판(S10a1)을 통과했고 다음은 모든 크기 발판(S10a2).
-  Track A는 작은 target 발판(8C0s1)에서 정체했다 (약 85,000 episode, 버킷 57-70%). 같은 발판을
-  Track B는 통과했으므로, Track A 쪽 실패 유형부터 나눠 볼 필요가 있다. 큰 target까지 넘어가면
-  남은 obstacle 레벨(Track A 8C0a-8D, Track B S10b-S11)과 Track A의 split 레벨이 남는다.
+- **관측 범위 (가장 먼저).** GRU Track B의 남은 약점은 "큰 target + 먼 goal + obstacle 3-4개"뿐이고,
+  시간·풀이 가능성·거리 발판으로는 풀리지 않았다. 시야 5x5에서 goal은 `goal_mask`로 시야 안에서만
+  보이고 HELP 메시지는 보낸 에이전트의 상대 위치뿐이라, 큰 target을 밀 때 goal과 사이 obstacle이
+  거의 보이지 않는다. 후보: (a) target 기준 goal 상대 좌표를 관측에 추가, (b) 시야 7x7, (c) 메시지에
+  본 것(goal/obstacle 위치)을 싣는 채널. 셋 다 관측 차원이 바뀌는 연구 설계 결정이라 자율 진행에서는
+  하지 않았다. (a)가 가장 작은 변경이다. 어느 것이든 통신의 역할(특히 (c))이 달라지므로 on/off 비교를
+  다시 해야 한다.
+- **완화 기준의 의미.** S10e 이후는 "전체 85% + 버킷 60%"로 통과했다. 위 관측 변경 후에는 원래 기준
+  (모든 버킷 85%)으로 다시 돌려 보는 것이 맞다.
+- **Track A.** 8C0s1(작은 target 발판)에서 정체한 채로 멈춰 있다. 같은 발판을 Track B MLP는 통과했고,
+  GRU는 이후 obstacle 레벨에서 크게 나았으므로 Track A도 GRU로 다시 해 볼 만하다.
 - **no-comm 대조군.** 같은 커리큘럼을 `comm_enabled=False`로 학습해서, "학습 후 통신을 끈 모델"이
   아니라 "통신 없이 학습한 모델"과 비교한다.
 - **고정 테스트 세트.** 학습에 쓰지 않은 고정 시나리오 세트로 두 트랙과 대조군을 함께 평가한다
@@ -450,12 +503,10 @@ episode로 한다. ablation은 평가마다 고정 seed로 시나리오 300개�
 - **HELP 사용 패턴 분석.** 누가, 언제(target/goal을 본 상태인지), 받은 쪽이 어떻게 움직이는지.
 - **통신을 mastery 조건에 넣을지.** 지금은 ablation을 기록만 한다. `max_steps`를 줄여 통신이 꼭
   필요하게 만드는 튜닝은 하지 않았다.
-- **메모리 없는 정책의 한계.** target/goal이 시야 밖으로 나가면 기억하지 못한다. 먼 goal + obstacle
-  조합이 가장 약한 것도 이와 관련 있을 수 있다. GRU 실험 준비는 끝났다 (3장 "GRU 실험 준비").
-  centralized critic(MAPPO)은 GRU 결과를 본 뒤 하나씩 얹는다 (둘을 동시에 넣으면 무엇이 효과를
-  냈는지 구분할 수 없다).
-- **Track B 중단 지점.** 세션 종료로 MLP S10a2 실행이 53,800 episode에서 멈췄다 (큰 target 0-4%).
-  `comm_scratch_latest.pt`가 그 지점이다.
+- **메모리.** GRU는 MLP가 0-4%였던 S10a2와 정체했던 S10b를 통과했다 (batch 설정도 달라 GRU만의
+  효과로 단정하지는 않는다). centralized critic(MAPPO)은 관측 문제를 정리한 뒤 하나씩 얹는다.
+- **MLP Track B 중단 지점.** MLP S10a2 실행은 53,800 episode에서 멈췄다 (큰 target 0-4%).
+  `comm_scratch_latest.pt`가 그 지점이다 (GRU는 `comm_scratch_gru_*`).
 
 ---
 
