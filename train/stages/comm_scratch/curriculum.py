@@ -145,7 +145,7 @@ DEFAULT_OBSTACLE_SIZE_RANGE = ((1, 3), (1, 2))
 
 NEW_COORDINATION_ENTROPY_COEF = 0.03
 
-# obstacle 0-N개 랜덤인 마지막 레벨들(S10e, S10, S11a, S11b, S11)의 mastery 기준.
+# obstacle 0-N개 랜덤인 마지막 레벨들(S10e, S10, S11a, S11b1, S11b, S11)의 mastery 기준.
 # 다른 레벨은 "모든 버킷 >= 0.85". 여기서는 "최근 400 episode 전체
 # >= 0.85 + 모든 버킷 >= 0.6"으로 바꾼다.
 #
@@ -512,6 +512,27 @@ LEVELS = [
         },
         "obstacle_count_range": (0, 4),
         "obstacle_size_range": ((1, 2), (1, 1)),
+        "help_penalty": HELP_PENALTY,
+    },
+    # S11b 정체 (50,000 episode, 전체 0.76): obstacle 3개 시나리오로 재 보면
+    # 기본 0.55, 400 step 0.59, 얇은 obstacle 0.69, goal 3-5칸 0.69, 큰 target
+    # + goal 9칸 이상 0.32. 시야가 5x5이고 메시지는 보낸 에이전트 위치뿐이라
+    # 먼 goal과 그 사이 obstacle은 대부분 보이지 않는다. 거리 축을 먼저
+    # 줄여 보통 크기 obstacle 3개를 돌아가는 연습을 한다.
+    {
+        "name": "S11b1_obstacles_0-3_goal_le8",
+        "bucket_threshold": FINAL_BUCKET_THRESHOLD,
+        "overall_threshold": FINAL_OVERALL_THRESHOLD,
+        "target_size": RANDOM_SIZE,
+        "goal_distance_range": (3, 8),
+        "spawn": {
+            "type": "split",
+            "near_count": 1,
+            "near_radius": NEAR_RADIUS,
+            "far_min_distance":
+                FAR_MIN_DISTANCE,
+        },
+        "obstacle_count_range": (0, 3),
         "help_penalty": HELP_PENALTY,
     },
     {

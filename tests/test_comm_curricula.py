@@ -1546,6 +1546,7 @@ def test_scratch_final_levels_use_relaxed_mastery():
         "S10e_obstacles_0-2_random_spawn",
         "S10_obstacles_0-2",
         "S11a_small_obstacles_0-4",
+        "S11b1_obstacles_0-3_goal_le8",
         "S11b_obstacles_0-3",
         "S11_obstacles_0-4",
     ]
