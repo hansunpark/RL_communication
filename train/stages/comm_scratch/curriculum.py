@@ -422,7 +422,9 @@ LEVELS = [
         },
         "obstacle_count_range": (1, 1),
         "help_penalty": HELP_PENALTY,
-        "max_steps": 150,
+        # 처음에 150으로 줄였다가 성공 episode의 상위 10%가 180 step쯤
+        # 걸려서 발판이 실제 레벨보다 어려워졌다 (6-8칸 goal: 150 step
+        # 53%, 300 step 67%). 기본값(200)을 쓴다.
     },
     {
         "name": "S10e_obstacles_0-2_random_spawn",
