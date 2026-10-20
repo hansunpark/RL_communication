@@ -122,6 +122,27 @@ def main():
         action="store_true",
     )
 
+    # 병렬화 설정 (기본값은 make_config). GPU로 큰 batch를 쓸 때
+    # env와 worker를 함께 늘린다 (train/stages/vec_env.py 참고).
+    parser.add_argument("--num-envs", type=int)
+    parser.add_argument("--num-workers", type=int)
+    parser.add_argument("--rollout-steps", type=int)
+    parser.add_argument("--minibatch-size", type=int)
+    parser.add_argument("--device")
+
+    # 레벨당 정체 판정 episode 수. env를 수백 개 돌리면 같은 episode
+    # 수에서 update 횟수가 훨씬 적으므로 늘려 준다.
+    parser.add_argument(
+        "--max-episodes-per-level",
+        type=int,
+    )
+
+    # 같은 설정의 다른 실행과 구분할 이름 꼬리표 (예: "_par").
+    parser.add_argument(
+        "--run-suffix",
+        default="",
+    )
+
     args = parser.parse_args()
 
     config = make_config()
@@ -145,6 +166,21 @@ def main():
         config.recurrent = True
 
         config.run_name += "_gru"
+
+    for name in (
+        "num_envs",
+        "num_workers",
+        "rollout_steps",
+        "minibatch_size",
+        "device",
+        "max_episodes_per_level",
+    ):
+        value = getattr(args, name)
+
+        if value is not None:
+            setattr(config, name, value)
+
+    config.run_name += args.run_suffix
 
     train(
         config,

@@ -53,6 +53,14 @@ from .common import (
     flatten_obs,
 )
 
+from .vec_env import (
+    EnvPool,
+)
+
+from evaluation.coordination_metrics import (
+    CoordinationTracker,
+)
+
 
 # ============================================================
 # 통신 학습용 공용 러너 (벡터화 env + 레벨 커리큘럼)
@@ -164,6 +172,11 @@ class RunConfig:
     # 떨어져야 하고, 아니면 rollout 전체를 한 조각으로 쓴다.
     bptt_length: int = 32
 
+    # env를 나눠 돌릴 worker 프로세스 수. 0이면 메인 프로세스에서
+    # 순서대로 돈다 (기존 동작). GPU로 큰 batch를 쓸 때 env step이
+    # 병목이 되므로 env를 늘리면서 worker도 늘린다 (vec_env.py 참고).
+    num_workers: int = 0
+
     # "auto"면 CUDA가 있으면 GPU, 없으면 CPU.
     device: str = "auto"
 
@@ -171,6 +184,15 @@ class RunConfig:
 
     env_kwargs: dict = field(
         default_factory=dict
+    )
+
+
+def _fmt(value):
+
+    return (
+        "-"
+        if value is None
+        else f"{value:.3f}"
     )
 
 
@@ -369,6 +391,9 @@ def evaluate_level(
     help_steps = 0
     agent_steps = 0
 
+    # RC/CPR (evaluation/coordination_metrics.py)
+    tracker = CoordinationTracker()
+
     next_index = 0
 
     active = {}
@@ -534,6 +559,15 @@ def evaluate_level(
         ):
             env = envs[env_index]
 
+            tracker.observe(
+                env,
+                {
+                    agent: int(action[0])
+                    for agent, action
+                    in env_actions.items()
+                },
+            )
+
             (
                 observations,
                 _,
@@ -585,6 +619,8 @@ def evaluate_level(
             help_steps
             / max(1, agent_steps)
         ),
+
+        **tracker.summary(),
     }
 
 
@@ -601,7 +637,12 @@ def run_ablation(
         env_kwargs=config.env_kwargs,
         episodes=config.ablation_episodes,
         seed=config.seed * 7919 + 17,
-        num_envs=config.num_envs,
+        # 평가는 메인 프로세스에서 돈다. 학습 env가 수백 개여도
+        # 평가 episode는 수백 개라 이 정도면 충분하다.
+        num_envs=min(
+            config.num_envs,
+            32,
+        ),
     )
 
     comm_on = evaluate_level(
@@ -712,20 +753,26 @@ def train(
 
     print(f"Device: {device}")
 
-    envs = [
-        CooperativeTransportEnv(
-            **config.env_kwargs
-        )
-        for _ in range(
-            config.num_envs
-        )
-    ]
-
-    space = envs[0].observation_space(
-        envs[0].possible_agents[0]
+    pool = EnvPool(
+        config.env_kwargs,
+        config.num_envs,
+        num_workers=config.num_workers,
     )
 
+    # 시나리오 검증용 (split spawn이 가능한 배치인지 메인에서
+    # 미리 확인한다. 가능 여부는 기하학만으로 정해진다).
+    probe_env = CooperativeTransportEnv(
+        **config.env_kwargs
+    )
+
+    space = pool.space
+
     obs_dim = flatdim(space)
+
+    print(
+        f"Env pool: {config.num_envs} envs "
+        f"on {pool.num_workers} workers"
+    )
 
     ppo_class = PPO
 
@@ -891,7 +938,7 @@ def train(
     # 에이전트 전원을 움직이므로 rollout 내내 고정된다.
     num_rows = (
         config.num_envs
-        * envs[0].num_agents
+        * pool.num_agents
     )
 
     hidden = (
@@ -913,9 +960,11 @@ def train(
 
     states = [None] * config.num_envs
 
-    def start_episode(env_index):
+    # start_episode가 뽑은 시나리오. env 루프가 끝난 뒤
+    # flush_resets()에서 한꺼번에(worker별 병렬로) reset한다.
+    pending_resets = {}
 
-        env = envs[env_index]
+    def start_episode(env_index):
 
         current_level = sampler.level
 
@@ -931,22 +980,19 @@ def train(
             )
 
         try:
-            _apply_env_settings(
-                env,
-                sampler.env_settings(),
+            settings = (
+                sampler.env_settings()
             )
 
-            scenario, observations = (
+            _apply_env_settings(
+                probe_env,
+                settings,
+            )
+
+            scenario, _ = (
                 _reset_with_scenario(
-                    env,
+                    probe_env,
                     sampler,
-                    seed=(
-                        config.seed * 1000
-                        + env_index
-                        if states[env_index]
-                        is None
-                        else None
-                    ),
                 )
             )
 
@@ -957,8 +1003,22 @@ def train(
         finally:
             sampler.level = current_level
 
+        pending_resets[env_index] = (
+            scenario,
+            settings,
+            (
+                config.seed * 1000
+                + env_index
+                if states[env_index]
+                is None
+                else None
+            ),
+        )
+
         states[env_index] = {
-            "obs": observations,
+            "flat": None,
+            "visible": None,
+            "agents": None,
             "level": current_level,
             "rehearsal": rehearsal,
             "bucket": bucket,
@@ -972,10 +1032,32 @@ def train(
             "agent_steps": 0,
         }
 
+    def flush_resets():
+
+        if not pending_resets:
+            return
+
+        results = pool.reset(
+            dict(pending_resets)
+        )
+
+        pending_resets.clear()
+
+        for env_index, result in (
+            results.items()
+        ):
+            states[env_index].update(
+                flat=result["flat"],
+                visible=result["visible"],
+                agents=result["agents"],
+            )
+
     for env_index in range(
         config.num_envs
     ):
         start_episode(env_index)
+
+    flush_resets()
 
     # 다음 forward에서 value가 채워질 transition.
     # key: (env_index, agent)
@@ -1076,28 +1158,19 @@ def train(
         모든 env x agent의 (키 목록, 평탄화한 관측 [N, D]).
         """
 
-        keys = []
-        flats = []
+        keys = [
+            (env_index, agent)
+            for env_index, state
+            in enumerate(states)
+            for agent in state["agents"]
+        ]
 
-        for env_index, env in (
-            enumerate(envs)
-        ):
-            for agent in env.agents:
-
-                keys.append(
-                    (env_index, agent)
-                )
-
-                flats.append(
-                    flatten_obs(
-                        space,
-                        states[env_index][
-                            "obs"
-                        ][agent],
-                    )
-                )
-
-        return keys, np.stack(flats)
+        return keys, np.concatenate(
+            [
+                state["flat"]
+                for state in states
+            ]
+        )
 
     rollout_step = 0
 
@@ -1166,6 +1239,13 @@ def train(
 
         env_actions = {}
 
+        visible_flat = np.concatenate(
+            [
+                state["visible"]
+                for state in states
+            ]
+        )
+
         for index, (
             env_index,
             agent,
@@ -1190,8 +1270,8 @@ def train(
 
             state = states[env_index]
 
-            visible = _target_visible(
-                state["obs"][agent]
+            visible = bool(
+                visible_flat[index]
             )
 
             state["agent_steps"] += 1
@@ -1224,33 +1304,38 @@ def train(
             in enumerate(keys)
         }
 
-        for env_index, env in (
-            enumerate(envs)
+        step_results = pool.step(
+            env_actions
+        )
+
+        for env_index in range(
+            config.num_envs
         ):
             state = states[env_index]
 
-            (
-                next_observations,
-                rewards,
-                terminations,
-                truncations,
-                infos,
-            ) = env.step(
-                env_actions[env_index]
-            )
+            result = step_results[
+                env_index
+            ]
 
-            episode_done = not env.agents
+            episode_done = result[
+                "episode_done"
+            ]
 
-            for agent, reward in (
-                rewards.items()
+            for agent_position, agent in (
+                enumerate(result["agents"])
             ):
                 index = key_index[
                     (env_index, agent)
                 ]
 
+                reward = result["rewards"][
+                    agent_position
+                ]
+
                 done = bool(
-                    terminations[agent]
-                    or truncations[agent]
+                    result["dones"][
+                        agent_position
+                    ]
                 )
 
                 transition = {
@@ -1299,16 +1384,20 @@ def train(
 
                 global_step += 1
 
-            first = next(iter(rewards))
-
-            state["return"] += (
-                rewards[first]
+            state["return"] += float(
+                result["rewards"][0]
             )
 
             state["length"] += 1
 
-            state["obs"] = (
-                next_observations
+            state["flat"] = result["flat"]
+
+            state["visible"] = (
+                result["visible"]
+            )
+
+            state["agents"] = (
+                result["agents"]
             )
 
             if not episode_done:
@@ -1318,9 +1407,7 @@ def train(
             # Episode 종료
             # ------------------------------------------------
 
-            success = bool(
-                infos[first]["success"]
-            )
+            success = result["success"]
 
             total_episodes += 1
 
@@ -1569,7 +1656,13 @@ def train(
                     "comm_off="
                     f"{ablation['comm_off']['success_rate']:.3f} "
                     "gap="
-                    f"{ablation['success_gap']:+.3f}"
+                    f"{ablation['success_gap']:+.3f} "
+                    "| RC on/off="
+                    f"{_fmt(ablation['comm_on']['rc'])}/"
+                    f"{_fmt(ablation['comm_off']['rc'])} "
+                    "CPR on/off="
+                    f"{_fmt(ablation['comm_on']['cpr'])}/"
+                    f"{_fmt(ablation['comm_off']['cpr'])}"
                 )
 
                 print("=" * 70)
@@ -1580,6 +1673,25 @@ def train(
                     ablation["success_gap"],
                     sampler.level,
                 )
+
+                for side in (
+                    "comm_on",
+                    "comm_off",
+                ):
+                    for metric in (
+                        "rc",
+                        "cpr",
+                    ):
+                        value = ablation[side][
+                            metric
+                        ]
+
+                        if value is not None:
+                            writer.add_scalar(
+                                f"ablation/{metric}_{side}",
+                                value,
+                                sampler.level,
+                            )
 
                 history.append(
                     {
@@ -1661,11 +1773,26 @@ def train(
                     f"_stalled.pt"
                 )
 
-                run_ablation(
+                ablation = run_ablation(
                     ppo,
                     sampler,
                     config,
                     tag="stalled",
+                )
+
+                print(
+                    "  stalled ablation: "
+                    "comm_on="
+                    f"{ablation['comm_on']['success_rate']:.3f} "
+                    "comm_off="
+                    f"{ablation['comm_off']['success_rate']:.3f} "
+                    "| RC on/off="
+                    f"{_fmt(ablation['comm_on']['rc'])}/"
+                    f"{_fmt(ablation['comm_off']['rc'])} "
+                    "CPR on/off="
+                    f"{_fmt(ablation['comm_on']['cpr'])}/"
+                    f"{_fmt(ablation['comm_off']['cpr'])}",
+                    flush=True,
                 )
 
                 stop_reason = (
@@ -1689,6 +1816,8 @@ def train(
                 break
 
             start_episode(env_index)
+
+        flush_resets()
 
         if (
             config.recurrent
@@ -1744,14 +1873,15 @@ def train(
                     ppo.value_batch(
                         np.stack(
                             [
-                                flatten_obs(
-                                    space,
+                                states[env_index][
+                                    "flat"
+                                ][
                                     states[
                                         env_index
-                                    ]["obs"][
+                                    ]["agents"].index(
                                         agent
-                                    ],
-                                )
+                                    )
+                                ]
                                 for (
                                     env_index,
                                     agent,
@@ -1866,8 +1996,9 @@ def train(
 
     writer.close()
 
-    for env in envs:
-        env.close()
+    pool.close()
+
+    probe_env.close()
 
     print(
         f"{config.run_name} finished: "

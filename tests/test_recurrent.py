@@ -532,14 +532,98 @@ def test_mlp_checkpoint_loads_into_recurrent_ppo(
 # 러너 (MLP / GRU 둘 다 끝까지 도는지)
 # ------------------------------------------------------------
 
+def test_env_pool_workers_match_local():
+    """
+    worker 프로세스로 돌린 결과가 메인 프로세스에서 돌린 결과와
+    같아야 한다 (같은 시나리오, 같은 seed, 같은 행동).
+    """
+
+    from train.stages.vec_env import EnvPool
+
+    from train.stages.comm_scratch.curriculum import (
+        CommScratchSampler,
+    )
+
+    random.seed(0)
+
+    sampler = CommScratchSampler()
+
+    sampler.level = sampler.LEVEL_NAMES.index(
+        "S7_spawn_random"
+    )
+
+    requests = {
+        index: (
+            sampler.sample(),
+            sampler.env_settings(),
+            100 + index,
+        )
+        for index in range(5)
+    }
+
+    local = EnvPool({}, 5, num_workers=0)
+
+    remote = EnvPool({}, 5, num_workers=2)
+
+    try:
+        first_local = local.reset(requests)
+        first_remote = remote.reset(requests)
+
+        for index in range(5):
+            assert np.array_equal(
+                first_local[index]["flat"],
+                first_remote[index]["flat"],
+            )
+
+        rng = np.random.default_rng(0)
+
+        for _ in range(10):
+
+            actions = {
+                index: {
+                    agent: np.array(
+                        [rng.integers(5), 0]
+                    )
+                    for agent in first_local[
+                        index
+                    ]["agents"]
+                }
+                for index in range(5)
+            }
+
+            step_local = local.step(actions)
+            step_remote = remote.step(actions)
+
+            for index in range(5):
+                for key in (
+                    "flat",
+                    "rewards",
+                    "dones",
+                    "visible",
+                ):
+                    assert np.array_equal(
+                        step_local[index][key],
+                        step_remote[index][key],
+                    ), key
+
+    finally:
+        local.close()
+        remote.close()
+
+
 @pytest.mark.parametrize(
-    "recurrent",
-    [False, True],
+    "recurrent,num_workers",
+    [
+        (False, 0),
+        (True, 0),
+        (True, 2),
+    ],
 )
 def test_runner_stop_and_resume(
     tmp_path,
     monkeypatch,
     recurrent,
+    num_workers,
 ):
     from train.stages.comm_runner import (
         RunConfig,
@@ -578,6 +662,7 @@ def test_runner_stop_and_resume(
             device="cpu",
             torch_threads=1,
             recurrent=recurrent,
+            num_workers=num_workers,
             stop_after_current_level=True,
         )
 
