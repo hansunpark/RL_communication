@@ -43,6 +43,8 @@ class ScratchScenarioGenerator:
         allow_goal_overlap=False,
         obstacle_in_path=False,
         obstacle_in_path_size_range=None,
+        obstacle_in_path_max_area=None,
+        obstacle_in_path_off_wall=False,
     ):
         """
         target_size: (w, h) 고정. None이면 target_size_range
@@ -66,6 +68,10 @@ class ScratchScenarioGenerator:
         obstacle_in_path_size_range: obstacle_in_path일 때 obstacle 크기
             범위 ((w_min, w_max), (h_min, h_max)). None이면 1x1. 크기가
             있으면 통로의 한 칸을 반드시 덮도록 놓는다.
+        obstacle_in_path_max_area: 이 면적보다 큰 obstacle은 다시 뽑는다
+            (얇은 obstacle만 쓰는 발판용).
+        obstacle_in_path_off_wall: True면 obstacle이 벽에 붙지 않게
+            놓는다 (벽에 붙은 obstacle은 벽 반대쪽으로 밀 수 없다).
         obstacle_in_path: True면 obstacle_count_range 대신 1x1
             obstacle 하나를 target과 goal 사이 통로(target이 지나갈
             칸) 위에 둔다. goal_axis="straight"와 함께 쓴다. 경로를
@@ -116,6 +122,14 @@ class ScratchScenarioGenerator:
 
         self.obstacle_in_path_size_range = (
             obstacle_in_path_size_range
+        )
+
+        self.obstacle_in_path_max_area = (
+            obstacle_in_path_max_area
+        )
+
+        self.obstacle_in_path_off_wall = (
+            obstacle_in_path_off_wall
         )
 
     # --------------------------------------------------------
@@ -356,6 +370,14 @@ class ScratchScenarioGenerator:
             width = random.randint(w_min, w_max)
             height = random.randint(h_min, h_max)
 
+            if (
+                self.obstacle_in_path_max_area
+                is not None
+                and width * height
+                > self.obstacle_in_path_max_area
+            ):
+                continue
+
             cx, cy = random.choice(corridor)
 
             x = cx - random.randint(0, width - 1)
@@ -366,6 +388,14 @@ class ScratchScenarioGenerator:
                 or y < 0
                 or x + width > self.map_width
                 or y + height > self.map_height
+            ):
+                continue
+
+            if self.obstacle_in_path_off_wall and (
+                x == 0
+                or y == 0
+                or x + width == self.map_width
+                or y + height == self.map_height
             ):
                 continue
 

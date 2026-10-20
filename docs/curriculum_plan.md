@@ -38,6 +38,10 @@
 | 2026-10-20 | **GRU가 S10a2를 70,130 episode에 통과.** 같은 체크포인트에서 시작한 MLP는 53,800 episode 동안 큰 target 0-4%였다 (batch 설정도 다르므로 GRU만의 효과로 단정하지는 않는다). ablation: 성공률 0.83 / 0.57, RC 0.56 / 0.44, **CPR 0.59 / 0.50** — MLP와 달리 CPR에도 통신 차이가 보인다. |
 | 2026-10-20 | **GRU가 S10b(goal 무제한)를 70,205 episode에 통과.** MLP는 같은 레벨에서 45,000 episode 동안 최저 버킷 42-64%로 정체했었다. ablation: 성공률 0.90 / 0.59 (+0.30), RC 0.56 / 0.49, CPR 0.65 / 0.60. |
 | 2026-10-21 | GRU가 S10c(스폰 완전 랜덤 + 작은 obstacle)를 40,628 episode에 통과. ablation: 성공률 0.89 / 0.57 (+0.32), RC 0.50 / 0.45, CPR 0.68 / 0.63. |
+| 2026-10-21 | **GRU S10d(보통 크기 obstacle 1개) 정체**: 200,000 episode에 최저 버킷 74-84%를 오르내림. 가장 약한 "큰 target + goal 9칸 이상"은 obstacle 경로 위 58%, 큰 obstacle 62% (경로 밖 76%, 작은 obstacle 73%). 정체 ablation: 성공률 0.86 / 0.56, RC 0.46 / 0.44, CPR 0.72 / 0.63. 로그 `logs/comm_scratch_gru_train_part1_S10a2_to_S10d.log`. |
+| 2026-10-21 | 대응: S10a2와 S10b 사이에 **S10a3**(보통 크기 obstacle이 경로를 막는 발판: 같은 행/열 goal 3-5칸, 근처 스폰, max_steps 100, entropy 0.03) 추가. S10d 정체 체크포인트에서 S10a3(레벨 16)부터 재시작 → S10b, S10c, S10d를 다시 거친다. 같은 설정, 명령은 `--start-level 16 --start-checkpoint checkpoints\comm_scratch_gru_S10d_one_obstacle_random_spawn_stalled.pt`. |
+| 2026-10-21 | 첫 GRU 실행이 끝난 뒤 env worker 하나가 남아 있어서 `EnvPool.close()`가 정상 종료하지 않은 worker를 terminate하도록 고쳤다. |
+| 2026-10-21 | S10a3가 50,000 episode에 버킷 68-76%로 느렸다. obstacle 모양별로 1x1 90%, 2x1 86%, 1x2/3x1 67%, **2x2 25%, 3x2 21%**, **벽에 붙은 obstacle 16%**. 2칸 두께 obstacle은 2-3명이 옆면에서 함께 밀어야 하고, 벽에 붙은 것은 벽 반대쪽으로 밀 수 없다. → S10a3을 **S10a3a**(면적 3 이하 얇은 obstacle) / **S10a3b**(보통 크기 전체)로 쪼개고, 두 발판 모두 obstacle을 벽에서 떨어뜨렸다. S10a3 50k 체크포인트(`comm_scratch_gru_S10a3_50k.pt`)에서 S10a3a(레벨 16)부터 재시작. 로그 `logs/comm_scratch_gru_train_part2_S10a3.log`. |
 
 ```
 .venv\Scripts\python.exe -u -m train.stages.comm_scratch.train --recurrent --start-level 15 ^

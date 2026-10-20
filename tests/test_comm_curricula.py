@@ -834,7 +834,8 @@ def test_scratch_entropy_raised_only_for_new_coordination_levels():
         "S10a_one_small_obstacle_near",
         "S10a1_clear_obstacle_small_target_scaffold",
         "S10a2_clear_obstacle_in_path_scaffold",
-        "S10a3_clear_big_obstacle_scaffold",
+        "S10a3a_clear_thin_obstacle_scaffold",
+        "S10a3b_clear_big_obstacle_scaffold",
     ]
 
 
@@ -1367,7 +1368,7 @@ def test_scratch_big_obstacle_in_path_scaffold():
     sampler = CommScratchSampler()
 
     sampler.level = sampler.LEVEL_NAMES.index(
-        "S10a3_clear_big_obstacle_scaffold"
+        "S10a3b_clear_big_obstacle_scaffold"
     )
 
     env = CooperativeTransportEnv(
@@ -1400,3 +1401,38 @@ def test_scratch_big_obstacle_in_path_scaffold():
     assert any(
         w * h > 1 for w, h in sizes
     )
+
+
+def test_scratch_thin_obstacle_scaffold_shapes():
+
+    random.seed(1)
+
+    sampler = CommScratchSampler()
+
+    sampler.level = sampler.LEVEL_NAMES.index(
+        "S10a3a_clear_thin_obstacle_scaffold"
+    )
+
+    for _ in range(200):
+
+        obstacle = sampler.sample()[
+            "obstacles"
+        ][0]
+
+        assert (
+            obstacle["width"]
+            * obstacle["height"]
+            <= 3
+        )
+
+        # 벽에 붙지 않는다
+        assert obstacle["x"] > 0
+        assert obstacle["y"] > 0
+        assert (
+            obstacle["x"] + obstacle["width"]
+            < 12
+        )
+        assert (
+            obstacle["y"] + obstacle["height"]
+            < 12
+        )

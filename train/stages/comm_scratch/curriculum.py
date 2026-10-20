@@ -79,6 +79,9 @@ from .scenario import (
 # 9칸 이상" 버킷을 나눠 보면 obstacle이 경로 위면 58%, 큰 obstacle이면 62%였다
 # (경로 밖 76%, 작은 obstacle 73%). S10a2 발판은 1x1 obstacle만 경로에
 # 두었으므로, 보통 크기 obstacle이 경로를 막는 발판을 하나 더 둔다.
+# S10a3 하나로는 50,000 episode에 버킷 68-76%: obstacle 1x1/2x1은 86-90%인데
+# 2x2 25%, 3x2 21%, 벽에 붙은 obstacle 16%. 그래서 얇은 obstacle(S10a3a) ->
+# 보통 크기(S10a3b)로 쪼개고, 발판에서는 obstacle을 벽에서 떨어뜨린다.
 #
 # S10b 분할 (2026-09-29): S10a 다음 S10b에서 goal 거리(2-5 -> 무제한), 스폰
 # (근처 -> 랜덤), obstacle 크기(작음 -> 보통) 세 축을 한꺼번에 바꿨더니
@@ -102,7 +105,8 @@ from .scenario import (
 #   S10a 근처 스폰, goal 2-5, 작은 obstacle 정확히 1개   (obstacle)
 #   S10a1 발판: 작은 target(2x1, 2x2)으로 경로 위 obstacle 치우기
 #   S10a2 발판: 경로 위 1x1 obstacle 치우기 (모든 크기)  (새 협동 동작)
-#   S10a3 발판: 경로 위 보통 크기 obstacle 치우기       (obstacle 크기)
+#   S10a3a 발판: 경로 위 얇은 obstacle(면적 3 이하) 치우기 (obstacle 크기)
+#   S10a3b 발판: 경로 위 보통 크기 obstacle 치우기       (obstacle 크기)
 #   S10b goal 무제한 (근처 스폰, 작은 obstacle 1개)     (goal 거리)
 #   S10c 스폰 랜덤                                        (스폰)
 #   S10d obstacle 보통 크기 (1-3 x 1-2)                   (obstacle 크기)
@@ -328,13 +332,32 @@ LEVELS = [
         "max_steps": 100,
     },
     {
-        "name": "S10a3_clear_big_obstacle_scaffold",
+        "name": "S10a3a_clear_thin_obstacle_scaffold",
         "entropy_coef": NEW_COORDINATION_ENTROPY_COEF,
         "target_size": RANDOM_SIZE,
         "goal_distance_range": (3, 5),
         "goal_axis": "straight",
         "obstacle_in_path": True,
         "obstacle_in_path_size_range": DEFAULT_OBSTACLE_SIZE_RANGE,
+        "obstacle_in_path_max_area": 3,
+        "obstacle_in_path_off_wall": True,
+        "spawn": {
+            "type": "near",
+            "radius": NEAR_RADIUS,
+        },
+        "obstacle_count_range": (1, 1),
+        "help_penalty": HELP_PENALTY,
+        "max_steps": 100,
+    },
+    {
+        "name": "S10a3b_clear_big_obstacle_scaffold",
+        "entropy_coef": NEW_COORDINATION_ENTROPY_COEF,
+        "target_size": RANDOM_SIZE,
+        "goal_distance_range": (3, 5),
+        "goal_axis": "straight",
+        "obstacle_in_path": True,
+        "obstacle_in_path_size_range": DEFAULT_OBSTACLE_SIZE_RANGE,
+        "obstacle_in_path_off_wall": True,
         "spawn": {
             "type": "near",
             "radius": NEAR_RADIUS,
@@ -474,6 +497,13 @@ class CommScratchSampler:
             ),
             obstacle_in_path_size_range=config.get(
                 "obstacle_in_path_size_range"
+            ),
+            obstacle_in_path_max_area=config.get(
+                "obstacle_in_path_max_area"
+            ),
+            obstacle_in_path_off_wall=config.get(
+                "obstacle_in_path_off_wall",
+                False,
             ),
         )
 

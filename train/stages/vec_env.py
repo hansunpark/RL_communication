@@ -488,3 +488,8 @@ class EnvPool:
 
         for process in self.processes:
             process.join(timeout=5)
+
+            # 첫 GRU 실행이 끝난 뒤 worker 하나가 남아 있었다.
+            # 정상 종료하지 않은 worker는 강제로 끝낸다.
+            if process.is_alive():
+                process.terminate()
