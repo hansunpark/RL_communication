@@ -1,0 +1,18 @@
+{
+  "run": "stage8_comm",
+  "level": "stage_8B0_lateral_only_comm",
+  "tag": "mastered",
+  "comm_on": {
+    "episodes": 300,
+    "success_rate": 1.0,
+    "avg_length": 29.85333333333333,
+    "help_rate": 0.15858083966056274
+  },
+  "comm_off": {
+    "episodes": 300,
+    "success_rate": 1.0,
+    "avg_length": 29.48,
+    "help_rate": 0.0
+  },
+  "success_gap": 0.0
+}

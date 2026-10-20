@@ -1,0 +1,18 @@
+{
+  "run": "stage8_comm",
+  "level": "stage_8C0a_one_small_obstacle_comm",
+  "tag": "stalled",
+  "comm_on": {
+    "episodes": 300,
+    "success_rate": 0.7633333333333333,
+    "avg_length": 86.18333333333334,
+    "help_rate": 0.25376136143879324
+  },
+  "comm_off": {
+    "episodes": 300,
+    "success_rate": 0.6633333333333333,
+    "avg_length": 109.29,
+    "help_rate": 0.0
+  },
+  "success_gap": 0.09999999999999998
+}

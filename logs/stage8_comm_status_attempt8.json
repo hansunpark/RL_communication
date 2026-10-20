@@ -1,0 +1,42 @@
+{
+  "run": "stage8_comm",
+  "level": 5,
+  "level_name": "stage_8B0uS_up_side_spawn_comm",
+  "num_levels": 16,
+  "level_episodes": 22000,
+  "total_episodes": 29467,
+  "global_step": 5384728,
+  "elapsed_min": 5.5,
+  "avg_len": 49.605,
+  "avg_return": 3.5719499999999993,
+  "help_rate": 0.34817624682040715,
+  "buckets": {
+    "goal_below": {
+      "n": 100,
+      "success_rate": 0.98,
+      "ready": true
+    },
+    "goal_up2": {
+      "n": 100,
+      "success_rate": 0.0,
+      "ready": false
+    },
+    "goal_up1": {
+      "n": 100,
+      "success_rate": 0.01,
+      "ready": false
+    }
+  },
+  "last_update": {
+    "policy_loss": -0.005857647258380894,
+    "value_loss": 0.6187189035117626,
+    "entropy": 1.7096653804183006,
+    "move_entropy": 1.1781361028552055,
+    "comm_entropy": 0.5315292859449983,
+    "entropy_coef": 0.03
+  },
+  "history": [],
+  "stop_reason": null,
+  "help_rate_target_visible": 0.43393577754518164,
+  "help_rate_target_hidden": 0.25284868332159394
+}

@@ -1,0 +1,81 @@
+{
+  "run": "comm_scratch",
+  "level": 15,
+  "level_name": "S10a2_clear_obstacle_in_path_scaffold",
+  "num_levels": 21,
+  "level_episodes": 53800,
+  "total_episodes": 111793,
+  "global_step": 38349592,
+  "elapsed_min": 30.0,
+  "avg_len": 87.225,
+  "avg_return": 1.5956299999999992,
+  "help_rate": 0.33120388344769963,
+  "buckets": {
+    "small_g4-5_obs1-2": {
+      "n": 100,
+      "success_rate": 0.41,
+      "ready": false
+    },
+    "large_g4-5_obs1-2": {
+      "n": 100,
+      "success_rate": 0.04,
+      "ready": false
+    },
+    "small_g0-3_obs1-2": {
+      "n": 100,
+      "success_rate": 0.5,
+      "ready": false
+    },
+    "large_g0-3_obs1-2": {
+      "n": 100,
+      "success_rate": 0.0,
+      "ready": false
+    }
+  },
+  "last_update": {
+    "policy_loss": -0.010187726496951655,
+    "value_loss": 0.4688625670969486,
+    "entropy": 1.3955795895308256,
+    "move_entropy": 1.20030327886343,
+    "approx_kl": 0.0062606973078800365,
+    "kl_early_stop": 0.0,
+    "comm_entropy": 0.1952763053122908,
+    "entropy_coef": 0.03
+  },
+  "history": [
+    {
+      "level": "S10a1_clear_obstacle_small_target_scaffold",
+      "episodes": 8869,
+      "elapsed_min": 3.7,
+      "buckets": {
+        "small_g0-3_obs1-2": {
+          "n": 100,
+          "success_rate": 0.85,
+          "ready": true
+        },
+        "small_g4-5_obs1-2": {
+          "n": 100,
+          "success_rate": 0.85,
+          "ready": true
+        }
+      },
+      "ablation": {
+        "comm_on": {
+          "episodes": 300,
+          "success_rate": 0.7766666666666666,
+          "avg_length": 50.09,
+          "help_rate": 0.41195847474545816
+        },
+        "comm_off": {
+          "episodes": 300,
+          "success_rate": 0.6966666666666667,
+          "avg_length": 56.18333333333333,
+          "help_rate": 0.0
+        }
+      }
+    }
+  ],
+  "stop_reason": null,
+  "help_rate_target_visible": 0.3547042158856317,
+  "help_rate_target_hidden": 0.07834113025648
+}

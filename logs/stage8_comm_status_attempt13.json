@@ -1,0 +1,59 @@
+{
+  "run": "stage8_comm",
+  "level": 16,
+  "level_name": "stage_8C0a_one_small_obstacle_comm",
+  "num_levels": 23,
+  "level_episodes": 17800,
+  "total_episodes": 23736,
+  "global_step": 12229872,
+  "elapsed_min": 14.0,
+  "avg_len": 139.275,
+  "avg_return": 3.7854,
+  "help_rate": 0.3122388950931864,
+  "buckets": {
+    "small_d0-2_obs1": {
+      "n": 100,
+      "success_rate": 0.49,
+      "ready": false
+    },
+    "small_d6+_obs1": {
+      "n": 100,
+      "success_rate": 0.48,
+      "ready": false
+    },
+    "large_d3-5_obs1": {
+      "n": 100,
+      "success_rate": 0.38,
+      "ready": false
+    },
+    "large_d0-2_obs1": {
+      "n": 100,
+      "success_rate": 0.41,
+      "ready": false
+    },
+    "small_d3-5_obs1": {
+      "n": 100,
+      "success_rate": 0.48,
+      "ready": false
+    },
+    "large_d6+_obs1": {
+      "n": 100,
+      "success_rate": 0.47,
+      "ready": false
+    }
+  },
+  "last_update": {
+    "policy_loss": -0.005832907518197317,
+    "value_loss": 1.4904610142111778,
+    "entropy": 0.8282113950699568,
+    "move_entropy": 0.5029192436486483,
+    "approx_kl": 0.004832162579987198,
+    "kl_early_stop": 0.0,
+    "comm_entropy": 0.32529215002432466,
+    "entropy_coef": 0.01
+  },
+  "history": [],
+  "stop_reason": null,
+  "help_rate_target_visible": 0.3532250038860441,
+  "help_rate_target_hidden": 0.10794099864688629
+}

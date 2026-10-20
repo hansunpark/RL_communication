@@ -1,0 +1,35 @@
+Device: cuda
+Loading start checkpoint: checkpoints/stage_8A_size_mastered.pt
+PPO.load(): checkpoint architecture differs from current network.
+  missing (freshly initialized): ['comm_actor.weight', 'comm_actor.bias']
+PPO.load(): optimizer state incompatible with current network (architecture changed), skipping: loaded state dict contains a parameter group that doesn't match the size of optimizer's group
+Observation dim: 129
+Run: stage8_comm envs=16 comm_enabled=True
+[   0.2m ep    200] stage_8B1_position_r2_comm lvl_ep=200 avg_len=163.5 return=1.58 help=0.240 | ready 0/2 worst: small_d3-5_obs0=0.21(82) small_d0-2_obs0=0.23(100)
+[   0.5m ep    400] stage_8B1_position_r2_comm lvl_ep=400 avg_len=176.9 return=0.68 help=0.304 | ready 0/2 worst: small_d3-5_obs0=0.12(100) small_d0-2_obs0=0.14(100)
+[   0.7m ep    600] stage_8B1_position_r2_comm lvl_ep=600 avg_len=168.7 return=1.40 help=0.377 | ready 0/2 worst: small_d3-5_obs0=0.14(100) small_d0-2_obs0=0.24(100)
+[   1.0m ep    800] stage_8B1_position_r2_comm lvl_ep=800 avg_len=172.5 return=1.01 help=0.493 | ready 0/2 worst: small_d3-5_obs0=0.17(100) small_d0-2_obs0=0.21(100)
+[   1.2m ep   1000] stage_8B1_position_r2_comm lvl_ep=1000 avg_len=169.9 return=1.68 help=0.589 | ready 0/2 worst: small_d3-5_obs0=0.19(100) small_d0-2_obs0=0.26(100)
+[   1.5m ep   1200] stage_8B1_position_r2_comm lvl_ep=1200 avg_len=175.2 return=1.11 help=0.626 | ready 0/2 worst: small_d0-2_obs0=0.19(100) small_d3-5_obs0=0.23(100)
+[   1.7m ep   1400] stage_8B1_position_r2_comm lvl_ep=1400 avg_len=177.2 return=1.18 help=0.694 | ready 0/2 worst: small_d3-5_obs0=0.19(100) small_d0-2_obs0=0.22(100)
+[   2.0m ep   1600] stage_8B1_position_r2_comm lvl_ep=1600 avg_len=186.8 return=0.21 help=0.759 | ready 0/2 worst: small_d3-5_obs0=0.13(100) small_d0-2_obs0=0.16(100)
+[   2.2m ep   1800] stage_8B1_position_r2_comm lvl_ep=1800 avg_len=183.0 return=0.48 help=0.737 | ready 0/2 worst: small_d0-2_obs0=0.12(100) small_d3-5_obs0=0.20(100)
+[   2.5m ep   2000] stage_8B1_position_r2_comm lvl_ep=2000 avg_len=189.5 return=-0.54 help=0.699 | ready 0/2 worst: small_d3-5_obs0=0.03(100) small_d0-2_obs0=0.14(100)
+[   2.8m ep   2200] stage_8B1_position_r2_comm lvl_ep=2200 avg_len=185.8 return=-0.05 help=0.644 | ready 0/2 worst: small_d0-2_obs0=0.07(100) small_d3-5_obs0=0.08(100)
+[   3.0m ep   2400] stage_8B1_position_r2_comm lvl_ep=2400 avg_len=181.7 return=0.21 help=0.539 | ready 0/2 worst: small_d0-2_obs0=0.07(100) small_d3-5_obs0=0.11(100)
+[   3.3m ep   2600] stage_8B1_position_r2_comm lvl_ep=2600 avg_len=176.8 return=0.94 help=0.548 | ready 0/2 worst: small_d0-2_obs0=0.15(100) small_d3-5_obs0=0.24(100)
+[   3.5m ep   2800] stage_8B1_position_r2_comm lvl_ep=2800 avg_len=178.3 return=0.88 help=0.651 | ready 0/2 worst: small_d0-2_obs0=0.19(100) small_d3-5_obs0=0.22(100)
+[   3.8m ep   3000] stage_8B1_position_r2_comm lvl_ep=3000 avg_len=182.0 return=0.51 help=0.655 | ready 0/2 worst: small_d3-5_obs0=0.11(100) small_d0-2_obs0=0.18(100)
+[   4.1m ep   3200] stage_8B1_position_r2_comm lvl_ep=3200 avg_len=184.1 return=0.37 help=0.620 | ready 0/2 worst: small_d0-2_obs0=0.13(100) small_d3-5_obs0=0.18(100)
+[   4.3m ep   3400] stage_8B1_position_r2_comm lvl_ep=3400 avg_len=182.9 return=0.50 help=0.609 | ready 0/2 worst: small_d3-5_obs0=0.14(100) small_d0-2_obs0=0.18(100)
+[   4.6m ep   3600] stage_8B1_position_r2_comm lvl_ep=3600 avg_len=183.6 return=0.00 help=0.666 | ready 0/2 worst: small_d0-2_obs0=0.09(100) small_d3-5_obs0=0.16(100)
+[   4.9m ep   3800] stage_8B1_position_r2_comm lvl_ep=3800 avg_len=191.3 return=-0.50 help=0.618 | ready 0/2 worst: small_d0-2_obs0=0.09(100) small_d3-5_obs0=0.10(100)
+[   5.1m ep   4000] stage_8B1_position_r2_comm lvl_ep=4000 avg_len=194.4 return=-0.89 help=0.592 | ready 0/2 worst: small_d3-5_obs0=0.03(100) small_d0-2_obs0=0.06(100)
+[   5.4m ep   4200] stage_8B1_position_r2_comm lvl_ep=4200 avg_len=193.6 return=-0.85 help=0.584 | ready 0/2 worst: small_d0-2_obs0=0.04(100) small_d3-5_obs0=0.06(100)
+[   5.7m ep   4400] stage_8B1_position_r2_comm lvl_ep=4400 avg_len=195.0 return=-0.97 help=0.561 | ready 0/2 worst: small_d3-5_obs0=0.05(100) small_d0-2_obs0=0.06(100)
+[   6.0m ep   4600] stage_8B1_position_r2_comm lvl_ep=4600 avg_len=192.0 return=-0.71 help=0.519 | ready 0/2 worst: small_d3-5_obs0=0.02(100) small_d0-2_obs0=0.10(100)
+[   6.2m ep   4800] stage_8B1_position_r2_comm lvl_ep=4800 avg_len=190.5 return=-0.59 help=0.482 | ready 0/2 worst: small_d0-2_obs0=0.05(100) small_d3-5_obs0=0.08(100)
+[   6.5m ep   5000] stage_8B1_position_r2_comm lvl_ep=5000 avg_len=188.4 return=-0.42 help=0.502 | ready 0/2 worst: small_d3-5_obs0=0.09(100) small_d0-2_obs0=0.10(100)
+[   6.8m ep   5200] stage_8B1_position_r2_comm lvl_ep=5200 avg_len=191.4 return=-0.69 help=0.470 | ready 0/2 worst: small_d3-5_obs0=0.05(100) small_d0-2_obs0=0.07(100)
+[   7.0m ep   5400] stage_8B1_position_r2_comm lvl_ep=5400 avg_len=195.3 return=-1.03 help=0.429 | ready 0/2 worst: small_d3-5_obs0=0.04(100) small_d0-2_obs0=0.06(100)
+[   7.3m ep   5600] stage_8B1_position_r2_comm lvl_ep=5600 avg_len=192.1 return=-0.52 help=0.404 | ready 0/2 worst: small_d3-5_obs0=0.06(100) small_d0-2_obs0=0.06(100)

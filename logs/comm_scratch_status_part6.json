@@ -1,0 +1,89 @@
+{
+  "run": "comm_scratch",
+  "level": 4,
+  "level_name": "S3a_size_max3",
+  "num_levels": 14,
+  "level_episodes": 8400,
+  "total_episodes": 38030,
+  "global_step": 8582016,
+  "elapsed_min": 9.1,
+  "avg_len": 103.39,
+  "avg_return": 6.0871,
+  "help_rate": 0.5346777053179328,
+  "buckets": {
+    "small_g4-5_obs0": {
+      "n": 100,
+      "success_rate": 0.7,
+      "ready": false
+    },
+    "large_g4-5_obs0": {
+      "n": 100,
+      "success_rate": 0.49,
+      "ready": false
+    },
+    "small_g0-3_obs0": {
+      "n": 100,
+      "success_rate": 0.77,
+      "ready": false
+    },
+    "large_g0-3_obs0": {
+      "n": 100,
+      "success_rate": 0.51,
+      "ready": false
+    }
+  },
+  "last_update": {
+    "policy_loss": -0.015131806390854763,
+    "value_loss": 1.0995906284078956,
+    "entropy": 1.0879921782761812,
+    "move_entropy": 0.7497085584327579,
+    "comm_entropy": 0.3382836217060685,
+    "entropy_coef": 0.01
+  },
+  "history": [
+    {
+      "level": "S3s_tall_side_push_scaffold",
+      "episodes": 20239,
+      "elapsed_min": 3.7,
+      "buckets": {
+        "small_g0-3_obs0_push_left": {
+          "n": 100,
+          "success_rate": 0.85,
+          "ready": true
+        },
+        "small_g0-3_obs0_push_right": {
+          "n": 100,
+          "success_rate": 1.0,
+          "ready": true
+        },
+        "large_g0-3_obs0_push_left": {
+          "n": 100,
+          "success_rate": 0.9,
+          "ready": true
+        },
+        "large_g0-3_obs0_push_right": {
+          "n": 100,
+          "success_rate": 1.0,
+          "ready": true
+        }
+      },
+      "ablation": {
+        "comm_on": {
+          "episodes": 300,
+          "success_rate": 0.96,
+          "avg_length": 4.346666666666667,
+          "help_rate": 0.6476226993865031
+        },
+        "comm_off": {
+          "episodes": 300,
+          "success_rate": 0.9666666666666667,
+          "avg_length": 3.8633333333333333,
+          "help_rate": 0.0
+        }
+      }
+    }
+  ],
+  "stop_reason": null,
+  "help_rate_target_visible": 0.5440252076803794,
+  "help_rate_target_hidden": 0.1855188320888407
+}

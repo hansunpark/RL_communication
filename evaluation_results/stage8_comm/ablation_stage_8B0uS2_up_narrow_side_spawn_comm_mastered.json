@@ -1,0 +1,18 @@
+{
+  "run": "stage8_comm",
+  "level": "stage_8B0uS2_up_narrow_side_spawn_comm",
+  "tag": "mastered",
+  "comm_on": {
+    "episodes": 300,
+    "success_rate": 0.92,
+    "avg_length": 16.93,
+    "help_rate": 0.36911793660169323
+  },
+  "comm_off": {
+    "episodes": 300,
+    "success_rate": 0.83,
+    "avg_length": 19.233333333333334,
+    "help_rate": 0.0
+  },
+  "success_gap": 0.09000000000000008
+}

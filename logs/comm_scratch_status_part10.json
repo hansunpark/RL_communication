@@ -1,0 +1,111 @@
+{
+  "run": "comm_scratch",
+  "level": 14,
+  "level_name": "S10b_one_obstacle_random_spawn",
+  "num_levels": 17,
+  "level_episodes": 5400,
+  "total_episodes": 97198,
+  "global_step": 34018596,
+  "elapsed_min": 24.7,
+  "avg_len": 147.04,
+  "avg_return": 3.2191999999999994,
+  "help_rate": 0.3678777946446879,
+  "buckets": {
+    "small_g6-8_obs1-2": {
+      "n": 100,
+      "success_rate": 0.36,
+      "ready": false
+    },
+    "small_g0-3_obs1-2": {
+      "n": 100,
+      "success_rate": 0.83,
+      "ready": false
+    },
+    "large_g9+_obs1-2": {
+      "n": 100,
+      "success_rate": 0.19,
+      "ready": false
+    },
+    "large_g4-5_obs1-2": {
+      "n": 100,
+      "success_rate": 0.51,
+      "ready": false
+    },
+    "small_g9+_obs1-2": {
+      "n": 100,
+      "success_rate": 0.3,
+      "ready": false
+    },
+    "large_g6-8_obs1-2": {
+      "n": 100,
+      "success_rate": 0.3,
+      "ready": false
+    },
+    "small_g4-5_obs1-2": {
+      "n": 100,
+      "success_rate": 0.63,
+      "ready": false
+    },
+    "large_g0-3_obs1-2": {
+      "n": 100,
+      "success_rate": 0.54,
+      "ready": false
+    }
+  },
+  "last_update": {
+    "policy_loss": -0.008133048642775975,
+    "value_loss": 0.7092746570706367,
+    "entropy": 1.0227223196998239,
+    "move_entropy": 0.8531682603061199,
+    "approx_kl": 0.004346664402874012,
+    "kl_early_stop": 0.0,
+    "comm_entropy": 0.169554058695212,
+    "entropy_coef": 0.01
+  },
+  "history": [
+    {
+      "level": "S10a_one_small_obstacle_near",
+      "episodes": 39730,
+      "elapsed_min": 20.3,
+      "buckets": {
+        "small_g4-5_obs1-2": {
+          "n": 100,
+          "success_rate": 0.85,
+          "ready": true
+        },
+        "small_g0-3_obs1-2": {
+          "n": 100,
+          "success_rate": 0.92,
+          "ready": true
+        },
+        "large_g4-5_obs1-2": {
+          "n": 100,
+          "success_rate": 0.85,
+          "ready": true
+        },
+        "large_g0-3_obs1-2": {
+          "n": 100,
+          "success_rate": 0.85,
+          "ready": true
+        }
+      },
+      "ablation": {
+        "comm_on": {
+          "episodes": 300,
+          "success_rate": 0.8333333333333334,
+          "avg_length": 75.59,
+          "help_rate": 0.6385985800590908
+        },
+        "comm_off": {
+          "episodes": 300,
+          "success_rate": 0.44666666666666666,
+          "avg_length": 140.14333333333335,
+          "help_rate": 0.0
+        }
+      }
+    }
+  ],
+  "stop_reason": null,
+  "help_rate_target_visible": 0.43037911525867073,
+  "help_rate_target_hidden": 0.040990792833112126
+}

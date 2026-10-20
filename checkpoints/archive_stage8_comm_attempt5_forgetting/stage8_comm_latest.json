@@ -1,0 +1,48 @@
+{
+  "level": 2,
+  "global_step": 6012928,
+  "total_episodes": 9391,
+  "history": [
+    {
+      "level": "stage_8B0_lateral_only_comm",
+      "episodes": 1000,
+      "elapsed_min": 0.6,
+      "buckets": {
+        "goal_dx+1": {
+          "n": 100,
+          "success_rate": 0.97,
+          "ready": true
+        },
+        "goal_dx+2": {
+          "n": 100,
+          "success_rate": 1.0,
+          "ready": true
+        },
+        "goal_dx-2": {
+          "n": 100,
+          "success_rate": 0.96,
+          "ready": true
+        },
+        "goal_dx-1": {
+          "n": 100,
+          "success_rate": 0.99,
+          "ready": true
+        }
+      },
+      "ablation": {
+        "comm_on": {
+          "episodes": 300,
+          "success_rate": 1.0,
+          "avg_length": 29.85333333333333,
+          "help_rate": 0.15858083966056274
+        },
+        "comm_off": {
+          "episodes": 300,
+          "success_rate": 1.0,
+          "avg_length": 29.48,
+          "help_rate": 0.0
+        }
+      }
+    }
+  ]
+}

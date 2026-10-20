@@ -1,0 +1,294 @@
+{
+  "run": "stage8_comm",
+  "level": 6,
+  "level_name": "stage_8B2_position_r5_comm",
+  "num_levels": 14,
+  "level_episodes": 52200,
+  "total_episodes": 81831,
+  "global_step": 23557920,
+  "elapsed_min": 25.1,
+  "avg_len": 65.035,
+  "avg_return": 8.93895,
+  "help_rate": 0.5332954120805194,
+  "buckets": {
+    "small_d3-5_obs0": {
+      "n": 100,
+      "success_rate": 0.87,
+      "ready": true
+    },
+    "small_d0-2_obs0": {
+      "n": 100,
+      "success_rate": 0.91,
+      "ready": true
+    },
+    "small_d6+_obs0": {
+      "n": 100,
+      "success_rate": 0.64,
+      "ready": false
+    }
+  },
+  "last_update": {
+    "policy_loss": -0.004897793565760367,
+    "value_loss": 0.9838209478184581,
+    "entropy": 1.2485776878893375,
+    "move_entropy": 0.6735412003472447,
+    "comm_entropy": 0.5750364819541574,
+    "entropy_coef": 0.01
+  },
+  "history": [
+    {
+      "level": "stage_8B0sL_lateral_side_spawn_leftbias_comm",
+      "episodes": 3670,
+      "elapsed_min": 0.5,
+      "buckets": {
+        "goal_dx+1": {
+          "n": 100,
+          "success_rate": 1.0,
+          "ready": true
+        },
+        "goal_below": {
+          "n": 100,
+          "success_rate": 0.92,
+          "ready": true
+        },
+        "goal_dx+2": {
+          "n": 100,
+          "success_rate": 0.99,
+          "ready": true
+        },
+        "goal_dx-2": {
+          "n": 100,
+          "success_rate": 0.85,
+          "ready": true
+        },
+        "goal_dx-1": {
+          "n": 100,
+          "success_rate": 0.98,
+          "ready": true
+        }
+      },
+      "ablation": {
+        "comm_on": {
+          "episodes": 300,
+          "success_rate": 0.9266666666666666,
+          "avg_length": 16.846666666666668,
+          "help_rate": 0.4708646616541353
+        },
+        "comm_off": {
+          "episodes": 300,
+          "success_rate": 0.94,
+          "avg_length": 16.376666666666665,
+          "help_rate": 0.0
+        }
+      }
+    },
+    {
+      "level": "stage_8B0s_lateral_side_spawn_comm",
+      "episodes": 1000,
+      "elapsed_min": 0.7,
+      "buckets": {
+        "goal_below": {
+          "n": 100,
+          "success_rate": 0.99,
+          "ready": true
+        },
+        "goal_dx+1": {
+          "n": 100,
+          "success_rate": 1.0,
+          "ready": true
+        },
+        "goal_dx+2": {
+          "n": 100,
+          "success_rate": 1.0,
+          "ready": true
+        },
+        "goal_dx-2": {
+          "n": 100,
+          "success_rate": 0.99,
+          "ready": true
+        },
+        "goal_dx-1": {
+          "n": 100,
+          "success_rate": 1.0,
+          "ready": true
+        }
+      },
+      "ablation": {
+        "comm_on": {
+          "episodes": 300,
+          "success_rate": 0.9766666666666667,
+          "avg_length": 24.69333333333333,
+          "help_rate": 0.42059260259179265
+        },
+        "comm_off": {
+          "episodes": 300,
+          "success_rate": 0.9566666666666667,
+          "avg_length": 28.476666666666667,
+          "help_rate": 0.0
+        }
+      }
+    },
+    {
+      "level": "stage_8B0_lateral_only_comm",
+      "episodes": 1000,
+      "elapsed_min": 0.9,
+      "buckets": {
+        "goal_dx+1": {
+          "n": 100,
+          "success_rate": 0.99,
+          "ready": true
+        },
+        "goal_below": {
+          "n": 100,
+          "success_rate": 0.99,
+          "ready": true
+        },
+        "goal_dx-2": {
+          "n": 100,
+          "success_rate": 1.0,
+          "ready": true
+        },
+        "goal_dx-1": {
+          "n": 100,
+          "success_rate": 1.0,
+          "ready": true
+        },
+        "goal_dx+2": {
+          "n": 100,
+          "success_rate": 0.98,
+          "ready": true
+        }
+      },
+      "ablation": {
+        "comm_on": {
+          "episodes": 300,
+          "success_rate": 0.9766666666666667,
+          "avg_length": 33.513333333333335,
+          "help_rate": 0.4012830714143624
+        },
+        "comm_off": {
+          "episodes": 300,
+          "success_rate": 0.9333333333333333,
+          "avg_length": 41.36,
+          "help_rate": 0.0
+        }
+      }
+    },
+    {
+      "level": "stage_8B0a_goal_lateral1_comm",
+      "episodes": 1064,
+      "elapsed_min": 1.5,
+      "buckets": {
+        "goal_dx+0": {
+          "n": 100,
+          "success_rate": 0.97,
+          "ready": true
+        },
+        "goal_dx+1": {
+          "n": 100,
+          "success_rate": 0.85,
+          "ready": true
+        },
+        "goal_dx-1": {
+          "n": 100,
+          "success_rate": 0.96,
+          "ready": true
+        }
+      },
+      "ablation": {
+        "comm_on": {
+          "episodes": 300,
+          "success_rate": 0.97,
+          "avg_length": 53.42333333333333,
+          "help_rate": 0.4923410494790042
+        },
+        "comm_off": {
+          "episodes": 300,
+          "success_rate": 0.9266666666666666,
+          "avg_length": 63.4,
+          "help_rate": 0.0
+        }
+      }
+    },
+    {
+      "level": "stage_8B0b_goal_lateral2_comm",
+      "episodes": 1000,
+      "elapsed_min": 1.9,
+      "buckets": {
+        "goal_dx+0": {
+          "n": 100,
+          "success_rate": 0.98,
+          "ready": true
+        },
+        "goal_dx+2": {
+          "n": 100,
+          "success_rate": 0.88,
+          "ready": true
+        },
+        "goal_dx+1": {
+          "n": 100,
+          "success_rate": 0.98,
+          "ready": true
+        },
+        "goal_dx-2": {
+          "n": 100,
+          "success_rate": 0.91,
+          "ready": true
+        },
+        "goal_dx-1": {
+          "n": 100,
+          "success_rate": 0.98,
+          "ready": true
+        }
+      },
+      "ablation": {
+        "comm_on": {
+          "episodes": 300,
+          "success_rate": 0.9266666666666666,
+          "avg_length": 59.50333333333333,
+          "help_rate": 0.4811355106156518
+        },
+        "comm_off": {
+          "episodes": 300,
+          "success_rate": 0.91,
+          "avg_length": 64.14333333333333,
+          "help_rate": 0.0
+        }
+      }
+    },
+    {
+      "level": "stage_8B1_position_r2_comm",
+      "episodes": 2354,
+      "elapsed_min": 3.2,
+      "buckets": {
+        "small_d0-2_obs0": {
+          "n": 100,
+          "success_rate": 0.94,
+          "ready": true
+        },
+        "small_d3-5_obs0": {
+          "n": 100,
+          "success_rate": 0.85,
+          "ready": true
+        }
+      },
+      "ablation": {
+        "comm_on": {
+          "episodes": 300,
+          "success_rate": 0.9266666666666666,
+          "avg_length": 62.943333333333335,
+          "help_rate": 0.46506116612826354
+        },
+        "comm_off": {
+          "episodes": 300,
+          "success_rate": 0.9366666666666666,
+          "avg_length": 65.71,
+          "help_rate": 0.0
+        }
+      }
+    }
+  ],
+  "stop_reason": null,
+  "help_rate_target_visible": 0.5805256167871948,
+  "help_rate_target_hidden": 0.37956303694290605
+}

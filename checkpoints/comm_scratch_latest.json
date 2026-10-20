@@ -1,0 +1,38 @@
+{
+  "level": 15,
+  "global_step": 38375904,
+  "total_episodes": 111865,
+  "history": [
+    {
+      "level": "S10a1_clear_obstacle_small_target_scaffold",
+      "episodes": 8869,
+      "elapsed_min": 3.7,
+      "buckets": {
+        "small_g0-3_obs1-2": {
+          "n": 100,
+          "success_rate": 0.85,
+          "ready": true
+        },
+        "small_g4-5_obs1-2": {
+          "n": 100,
+          "success_rate": 0.85,
+          "ready": true
+        }
+      },
+      "ablation": {
+        "comm_on": {
+          "episodes": 300,
+          "success_rate": 0.7766666666666666,
+          "avg_length": 50.09,
+          "help_rate": 0.41195847474545816
+        },
+        "comm_off": {
+          "episodes": 300,
+          "success_rate": 0.6966666666666667,
+          "avg_length": 56.18333333333333,
+          "help_rate": 0.0
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "run": "stage8_comm",
+  "level": 16,
+  "level_name": "stage_8C0s1_clear_obstacle_small_target_comm",
+  "num_levels": 26,
+  "level_episodes": 60000,
+  "total_episodes": 113815,
+  "global_step": 27225816,
+  "elapsed_min": 20.7,
+  "avg_len": 55.57,
+  "avg_return": 6.447589999999999,
+  "help_rate": 0.28547474850151533,
+  "buckets": {
+    "small_d3-5_obs1": {
+      "n": 100,
+      "success_rate": 0.57,
+      "ready": false
+    },
+    "small_d0-2_obs1": {
+      "n": 100,
+      "success_rate": 0.59,
+      "ready": false
+    },
+    "small_d6+_obs1": {
+      "n": 100,
+      "success_rate": 0.7,
+      "ready": false
+    }
+  },
+  "last_update": {
+    "policy_loss": -0.006184688798384741,
+    "value_loss": 1.6076999753713608,
+    "entropy": 1.3647519890218973,
+    "move_entropy": 1.0585530176758766,
+    "approx_kl": 0.00808754063291417,
+    "kl_early_stop": 0.0,
+    "comm_entropy": 0.30619897274300456,
+    "entropy_coef": 0.03
+  },
+  "history": [],
+  "stop_reason": "stalled at stage_8C0s1_clear_obstacle_small_target_comm"
+}

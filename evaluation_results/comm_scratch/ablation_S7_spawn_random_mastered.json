@@ -1,0 +1,18 @@
+{
+  "run": "comm_scratch",
+  "level": "S7_spawn_random",
+  "tag": "mastered",
+  "comm_on": {
+    "episodes": 300,
+    "success_rate": 0.9033333333333333,
+    "avg_length": 68.04333333333334,
+    "help_rate": 0.45851908097780825
+  },
+  "comm_off": {
+    "episodes": 300,
+    "success_rate": 0.6,
+    "avg_length": 123.51333333333334,
+    "help_rate": 0.0
+  },
+  "success_gap": 0.30333333333333334
+}

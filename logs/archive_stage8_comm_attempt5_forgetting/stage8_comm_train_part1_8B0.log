@@ -1,0 +1,50 @@
+Device: cuda
+Loading start checkpoint: checkpoints/stage8_comm_stage_8B0s_lateral_side_spawn_comm_mastered.pt
+Observation dim: 129
+Run: stage8_comm envs=16 comm_enabled=True
+critic warmup: value_loss=1.4414 (29 left)
+critic warmup: value_loss=1.4381 (28 left)
+critic warmup: value_loss=1.3912 (27 left)
+critic warmup: value_loss=1.2292 (26 left)
+critic warmup: value_loss=0.9391 (25 left)
+critic warmup: value_loss=1.7310 (24 left)
+critic warmup: value_loss=1.4605 (23 left)
+critic warmup: value_loss=1.8826 (22 left)
+critic warmup: value_loss=1.2037 (21 left)
+critic warmup: value_loss=1.7827 (20 left)
+critic warmup: value_loss=1.1741 (19 left)
+[   0.1m ep    257] stage_8B0_lateral_only_comm lvl_ep=200 avg_len=114.6 return=4.94 help=0.211 | ready 0/4 worst: goal_dx-1=0.11(38) goal_dx-2=0.13(45) goal_dx+2=0.91(56)
+critic warmup: value_loss=2.3025 (18 left)
+critic warmup: value_loss=1.5066 (17 left)
+critic warmup: value_loss=1.6925 (16 left)
+critic warmup: value_loss=1.3927 (15 left)
+critic warmup: value_loss=1.5329 (14 left)
+critic warmup: value_loss=1.2983 (13 left)
+critic warmup: value_loss=1.4676 (12 left)
+critic warmup: value_loss=1.1232 (11 left)
+critic warmup: value_loss=1.8919 (10 left)
+critic warmup: value_loss=1.4703 (9 left)
+critic warmup: value_loss=0.7654 (8 left)
+critic warmup: value_loss=1.4996 (7 left)
+[   0.2m ep    519] stage_8B0_lateral_only_comm lvl_ep=400 avg_len=110.8 return=5.20 help=0.209 | ready 2/4 worst: goal_dx-2=0.14(85) goal_dx-1=0.19(85) goal_dx+2=0.90(100)
+critic warmup: value_loss=1.6136 (6 left)
+critic warmup: value_loss=1.7248 (5 left)
+critic warmup: value_loss=0.6861 (4 left)
+critic warmup: value_loss=1.4062 (3 left)
+critic warmup: value_loss=1.2533 (2 left)
+critic warmup: value_loss=1.3854 (1 left)
+critic warmup: value_loss=1.2247 (0 left)
+[   0.4m ep    763] stage_8B0_lateral_only_comm lvl_ep=600 avg_len=113.2 return=5.32 help=0.209 | ready 2/4 worst: goal_dx-2=0.15(100) goal_dx-1=0.34(100) goal_dx+2=0.90(100)
+[   0.4m ep   1047] stage_8B0_lateral_only_comm lvl_ep=800 avg_len=66.3 return=8.90 help=0.151 | ready 2/4 worst: goal_dx-2=0.51(100) goal_dx-1=0.69(100) goal_dx+2=0.88(100)
+[   0.5m ep   1304] stage_8B0_lateral_only_comm lvl_ep=1000 avg_len=32.5 return=9.97 help=0.149 | ready 4/4 worst: goal_dx-2=0.96(100) goal_dx+1=0.97(100) goal_dx-1=0.99(100)
+
+======================================================================
+stage_8B0_lateral_only_comm mastered after 1000 episodes
+  goal_dx+1                    n= 100 success=0.970
+  goal_dx+2                    n= 100 success=1.000
+  goal_dx-1                    n= 100 success=0.990
+  goal_dx-2                    n= 100 success=0.960
+  ablation: comm_on=1.000 comm_off=1.000 gap=+0.000
+======================================================================
+
+Moving to stage_8B0a_goal_lateral1_comm

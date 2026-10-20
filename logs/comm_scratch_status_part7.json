@@ -1,0 +1,181 @@
+{
+  "run": "comm_scratch",
+  "level": 7,
+  "level_name": "S4_goal_d2-8",
+  "num_levels": 15,
+  "level_episodes": 18200,
+  "total_episodes": 50853,
+  "global_step": 21311516,
+  "elapsed_min": 23.1,
+  "avg_len": 170.95,
+  "avg_return": 0.8505799999999998,
+  "help_rate": 0.4569228250871187,
+  "buckets": {
+    "small_g4-5_obs0": {
+      "n": 100,
+      "success_rate": 0.42,
+      "ready": false
+    },
+    "small_g6-8_obs0": {
+      "n": 100,
+      "success_rate": 0.27,
+      "ready": false
+    },
+    "large_g6-8_obs0": {
+      "n": 100,
+      "success_rate": 0.08,
+      "ready": false
+    },
+    "large_g4-5_obs0": {
+      "n": 100,
+      "success_rate": 0.13,
+      "ready": false
+    },
+    "small_g0-3_obs0": {
+      "n": 100,
+      "success_rate": 0.47,
+      "ready": false
+    },
+    "large_g0-3_obs0": {
+      "n": 100,
+      "success_rate": 0.16,
+      "ready": false
+    }
+  },
+  "last_update": {
+    "policy_loss": -0.016771878581494093,
+    "value_loss": 0.43133339658379555,
+    "entropy": 1.2236971631646156,
+    "move_entropy": 0.8729209378361702,
+    "comm_entropy": 0.3507762299850583,
+    "entropy_coef": 0.01
+  },
+  "history": [
+    {
+      "level": "S3t_tall_side_push_near",
+      "episodes": 6319,
+      "elapsed_min": 1.7,
+      "buckets": {
+        "small_g0-3_obs0_push_left": {
+          "n": 100,
+          "success_rate": 0.9,
+          "ready": true
+        },
+        "large_g0-3_obs0_push_right": {
+          "n": 100,
+          "success_rate": 1.0,
+          "ready": true
+        },
+        "small_g0-3_obs0_push_right": {
+          "n": 100,
+          "success_rate": 1.0,
+          "ready": true
+        },
+        "large_g0-3_obs0_push_left": {
+          "n": 100,
+          "success_rate": 0.85,
+          "ready": true
+        }
+      },
+      "ablation": {
+        "comm_on": {
+          "episodes": 300,
+          "success_rate": 0.9933333333333333,
+          "avg_length": 17.953333333333333,
+          "help_rate": 0.5518937987374675
+        },
+        "comm_off": {
+          "episodes": 300,
+          "success_rate": 0.9966666666666667,
+          "avg_length": 18.866666666666667,
+          "help_rate": 0.0
+        }
+      }
+    },
+    {
+      "level": "S3a_size_max3",
+      "episodes": 5839,
+      "elapsed_min": 4.6,
+      "buckets": {
+        "small_g0-3_obs0": {
+          "n": 100,
+          "success_rate": 0.99,
+          "ready": true
+        },
+        "small_g4-5_obs0": {
+          "n": 100,
+          "success_rate": 0.86,
+          "ready": true
+        },
+        "large_g4-5_obs0": {
+          "n": 100,
+          "success_rate": 0.85,
+          "ready": true
+        },
+        "large_g0-3_obs0": {
+          "n": 100,
+          "success_rate": 0.85,
+          "ready": true
+        }
+      },
+      "ablation": {
+        "comm_on": {
+          "episodes": 300,
+          "success_rate": 0.8266666666666667,
+          "avg_length": 69.67666666666666,
+          "help_rate": 0.6615437975410228
+        },
+        "comm_off": {
+          "episodes": 300,
+          "success_rate": 0.7033333333333334,
+          "avg_length": 96.90333333333334,
+          "help_rate": 0.0
+        }
+      }
+    },
+    {
+      "level": "S3b_size_random",
+      "episodes": 7835,
+      "elapsed_min": 8.3,
+      "buckets": {
+        "small_g0-3_obs0": {
+          "n": 100,
+          "success_rate": 0.93,
+          "ready": true
+        },
+        "large_g4-5_obs0": {
+          "n": 100,
+          "success_rate": 0.85,
+          "ready": true
+        },
+        "small_g4-5_obs0": {
+          "n": 100,
+          "success_rate": 0.86,
+          "ready": true
+        },
+        "large_g0-3_obs0": {
+          "n": 100,
+          "success_rate": 0.92,
+          "ready": true
+        }
+      },
+      "ablation": {
+        "comm_on": {
+          "episodes": 300,
+          "success_rate": 0.8066666666666666,
+          "avg_length": 78.10333333333334,
+          "help_rate": 0.4971298706841364
+        },
+        "comm_off": {
+          "episodes": 300,
+          "success_rate": 0.6233333333333333,
+          "avg_length": 113.08666666666667,
+          "help_rate": 0.0
+        }
+      }
+    }
+  ],
+  "stop_reason": null,
+  "help_rate_target_visible": 0.4656917388345077,
+  "help_rate_target_hidden": 0.3573060664574774
+}
