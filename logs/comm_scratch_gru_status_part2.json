@@ -1,0 +1,49 @@
+{
+  "run": "comm_scratch_gru",
+  "level": 16,
+  "level_name": "S10a3_clear_big_obstacle_scaffold",
+  "num_levels": 22,
+  "level_episodes": 63800,
+  "total_episodes": 85199,
+  "global_step": 17861664,
+  "elapsed_min": 8.1,
+  "avg_len": 49.975,
+  "avg_return": 8.102949711382388,
+  "help_rate": 0.4949366681850175,
+  "buckets": {
+    "small_g0-3_obs1-2": {
+      "n": 100,
+      "success_rate": 0.87,
+      "ready": true
+    },
+    "small_g4-5_obs1-2": {
+      "n": 100,
+      "success_rate": 0.76,
+      "ready": false
+    },
+    "large_g4-5_obs1-2": {
+      "n": 100,
+      "success_rate": 0.73,
+      "ready": false
+    },
+    "large_g0-3_obs1-2": {
+      "n": 100,
+      "success_rate": 0.79,
+      "ready": false
+    }
+  },
+  "last_update": {
+    "policy_loss": -0.0011261391021738139,
+    "value_loss": 1.3565973738829296,
+    "entropy": 1.1022358740059037,
+    "move_entropy": 0.9270304093758265,
+    "comm_entropy": 0.17520546463007727,
+    "approx_kl": 0.006321787710173036,
+    "kl_early_stop": 0.0,
+    "entropy_coef": 0.03
+  },
+  "history": [],
+  "stop_reason": null,
+  "help_rate_target_visible": 0.5236070035414728,
+  "help_rate_target_hidden": 0.03598648154353921
+}

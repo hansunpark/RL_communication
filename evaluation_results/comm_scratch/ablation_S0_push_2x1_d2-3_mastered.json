@@ -1,0 +1,18 @@
+{
+  "run": "comm_scratch",
+  "level": "S0_push_2x1_d2-3",
+  "tag": "mastered",
+  "comm_on": {
+    "episodes": 300,
+    "success_rate": 0.8433333333333334,
+    "avg_length": 57.16,
+    "help_rate": 0.554146256123163
+  },
+  "comm_off": {
+    "episodes": 300,
+    "success_rate": 0.75,
+    "avg_length": 75.00666666666666,
+    "help_rate": 0.0
+  },
+  "success_gap": 0.09333333333333338
+}

@@ -1,0 +1,105 @@
+{
+  "run": "comm_scratch_gru",
+  "level": 22,
+  "level_name": "S10f_two_obstacles_scaffold",
+  "num_levels": 26,
+  "level_episodes": 47600,
+  "total_episodes": 65976,
+  "global_step": 22042224,
+  "elapsed_min": 10.1,
+  "avg_len": 106.625,
+  "avg_return": 6.479469743957743,
+  "help_rate": 0.39329900328919676,
+  "buckets": {
+    "small_g6-8_obs1-2": {
+      "n": 100,
+      "success_rate": 0.52,
+      "ready": false
+    },
+    "small_g4-5_obs1-2": {
+      "n": 100,
+      "success_rate": 0.77,
+      "ready": false
+    },
+    "large_g4-5_obs1-2": {
+      "n": 100,
+      "success_rate": 0.73,
+      "ready": false
+    },
+    "large_g6-8_obs1-2": {
+      "n": 100,
+      "success_rate": 0.62,
+      "ready": false
+    }
+  },
+  "last_update": {
+    "policy_loss": -0.0010121444962957564,
+    "value_loss": 1.1064875659843285,
+    "entropy": 0.9559437873152395,
+    "move_entropy": 0.7456116980562607,
+    "comm_entropy": 0.21033208925897875,
+    "approx_kl": 0.0069064487155780325,
+    "kl_early_stop": 0.0,
+    "entropy_coef": 0.01
+  },
+  "history": [
+    {
+      "level": "S10f1_two_small_obstacles_scaffold",
+      "episodes": 1420,
+      "elapsed_min": 0.4,
+      "buckets": {
+        "small_g0-3_obs1-2": {
+          "n": 100,
+          "success_rate": 0.85,
+          "ready": true
+        },
+        "small_g4-5_obs1-2": {
+          "n": 100,
+          "success_rate": 0.88,
+          "ready": true
+        },
+        "large_g0-3_obs1-2": {
+          "n": 100,
+          "success_rate": 0.93,
+          "ready": true
+        },
+        "large_g4-5_obs1-2": {
+          "n": 100,
+          "success_rate": 0.89,
+          "ready": true
+        }
+      },
+      "ablation": {
+        "comm_on": {
+          "episodes": 300,
+          "success_rate": 0.87,
+          "avg_length": 64.97,
+          "help_rate": 0.3287542968549587,
+          "rc": 0.43693243035246876,
+          "cpr": 0.7990033222591362,
+          "rally_steps": 42.50333333333333,
+          "rally_rate": 0.94,
+          "rc_steps": 19491,
+          "push_opportunities": 1806,
+          "coordinated_pushes": 1443
+        },
+        "comm_off": {
+          "episodes": 300,
+          "success_rate": 0.6433333333333333,
+          "avg_length": 102.71666666666667,
+          "help_rate": 0.0,
+          "rc": 0.38158634863973656,
+          "cpr": 0.6397932816537467,
+          "rally_steps": 62.36,
+          "rally_rate": 0.8533333333333334,
+          "rc_steps": 30815,
+          "push_opportunities": 1935,
+          "coordinated_pushes": 1238
+        }
+      }
+    }
+  ],
+  "stop_reason": null,
+  "help_rate_target_visible": 0.41873385294413185,
+  "help_rate_target_hidden": 0.10039786484154142
+}

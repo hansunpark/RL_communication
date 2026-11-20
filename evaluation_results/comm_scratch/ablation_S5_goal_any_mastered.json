@@ -1,0 +1,18 @@
+{
+  "run": "comm_scratch",
+  "level": "S5_goal_any",
+  "tag": "mastered",
+  "comm_on": {
+    "episodes": 300,
+    "success_rate": 0.9166666666666666,
+    "avg_length": 61.806666666666665,
+    "help_rate": 0.5789558839391651
+  },
+  "comm_off": {
+    "episodes": 300,
+    "success_rate": 0.5533333333333333,
+    "avg_length": 121.11333333333333,
+    "help_rate": 0.0
+  },
+  "success_gap": 0.3633333333333333
+}

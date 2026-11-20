@@ -1,0 +1,49 @@
+{
+  "run": "comm_scratch_gru",
+  "level": 21,
+  "level_name": "S10f_two_obstacles_scaffold",
+  "num_levels": 25,
+  "level_episodes": 53400,
+  "total_episodes": 71378,
+  "global_step": 24946140,
+  "elapsed_min": 11.1,
+  "avg_len": 94.57,
+  "avg_return": 7.371119730537758,
+  "help_rate": 0.3381355679090192,
+  "buckets": {
+    "small_g4-5_obs1-2": {
+      "n": 100,
+      "success_rate": 0.78,
+      "ready": false
+    },
+    "large_g4-5_obs1-2": {
+      "n": 100,
+      "success_rate": 0.81,
+      "ready": false
+    },
+    "small_g6-8_obs1-2": {
+      "n": 100,
+      "success_rate": 0.6,
+      "ready": false
+    },
+    "large_g6-8_obs1-2": {
+      "n": 100,
+      "success_rate": 0.66,
+      "ready": false
+    }
+  },
+  "last_update": {
+    "policy_loss": -0.0019427998073903534,
+    "value_loss": 1.0599130572130282,
+    "entropy": 0.9423314478869239,
+    "move_entropy": 0.7438140654315551,
+    "comm_entropy": 0.19851738245536885,
+    "approx_kl": 0.007291722057554277,
+    "kl_early_stop": 0.0,
+    "entropy_coef": 0.01
+  },
+  "history": [],
+  "stop_reason": null,
+  "help_rate_target_visible": 0.3608474029904692,
+  "help_rate_target_hidden": 0.07169114781946825
+}

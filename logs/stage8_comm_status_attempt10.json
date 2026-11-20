@@ -1,0 +1,250 @@
+{
+  "run": "stage8_comm",
+  "level": 13,
+  "level_name": "stage_8B4_size_and_position_comm",
+  "num_levels": 19,
+  "level_episodes": 8000,
+  "total_episodes": 27837,
+  "global_step": 10145720,
+  "elapsed_min": 11.2,
+  "avg_len": 155.59,
+  "avg_return": 3.1407299999999996,
+  "help_rate": 0.4125059170160582,
+  "buckets": {
+    "small_d0-2_obs0": {
+      "n": 100,
+      "success_rate": 0.48,
+      "ready": false
+    },
+    "small_d3-5_obs0": {
+      "n": 100,
+      "success_rate": 0.49,
+      "ready": false
+    },
+    "large_d6+_obs0": {
+      "n": 100,
+      "success_rate": 0.25,
+      "ready": false
+    },
+    "large_d3-5_obs0": {
+      "n": 100,
+      "success_rate": 0.43,
+      "ready": false
+    },
+    "small_d6+_obs0": {
+      "n": 100,
+      "success_rate": 0.46,
+      "ready": false
+    },
+    "large_d0-2_obs0": {
+      "n": 100,
+      "success_rate": 0.38,
+      "ready": false
+    }
+  },
+  "last_update": {
+    "policy_loss": -0.005194654084334616,
+    "value_loss": 1.213570130057633,
+    "entropy": 1.2499732207506895,
+    "move_entropy": 0.769529172219336,
+    "approx_kl": 0.006048012141491199,
+    "kl_early_stop": 0.0,
+    "comm_entropy": 0.48044404201209545,
+    "entropy_coef": 0.01
+  },
+  "history": [
+    {
+      "level": "stage_8B0uLs_up_long_side_spawn_comm",
+      "episodes": 2607,
+      "elapsed_min": 0.3,
+      "buckets": {
+        "goal_up1": {
+          "n": 100,
+          "success_rate": 1.0,
+          "ready": true
+        },
+        "goal_up3": {
+          "n": 100,
+          "success_rate": 0.85,
+          "ready": true
+        },
+        "goal_below": {
+          "n": 100,
+          "success_rate": 0.97,
+          "ready": true
+        },
+        "goal_up2": {
+          "n": 100,
+          "success_rate": 0.94,
+          "ready": true
+        }
+      },
+      "ablation": {
+        "comm_on": {
+          "episodes": 300,
+          "success_rate": 0.9566666666666667,
+          "avg_length": 13.926666666666666,
+          "help_rate": 0.5535543322163715
+        },
+        "comm_off": {
+          "episodes": 300,
+          "success_rate": 0.87,
+          "avg_length": 16.04,
+          "help_rate": 0.0
+        }
+      }
+    },
+    {
+      "level": "stage_8B0uL_up_long_comm",
+      "episodes": 1000,
+      "elapsed_min": 0.8,
+      "buckets": {
+        "goal_below": {
+          "n": 100,
+          "success_rate": 0.95,
+          "ready": true
+        },
+        "goal_up2": {
+          "n": 100,
+          "success_rate": 0.99,
+          "ready": true
+        },
+        "goal_up3": {
+          "n": 100,
+          "success_rate": 0.96,
+          "ready": true
+        },
+        "goal_up4": {
+          "n": 100,
+          "success_rate": 0.88,
+          "ready": true
+        },
+        "goal_up5": {
+          "n": 100,
+          "success_rate": 0.94,
+          "ready": true
+        }
+      },
+      "ablation": {
+        "comm_on": {
+          "episodes": 300,
+          "success_rate": 0.9733333333333334,
+          "avg_length": 47.3,
+          "help_rate": 0.45364693446088794
+        },
+        "comm_off": {
+          "episodes": 300,
+          "success_rate": 0.9466666666666667,
+          "avg_length": 61.06333333333333,
+          "help_rate": 0.0
+        }
+      }
+    },
+    {
+      "level": "stage_8B1_position_r2_comm",
+      "episodes": 1000,
+      "elapsed_min": 1.1,
+      "buckets": {
+        "small_d0-2_obs0": {
+          "n": 100,
+          "success_rate": 0.99,
+          "ready": true
+        },
+        "small_d3-5_obs0": {
+          "n": 100,
+          "success_rate": 1.0,
+          "ready": true
+        }
+      },
+      "ablation": {
+        "comm_on": {
+          "episodes": 300,
+          "success_rate": 0.9966666666666667,
+          "avg_length": 34.026666666666664,
+          "help_rate": 0.4488146551724138
+        },
+        "comm_off": {
+          "episodes": 300,
+          "success_rate": 0.9933333333333333,
+          "avg_length": 39.63,
+          "help_rate": 0.0
+        }
+      }
+    },
+    {
+      "level": "stage_8B2_position_r5_comm",
+      "episodes": 1292,
+      "elapsed_min": 1.7,
+      "buckets": {
+        "small_d3-5_obs0": {
+          "n": 100,
+          "success_rate": 0.91,
+          "ready": true
+        },
+        "small_d6+_obs0": {
+          "n": 100,
+          "success_rate": 0.85,
+          "ready": true
+        },
+        "small_d0-2_obs0": {
+          "n": 100,
+          "success_rate": 0.86,
+          "ready": true
+        }
+      },
+      "ablation": {
+        "comm_on": {
+          "episodes": 300,
+          "success_rate": 0.8433333333333334,
+          "avg_length": 72.28333333333333,
+          "help_rate": 0.48762969794789024
+        },
+        "comm_off": {
+          "episodes": 300,
+          "success_rate": 0.8466666666666667,
+          "avg_length": 79.83,
+          "help_rate": 0.0
+        }
+      }
+    },
+    {
+      "level": "stage_8B3_position_full_comm",
+      "episodes": 6879,
+      "elapsed_min": 5.3,
+      "buckets": {
+        "small_d3-5_obs0": {
+          "n": 100,
+          "success_rate": 0.85,
+          "ready": true
+        },
+        "small_d0-2_obs0": {
+          "n": 100,
+          "success_rate": 0.87,
+          "ready": true
+        },
+        "small_d6+_obs0": {
+          "n": 100,
+          "success_rate": 0.85,
+          "ready": true
+        }
+      },
+      "ablation": {
+        "comm_on": {
+          "episodes": 300,
+          "success_rate": 0.85,
+          "avg_length": 88.4,
+          "help_rate": 0.5868401206636501
+        },
+        "comm_off": {
+          "episodes": 300,
+          "success_rate": 0.5733333333333334,
+          "avg_length": 126.24666666666667,
+          "help_rate": 0.0
+        }
+      }
+    }
+  ],
+  "stop_reason": null,
+  "help_rate_target_visible": 0.4665228700663107,
+  "help_rate_target_hidden": 0.13779970848799386
+}

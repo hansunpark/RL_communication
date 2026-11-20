@@ -30,6 +30,8 @@ class BucketedCurriculumManager:
         window_size=100,
         min_total_episodes=800,
         thresholds=None,
+        overall_threshold=None,
+        overall_window=400,
     ):
         self.default_threshold = (
             threshold
@@ -49,6 +51,18 @@ class BucketedCurriculumManager:
 
         self.total_episodes = 0
 
+        # None이 아니면 "최근 overall_window episode 전체 성공률 >=
+        # overall_threshold"도 mastery 조건에 넣는다. 버킷 기준
+        # (default_threshold)을 하한으로 낮추고 전체 성공률로 수준을
+        # 보장할 때 쓴다 (comm_scratch S10e 이후, docs 참고).
+        self.overall_threshold = (
+            overall_threshold
+        )
+
+        self.overall = deque(
+            maxlen=overall_window
+        )
+
         self.completed = False
 
     # --------------------------------------------------------
@@ -64,6 +78,10 @@ class BucketedCurriculumManager:
             )
 
         self.windows[bucket].append(
+            float(success)
+        )
+
+        self.overall.append(
             float(success)
         )
 
@@ -125,6 +143,17 @@ class BucketedCurriculumManager:
         if not self.windows:
             return False
 
+        if self.overall_threshold is not None:
+
+            if (
+                len(self.overall)
+                < self.overall.maxlen
+                or sum(self.overall)
+                / len(self.overall)
+                < self.overall_threshold
+            ):
+                return False
+
         return all(
             self.bucket_ready(bucket)
             for bucket in self.windows
@@ -155,8 +184,20 @@ class BucketedCurriculumManager:
     # Reset (다음 substage로 넘어갈 때)
     # --------------------------------------------------------
 
+    def overall_rate(self):
+
+        if not self.overall:
+            return 0.0
+
+        return (
+            sum(self.overall)
+            / len(self.overall)
+        )
+
     def reset(self):
 
         self.windows.clear()
+
+        self.overall.clear()
 
         self.total_episodes = 0

@@ -1,0 +1,32 @@
+{
+  "run": "comm_scratch_gru",
+  "level": "S10f1_two_small_obstacles_scaffold",
+  "tag": "mastered",
+  "comm_on": {
+    "episodes": 300,
+    "success_rate": 0.87,
+    "avg_length": 64.97,
+    "help_rate": 0.3287542968549587,
+    "rc": 0.43693243035246876,
+    "cpr": 0.7990033222591362,
+    "rally_steps": 42.50333333333333,
+    "rally_rate": 0.94,
+    "rc_steps": 19491,
+    "push_opportunities": 1806,
+    "coordinated_pushes": 1443
+  },
+  "comm_off": {
+    "episodes": 300,
+    "success_rate": 0.6433333333333333,
+    "avg_length": 102.71666666666667,
+    "help_rate": 0.0,
+    "rc": 0.38158634863973656,
+    "cpr": 0.6397932816537467,
+    "rally_steps": 62.36,
+    "rally_rate": 0.8533333333333334,
+    "rc_steps": 30815,
+    "push_opportunities": 1935,
+    "coordinated_pushes": 1238
+  },
+  "success_gap": 0.22666666666666668
+}

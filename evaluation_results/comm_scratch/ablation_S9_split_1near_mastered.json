@@ -1,0 +1,18 @@
+{
+  "run": "comm_scratch",
+  "level": "S9_split_1near",
+  "tag": "mastered",
+  "comm_on": {
+    "episodes": 300,
+    "success_rate": 0.8933333333333333,
+    "avg_length": 66.86,
+    "help_rate": 0.4821019044770167
+  },
+  "comm_off": {
+    "episodes": 300,
+    "success_rate": 0.4666666666666667,
+    "avg_length": 141.62,
+    "help_rate": 0.0
+  },
+  "success_gap": 0.42666666666666664
+}

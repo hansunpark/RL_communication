@@ -1,0 +1,71 @@
+Device: cuda
+Loading start checkpoint: checkpoints/comm_scratch_S2_size_3x2_mastered.pt
+Observation dim: 129
+Run: comm_scratch envs=16 comm_enabled=True
+[   0.3m ep    251] S3a_size_max3 lvl_ep=200 avg_len=151.8 return=2.18 help=0.494 | ready 0/4 worst: large_g4-5_obs0=0.02(53) small_g4-5_obs0=0.33(100) large_g0-3_obs0=0.50(2)
+[   0.6m ep    527] S3a_size_max3 lvl_ep=400 avg_len=153.2 return=2.64 help=0.489 | ready 0/4 worst: large_g4-5_obs0=0.07(91) small_g4-5_obs0=0.40(100) large_g0-3_obs0=0.44(9)
+[   0.8m ep    794] S3a_size_max3 lvl_ep=600 avg_len=126.7 return=4.28 help=0.468 | ready 0/4 worst: large_g4-5_obs0=0.12(100) large_g0-3_obs0=0.43(14) small_g4-5_obs0=0.49(100)
+[   1.1m ep   1057] S3a_size_max3 lvl_ep=800 avg_len=129.1 return=4.56 help=0.452 | ready 0/4 worst: large_g4-5_obs0=0.20(100) large_g0-3_obs0=0.45(20) small_g4-5_obs0=0.57(100)
+[   1.3m ep   1322] S3a_size_max3 lvl_ep=1000 avg_len=134.7 return=4.09 help=0.531 | ready 0/4 worst: large_g4-5_obs0=0.25(100) large_g0-3_obs0=0.50(24) small_g4-5_obs0=0.52(100)
+[   1.6m ep   1594] S3a_size_max3 lvl_ep=1200 avg_len=126.3 return=4.63 help=0.578 | ready 0/4 worst: large_g4-5_obs0=0.26(100) large_g0-3_obs0=0.49(35) small_g4-5_obs0=0.55(100)
+[   1.8m ep   1863] S3a_size_max3 lvl_ep=1400 avg_len=126.1 return=4.73 help=0.553 | ready 0/4 worst: large_g4-5_obs0=0.27(100) large_g0-3_obs0=0.51(41) small_g4-5_obs0=0.60(100)
+[   2.0m ep   2127] S3a_size_max3 lvl_ep=1600 avg_len=124.3 return=4.89 help=0.466 | ready 0/4 worst: large_g4-5_obs0=0.30(100) large_g0-3_obs0=0.52(46) small_g4-5_obs0=0.59(100)
+[   2.3m ep   2418] S3a_size_max3 lvl_ep=1800 avg_len=136.7 return=4.12 help=0.498 | ready 0/4 worst: large_g4-5_obs0=0.24(100) large_g0-3_obs0=0.46(52) small_g4-5_obs0=0.55(100)
+[   2.5m ep   2690] S3a_size_max3 lvl_ep=2000 avg_len=126.1 return=4.64 help=0.570 | ready 0/4 worst: large_g4-5_obs0=0.22(100) large_g0-3_obs0=0.44(59) small_g4-5_obs0=0.55(100)
+[   2.8m ep   2957] S3a_size_max3 lvl_ep=2200 avg_len=145.9 return=2.69 help=0.545 | ready 0/4 worst: large_g4-5_obs0=0.24(100) large_g0-3_obs0=0.39(69) small_g4-5_obs0=0.44(100)
+[   3.0m ep   3220] S3a_size_max3 lvl_ep=2400 avg_len=137.5 return=3.50 help=0.634 | ready 0/4 worst: large_g4-5_obs0=0.19(100) large_g0-3_obs0=0.40(78) small_g4-5_obs0=0.51(100)
+[   3.3m ep   3491] S3a_size_max3 lvl_ep=2600 avg_len=148.8 return=2.70 help=0.596 | ready 0/4 worst: large_g4-5_obs0=0.17(100) large_g0-3_obs0=0.40(84) small_g4-5_obs0=0.43(100)
+[   3.6m ep   3774] S3a_size_max3 lvl_ep=2800 avg_len=160.8 return=1.99 help=0.459 | ready 0/4 worst: large_g4-5_obs0=0.13(100) small_g4-5_obs0=0.30(100) large_g0-3_obs0=0.40(88)
+[   3.9m ep   4046] S3a_size_max3 lvl_ep=3000 avg_len=134.2 return=3.89 help=0.459 | ready 0/4 worst: large_g4-5_obs0=0.19(100) large_g0-3_obs0=0.39(96) small_g4-5_obs0=0.49(100)
+[   4.1m ep   4314] S3a_size_max3 lvl_ep=3200 avg_len=129.2 return=4.07 help=0.480 | ready 0/4 worst: large_g4-5_obs0=0.24(100) large_g0-3_obs0=0.37(100) small_g4-5_obs0=0.50(100)
+[   4.3m ep   4586] S3a_size_max3 lvl_ep=3400 avg_len=139.5 return=3.57 help=0.454 | ready 0/4 worst: large_g4-5_obs0=0.24(100) large_g0-3_obs0=0.37(100) small_g4-5_obs0=0.50(100)
+[   4.6m ep   4847] S3a_size_max3 lvl_ep=3600 avg_len=147.3 return=2.44 help=0.492 | ready 0/4 worst: large_g4-5_obs0=0.15(100) large_g0-3_obs0=0.37(100) small_g4-5_obs0=0.39(100)
+[   4.9m ep   5095] S3a_size_max3 lvl_ep=3800 avg_len=163.2 return=1.39 help=0.577 | ready 0/4 worst: large_g4-5_obs0=0.10(100) large_g0-3_obs0=0.34(100) small_g4-5_obs0=0.35(100)
+[   5.1m ep   5352] S3a_size_max3 lvl_ep=4000 avg_len=147.4 return=2.63 help=0.557 | ready 0/4 worst: large_g4-5_obs0=0.08(100) large_g0-3_obs0=0.31(100) small_g4-5_obs0=0.41(100)
+[   5.4m ep   5616] S3a_size_max3 lvl_ep=4200 avg_len=150.9 return=2.53 help=0.609 | ready 0/4 worst: large_g4-5_obs0=0.04(100) large_g0-3_obs0=0.26(100) small_g4-5_obs0=0.42(100)
+[   5.7m ep   5875] S3a_size_max3 lvl_ep=4400 avg_len=142.3 return=3.30 help=0.581 | ready 0/4 worst: large_g4-5_obs0=0.13(100) large_g0-3_obs0=0.26(100) small_g4-5_obs0=0.51(100)
+[   5.9m ep   6141] S3a_size_max3 lvl_ep=4600 avg_len=143.7 return=3.14 help=0.556 | ready 0/4 worst: large_g4-5_obs0=0.25(100) large_g0-3_obs0=0.26(100) small_g4-5_obs0=0.37(100)
+[   6.2m ep   6415] S3a_size_max3 lvl_ep=4800 avg_len=150.3 return=2.65 help=0.528 | ready 0/4 worst: large_g4-5_obs0=0.25(100) large_g0-3_obs0=0.27(100) small_g4-5_obs0=0.33(100)
+[   6.4m ep   6665] S3a_size_max3 lvl_ep=5000 avg_len=134.4 return=3.64 help=0.526 | ready 0/4 worst: large_g4-5_obs0=0.28(100) large_g0-3_obs0=0.28(100) small_g4-5_obs0=0.46(100)
+[   6.7m ep   6930] S3a_size_max3 lvl_ep=5200 avg_len=137.8 return=3.54 help=0.573 | ready 0/4 worst: large_g0-3_obs0=0.28(100) large_g4-5_obs0=0.30(100) small_g4-5_obs0=0.46(100)
+[   7.0m ep   7196] S3a_size_max3 lvl_ep=5400 avg_len=148.9 return=2.72 help=0.642 | ready 0/4 worst: large_g0-3_obs0=0.27(100) large_g4-5_obs0=0.28(100) small_g4-5_obs0=0.36(100)
+[   7.2m ep   7461] S3a_size_max3 lvl_ep=5600 avg_len=147.5 return=3.00 help=0.584 | ready 0/4 worst: large_g4-5_obs0=0.28(100) large_g0-3_obs0=0.28(100) small_g4-5_obs0=0.40(100)
+[   7.5m ep   7744] S3a_size_max3 lvl_ep=5800 avg_len=147.5 return=2.98 help=0.548 | ready 0/4 worst: large_g4-5_obs0=0.24(100) large_g0-3_obs0=0.30(100) small_g4-5_obs0=0.35(100)
+[   7.8m ep   8010] S3a_size_max3 lvl_ep=6000 avg_len=157.8 return=1.93 help=0.564 | ready 0/4 worst: large_g4-5_obs0=0.19(100) small_g4-5_obs0=0.27(100) large_g0-3_obs0=0.29(100)
+[   8.0m ep   8280] S3a_size_max3 lvl_ep=6200 avg_len=150.2 return=2.76 help=0.602 | ready 0/4 worst: large_g4-5_obs0=0.19(100) large_g0-3_obs0=0.31(100) small_g4-5_obs0=0.44(100)
+[   8.3m ep   8561] S3a_size_max3 lvl_ep=6400 avg_len=151.1 return=2.51 help=0.606 | ready 0/4 worst: large_g4-5_obs0=0.14(100) large_g0-3_obs0=0.29(100) small_g4-5_obs0=0.43(100)
+[   8.6m ep   8835] S3a_size_max3 lvl_ep=6600 avg_len=151.1 return=2.34 help=0.569 | ready 0/4 worst: large_g4-5_obs0=0.18(100) large_g0-3_obs0=0.29(100) small_g4-5_obs0=0.34(100)
+[   8.9m ep   9093] S3a_size_max3 lvl_ep=6800 avg_len=159.2 return=1.84 help=0.526 | ready 0/4 worst: large_g4-5_obs0=0.23(100) large_g0-3_obs0=0.29(100) small_g4-5_obs0=0.33(100)
+[   9.3m ep   9357] S3a_size_max3 lvl_ep=7000 avg_len=146.1 return=3.26 help=0.560 | ready 0/4 worst: large_g4-5_obs0=0.25(100) large_g0-3_obs0=0.31(100) small_g4-5_obs0=0.42(100)
+[   9.6m ep   9650] S3a_size_max3 lvl_ep=7200 avg_len=152.2 return=2.61 help=0.614 | ready 0/4 worst: large_g0-3_obs0=0.32(100) large_g4-5_obs0=0.33(100) small_g4-5_obs0=0.34(100)
+[   9.9m ep   9927] S3a_size_max3 lvl_ep=7400 avg_len=145.4 return=3.21 help=0.641 | ready 0/4 worst: large_g4-5_obs0=0.25(100) large_g0-3_obs0=0.35(100) small_g4-5_obs0=0.51(100)
+[  10.1m ep  10195] S3a_size_max3 lvl_ep=7600 avg_len=130.7 return=4.25 help=0.618 | ready 0/4 worst: large_g4-5_obs0=0.21(100) large_g0-3_obs0=0.35(100) small_g4-5_obs0=0.52(100)
+[  10.4m ep  10484] S3a_size_max3 lvl_ep=7800 avg_len=131.5 return=3.99 help=0.608 | ready 0/4 worst: large_g4-5_obs0=0.18(100) large_g0-3_obs0=0.35(100) small_g4-5_obs0=0.50(100)
+[  10.7m ep  10749] S3a_size_max3 lvl_ep=8000 avg_len=124.7 return=4.62 help=0.639 | ready 0/4 worst: large_g4-5_obs0=0.28(100) large_g0-3_obs0=0.35(100) small_g4-5_obs0=0.59(100)
+[  11.0m ep  11001] S3a_size_max3 lvl_ep=8200 avg_len=132.2 return=4.15 help=0.627 | ready 0/4 worst: large_g4-5_obs0=0.25(100) large_g0-3_obs0=0.36(100) small_g4-5_obs0=0.55(100)
+[  11.3m ep  11258] S3a_size_max3 lvl_ep=8400 avg_len=155.4 return=2.20 help=0.650 | ready 0/4 worst: large_g4-5_obs0=0.17(100) small_g4-5_obs0=0.34(100) large_g0-3_obs0=0.35(100)
+[  11.5m ep  11533] S3a_size_max3 lvl_ep=8600 avg_len=147.4 return=2.64 help=0.627 | ready 0/4 worst: large_g4-5_obs0=0.10(100) large_g0-3_obs0=0.33(100) small_g4-5_obs0=0.40(100)
+[  11.8m ep  11788] S3a_size_max3 lvl_ep=8800 avg_len=163.9 return=1.66 help=0.638 | ready 0/4 worst: large_g4-5_obs0=0.09(100) small_g4-5_obs0=0.29(100) large_g0-3_obs0=0.32(100)
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\Users\user\projects\cooperative_transport\train\stages\comm_scratch\train.py", line 107, in <module>
+    main()
+  File "C:\Users\user\projects\cooperative_transport\train\stages\comm_scratch\train.py", line 99, in main
+    train(
+  File "C:\Users\user\projects\cooperative_transport\train\stages\comm_runner.py", line 1531, in train
+    flush=True,
+^^^^^^^^^
+  File "C:\Users\user\projects\cooperative_transport\train\stages\comm_runner.py", line 864, in save_latest
+    ppo.save(latest_path)
+  File "C:\Users\user\projects\cooperative_transport\train\ppo.py", line 580, in save
+    torch.save(
+  File "C:\Users\user\projects\cooperative_transport\.venv\Lib\site-packages\torch\serialization.py", line 1002, in save
+    with _open_zipfile_writer(f) as opened_zipfile:
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\projects\cooperative_transport\.venv\Lib\site-packages\torch\serialization.py", line 864, in _open_zipfile_writer
+    return container(name_or_buffer)  # type: ignore[arg-type]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\projects\cooperative_transport\.venv\Lib\site-packages\torch\serialization.py", line 828, in __init__
+    torch._C.PyTorchFileWriter(
+RuntimeError: [enforce fail at inline_container.cc:745] . open file failed with error code: 1224

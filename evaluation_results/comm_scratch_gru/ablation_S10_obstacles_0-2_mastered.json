@@ -1,0 +1,32 @@
+{
+  "run": "comm_scratch_gru",
+  "level": "S10_obstacles_0-2",
+  "tag": "mastered",
+  "comm_on": {
+    "episodes": 300,
+    "success_rate": 0.8566666666666667,
+    "avg_length": 67.42,
+    "help_rate": 0.3706244437852269,
+    "rc": 0.43791819110715324,
+    "cpr": 0.8115942028985508,
+    "rally_steps": 30.903333333333332,
+    "rally_rate": 0.9633333333333334,
+    "rc_steps": 20226,
+    "push_opportunities": 2622,
+    "coordinated_pushes": 2128
+  },
+  "comm_off": {
+    "episodes": 300,
+    "success_rate": 0.5433333333333333,
+    "avg_length": 128.86,
+    "help_rate": 0.0,
+    "rc": 0.4143493369203482,
+    "cpr": 0.6832089552238806,
+    "rally_steps": 61.53,
+    "rally_rate": 0.89,
+    "rc_steps": 38658,
+    "push_opportunities": 2680,
+    "coordinated_pushes": 1831
+  },
+  "success_gap": 0.31333333333333335
+}

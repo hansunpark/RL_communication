@@ -1,0 +1,18 @@
+{
+  "run": "comm_scratch",
+  "level": "S4_goal_d2-8",
+  "tag": "mastered",
+  "comm_on": {
+    "episodes": 300,
+    "success_rate": 0.8166666666666667,
+    "avg_length": 81.30666666666667,
+    "help_rate": 0.44978886520170547
+  },
+  "comm_off": {
+    "episodes": 300,
+    "success_rate": 0.66,
+    "avg_length": 108.95,
+    "help_rate": 0.0
+  },
+  "success_gap": 0.15666666666666662
+}

@@ -1,0 +1,32 @@
+{
+  "run": "comm_scratch_gru",
+  "level": "S10b_small_obstacle_goal_any",
+  "tag": "mastered",
+  "comm_on": {
+    "episodes": 300,
+    "success_rate": 0.93,
+    "avg_length": 57.876666666666665,
+    "help_rate": 0.4456171168576859,
+    "rc": 0.53554013323351,
+    "cpr": 0.6822071407494836,
+    "rally_steps": 15.063333333333333,
+    "rally_rate": 1.0,
+    "rc_steps": 17363,
+    "push_opportunities": 3389,
+    "coordinated_pushes": 2312
+  },
+  "comm_off": {
+    "episodes": 300,
+    "success_rate": 0.5833333333333334,
+    "avg_length": 114.57333333333334,
+    "help_rate": 0.0,
+    "rc": 0.4410687963070697,
+    "cpr": 0.5919220055710307,
+    "rally_steps": 27.52,
+    "rally_rate": 0.9733333333333334,
+    "rc_steps": 34372,
+    "push_opportunities": 3590,
+    "coordinated_pushes": 2125
+  },
+  "success_gap": 0.3466666666666667
+}

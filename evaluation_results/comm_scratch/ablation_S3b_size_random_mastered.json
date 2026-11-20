@@ -1,0 +1,18 @@
+{
+  "run": "comm_scratch",
+  "level": "S3b_size_random",
+  "tag": "mastered",
+  "comm_on": {
+    "episodes": 300,
+    "success_rate": 0.8066666666666666,
+    "avg_length": 78.10333333333334,
+    "help_rate": 0.4971298706841364
+  },
+  "comm_off": {
+    "episodes": 300,
+    "success_rate": 0.6233333333333333,
+    "avg_length": 113.08666666666667,
+    "help_rate": 0.0
+  },
+  "success_gap": 0.18333333333333335
+}

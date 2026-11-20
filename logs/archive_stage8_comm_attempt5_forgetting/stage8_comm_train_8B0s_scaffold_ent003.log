@@ -1,0 +1,54 @@
+Device: cuda
+Loading start checkpoint: C:/Users/user/projects/cooperative_transport/checkpoints/stage_8A_size_mastered.pt
+PPO.load(): checkpoint architecture differs from current network.
+  missing (freshly initialized): ['comm_actor.weight', 'comm_actor.bias']
+PPO.load(): optimizer state incompatible with current network (architecture changed), skipping: loaded state dict contains a parameter group that doesn't match the size of optimizer's group
+Observation dim: 129
+Run: exp_lateral_ent0.03 envs=16 comm_enabled=True
+critic warmup: value_loss=1.1642 (29 left)
+critic warmup: value_loss=3.2987 (28 left)
+critic warmup: value_loss=0.9658 (27 left)
+critic warmup: value_loss=2.1181 (26 left)
+critic warmup: value_loss=1.9510 (25 left)
+critic warmup: value_loss=0.5793 (24 left)
+critic warmup: value_loss=1.4458 (23 left)
+critic warmup: value_loss=1.3014 (22 left)
+critic warmup: value_loss=0.5001 (21 left)
+critic warmup: value_loss=0.9362 (20 left)
+critic warmup: value_loss=0.7152 (19 left)
+critic warmup: value_loss=0.5000 (18 left)
+critic warmup: value_loss=0.6441 (17 left)
+critic warmup: value_loss=0.4301 (16 left)
+critic warmup: value_loss=0.4455 (15 left)
+critic warmup: value_loss=0.3896 (14 left)
+critic warmup: value_loss=0.3568 (13 left)
+critic warmup: value_loss=0.3357 (12 left)
+critic warmup: value_loss=0.3319 (11 left)
+critic warmup: value_loss=0.3502 (10 left)
+critic warmup: value_loss=0.3270 (9 left)
+critic warmup: value_loss=0.2915 (8 left)
+critic warmup: value_loss=0.2273 (7 left)
+critic warmup: value_loss=0.2561 (6 left)
+critic warmup: value_loss=0.3132 (5 left)
+critic warmup: value_loss=0.2476 (4 left)
+critic warmup: value_loss=0.2988 (3 left)
+critic warmup: value_loss=0.2077 (2 left)
+critic warmup: value_loss=0.2485 (1 left)
+critic warmup: value_loss=0.1985 (0 left)
+[   0.7m ep    500] stage_8B0s_lateral_side_spawn_comm lvl_ep=500 avg_len=200.0 return=-2.25 help=0.259 | ready 0/4 worst: goal_dx-2=0.00(100) goal_dx-1=0.00(100) goal_dx+2=0.00(100)
+[   1.5m ep   1000] stage_8B0s_lateral_side_spawn_comm lvl_ep=1000 avg_len=192.1 return=-1.60 help=0.146 | ready 0/4 worst: goal_dx+2=0.00(100) goal_dx+1=0.00(100) goal_dx-2=0.02(100)
+[   1.9m ep   1500] stage_8B0s_lateral_side_spawn_comm lvl_ep=1500 avg_len=96.7 return=4.43 help=0.125 | ready 2/4 worst: goal_dx+2=0.00(100) goal_dx+1=0.00(100) goal_dx-2=0.92(100)
+[   2.3m ep   2000] stage_8B0s_lateral_side_spawn_comm lvl_ep=2000 avg_len=87.2 return=4.97 help=0.122 | ready 2/4 worst: goal_dx+2=0.00(100) goal_dx+1=0.03(100) goal_dx-2=0.97(100)
+[   2.7m ep   2500] stage_8B0s_lateral_side_spawn_comm lvl_ep=2500 avg_len=105.8 return=3.79 help=0.160 | ready 2/4 worst: goal_dx+2=0.00(100) goal_dx+1=0.02(100) goal_dx-2=0.99(100)
+[   3.1m ep   3000] stage_8B0s_lateral_side_spawn_comm lvl_ep=3000 avg_len=100.4 return=4.24 help=0.090 | ready 2/4 worst: goal_dx+2=0.03(100) goal_dx+1=0.07(100) goal_dx-2=0.99(100)
+
+======================================================================
+stage_8B0s_lateral_side_spawn_comm mastered after 3364 episodes
+  goal_dx+1                    n= 100 success=0.850
+  goal_dx+2                    n= 100 success=0.850
+  goal_dx-1                    n= 100 success=1.000
+  goal_dx-2                    n= 100 success=0.990
+  ablation: comm_on=1.000 comm_off=1.000 gap=+0.000
+======================================================================
+
+exp_lateral_ent0.03 finished: completed

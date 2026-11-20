@@ -1,0 +1,189 @@
+Device: cpu
+Loading start checkpoint: checkpoints/stage8_comm_attempt9_8B3_15k.pt
+Observation dim: 129
+Run: stage8_comm envs=16 comm_enabled=True
+critic warmup: value_loss=2.0062 (29 left)
+critic warmup: value_loss=1.8604 (28 left)
+critic warmup: value_loss=1.8066 (27 left)
+[   0.0m ep    252] stage_8B0uLs_up_long_side_spawn_comm lvl_ep=200 avg_len=23.9 return=8.37 help=0.529 | ready 0/4 worst: goal_up3=0.46(46) goal_up2=0.71(48) goal_below=0.99(67)
+critic warmup: value_loss=1.5859 (26 left)
+critic warmup: value_loss=1.8408 (25 left)
+critic warmup: value_loss=1.7676 (24 left)
+[   0.0m ep    512] stage_8B0uLs_up_long_side_spawn_comm lvl_ep=400 avg_len=25.0 return=8.21 help=0.503 | ready 1/4 worst: goal_up3=0.44(93) goal_up2=0.73(94) goal_below=0.94(100)
+critic warmup: value_loss=1.4937 (23 left)
+critic warmup: value_loss=1.8514 (22 left)
+critic warmup: value_loss=1.8288 (21 left)
+[   0.1m ep    774] stage_8B0uLs_up_long_side_spawn_comm lvl_ep=600 avg_len=24.9 return=7.96 help=0.513 | ready 2/4 worst: goal_up3=0.45(100) goal_up2=0.69(100) goal_below=0.92(100)
+critic warmup: value_loss=1.9747 (20 left)
+critic warmup: value_loss=1.8571 (19 left)
+critic warmup: value_loss=1.9462 (18 left)
+[   0.1m ep   1039] stage_8B0uLs_up_long_side_spawn_comm lvl_ep=800 avg_len=23.2 return=8.14 help=0.507 | ready 2/4 worst: goal_up3=0.50(100) goal_up2=0.61(100) goal_below=0.92(100)
+critic warmup: value_loss=2.1089 (17 left)
+critic warmup: value_loss=1.4475 (16 left)
+critic warmup: value_loss=1.5855 (15 left)
+[   0.1m ep   1293] stage_8B0uLs_up_long_side_spawn_comm lvl_ep=1000 avg_len=23.3 return=8.54 help=0.484 | ready 2/4 worst: goal_up3=0.52(100) goal_up2=0.64(100) goal_below=0.96(100)
+critic warmup: value_loss=1.4812 (14 left)
+critic warmup: value_loss=1.9022 (13 left)
+critic warmup: value_loss=1.5411 (12 left)
+[   0.1m ep   1548] stage_8B0uLs_up_long_side_spawn_comm lvl_ep=1200 avg_len=23.8 return=8.05 help=0.499 | ready 2/4 worst: goal_up3=0.56(100) goal_up2=0.67(100) goal_below=0.94(100)
+critic warmup: value_loss=2.2878 (11 left)
+critic warmup: value_loss=1.6498 (10 left)
+critic warmup: value_loss=1.4997 (9 left)
+critic warmup: value_loss=1.6590 (8 left)
+[   0.1m ep   1831] stage_8B0uLs_up_long_side_spawn_comm lvl_ep=1400 avg_len=27.0 return=7.66 help=0.517 | ready 2/4 worst: goal_up3=0.50(100) goal_up2=0.61(100) goal_below=0.90(100)
+critic warmup: value_loss=1.4851 (7 left)
+critic warmup: value_loss=1.5281 (6 left)
+critic warmup: value_loss=1.7428 (5 left)
+[   0.2m ep   2098] stage_8B0uLs_up_long_side_spawn_comm lvl_ep=1600 avg_len=23.6 return=7.83 help=0.504 | ready 2/4 worst: goal_up3=0.41(100) goal_up2=0.58(100) goal_below=0.93(100)
+critic warmup: value_loss=1.5281 (4 left)
+critic warmup: value_loss=1.6547 (3 left)
+critic warmup: value_loss=1.5497 (2 left)
+critic warmup: value_loss=1.6155 (1 left)
+[   0.2m ep   2363] stage_8B0uLs_up_long_side_spawn_comm lvl_ep=1800 avg_len=25.6 return=7.60 help=0.515 | ready 2/4 worst: goal_up3=0.39(100) goal_up2=0.53(100) goal_below=0.93(100)
+critic warmup: value_loss=1.5582 (0 left)
+[   0.2m ep   2643] stage_8B0uLs_up_long_side_spawn_comm lvl_ep=2000 avg_len=21.8 return=8.34 help=0.504 | ready 2/4 worst: goal_up3=0.44(100) goal_up2=0.58(100) goal_below=0.99(100)
+[   0.2m ep   2915] stage_8B0uLs_up_long_side_spawn_comm lvl_ep=2200 avg_len=19.9 return=9.13 help=0.496 | ready 2/4 worst: goal_up3=0.54(100) goal_up2=0.72(100) goal_below=0.99(100)
+[   0.3m ep   3178] stage_8B0uLs_up_long_side_spawn_comm lvl_ep=2400 avg_len=15.1 return=9.63 help=0.491 | ready 2/4 worst: goal_up3=0.68(100) goal_up2=0.83(100) goal_below=0.96(100)
+[   0.3m ep   3449] stage_8B0uLs_up_long_side_spawn_comm lvl_ep=2600 avg_len=11.6 return=10.14 help=0.514 | ready 3/4 worst: goal_up3=0.84(100) goal_up2=0.94(100) goal_below=0.97(100)
+
+======================================================================
+stage_8B0uLs_up_long_side_spawn_comm mastered after 2607 episodes
+  goal_below                   n= 100 success=0.970
+  goal_up1                     n= 100 success=1.000
+  goal_up2                     n= 100 success=0.940
+  goal_up3                     n= 100 success=0.850
+  ablation: comm_on=0.957 comm_off=0.870 gap=+0.087
+======================================================================
+
+Moving to stage_8B0uL_up_long_comm
+[   0.4m ep   3728] stage_8B0uL_up_long_comm lvl_ep=200 avg_len=148.1 return=2.03 help=0.527 | ready 0/5 worst: goal_up3=0.00(27) goal_up4=0.00(34) goal_up5=0.00(41)
+[   0.5m ep   4012] stage_8B0uL_up_long_comm lvl_ep=400 avg_len=101.4 return=6.37 help=0.475 | ready 0/5 worst: goal_up5=0.22(81) goal_up4=0.27(79) goal_up3=0.32(60)
+[   0.6m ep   4277] stage_8B0uL_up_long_comm lvl_ep=600 avg_len=60.4 return=9.25 help=0.476 | ready 2/5 worst: goal_up5=0.43(100) goal_up3=0.50(88) goal_up4=0.51(100)
+[   0.6m ep   4540] stage_8B0uL_up_long_comm lvl_ep=800 avg_len=58.4 return=9.50 help=0.470 | ready 2/5 worst: goal_up4=0.75(100) goal_up3=0.81(100) goal_up5=0.82(100)
+[   0.7m ep   4813] stage_8B0uL_up_long_comm lvl_ep=1000 avg_len=46.7 return=9.96 help=0.459 | ready 5/5 worst: goal_up4=0.88(100) goal_up5=0.94(100) goal_below=0.95(100)
+
+======================================================================
+stage_8B0uL_up_long_comm mastered after 1000 episodes
+  goal_below                   n= 100 success=0.950
+  goal_up2                     n= 100 success=0.990
+  goal_up3                     n= 100 success=0.960
+  goal_up4                     n= 100 success=0.880
+  goal_up5                     n= 100 success=0.940
+  ablation: comm_on=0.973 comm_off=0.947 gap=+0.027
+======================================================================
+
+Moving to stage_8B1_position_r2_comm
+[   0.9m ep   5088] stage_8B1_position_r2_comm lvl_ep=200 avg_len=88.9 return=8.42 help=0.415 | ready 0/2 worst: small_d3-5_obs0=0.80(76) small_d0-2_obs0=0.81(100)
+[   0.9m ep   5346] stage_8B1_position_r2_comm lvl_ep=400 avg_len=57.1 return=10.48 help=0.429 | ready 2/2 worst: small_d3-5_obs0=0.95(100) small_d0-2_obs0=0.98(100)
+[   1.0m ep   5612] stage_8B1_position_r2_comm lvl_ep=600 avg_len=40.9 return=10.89 help=0.458 | ready 2/2 worst: small_d0-2_obs0=0.98(100) small_d3-5_obs0=0.99(100)
+[   1.0m ep   5878] stage_8B1_position_r2_comm lvl_ep=800 avg_len=37.0 return=11.13 help=0.434 | ready 2/2 worst: small_d0-2_obs0=1.00(100) small_d3-5_obs0=1.00(100)
+[   1.0m ep   6135] stage_8B1_position_r2_comm lvl_ep=1000 avg_len=35.4 return=11.15 help=0.443 | ready 2/2 worst: small_d0-2_obs0=0.99(100) small_d3-5_obs0=1.00(100)
+
+======================================================================
+stage_8B1_position_r2_comm mastered after 1000 episodes
+  small_d0-2_obs0              n= 100 success=0.990
+  small_d3-5_obs0              n= 100 success=1.000
+  ablation: comm_on=0.997 comm_off=0.993 gap=+0.003
+======================================================================
+
+Moving to stage_8B2_position_r5_comm
+[   1.2m ep   6413] stage_8B2_position_r5_comm lvl_ep=200 avg_len=84.4 return=8.08 help=0.456 | ready 0/3 worst: small_d0-2_obs0=0.69(45) small_d6+_obs0=0.75(52) small_d3-5_obs0=0.82(100)
+[   1.3m ep   6688] stage_8B2_position_r5_comm lvl_ep=400 avg_len=83.6 return=7.79 help=0.451 | ready 0/3 worst: small_d3-5_obs0=0.72(100) small_d6+_obs0=0.72(100) small_d0-2_obs0=0.79(77)
+[   1.3m ep   6969] stage_8B2_position_r5_comm lvl_ep=600 avg_len=76.8 return=8.57 help=0.429 | ready 1/3 worst: small_d6+_obs0=0.72(100) small_d3-5_obs0=0.83(100) small_d0-2_obs0=0.88(100)
+[   1.4m ep   7255] stage_8B2_position_r5_comm lvl_ep=800 avg_len=72.5 return=8.60 help=0.423 | ready 1/3 worst: small_d6+_obs0=0.75(100) small_d3-5_obs0=0.82(100) small_d0-2_obs0=0.90(100)
+[   1.5m ep   7511] stage_8B2_position_r5_comm lvl_ep=1000 avg_len=77.7 return=8.47 help=0.462 | ready 1/3 worst: small_d6+_obs0=0.75(100) small_d0-2_obs0=0.83(100) small_d3-5_obs0=0.85(100)
+[   1.6m ep   7781] stage_8B2_position_r5_comm lvl_ep=1200 avg_len=65.9 return=9.38 help=0.470 | ready 2/3 worst: small_d6+_obs0=0.80(100) small_d0-2_obs0=0.85(100) small_d3-5_obs0=0.88(100)
+
+======================================================================
+stage_8B2_position_r5_comm mastered after 1292 episodes
+  small_d0-2_obs0              n= 100 success=0.860
+  small_d3-5_obs0              n= 100 success=0.910
+  small_d6+_obs0               n= 100 success=0.850
+  ablation: comm_on=0.843 comm_off=0.847 gap=-0.003
+======================================================================
+
+Moving to stage_8B3_position_full_comm
+[   1.8m ep   8200] stage_8B3_position_full_comm lvl_ep=200 avg_len=126.6 return=4.47 help=0.472 | ready 0/3 worst: small_d6+_obs0=0.35(88) small_d3-5_obs0=0.63(76) small_d0-2_obs0=0.67(36)
+[   2.0m ep   8466] stage_8B3_position_full_comm lvl_ep=400 avg_len=125.2 return=4.69 help=0.467 | ready 0/3 worst: small_d6+_obs0=0.38(100) small_d3-5_obs0=0.67(100) small_d0-2_obs0=0.70(67)
+[   2.1m ep   8726] stage_8B3_position_full_comm lvl_ep=600 avg_len=118.2 return=5.54 help=0.484 | ready 0/3 worst: small_d6+_obs0=0.44(100) small_d3-5_obs0=0.67(100) small_d0-2_obs0=0.76(100)
+[   2.2m ep   8977] stage_8B3_position_full_comm lvl_ep=800 avg_len=122.0 return=5.31 help=0.494 | ready 0/3 worst: small_d6+_obs0=0.40(100) small_d3-5_obs0=0.70(100) small_d0-2_obs0=0.77(100)
+[   2.3m ep   9253] stage_8B3_position_full_comm lvl_ep=1000 avg_len=126.1 return=5.34 help=0.459 | ready 0/3 worst: small_d6+_obs0=0.47(100) small_d3-5_obs0=0.65(100) small_d0-2_obs0=0.73(100)
+[   2.4m ep   9521] stage_8B3_position_full_comm lvl_ep=1200 avg_len=126.2 return=5.71 help=0.430 | ready 0/3 worst: small_d6+_obs0=0.59(100) small_d0-2_obs0=0.66(100) small_d3-5_obs0=0.68(100)
+[   2.5m ep   9818] stage_8B3_position_full_comm lvl_ep=1400 avg_len=118.6 return=6.21 help=0.446 | ready 0/3 worst: small_d6+_obs0=0.56(100) small_d3-5_obs0=0.69(100) small_d0-2_obs0=0.70(100)
+[   2.7m ep  10092] stage_8B3_position_full_comm lvl_ep=1600 avg_len=111.6 return=6.31 help=0.449 | ready 0/3 worst: small_d6+_obs0=0.58(100) small_d3-5_obs0=0.67(100) small_d0-2_obs0=0.72(100)
+[   2.8m ep  10355] stage_8B3_position_full_comm lvl_ep=1800 avg_len=117.8 return=6.26 help=0.476 | ready 0/3 worst: small_d6+_obs0=0.56(100) small_d3-5_obs0=0.71(100) small_d0-2_obs0=0.79(100)
+[   2.9m ep  10639] stage_8B3_position_full_comm lvl_ep=2000 avg_len=108.9 return=7.06 help=0.474 | ready 0/3 worst: small_d6+_obs0=0.67(100) small_d3-5_obs0=0.72(100) small_d0-2_obs0=0.82(100)
+[   3.0m ep  10906] stage_8B3_position_full_comm lvl_ep=2200 avg_len=114.6 return=6.76 help=0.471 | ready 0/3 worst: small_d6+_obs0=0.65(100) small_d3-5_obs0=0.74(100) small_d0-2_obs0=0.79(100)
+[   3.1m ep  11164] stage_8B3_position_full_comm lvl_ep=2400 avg_len=105.7 return=7.08 help=0.486 | ready 0/3 worst: small_d6+_obs0=0.66(100) small_d0-2_obs0=0.73(100) small_d3-5_obs0=0.79(100)
+[   3.2m ep  11425] stage_8B3_position_full_comm lvl_ep=2600 avg_len=113.3 return=6.63 help=0.506 | ready 0/3 worst: small_d3-5_obs0=0.66(100) small_d6+_obs0=0.68(100) small_d0-2_obs0=0.72(100)
+[   3.3m ep  11699] stage_8B3_position_full_comm lvl_ep=2800 avg_len=111.2 return=6.85 help=0.539 | ready 0/3 worst: small_d3-5_obs0=0.70(100) small_d0-2_obs0=0.71(100) small_d6+_obs0=0.71(100)
+[   3.4m ep  11948] stage_8B3_position_full_comm lvl_ep=3000 avg_len=107.8 return=7.00 help=0.579 | ready 0/3 worst: small_d3-5_obs0=0.67(100) small_d0-2_obs0=0.73(100) small_d6+_obs0=0.73(100)
+[   3.5m ep  12213] stage_8B3_position_full_comm lvl_ep=3200 avg_len=109.4 return=7.08 help=0.609 | ready 0/3 worst: small_d6+_obs0=0.65(100) small_d3-5_obs0=0.70(100) small_d0-2_obs0=0.77(100)
+[   3.6m ep  12466] stage_8B3_position_full_comm lvl_ep=3400 avg_len=105.0 return=7.31 help=0.612 | ready 0/3 worst: small_d3-5_obs0=0.72(100) small_d6+_obs0=0.73(100) small_d0-2_obs0=0.79(100)
+[   3.7m ep  12735] stage_8B3_position_full_comm lvl_ep=3600 avg_len=101.4 return=7.59 help=0.608 | ready 0/3 worst: small_d6+_obs0=0.73(100) small_d3-5_obs0=0.74(100) small_d0-2_obs0=0.83(100)
+[   3.8m ep  13016] stage_8B3_position_full_comm lvl_ep=3800 avg_len=99.0 return=7.66 help=0.630 | ready 0/3 worst: small_d3-5_obs0=0.73(100) small_d6+_obs0=0.77(100) small_d0-2_obs0=0.82(100)
+[   3.9m ep  13272] stage_8B3_position_full_comm lvl_ep=4000 avg_len=107.7 return=7.02 help=0.632 | ready 1/3 worst: small_d6+_obs0=0.66(100) small_d3-5_obs0=0.73(100) small_d0-2_obs0=0.87(100)
+[   4.0m ep  13549] stage_8B3_position_full_comm lvl_ep=4200 avg_len=95.5 return=8.14 help=0.602 | ready 0/3 worst: small_d3-5_obs0=0.78(100) small_d6+_obs0=0.79(100) small_d0-2_obs0=0.84(100)
+[   4.1m ep  13827] stage_8B3_position_full_comm lvl_ep=4400 avg_len=88.9 return=8.20 help=0.616 | ready 0/3 worst: small_d6+_obs0=0.77(100) small_d3-5_obs0=0.82(100) small_d0-2_obs0=0.83(100)
+[   4.2m ep  14109] stage_8B3_position_full_comm lvl_ep=4600 avg_len=89.2 return=8.37 help=0.624 | ready 0/3 worst: small_d6+_obs0=0.80(100) small_d3-5_obs0=0.83(100) small_d0-2_obs0=0.83(100)
+[   4.3m ep  14376] stage_8B3_position_full_comm lvl_ep=4800 avg_len=99.3 return=8.04 help=0.622 | ready 0/3 worst: small_d3-5_obs0=0.79(100) small_d0-2_obs0=0.79(100) small_d6+_obs0=0.82(100)
+[   4.4m ep  14646] stage_8B3_position_full_comm lvl_ep=5000 avg_len=97.2 return=7.67 help=0.634 | ready 0/3 worst: small_d6+_obs0=0.75(100) small_d3-5_obs0=0.77(100) small_d0-2_obs0=0.81(100)
+[   4.4m ep  14918] stage_8B3_position_full_comm lvl_ep=5200 avg_len=86.0 return=8.58 help=0.601 | ready 1/3 worst: small_d0-2_obs0=0.79(100) small_d3-5_obs0=0.81(100) small_d6+_obs0=0.85(100)
+[   4.5m ep  15194] stage_8B3_position_full_comm lvl_ep=5400 avg_len=99.1 return=7.86 help=0.578 | ready 1/3 worst: small_d6+_obs0=0.72(100) small_d0-2_obs0=0.83(100) small_d3-5_obs0=0.85(100)
+[   4.6m ep  15460] stage_8B3_position_full_comm lvl_ep=5600 avg_len=97.0 return=7.58 help=0.564 | ready 0/3 worst: small_d6+_obs0=0.69(100) small_d3-5_obs0=0.78(100) small_d0-2_obs0=0.83(100)
+[   4.7m ep  15718] stage_8B3_position_full_comm lvl_ep=5800 avg_len=97.0 return=7.79 help=0.603 | ready 0/3 worst: small_d6+_obs0=0.68(100) small_d3-5_obs0=0.83(100) small_d0-2_obs0=0.83(100)
+[   4.8m ep  15990] stage_8B3_position_full_comm lvl_ep=6000 avg_len=95.5 return=7.93 help=0.611 | ready 0/3 worst: small_d6+_obs0=0.76(100) small_d3-5_obs0=0.79(100) small_d0-2_obs0=0.84(100)
+[   4.9m ep  16269] stage_8B3_position_full_comm lvl_ep=6200 avg_len=90.0 return=8.36 help=0.590 | ready 0/3 worst: small_d6+_obs0=0.80(100) small_d0-2_obs0=0.82(100) small_d3-5_obs0=0.83(100)
+[   5.0m ep  16526] stage_8B3_position_full_comm lvl_ep=6400 avg_len=98.4 return=8.08 help=0.589 | ready 0/3 worst: small_d3-5_obs0=0.80(100) small_d6+_obs0=0.80(100) small_d0-2_obs0=0.84(100)
+[   5.1m ep  16795] stage_8B3_position_full_comm lvl_ep=6600 avg_len=80.9 return=9.08 help=0.563 | ready 2/3 worst: small_d3-5_obs0=0.83(100) small_d0-2_obs0=0.85(100) small_d6+_obs0=0.91(100)
+[   5.1m ep  17061] stage_8B3_position_full_comm lvl_ep=6800 avg_len=95.8 return=8.12 help=0.566 | ready 2/3 worst: small_d6+_obs0=0.71(100) small_d3-5_obs0=0.87(100) small_d0-2_obs0=0.88(100)
+
+======================================================================
+stage_8B3_position_full_comm mastered after 6879 episodes
+  small_d0-2_obs0              n= 100 success=0.870
+  small_d3-5_obs0              n= 100 success=0.850
+  small_d6+_obs0               n= 100 success=0.850
+  ablation: comm_on=0.850 comm_off=0.573 gap=+0.277
+======================================================================
+
+Moving to stage_8B4_size_and_position_comm
+[   5.5m ep  17451] stage_8B4_size_and_position_comm lvl_ep=200 avg_len=156.9 return=2.16 help=0.575 | ready 0/6 worst: large_d6+_obs0=0.14(35) large_d3-5_obs0=0.20(41) large_d0-2_obs0=0.24(21)
+[   5.6m ep  17722] stage_8B4_size_and_position_comm lvl_ep=400 avg_len=156.5 return=2.18 help=0.549 | ready 0/6 worst: large_d6+_obs0=0.16(69) large_d3-5_obs0=0.26(90) large_d0-2_obs0=0.27(41)
+[   5.8m ep  17983] stage_8B4_size_and_position_comm lvl_ep=600 avg_len=153.9 return=2.51 help=0.509 | ready 0/6 worst: large_d6+_obs0=0.17(100) large_d3-5_obs0=0.33(100) large_d0-2_obs0=0.34(61)
+[   5.9m ep  18243] stage_8B4_size_and_position_comm lvl_ep=800 avg_len=158.8 return=2.11 help=0.500 | ready 0/6 worst: large_d6+_obs0=0.24(100) small_d6+_obs0=0.27(100) large_d0-2_obs0=0.35(75)
+[   6.1m ep  18511] stage_8B4_size_and_position_comm lvl_ep=1000 avg_len=158.3 return=2.37 help=0.491 | ready 0/6 worst: large_d6+_obs0=0.26(100) large_d3-5_obs0=0.27(100) large_d0-2_obs0=0.32(99)
+[   6.2m ep  18786] stage_8B4_size_and_position_comm lvl_ep=1200 avg_len=159.4 return=2.39 help=0.495 | ready 0/6 worst: large_d6+_obs0=0.22(100) large_d3-5_obs0=0.26(100) large_d0-2_obs0=0.33(100)
+[   6.4m ep  19057] stage_8B4_size_and_position_comm lvl_ep=1400 avg_len=161.6 return=2.26 help=0.491 | ready 0/6 worst: large_d6+_obs0=0.21(100) large_d3-5_obs0=0.22(100) large_d0-2_obs0=0.37(100)
+[   6.5m ep  19320] stage_8B4_size_and_position_comm lvl_ep=1600 avg_len=160.6 return=2.17 help=0.432 | ready 0/6 worst: large_d6+_obs0=0.19(100) large_d3-5_obs0=0.25(100) large_d0-2_obs0=0.33(100)
+[   6.7m ep  19582] stage_8B4_size_and_position_comm lvl_ep=1800 avg_len=159.1 return=2.51 help=0.480 | ready 0/6 worst: large_d6+_obs0=0.22(100) large_d3-5_obs0=0.30(100) large_d0-2_obs0=0.31(100)
+[   6.8m ep  19850] stage_8B4_size_and_position_comm lvl_ep=2000 avg_len=169.0 return=1.66 help=0.499 | ready 0/6 worst: large_d6+_obs0=0.20(100) large_d3-5_obs0=0.27(100) large_d0-2_obs0=0.28(100)
+[   7.0m ep  20111] stage_8B4_size_and_position_comm lvl_ep=2200 avg_len=155.2 return=2.78 help=0.483 | ready 0/6 worst: large_d6+_obs0=0.23(100) large_d3-5_obs0=0.29(100) large_d0-2_obs0=0.29(100)
+[   7.1m ep  20396] stage_8B4_size_and_position_comm lvl_ep=2400 avg_len=146.6 return=3.27 help=0.463 | ready 0/6 worst: large_d6+_obs0=0.28(100) large_d0-2_obs0=0.28(100) large_d3-5_obs0=0.32(100)
+[   7.3m ep  20668] stage_8B4_size_and_position_comm lvl_ep=2600 avg_len=160.5 return=2.35 help=0.439 | ready 0/6 worst: large_d6+_obs0=0.24(100) large_d0-2_obs0=0.31(100) large_d3-5_obs0=0.32(100)
+[   7.4m ep  20932] stage_8B4_size_and_position_comm lvl_ep=2800 avg_len=161.4 return=2.30 help=0.474 | ready 0/6 worst: large_d6+_obs0=0.17(100) large_d3-5_obs0=0.29(100) large_d0-2_obs0=0.31(100)
+[   7.6m ep  21186] stage_8B4_size_and_position_comm lvl_ep=3000 avg_len=157.4 return=2.75 help=0.501 | ready 0/6 worst: large_d6+_obs0=0.21(100) large_d0-2_obs0=0.30(100) large_d3-5_obs0=0.34(100)
+[   7.7m ep  21448] stage_8B4_size_and_position_comm lvl_ep=3200 avg_len=162.3 return=2.76 help=0.483 | ready 0/6 worst: large_d6+_obs0=0.23(100) large_d0-2_obs0=0.33(100) small_d6+_obs0=0.38(100)
+[   7.9m ep  21720] stage_8B4_size_and_position_comm lvl_ep=3400 avg_len=158.8 return=2.59 help=0.438 | ready 0/6 worst: large_d0-2_obs0=0.28(100) large_d6+_obs0=0.29(100) large_d3-5_obs0=0.36(100)
+[   8.0m ep  21975] stage_8B4_size_and_position_comm lvl_ep=3600 avg_len=150.3 return=2.97 help=0.441 | ready 0/6 worst: large_d3-5_obs0=0.29(100) large_d0-2_obs0=0.31(100) large_d6+_obs0=0.32(100)
+[   8.2m ep  22247] stage_8B4_size_and_position_comm lvl_ep=3800 avg_len=160.3 return=2.61 help=0.454 | ready 0/6 worst: large_d6+_obs0=0.28(100) large_d0-2_obs0=0.33(100) large_d3-5_obs0=0.34(100)
+[   8.3m ep  22504] stage_8B4_size_and_position_comm lvl_ep=4000 avg_len=156.5 return=2.66 help=0.439 | ready 0/6 worst: large_d6+_obs0=0.20(100) large_d0-2_obs0=0.32(100) large_d3-5_obs0=0.39(100)
+[   8.4m ep  22765] stage_8B4_size_and_position_comm lvl_ep=4200 avg_len=151.1 return=3.21 help=0.440 | ready 0/6 worst: large_d6+_obs0=0.26(100) large_d3-5_obs0=0.35(100) large_d0-2_obs0=0.38(100)
+[   8.6m ep  23029] stage_8B4_size_and_position_comm lvl_ep=4400 avg_len=155.2 return=2.54 help=0.401 | ready 0/6 worst: large_d6+_obs0=0.25(100) large_d3-5_obs0=0.29(100) large_d0-2_obs0=0.41(100)
+[   8.8m ep  23300] stage_8B4_size_and_position_comm lvl_ep=4600 avg_len=161.9 return=2.18 help=0.412 | ready 0/6 worst: large_d6+_obs0=0.20(100) large_d3-5_obs0=0.25(100) large_d0-2_obs0=0.42(100)
+[   8.9m ep  23573] stage_8B4_size_and_position_comm lvl_ep=4800 avg_len=148.0 return=3.13 help=0.415 | ready 0/6 worst: large_d6+_obs0=0.16(100) large_d3-5_obs0=0.30(100) large_d0-2_obs0=0.40(100)
+[   9.0m ep  23846] stage_8B4_size_and_position_comm lvl_ep=5000 avg_len=147.3 return=3.66 help=0.403 | ready 0/6 worst: large_d6+_obs0=0.21(100) large_d3-5_obs0=0.35(100) large_d0-2_obs0=0.43(100)
+[   9.2m ep  24114] stage_8B4_size_and_position_comm lvl_ep=5200 avg_len=153.3 return=2.92 help=0.429 | ready 0/6 worst: large_d6+_obs0=0.24(100) large_d3-5_obs0=0.35(100) large_d0-2_obs0=0.43(100)
+[   9.3m ep  24384] stage_8B4_size_and_position_comm lvl_ep=5400 avg_len=153.7 return=2.90 help=0.452 | ready 0/6 worst: large_d6+_obs0=0.29(100) large_d3-5_obs0=0.33(100) large_d0-2_obs0=0.43(100)
+[   9.5m ep  24662] stage_8B4_size_and_position_comm lvl_ep=5600 avg_len=153.4 return=2.86 help=0.432 | ready 0/6 worst: large_d6+_obs0=0.25(100) large_d3-5_obs0=0.32(100) small_d6+_obs0=0.41(100)
+[   9.6m ep  24940] stage_8B4_size_and_position_comm lvl_ep=5800 avg_len=155.9 return=2.54 help=0.477 | ready 0/6 worst: large_d6+_obs0=0.29(100) large_d3-5_obs0=0.31(100) small_d6+_obs0=0.43(100)
+[   9.8m ep  25208] stage_8B4_size_and_position_comm lvl_ep=6000 avg_len=155.7 return=2.92 help=0.462 | ready 0/6 worst: large_d6+_obs0=0.28(100) large_d3-5_obs0=0.28(100) small_d6+_obs0=0.43(100)
+[   9.9m ep  25485] stage_8B4_size_and_position_comm lvl_ep=6200 avg_len=150.4 return=3.13 help=0.465 | ready 0/6 worst: large_d6+_obs0=0.25(100) large_d3-5_obs0=0.25(100) large_d0-2_obs0=0.44(100)
+[  10.1m ep  25773] stage_8B4_size_and_position_comm lvl_ep=6400 avg_len=155.7 return=2.57 help=0.518 | ready 0/6 worst: large_d3-5_obs0=0.24(100) large_d6+_obs0=0.27(100) small_d3-5_obs0=0.43(100)
+[  10.2m ep  26044] stage_8B4_size_and_position_comm lvl_ep=6600 avg_len=151.5 return=3.24 help=0.490 | ready 0/6 worst: large_d6+_obs0=0.23(100) large_d3-5_obs0=0.34(100) small_d3-5_obs0=0.42(100)
+[  10.3m ep  26297] stage_8B4_size_and_position_comm lvl_ep=6800 avg_len=149.0 return=3.51 help=0.464 | ready 0/6 worst: large_d6+_obs0=0.24(100) large_d0-2_obs0=0.40(100) large_d3-5_obs0=0.41(100)
+[  10.5m ep  26550] stage_8B4_size_and_position_comm lvl_ep=7000 avg_len=147.4 return=3.57 help=0.434 | ready 0/6 worst: large_d6+_obs0=0.29(100) large_d3-5_obs0=0.42(100) large_d0-2_obs0=0.43(100)
+[  10.6m ep  26805] stage_8B4_size_and_position_comm lvl_ep=7200 avg_len=155.3 return=3.07 help=0.433 | ready 0/6 worst: large_d6+_obs0=0.30(100) large_d3-5_obs0=0.39(100) large_d0-2_obs0=0.44(100)
+[  10.8m ep  27066] stage_8B4_size_and_position_comm lvl_ep=7400 avg_len=150.6 return=3.81 help=0.395 | ready 0/6 worst: large_d3-5_obs0=0.33(100) large_d6+_obs0=0.34(100) large_d0-2_obs0=0.46(100)
+[  10.9m ep  27326] stage_8B4_size_and_position_comm lvl_ep=7600 avg_len=159.5 return=2.67 help=0.375 | ready 0/6 worst: large_d6+_obs0=0.31(100) large_d3-5_obs0=0.31(100) large_d0-2_obs0=0.42(100)
+[  11.1m ep  27578] stage_8B4_size_and_position_comm lvl_ep=7800 avg_len=158.4 return=2.72 help=0.396 | ready 0/6 worst: large_d6+_obs0=0.27(100) large_d3-5_obs0=0.30(100) large_d0-2_obs0=0.40(100)
+[  11.2m ep  27837] stage_8B4_size_and_position_comm lvl_ep=8000 avg_len=155.6 return=3.14 help=0.413 | ready 0/6 worst: large_d6+_obs0=0.25(100) large_d0-2_obs0=0.38(100) large_d3-5_obs0=0.43(100)

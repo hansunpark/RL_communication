@@ -1,0 +1,810 @@
+Device: cuda
+Env pool: 384 envs on 22 workers
+Loading start checkpoint: checkpoints\comm_scratch_gru_S10e_100k.pt
+Observation dim: 129
+Run: comm_scratch_gru envs=384 comm_enabled=True recurrent=True
+[   0.0m ep    308] S10e_obstacles_0-2_random_spawn lvl_ep=200 avg_len=30.5 return=10.93 help=0.411 | overall 1.00 ready 0/16 worst: small_g0-3_obs1-2=1.00(12) large_g0-3_obs0=1.00(5) small_g0-3_obs0=1.00(5)
+[   0.1m ep    581] S10e_obstacles_0-2_random_spawn lvl_ep=400 avg_len=41.9 return=10.97 help=0.417 | overall 1.00 ready 0/16 worst: small_g0-3_obs1-2=1.00(16) large_g0-3_obs0=1.00(7) small_g0-3_obs0=1.00(9)
+[   0.1m ep    850] S10e_obstacles_0-2_random_spawn lvl_ep=600 avg_len=46.5 return=10.92 help=0.415 | overall 1.00 ready 0/16 worst: small_g0-3_obs1-2=1.00(22) large_g0-3_obs0=1.00(10) small_g0-3_obs0=1.00(11)
+[   0.1m ep   1142] S10e_obstacles_0-2_random_spawn lvl_ep=800 avg_len=46.8 return=10.85 help=0.400 | overall 1.00 ready 1/16 worst: small_g0-3_obs1-2=1.00(27) large_g0-3_obs0=1.00(14) small_g0-3_obs0=1.00(14)
+[   0.1m ep   1415] S10e_obstacles_0-2_random_spawn lvl_ep=1000 avg_len=79.9 return=8.36 help=0.406 | overall 0.90 ready 2/16 worst: large_g9+_obs1-2=0.86(63) small_g9+_obs1-2=0.86(71) large_g6-8_obs1-2=0.87(100)
+[   0.2m ep   1684] S10e_obstacles_0-2_random_spawn lvl_ep=1200 avg_len=75.3 return=8.55 help=0.413 | overall 0.80 ready 5/16 worst: large_g9+_obs1-2=0.76(84) small_g9+_obs1-2=0.80(100) large_g6-8_obs1-2=0.83(100)
+[   0.2m ep   1935] S10e_obstacles_0-2_random_spawn lvl_ep=1400 avg_len=68.6 return=8.94 help=0.406 | overall 0.82 ready 8/16 worst: large_g9+_obs1-2=0.71(100) small_g9+_obs1-2=0.74(100) large_g6-8_obs1-2=0.77(100)
+[   0.2m ep   2198] S10e_obstacles_0-2_random_spawn lvl_ep=1600 avg_len=65.9 return=8.95 help=0.411 | overall 0.84 ready 8/16 worst: large_g9+_obs1-2=0.64(100) small_g9+_obs1-2=0.68(100) large_g6-8_obs1-2=0.72(100)
+[   0.3m ep   2471] S10e_obstacles_0-2_random_spawn lvl_ep=1800 avg_len=60.2 return=9.81 help=0.434 | overall 0.88 ready 7/16 worst: large_g9+_obs1-2=0.55(100) small_g9+_obs1-2=0.67(100) small_g6-8_obs1-2=0.80(100)
+[   0.3m ep   2748] S10e_obstacles_0-2_random_spawn lvl_ep=2000 avg_len=68.7 return=9.21 help=0.405 | overall 0.89 ready 8/16 worst: large_g9+_obs1-2=0.60(100) small_g9+_obs1-2=0.74(100) small_g6-8_obs1-2=0.82(100)
+[   0.3m ep   3003] S10e_obstacles_0-2_random_spawn lvl_ep=2200 avg_len=71.9 return=9.21 help=0.393 | overall 0.86 ready 10/16 worst: large_g9+_obs1-2=0.63(100) small_g9+_obs1-2=0.75(100) large_g6-8_obs1-2=0.83(100)
+[   0.4m ep   3271] S10e_obstacles_0-2_random_spawn lvl_ep=2400 avg_len=69.0 return=9.02 help=0.411 | overall 0.85 ready 10/16 worst: large_g9+_obs1-2=0.63(100) small_g9+_obs1-2=0.76(100) large_g6-8_obs1-2=0.78(100)
+[   0.4m ep   3540] S10e_obstacles_0-2_random_spawn lvl_ep=2600 avg_len=68.4 return=9.16 help=0.398 | overall 0.86 ready 12/16 worst: large_g9+_obs1-2=0.64(100) large_g6-8_obs1-2=0.77(100) small_g9+_obs1-2=0.78(100)
+[   0.4m ep   3801] S10e_obstacles_0-2_random_spawn lvl_ep=2800 avg_len=70.8 return=9.08 help=0.413 | overall 0.86 ready 12/16 worst: large_g9+_obs1-2=0.68(100) small_g9+_obs1-2=0.75(100) large_g6-8_obs1-2=0.76(100)
+[   0.4m ep   4055] S10e_obstacles_0-2_random_spawn lvl_ep=3000 avg_len=71.3 return=9.19 help=0.409 | overall 0.86 ready 12/16 worst: large_g9+_obs1-2=0.67(100) small_g9+_obs1-2=0.73(100) large_g6-8_obs1-2=0.77(100)
+[   0.5m ep   4333] S10e_obstacles_0-2_random_spawn lvl_ep=3200 avg_len=63.8 return=9.55 help=0.386 | overall 0.88 ready 13/16 worst: large_g9+_obs1-2=0.67(100) small_g9+_obs1-2=0.72(100) large_g6-8_obs1-2=0.80(100)
+[   0.5m ep   4600] S10e_obstacles_0-2_random_spawn lvl_ep=3400 avg_len=62.3 return=9.59 help=0.390 | overall 0.89 ready 13/16 worst: large_g9+_obs1-2=0.68(100) small_g9+_obs1-2=0.73(100) large_g6-8_obs1-2=0.81(100)
+[   0.5m ep   4871] S10e_obstacles_0-2_random_spawn lvl_ep=3600 avg_len=68.7 return=9.08 help=0.397 | overall 0.87 ready 13/16 worst: large_g9+_obs1-2=0.69(100) small_g9+_obs1-2=0.73(100) large_g6-8_obs1-2=0.80(100)
+[   0.5m ep   5151] S10e_obstacles_0-2_random_spawn lvl_ep=3800 avg_len=63.3 return=9.48 help=0.393 | overall 0.87 ready 13/16 worst: large_g9+_obs1-2=0.66(100) small_g9+_obs1-2=0.74(100) large_g6-8_obs1-2=0.80(100)
+[   0.6m ep   5421] S10e_obstacles_0-2_random_spawn lvl_ep=4000 avg_len=65.5 return=9.41 help=0.398 | overall 0.89 ready 13/16 worst: large_g9+_obs1-2=0.63(100) small_g9+_obs1-2=0.74(100) large_g6-8_obs1-2=0.82(100)
+[   0.6m ep   5695] S10e_obstacles_0-2_random_spawn lvl_ep=4200 avg_len=64.7 return=9.22 help=0.368 | overall 0.88 ready 13/16 worst: large_g9+_obs1-2=0.65(100) small_g9+_obs1-2=0.72(100) large_g6-8_obs1-2=0.83(100)
+[   0.6m ep   5957] S10e_obstacles_0-2_random_spawn lvl_ep=4400 avg_len=61.3 return=9.51 help=0.382 | overall 0.88 ready 13/16 worst: large_g9+_obs1-2=0.64(100) small_g9+_obs1-2=0.74(100) large_g6-8_obs1-2=0.81(100)
+[   0.7m ep   6247] S10e_obstacles_0-2_random_spawn lvl_ep=4600 avg_len=70.1 return=8.99 help=0.388 | overall 0.87 ready 13/16 worst: large_g9+_obs1-2=0.61(100) small_g9+_obs1-2=0.71(100) large_g6-8_obs1-2=0.81(100)
+[   0.7m ep   6513] S10e_obstacles_0-2_random_spawn lvl_ep=4800 avg_len=69.4 return=8.87 help=0.380 | overall 0.84 ready 12/16 worst: large_g9+_obs1-2=0.58(100) small_g9+_obs1-2=0.69(100) large_g6-8_obs1-2=0.77(100)
+[   0.7m ep   6772] S10e_obstacles_0-2_random_spawn lvl_ep=5000 avg_len=63.5 return=9.46 help=0.398 | overall 0.86 ready 12/16 worst: large_g9+_obs1-2=0.59(100) small_g9+_obs1-2=0.73(100) large_g6-8_obs1-2=0.77(100)
+[   0.8m ep   7031] S10e_obstacles_0-2_random_spawn lvl_ep=5200 avg_len=66.7 return=9.23 help=0.376 | overall 0.87 ready 13/16 worst: large_g9+_obs1-2=0.63(100) small_g9+_obs1-2=0.72(100) large_g6-8_obs1-2=0.75(100)
+[   0.8m ep   7289] S10e_obstacles_0-2_random_spawn lvl_ep=5400 avg_len=67.5 return=9.21 help=0.380 | overall 0.86 ready 13/16 worst: large_g9+_obs1-2=0.60(100) small_g9+_obs1-2=0.72(100) large_g6-8_obs1-2=0.73(100)
+[   0.8m ep   7567] S10e_obstacles_0-2_random_spawn lvl_ep=5600 avg_len=74.2 return=8.62 help=0.382 | overall 0.84 ready 12/16 worst: large_g9+_obs1-2=0.59(100) small_g9+_obs1-2=0.70(100) large_g6-8_obs1-2=0.72(100)
+[   0.8m ep   7820] S10e_obstacles_0-2_random_spawn lvl_ep=5800 avg_len=60.3 return=9.62 help=0.382 | overall 0.85 ready 13/16 worst: large_g9+_obs1-2=0.60(100) large_g6-8_obs1-2=0.68(100) small_g9+_obs1-2=0.71(100)
+[   0.9m ep   8075] S10e_obstacles_0-2_random_spawn lvl_ep=6000 avg_len=72.2 return=8.97 help=0.382 | overall 0.87 ready 14/16 worst: large_g9+_obs1-2=0.64(100) large_g6-8_obs1-2=0.68(100) small_g9+_obs1-2=0.74(100)
+[   0.9m ep   8349] S10e_obstacles_0-2_random_spawn lvl_ep=6200 avg_len=72.4 return=8.61 help=0.389 | overall 0.83 ready 14/16 worst: large_g9+_obs1-2=0.60(100) large_g6-8_obs1-2=0.66(100) small_g9+_obs1-2=0.72(100)
+[   0.9m ep   8631] S10e_obstacles_0-2_random_spawn lvl_ep=6400 avg_len=68.6 return=9.18 help=0.400 | overall 0.84 ready 14/16 worst: large_g9+_obs1-2=0.61(100) large_g6-8_obs1-2=0.69(100) small_g9+_obs1-2=0.72(100)
+[   0.9m ep   8903] S10e_obstacles_0-2_random_spawn lvl_ep=6600 avg_len=65.0 return=9.28 help=0.364 | overall 0.87 ready 13/16 worst: large_g9+_obs1-2=0.58(100) small_g9+_obs1-2=0.73(100) large_g6-8_obs1-2=0.75(100)
+[   1.0m ep   9174] S10e_obstacles_0-2_random_spawn lvl_ep=6800 avg_len=62.8 return=9.40 help=0.358 | overall 0.87 ready 15/16 worst: large_g9+_obs1-2=0.61(100) small_g9+_obs1-2=0.69(100) large_g6-8_obs1-2=0.79(100)
+[   1.0m ep   9444] S10e_obstacles_0-2_random_spawn lvl_ep=7000 avg_len=67.0 return=9.46 help=0.375 | overall 0.88 ready 15/16 worst: large_g9+_obs1-2=0.64(100) small_g9+_obs1-2=0.70(100) large_g6-8_obs1-2=0.82(100)
+[   1.0m ep   9706] S10e_obstacles_0-2_random_spawn lvl_ep=7200 avg_len=69.2 return=9.06 help=0.367 | overall 0.87 ready 15/16 worst: large_g9+_obs1-2=0.63(100) small_g9+_obs1-2=0.72(100) large_g6-8_obs1-2=0.76(100)
+[   1.1m ep   9968] S10e_obstacles_0-2_random_spawn lvl_ep=7400 avg_len=68.8 return=9.04 help=0.371 | overall 0.85 ready 15/16 worst: large_g9+_obs1-2=0.62(100) large_g6-8_obs1-2=0.71(100) small_g9+_obs1-2=0.71(100)
+[   1.1m ep  10265] S10e_obstacles_0-2_random_spawn lvl_ep=7600 avg_len=64.1 return=9.34 help=0.369 | overall 0.86 ready 15/16 worst: large_g9+_obs1-2=0.64(100) large_g6-8_obs1-2=0.68(100) small_g9+_obs1-2=0.74(100)
+[   1.1m ep  10529] S10e_obstacles_0-2_random_spawn lvl_ep=7800 avg_len=69.6 return=9.00 help=0.367 | overall 0.86 ready 15/16 worst: large_g9+_obs1-2=0.63(100) large_g6-8_obs1-2=0.72(100) small_g9+_obs1-2=0.80(100)
+[   1.2m ep  10795] S10e_obstacles_0-2_random_spawn lvl_ep=8000 avg_len=71.7 return=9.13 help=0.362 | overall 0.86 ready 15/16 worst: large_g9+_obs1-2=0.70(100) large_g6-8_obs1-2=0.71(100) small_g9+_obs1-2=0.75(100)
+[   1.2m ep  11061] S10e_obstacles_0-2_random_spawn lvl_ep=8200 avg_len=68.8 return=9.20 help=0.376 | overall 0.86 ready 15/16 worst: small_g9+_obs1-2=0.71(100) large_g9+_obs1-2=0.72(100) large_g6-8_obs1-2=0.75(100)
+[   1.2m ep  11332] S10e_obstacles_0-2_random_spawn lvl_ep=8400 avg_len=63.8 return=9.62 help=0.373 | overall 0.88 ready 15/16 worst: large_g9+_obs1-2=0.70(100) small_g9+_obs1-2=0.73(100) large_g6-8_obs1-2=0.76(100)
+[   1.3m ep  11595] S10e_obstacles_0-2_random_spawn lvl_ep=8600 avg_len=72.7 return=8.98 help=0.379 | overall 0.87 ready 15/16 worst: large_g9+_obs1-2=0.69(100) small_g9+_obs1-2=0.71(100) large_g6-8_obs1-2=0.76(100)
+[   1.3m ep  11867] S10e_obstacles_0-2_random_spawn lvl_ep=8800 avg_len=63.2 return=9.42 help=0.356 | overall 0.86 ready 15/16 worst: large_g9+_obs1-2=0.67(100) small_g9+_obs1-2=0.72(100) large_g6-8_obs1-2=0.77(100)
+[   1.3m ep  12142] S10e_obstacles_0-2_random_spawn lvl_ep=9000 avg_len=68.9 return=9.22 help=0.365 | overall 0.87 ready 15/16 worst: large_g9+_obs1-2=0.68(100) small_g9+_obs1-2=0.73(100) large_g6-8_obs1-2=0.75(100)
+
+======================================================================
+S10e_obstacles_0-2_random_spawn mastered after 9027 episodes
+  large_g0-3_obs0              n= 100 success=1.000
+  large_g0-3_obs1-2            n= 100 success=0.890
+  large_g4-5_obs0              n= 100 success=0.980
+  large_g4-5_obs1-2            n= 100 success=0.890
+  large_g6-8_obs0              n= 100 success=1.000
+  large_g6-8_obs1-2            n= 100 success=0.760
+  large_g9+_obs0               n= 100 success=0.950
+  large_g9+_obs1-2             n= 100 success=0.660
+  small_g0-3_obs0              n= 100 success=1.000
+  small_g0-3_obs1-2            n= 100 success=0.960
+  small_g4-5_obs0              n= 100 success=1.000
+  small_g4-5_obs1-2            n= 100 success=0.900
+  small_g6-8_obs0              n= 100 success=1.000
+  small_g6-8_obs1-2            n= 100 success=0.860
+  small_g9+_obs0               n= 100 success=0.990
+  small_g9+_obs1-2             n= 100 success=0.730
+  ablation: comm_on=0.860 comm_off=0.567 gap=+0.293 | RC on/off=0.443/0.420 CPR on/off=0.777/0.724
+======================================================================
+
+Moving to S10_obstacles_0-2
+[   1.6m ep  12773] S10_obstacles_0-2 lvl_ep=200 avg_len=34.3 return=10.92 help=0.365 | overall 1.00 ready 0/16 worst: large_g0-3_obs0_near1=1.00(2) small_g0-3_obs1-2_near1=1.00(12) small_g0-3_obs0_near1=1.00(8)
+[   1.6m ep  13093] S10_obstacles_0-2 lvl_ep=400 avg_len=42.2 return=10.96 help=0.362 | overall 1.00 ready 0/16 worst: large_g0-3_obs0_near1=1.00(3) small_g0-3_obs1-2_near1=1.00(20) small_g0-3_obs0_near1=1.00(11)
+[   1.7m ep  13393] S10_obstacles_0-2 lvl_ep=600 avg_len=45.9 return=10.88 help=0.355 | overall 1.00 ready 0/16 worst: large_g0-3_obs0_near1=1.00(5) small_g0-3_obs1-2_near1=1.00(32) small_g0-3_obs0_near1=1.00(14)
+[   1.7m ep  13663] S10_obstacles_0-2 lvl_ep=800 avg_len=64.0 return=9.41 help=0.353 | overall 0.94 ready 1/16 worst: large_g9+_obs1-2_near1=0.91(46) large_g6-8_obs1-2_near1=0.92(100) large_g4-5_obs1-2_near1=0.95(65)
+[   1.7m ep  13930] S10_obstacles_0-2 lvl_ep=1000 avg_len=70.2 return=9.12 help=0.347 | overall 0.87 ready 2/16 worst: large_g9+_obs1-2_near1=0.86(65) large_g6-8_obs1-2_near1=0.88(100) small_g9+_obs1-2_near1=0.91(90)
+[   1.8m ep  14200] S10_obstacles_0-2 lvl_ep=1200 avg_len=70.8 return=9.19 help=0.353 | overall 0.86 ready 5/16 worst: large_g6-8_obs1-2_near1=0.81(100) large_g9+_obs1-2_near1=0.81(90) small_g9+_obs1-2_near1=0.87(100)
+[   1.8m ep  14467] S10_obstacles_0-2 lvl_ep=1400 avg_len=66.9 return=9.30 help=0.368 | overall 0.86 ready 7/16 worst: large_g6-8_obs1-2_near1=0.74(100) large_g9+_obs1-2_near1=0.76(100) small_g6-8_obs1-2_near1=0.84(100)
+[   1.8m ep  14724] S10_obstacles_0-2 lvl_ep=1600 avg_len=69.2 return=9.04 help=0.355 | overall 0.86 ready 8/16 worst: large_g9+_obs1-2_near1=0.67(100) large_g6-8_obs1-2_near1=0.75(100) small_g9+_obs1-2_near1=0.76(100)
+[   1.8m ep  15007] S10_obstacles_0-2 lvl_ep=1800 avg_len=72.0 return=8.93 help=0.371 | overall 0.85 ready 8/16 worst: large_g9+_obs1-2_near1=0.62(100) large_g6-8_obs1-2_near1=0.72(100) small_g9+_obs1-2_near1=0.73(100)
+[   1.9m ep  15275] S10_obstacles_0-2 lvl_ep=2000 avg_len=72.1 return=8.72 help=0.363 | overall 0.83 ready 7/16 worst: large_g9+_obs1-2_near1=0.56(100) small_g9+_obs1-2_near1=0.73(100) large_g6-8_obs1-2_near1=0.77(100)
+[   1.9m ep  15545] S10_obstacles_0-2 lvl_ep=2200 avg_len=69.8 return=9.30 help=0.352 | overall 0.85 ready 10/16 worst: large_g9+_obs1-2_near1=0.56(100) large_g6-8_obs1-2_near1=0.75(100) small_g9+_obs1-2_near1=0.75(100)
+[   1.9m ep  15829] S10_obstacles_0-2 lvl_ep=2400 avg_len=71.5 return=8.94 help=0.344 | overall 0.86 ready 10/16 worst: large_g9+_obs1-2_near1=0.55(100) small_g9+_obs1-2_near1=0.73(100) large_g6-8_obs1-2_near1=0.76(100)
+[   2.0m ep  16116] S10_obstacles_0-2 lvl_ep=2600 avg_len=58.0 return=9.69 help=0.367 | overall 0.87 ready 10/16 worst: large_g9+_obs1-2_near1=0.57(100) large_g6-8_obs1-2_near1=0.74(100) small_g9+_obs1-2_near1=0.78(100)
+[   2.0m ep  16392] S10_obstacles_0-2 lvl_ep=2800 avg_len=69.7 return=9.06 help=0.372 | overall 0.88 ready 12/16 worst: large_g9+_obs1-2_near1=0.63(100) large_g6-8_obs1-2_near1=0.73(100) small_g9+_obs1-2_near1=0.78(100)
+[   2.0m ep  16649] S10_obstacles_0-2 lvl_ep=3000 avg_len=68.3 return=9.24 help=0.373 | overall 0.86 ready 12/16 worst: large_g9+_obs1-2_near1=0.63(100) large_g6-8_obs1-2_near1=0.75(100) small_g9+_obs1-2_near1=0.78(100)
+[   2.1m ep  16908] S10_obstacles_0-2 lvl_ep=3200 avg_len=70.6 return=9.21 help=0.366 | overall 0.86 ready 13/16 worst: large_g9+_obs1-2_near1=0.69(100) large_g6-8_obs1-2_near1=0.75(100) small_g9+_obs1-2_near1=0.75(100)
+[   2.1m ep  17168] S10_obstacles_0-2 lvl_ep=3400 avg_len=67.2 return=9.13 help=0.365 | overall 0.86 ready 13/16 worst: large_g9+_obs1-2_near1=0.64(100) small_g9+_obs1-2_near1=0.74(100) large_g6-8_obs1-2_near1=0.78(100)
+[   2.1m ep  17436] S10_obstacles_0-2 lvl_ep=3600 avg_len=65.6 return=9.46 help=0.370 | overall 0.87 ready 13/16 worst: large_g9+_obs1-2_near1=0.65(100) small_g9+_obs1-2_near1=0.74(100) large_g6-8_obs1-2_near1=0.80(100)
+[   2.1m ep  17697] S10_obstacles_0-2 lvl_ep=3800 avg_len=65.0 return=9.21 help=0.368 | overall 0.87 ready 13/16 worst: large_g9+_obs1-2_near1=0.66(100) small_g9+_obs1-2_near1=0.74(100) large_g6-8_obs1-2_near1=0.79(100)
+[   2.2m ep  17965] S10_obstacles_0-2 lvl_ep=4000 avg_len=66.0 return=9.15 help=0.350 | overall 0.86 ready 13/16 worst: large_g9+_obs1-2_near1=0.67(100) small_g9+_obs1-2_near1=0.72(100) large_g6-8_obs1-2_near1=0.80(100)
+[   2.2m ep  18232] S10_obstacles_0-2 lvl_ep=4200 avg_len=62.2 return=9.67 help=0.377 | overall 0.88 ready 13/16 worst: large_g9+_obs1-2_near1=0.66(100) small_g9+_obs1-2_near1=0.73(100) large_g6-8_obs1-2_near1=0.80(100)
+[   2.2m ep  18492] S10_obstacles_0-2 lvl_ep=4400 avg_len=70.1 return=9.17 help=0.353 | overall 0.88 ready 13/16 worst: large_g9+_obs1-2_near1=0.64(100) large_g6-8_obs1-2_near1=0.78(100) small_g9+_obs1-2_near1=0.78(100)
+[   2.3m ep  18760] S10_obstacles_0-2 lvl_ep=4600 avg_len=73.6 return=8.78 help=0.367 | overall 0.84 ready 13/16 worst: large_g9+_obs1-2_near1=0.66(100) large_g6-8_obs1-2_near1=0.71(100) small_g9+_obs1-2_near1=0.77(100)
+[   2.3m ep  19007] S10_obstacles_0-2 lvl_ep=4800 avg_len=66.4 return=9.20 help=0.359 | overall 0.84 ready 13/16 worst: large_g9+_obs1-2_near1=0.70(100) large_g6-8_obs1-2_near1=0.72(100) small_g9+_obs1-2_near1=0.75(100)
+[   2.3m ep  19278] S10_obstacles_0-2 lvl_ep=5000 avg_len=71.0 return=9.03 help=0.368 | overall 0.85 ready 13/16 worst: large_g9+_obs1-2_near1=0.69(100) large_g6-8_obs1-2_near1=0.75(100) small_g9+_obs1-2_near1=0.79(100)
+[   2.4m ep  19544] S10_obstacles_0-2 lvl_ep=5200 avg_len=67.1 return=9.20 help=0.359 | overall 0.85 ready 13/16 worst: large_g9+_obs1-2_near1=0.64(100) small_g9+_obs1-2_near1=0.76(100) large_g6-8_obs1-2_near1=0.79(100)
+[   2.4m ep  19829] S10_obstacles_0-2 lvl_ep=5400 avg_len=68.7 return=9.08 help=0.338 | overall 0.86 ready 13/16 worst: large_g9+_obs1-2_near1=0.65(100) small_g9+_obs1-2_near1=0.76(100) large_g4-5_obs1-2_near1=0.80(100)
+[   2.4m ep  20094] S10_obstacles_0-2 lvl_ep=5600 avg_len=66.5 return=9.26 help=0.374 | overall 0.86 ready 13/16 worst: large_g9+_obs1-2_near1=0.64(100) small_g9+_obs1-2_near1=0.73(100) large_g4-5_obs1-2_near1=0.80(100)
+[   2.5m ep  20366] S10_obstacles_0-2 lvl_ep=5800 avg_len=64.0 return=9.60 help=0.355 | overall 0.88 ready 13/16 worst: large_g9+_obs1-2_near1=0.66(100) small_g9+_obs1-2_near1=0.72(100) large_g4-5_obs1-2_near1=0.79(100)
+[   2.5m ep  20617] S10_obstacles_0-2 lvl_ep=6000 avg_len=70.6 return=9.04 help=0.367 | overall 0.87 ready 13/16 worst: large_g9+_obs1-2_near1=0.65(100) small_g9+_obs1-2_near1=0.70(100) large_g4-5_obs1-2_near1=0.78(100)
+[   2.5m ep  20888] S10_obstacles_0-2 lvl_ep=6200 avg_len=68.3 return=9.11 help=0.378 | overall 0.85 ready 13/16 worst: large_g9+_obs1-2_near1=0.68(100) small_g9+_obs1-2_near1=0.71(100) large_g4-5_obs1-2_near1=0.77(100)
+[   2.6m ep  21159] S10_obstacles_0-2 lvl_ep=6400 avg_len=72.2 return=8.85 help=0.366 | overall 0.84 ready 14/16 worst: large_g9+_obs1-2_near1=0.68(100) small_g9+_obs1-2_near1=0.72(100) large_g4-5_obs1-2_near1=0.76(100)
+[   2.6m ep  21409] S10_obstacles_0-2 lvl_ep=6600 avg_len=74.9 return=8.72 help=0.351 | overall 0.83 ready 14/16 worst: large_g9+_obs1-2_near1=0.64(100) large_g6-8_obs1-2_near1=0.73(100) small_g9+_obs1-2_near1=0.75(100)
+[   2.6m ep  21696] S10_obstacles_0-2 lvl_ep=6800 avg_len=66.8 return=9.45 help=0.376 | overall 0.85 ready 14/16 worst: large_g9+_obs1-2_near1=0.64(100) small_g9+_obs1-2_near1=0.74(100) large_g6-8_obs1-2_near1=0.76(100)
+[   2.6m ep  21966] S10_obstacles_0-2 lvl_ep=7000 avg_len=64.1 return=9.37 help=0.374 | overall 0.88 ready 14/16 worst: large_g9+_obs1-2_near1=0.63(100) small_g9+_obs1-2_near1=0.71(100) large_g6-8_obs1-2_near1=0.76(100)
+[   2.7m ep  22237] S10_obstacles_0-2 lvl_ep=7200 avg_len=66.2 return=9.28 help=0.343 | overall 0.87 ready 15/16 worst: large_g9+_obs1-2_near1=0.60(100) small_g9+_obs1-2_near1=0.72(100) large_g4-5_obs1-2_near1=0.80(100)
+[   2.7m ep  22508] S10_obstacles_0-2 lvl_ep=7400 avg_len=67.5 return=9.11 help=0.353 | overall 0.86 ready 14/16 worst: large_g9+_obs1-2_near1=0.56(100) small_g9+_obs1-2_near1=0.71(100) large_g4-5_obs1-2_near1=0.82(100)
+[   2.7m ep  22756] S10_obstacles_0-2 lvl_ep=7600 avg_len=69.6 return=9.02 help=0.371 | overall 0.85 ready 14/16 worst: large_g9+_obs1-2_near1=0.56(100) large_g6-8_obs1-2_near1=0.75(100) small_g9+_obs1-2_near1=0.76(100)
+[   2.7m ep  23030] S10_obstacles_0-2 lvl_ep=7800 avg_len=68.5 return=9.16 help=0.357 | overall 0.86 ready 15/16 worst: large_g9+_obs1-2_near1=0.61(100) large_g6-8_obs1-2_near1=0.75(100) small_g9+_obs1-2_near1=0.76(100)
+[   2.8m ep  23290] S10_obstacles_0-2 lvl_ep=8000 avg_len=61.0 return=9.79 help=0.368 | overall 0.89 ready 15/16 worst: large_g9+_obs1-2_near1=0.61(100) large_g6-8_obs1-2_near1=0.74(100) small_g9+_obs1-2_near1=0.79(100)
+[   2.8m ep  23545] S10_obstacles_0-2 lvl_ep=8200 avg_len=62.9 return=9.44 help=0.367 | overall 0.90 ready 15/16 worst: large_g9+_obs1-2_near1=0.64(100) large_g6-8_obs1-2_near1=0.78(100) small_g9+_obs1-2_near1=0.79(100)
+[   2.9m ep  23807] S10_obstacles_0-2 lvl_ep=8400 avg_len=67.0 return=9.27 help=0.378 | overall 0.88 ready 15/16 worst: large_g9+_obs1-2_near1=0.66(100) large_g6-8_obs1-2_near1=0.72(100) small_g9+_obs1-2_near1=0.82(100)
+[   2.9m ep  24069] S10_obstacles_0-2 lvl_ep=8600 avg_len=75.1 return=8.93 help=0.374 | overall 0.86 ready 15/16 worst: large_g6-8_obs1-2_near1=0.70(100) large_g9+_obs1-2_near1=0.73(100) small_g9+_obs1-2_near1=0.78(100)
+[   2.9m ep  24352] S10_obstacles_0-2 lvl_ep=8800 avg_len=72.1 return=8.97 help=0.366 | overall 0.85 ready 15/16 worst: large_g9+_obs1-2_near1=0.68(100) large_g6-8_obs1-2_near1=0.69(100) small_g9+_obs1-2_near1=0.78(100)
+[   2.9m ep  24610] S10_obstacles_0-2 lvl_ep=9000 avg_len=70.3 return=8.95 help=0.367 | overall 0.84 ready 15/16 worst: large_g9+_obs1-2_near1=0.65(100) large_g6-8_obs1-2_near1=0.72(100) small_g9+_obs1-2_near1=0.76(100)
+[   3.0m ep  24865] S10_obstacles_0-2 lvl_ep=9200 avg_len=66.5 return=9.50 help=0.369 | overall 0.86 ready 15/16 worst: large_g9+_obs1-2_near1=0.66(100) small_g9+_obs1-2_near1=0.76(100) large_g6-8_obs1-2_near1=0.79(100)
+[   3.0m ep  25138] S10_obstacles_0-2 lvl_ep=9400 avg_len=59.9 return=9.68 help=0.370 | overall 0.90 ready 15/16 worst: large_g9+_obs1-2_near1=0.65(100) small_g9+_obs1-2_near1=0.78(100) large_g6-8_obs1-2_near1=0.80(100)
+[   3.0m ep  25402] S10_obstacles_0-2 lvl_ep=9600 avg_len=61.9 return=9.69 help=0.381 | overall 0.90 ready 15/16 worst: large_g9+_obs1-2_near1=0.63(100) small_g9+_obs1-2_near1=0.78(100) large_g6-8_obs1-2_near1=0.83(100)
+[   3.1m ep  25662] S10_obstacles_0-2 lvl_ep=9800 avg_len=74.2 return=8.79 help=0.360 | overall 0.86 ready 15/16 worst: large_g9+_obs1-2_near1=0.62(100) small_g9+_obs1-2_near1=0.74(100) large_g6-8_obs1-2_near1=0.82(100)
+[   3.1m ep  25934] S10_obstacles_0-2 lvl_ep=10000 avg_len=72.6 return=9.05 help=0.375 | overall 0.84 ready 15/16 worst: large_g9+_obs1-2_near1=0.62(100) small_g9+_obs1-2_near1=0.74(100) large_g6-8_obs1-2_near1=0.78(100)
+[   3.1m ep  26202] S10_obstacles_0-2 lvl_ep=10200 avg_len=70.1 return=8.83 help=0.372 | overall 0.84 ready 14/16 worst: large_g9+_obs1-2_near1=0.59(100) small_g9+_obs1-2_near1=0.72(100) large_g6-8_obs1-2_near1=0.76(100)
+[   3.2m ep  26465] S10_obstacles_0-2 lvl_ep=10400 avg_len=64.2 return=9.34 help=0.378 | overall 0.85 ready 15/16 worst: large_g9+_obs1-2_near1=0.62(100) small_g9+_obs1-2_near1=0.67(100) large_g6-8_obs1-2_near1=0.78(100)
+[   3.2m ep  26727] S10_obstacles_0-2 lvl_ep=10600 avg_len=74.4 return=8.92 help=0.379 | overall 0.86 ready 15/16 worst: large_g9+_obs1-2_near1=0.64(100) small_g9+_obs1-2_near1=0.66(100) large_g6-8_obs1-2_near1=0.74(100)
+[   3.2m ep  26993] S10_obstacles_0-2 lvl_ep=10800 avg_len=70.4 return=9.28 help=0.401 | overall 0.85 ready 15/16 worst: small_g9+_obs1-2_near1=0.66(100) large_g9+_obs1-2_near1=0.67(100) large_g6-8_obs1-2_near1=0.71(100)
+[   3.2m ep  27263] S10_obstacles_0-2 lvl_ep=11000 avg_len=60.6 return=9.61 help=0.388 | overall 0.89 ready 15/16 worst: small_g9+_obs1-2_near1=0.65(100) large_g9+_obs1-2_near1=0.69(100) large_g6-8_obs1-2_near1=0.71(100)
+[   3.3m ep  27535] S10_obstacles_0-2 lvl_ep=11200 avg_len=71.7 return=9.16 help=0.403 | overall 0.89 ready 15/16 worst: small_g9+_obs1-2_near1=0.67(100) large_g9+_obs1-2_near1=0.73(100) large_g6-8_obs1-2_near1=0.73(100)
+[   3.3m ep  27800] S10_obstacles_0-2 lvl_ep=11400 avg_len=63.8 return=9.47 help=0.391 | overall 0.88 ready 15/16 worst: small_g9+_obs1-2_near1=0.69(100) large_g9+_obs1-2_near1=0.77(100) large_g6-8_obs1-2_near1=0.80(100)
+[   3.3m ep  28054] S10_obstacles_0-2 lvl_ep=11600 avg_len=66.7 return=9.40 help=0.393 | overall 0.89 ready 15/16 worst: small_g9+_obs1-2_near1=0.71(100) large_g9+_obs1-2_near1=0.76(100) small_g6-8_obs1-2_near1=0.81(100)
+[   3.4m ep  28329] S10_obstacles_0-2 lvl_ep=11800 avg_len=63.2 return=9.62 help=0.385 | overall 0.89 ready 15/16 worst: small_g9+_obs1-2_near1=0.72(100) large_g9+_obs1-2_near1=0.76(100) small_g6-8_obs1-2_near1=0.80(100)
+[   3.4m ep  28606] S10_obstacles_0-2 lvl_ep=12000 avg_len=71.5 return=9.11 help=0.388 | overall 0.87 ready 15/16 worst: large_g9+_obs1-2_near1=0.70(100) small_g9+_obs1-2_near1=0.73(100) large_g6-8_obs1-2_near1=0.79(100)
+[   3.4m ep  28860] S10_obstacles_0-2 lvl_ep=12200 avg_len=64.1 return=9.39 help=0.411 | overall 0.86 ready 15/16 worst: large_g9+_obs1-2_near1=0.68(100) small_g9+_obs1-2_near1=0.74(100) large_g6-8_obs1-2_near1=0.78(100)
+[   3.5m ep  29144] S10_obstacles_0-2 lvl_ep=12400 avg_len=69.0 return=8.92 help=0.401 | overall 0.86 ready 15/16 worst: large_g9+_obs1-2_near1=0.61(100) large_g6-8_obs1-2_near1=0.73(100) small_g9+_obs1-2_near1=0.77(100)
+[   3.5m ep  29425] S10_obstacles_0-2 lvl_ep=12600 avg_len=73.5 return=8.53 help=0.379 | overall 0.83 ready 14/16 worst: large_g9+_obs1-2_near1=0.57(100) small_g9+_obs1-2_near1=0.72(100) large_g6-8_obs1-2_near1=0.75(100)
+[   3.5m ep  29680] S10_obstacles_0-2 lvl_ep=12800 avg_len=69.2 return=8.93 help=0.387 | overall 0.83 ready 14/16 worst: large_g9+_obs1-2_near1=0.55(100) small_g9+_obs1-2_near1=0.70(100) large_g6-8_obs1-2_near1=0.74(100)
+[   3.6m ep  29942] S10_obstacles_0-2 lvl_ep=13000 avg_len=74.9 return=8.94 help=0.399 | overall 0.84 ready 14/16 worst: large_g9+_obs1-2_near1=0.55(100) small_g9+_obs1-2_near1=0.72(100) large_g6-8_obs1-2_near1=0.76(100)
+[   3.6m ep  30223] S10_obstacles_0-2 lvl_ep=13200 avg_len=74.0 return=8.77 help=0.391 | overall 0.83 ready 14/16 worst: large_g9+_obs1-2_near1=0.59(100) small_g9+_obs1-2_near1=0.67(100) large_g6-8_obs1-2_near1=0.78(100)
+[   3.6m ep  30491] S10_obstacles_0-2 lvl_ep=13400 avg_len=68.2 return=9.33 help=0.397 | overall 0.85 ready 15/16 worst: large_g9+_obs1-2_near1=0.60(100) small_g9+_obs1-2_near1=0.69(100) large_g6-8_obs1-2_near1=0.78(100)
+
+======================================================================
+S10_obstacles_0-2 mastered after 13533 episodes
+  large_g0-3_obs0_near1        n= 100 success=1.000
+  large_g0-3_obs1-2_near1      n= 100 success=0.930
+  large_g4-5_obs0_near1        n= 100 success=1.000
+  large_g4-5_obs1-2_near1      n= 100 success=0.790
+  large_g6-8_obs0_near1        n= 100 success=0.980
+  large_g6-8_obs1-2_near1      n= 100 success=0.790
+  large_g9+_obs0_near1         n= 100 success=0.960
+  large_g9+_obs1-2_near1       n= 100 success=0.660
+  small_g0-3_obs0_near1        n= 100 success=1.000
+  small_g0-3_obs1-2_near1      n= 100 success=0.980
+  small_g4-5_obs0_near1        n= 100 success=1.000
+  small_g4-5_obs1-2_near1      n= 100 success=0.890
+  small_g6-8_obs0_near1        n= 100 success=1.000
+  small_g6-8_obs1-2_near1      n= 100 success=0.820
+  small_g9+_obs0_near1         n= 100 success=1.000
+  small_g9+_obs1-2_near1       n= 100 success=0.760
+  ablation: comm_on=0.857 comm_off=0.543 gap=+0.313 | RC on/off=0.438/0.414 CPR on/off=0.812/0.683
+======================================================================
+
+Moving to S11_obstacles_0-4
+[   3.9m ep  31303] S11_obstacles_0-4 lvl_ep=200 avg_len=38.1 return=10.97 help=0.388 | overall 1.00 ready 0/24 worst: small_g0-3_obs3-4_near1=1.00(3) small_g0-3_obs0_near1=1.00(3) small_g0-3_obs1-2_near1=1.00(3)
+[   4.0m ep  31640] S11_obstacles_0-4 lvl_ep=400 avg_len=67.3 return=9.67 help=0.360 | overall 0.95 ready 0/24 worst: small_g9+_obs3-4_near1=0.50(6) large_g6-8_obs3-4_near1=0.65(23) large_g0-3_obs1-2_near1=0.67(3)
+[   4.1m ep  31903] S11_obstacles_0-4 lvl_ep=600 avg_len=108.3 return=6.17 help=0.347 | overall 0.77 ready 0/24 worst: small_g9+_obs3-4_near1=0.28(18) large_g9+_obs3-4_near1=0.38(16) large_g6-8_obs3-4_near1=0.54(48)
+[   4.1m ep  32171] S11_obstacles_0-4 lvl_ep=800 avg_len=94.0 return=7.05 help=0.357 | overall 0.66 ready 0/24 worst: large_g9+_obs3-4_near1=0.24(25) small_g9+_obs3-4_near1=0.30(30) large_g6-8_obs3-4_near1=0.50(64)
+[   4.1m ep  32442] S11_obstacles_0-4 lvl_ep=1000 avg_len=96.9 return=7.21 help=0.358 | overall 0.70 ready 1/24 worst: large_g9+_obs3-4_near1=0.24(37) small_g9+_obs3-4_near1=0.33(43) large_g6-8_obs3-4_near1=0.47(80)
+[   4.2m ep  32712] S11_obstacles_0-4 lvl_ep=1200 avg_len=104.5 return=6.48 help=0.347 | overall 0.69 ready 1/24 worst: large_g9+_obs3-4_near1=0.23(47) small_g9+_obs3-4_near1=0.32(56) large_g6-8_obs3-4_near1=0.44(100)
+[   4.2m ep  32969] S11_obstacles_0-4 lvl_ep=1400 avg_len=88.9 return=7.82 help=0.367 | overall 0.71 ready 1/24 worst: large_g9+_obs3-4_near1=0.24(51) small_g9+_obs3-4_near1=0.33(66) large_g6-8_obs3-4_near1=0.40(100)
+[   4.2m ep  33260] S11_obstacles_0-4 lvl_ep=1600 avg_len=105.1 return=6.60 help=0.353 | overall 0.71 ready 2/24 worst: large_g9+_obs3-4_near1=0.23(62) small_g9+_obs3-4_near1=0.34(76) large_g6-8_obs3-4_near1=0.39(100)
+[   4.3m ep  33527] S11_obstacles_0-4 lvl_ep=1800 avg_len=96.2 return=7.05 help=0.342 | overall 0.68 ready 4/24 worst: large_g9+_obs3-4_near1=0.20(69) small_g9+_obs3-4_near1=0.33(90) large_g6-8_obs3-4_near1=0.41(100)
+[   4.3m ep  33775] S11_obstacles_0-4 lvl_ep=2000 avg_len=104.3 return=6.26 help=0.322 | overall 0.67 ready 5/24 worst: large_g9+_obs3-4_near1=0.19(78) small_g9+_obs3-4_near1=0.30(100) large_g6-8_obs3-4_near1=0.37(100)
+[   4.4m ep  34043] S11_obstacles_0-4 lvl_ep=2200 avg_len=98.3 return=7.19 help=0.337 | overall 0.68 ready 8/24 worst: large_g9+_obs3-4_near1=0.17(86) small_g9+_obs3-4_near1=0.34(100) large_g6-8_obs3-4_near1=0.39(100)
+[   4.4m ep  34313] S11_obstacles_0-4 lvl_ep=2400 avg_len=107.3 return=6.22 help=0.345 | overall 0.67 ready 8/24 worst: large_g9+_obs3-4_near1=0.16(96) large_g6-8_obs3-4_near1=0.36(100) small_g9+_obs3-4_near1=0.37(100)
+[   4.5m ep  34570] S11_obstacles_0-4 lvl_ep=2600 avg_len=97.5 return=6.91 help=0.341 | overall 0.66 ready 8/24 worst: large_g9+_obs3-4_near1=0.14(100) large_g6-8_obs3-4_near1=0.32(100) small_g9+_obs3-4_near1=0.35(100)
+[   4.5m ep  34843] S11_obstacles_0-4 lvl_ep=2800 avg_len=100.5 return=6.84 help=0.330 | overall 0.69 ready 8/24 worst: large_g9+_obs3-4_near1=0.12(100) large_g6-8_obs3-4_near1=0.31(100) small_g9+_obs3-4_near1=0.35(100)
+[   4.6m ep  35103] S11_obstacles_0-4 lvl_ep=3000 avg_len=108.0 return=6.15 help=0.335 | overall 0.66 ready 7/24 worst: large_g9+_obs3-4_near1=0.12(100) large_g6-8_obs3-4_near1=0.23(100) small_g9+_obs3-4_near1=0.30(100)
+[   4.6m ep  35387] S11_obstacles_0-4 lvl_ep=3200 avg_len=102.8 return=6.57 help=0.319 | overall 0.65 ready 8/24 worst: large_g9+_obs3-4_near1=0.14(100) large_g6-8_obs3-4_near1=0.19(100) small_g9+_obs3-4_near1=0.30(100)
+[   4.6m ep  35647] S11_obstacles_0-4 lvl_ep=3400 avg_len=99.1 return=7.29 help=0.335 | overall 0.69 ready 9/24 worst: large_g9+_obs3-4_near1=0.13(100) large_g6-8_obs3-4_near1=0.23(100) small_g9+_obs3-4_near1=0.33(100)
+[   4.7m ep  35912] S11_obstacles_0-4 lvl_ep=3600 avg_len=114.9 return=5.81 help=0.319 | overall 0.67 ready 10/24 worst: large_g9+_obs3-4_near1=0.12(100) large_g6-8_obs3-4_near1=0.25(100) small_g9+_obs3-4_near1=0.36(100)
+[   4.7m ep  36173] S11_obstacles_0-4 lvl_ep=3800 avg_len=96.2 return=7.17 help=0.322 | overall 0.66 ready 11/24 worst: large_g9+_obs3-4_near1=0.13(100) large_g6-8_obs3-4_near1=0.27(100) small_g9+_obs3-4_near1=0.32(100)
+[   4.8m ep  36433] S11_obstacles_0-4 lvl_ep=4000 avg_len=101.2 return=6.71 help=0.310 | overall 0.69 ready 11/24 worst: large_g9+_obs3-4_near1=0.13(100) small_g9+_obs3-4_near1=0.29(100) large_g6-8_obs3-4_near1=0.29(100)
+[   4.8m ep  36703] S11_obstacles_0-4 lvl_ep=4200 avg_len=109.1 return=6.23 help=0.315 | overall 0.66 ready 12/24 worst: large_g9+_obs3-4_near1=0.15(100) large_g6-8_obs3-4_near1=0.28(100) small_g9+_obs3-4_near1=0.29(100)
+[   4.9m ep  36970] S11_obstacles_0-4 lvl_ep=4400 avg_len=92.3 return=7.63 help=0.309 | overall 0.69 ready 12/24 worst: large_g9+_obs3-4_near1=0.17(100) large_g6-8_obs3-4_near1=0.27(100) small_g9+_obs3-4_near1=0.33(100)
+[   4.9m ep  37238] S11_obstacles_0-4 lvl_ep=4600 avg_len=114.9 return=5.96 help=0.333 | overall 0.69 ready 13/24 worst: large_g9+_obs3-4_near1=0.19(100) large_g6-8_obs3-4_near1=0.27(100) small_g9+_obs3-4_near1=0.33(100)
+[   4.9m ep  37495] S11_obstacles_0-4 lvl_ep=4800 avg_len=102.5 return=6.93 help=0.319 | overall 0.66 ready 13/24 worst: large_g9+_obs3-4_near1=0.19(100) large_g6-8_obs3-4_near1=0.24(100) small_g9+_obs3-4_near1=0.31(100)
+[   5.0m ep  37764] S11_obstacles_0-4 lvl_ep=5000 avg_len=101.5 return=6.87 help=0.326 | overall 0.69 ready 14/24 worst: large_g9+_obs3-4_near1=0.18(100) large_g6-8_obs3-4_near1=0.29(100) small_g9+_obs3-4_near1=0.31(100)
+[   5.0m ep  38030] S11_obstacles_0-4 lvl_ep=5200 avg_len=110.9 return=6.12 help=0.316 | overall 0.66 ready 15/24 worst: large_g9+_obs3-4_near1=0.19(100) small_g9+_obs3-4_near1=0.30(100) large_g6-8_obs3-4_near1=0.32(100)
+[   5.1m ep  38306] S11_obstacles_0-4 lvl_ep=5400 avg_len=102.2 return=6.82 help=0.312 | overall 0.66 ready 14/24 worst: large_g9+_obs3-4_near1=0.23(100) small_g9+_obs3-4_near1=0.31(100) large_g6-8_obs3-4_near1=0.32(100)
+[   5.1m ep  38588] S11_obstacles_0-4 lvl_ep=5600 avg_len=103.0 return=6.74 help=0.305 | overall 0.68 ready 14/24 worst: large_g9+_obs3-4_near1=0.21(100) small_g9+_obs3-4_near1=0.32(100) large_g6-8_obs3-4_near1=0.34(100)
+[   5.2m ep  38863] S11_obstacles_0-4 lvl_ep=5800 avg_len=105.1 return=6.35 help=0.328 | overall 0.66 ready 14/24 worst: large_g9+_obs3-4_near1=0.20(100) small_g9+_obs3-4_near1=0.32(100) large_g6-8_obs3-4_near1=0.32(100)
+[   5.2m ep  39131] S11_obstacles_0-4 lvl_ep=6000 avg_len=103.2 return=6.70 help=0.324 | overall 0.66 ready 14/24 worst: large_g9+_obs3-4_near1=0.20(100) small_g9+_obs3-4_near1=0.32(100) large_g6-8_obs3-4_near1=0.32(100)
+[   5.2m ep  39391] S11_obstacles_0-4 lvl_ep=6200 avg_len=110.0 return=6.40 help=0.309 | overall 0.66 ready 14/24 worst: large_g9+_obs3-4_near1=0.19(100) large_g6-8_obs3-4_near1=0.27(100) small_g9+_obs3-4_near1=0.30(100)
+[   5.3m ep  39664] S11_obstacles_0-4 lvl_ep=6400 avg_len=101.3 return=7.03 help=0.317 | overall 0.68 ready 14/24 worst: large_g9+_obs3-4_near1=0.18(100) large_g6-8_obs3-4_near1=0.28(100) small_g9+_obs3-4_near1=0.31(100)
+[   5.3m ep  39927] S11_obstacles_0-4 lvl_ep=6600 avg_len=103.5 return=6.75 help=0.314 | overall 0.69 ready 14/24 worst: large_g9+_obs3-4_near1=0.17(100) large_g6-8_obs3-4_near1=0.25(100) small_g9+_obs3-4_near1=0.33(100)
+[   5.4m ep  40212] S11_obstacles_0-4 lvl_ep=6800 avg_len=103.7 return=6.45 help=0.326 | overall 0.68 ready 15/24 worst: large_g9+_obs3-4_near1=0.17(100) large_g6-8_obs3-4_near1=0.24(100) small_g9+_obs3-4_near1=0.31(100)
+[   5.4m ep  40462] S11_obstacles_0-4 lvl_ep=7000 avg_len=104.0 return=6.44 help=0.311 | overall 0.66 ready 15/24 worst: large_g9+_obs3-4_near1=0.17(100) large_g6-8_obs3-4_near1=0.25(100) small_g9+_obs3-4_near1=0.29(100)
+[   5.5m ep  40718] S11_obstacles_0-4 lvl_ep=7200 avg_len=100.7 return=6.83 help=0.334 | overall 0.67 ready 15/24 worst: large_g9+_obs3-4_near1=0.18(100) large_g6-8_obs3-4_near1=0.27(100) small_g9+_obs3-4_near1=0.29(100)
+[   5.5m ep  40970] S11_obstacles_0-4 lvl_ep=7400 avg_len=99.4 return=7.16 help=0.332 | overall 0.70 ready 15/24 worst: large_g9+_obs3-4_near1=0.17(100) large_g6-8_obs3-4_near1=0.27(100) small_g9+_obs3-4_near1=0.29(100)
+[   5.6m ep  41239] S11_obstacles_0-4 lvl_ep=7600 avg_len=107.3 return=6.38 help=0.321 | overall 0.68 ready 14/24 worst: large_g9+_obs3-4_near1=0.15(100) small_g9+_obs3-4_near1=0.27(100) large_g6-8_obs3-4_near1=0.30(100)
+[   5.6m ep  41512] S11_obstacles_0-4 lvl_ep=7800 avg_len=114.6 return=5.97 help=0.322 | overall 0.63 ready 14/24 worst: large_g9+_obs3-4_near1=0.16(100) small_g9+_obs3-4_near1=0.26(100) large_g6-8_obs3-4_near1=0.29(100)
+[   5.6m ep  41769] S11_obstacles_0-4 lvl_ep=8000 avg_len=104.3 return=6.81 help=0.328 | overall 0.65 ready 15/24 worst: large_g9+_obs3-4_near1=0.18(100) small_g9+_obs3-4_near1=0.28(100) large_g6-8_obs3-4_near1=0.32(100)
+[   5.7m ep  42036] S11_obstacles_0-4 lvl_ep=8200 avg_len=105.9 return=6.58 help=0.323 | overall 0.68 ready 15/24 worst: large_g9+_obs3-4_near1=0.17(100) small_g9+_obs3-4_near1=0.27(100) large_g6-8_obs3-4_near1=0.33(100)
+[   5.7m ep  42300] S11_obstacles_0-4 lvl_ep=8400 avg_len=112.9 return=5.96 help=0.365 | overall 0.65 ready 15/24 worst: large_g9+_obs3-4_near1=0.18(100) large_g6-8_obs3-4_near1=0.30(100) small_g9+_obs3-4_near1=0.31(100)
+[   5.8m ep  42564] S11_obstacles_0-4 lvl_ep=8600 avg_len=112.3 return=6.04 help=0.354 | overall 0.62 ready 15/24 worst: large_g9+_obs3-4_near1=0.19(100) small_g9+_obs3-4_near1=0.25(100) large_g6-8_obs3-4_near1=0.34(100)
+[   5.8m ep  42835] S11_obstacles_0-4 lvl_ep=8800 avg_len=98.7 return=6.92 help=0.341 | overall 0.66 ready 15/24 worst: large_g9+_obs3-4_near1=0.17(100) small_g9+_obs3-4_near1=0.27(100) large_g6-8_obs3-4_near1=0.34(100)
+[   5.9m ep  43101] S11_obstacles_0-4 lvl_ep=9000 avg_len=95.7 return=7.28 help=0.331 | overall 0.71 ready 15/24 worst: large_g9+_obs3-4_near1=0.20(100) small_g9+_obs3-4_near1=0.26(100) large_g6-8_obs3-4_near1=0.36(100)
+[   5.9m ep  43362] S11_obstacles_0-4 lvl_ep=9200 avg_len=106.0 return=6.52 help=0.336 | overall 0.69 ready 16/24 worst: large_g9+_obs3-4_near1=0.19(100) small_g9+_obs3-4_near1=0.30(100) large_g4-5_obs3-4_near1=0.37(100)
+[   6.0m ep  43611] S11_obstacles_0-4 lvl_ep=9400 avg_len=98.7 return=7.11 help=0.335 | overall 0.68 ready 16/24 worst: large_g9+_obs3-4_near1=0.18(100) small_g9+_obs3-4_near1=0.29(100) large_g6-8_obs3-4_near1=0.36(100)
+[   6.0m ep  43871] S11_obstacles_0-4 lvl_ep=9600 avg_len=93.6 return=7.62 help=0.344 | overall 0.73 ready 16/24 worst: large_g9+_obs3-4_near1=0.19(100) small_g9+_obs3-4_near1=0.29(100) large_g6-8_obs3-4_near1=0.35(100)
+[   6.0m ep  44140] S11_obstacles_0-4 lvl_ep=9800 avg_len=97.2 return=7.32 help=0.345 | overall 0.73 ready 15/24 worst: large_g9+_obs3-4_near1=0.20(100) small_g9+_obs3-4_near1=0.32(100) large_g6-8_obs3-4_near1=0.32(100)
+[   6.1m ep  44414] S11_obstacles_0-4 lvl_ep=10000 avg_len=97.0 return=7.11 help=0.354 | overall 0.71 ready 15/24 worst: large_g9+_obs3-4_near1=0.19(100) large_g6-8_obs3-4_near1=0.31(100) small_g9+_obs3-4_near1=0.35(100)
+[   6.1m ep  44688] S11_obstacles_0-4 lvl_ep=10200 avg_len=105.6 return=6.70 help=0.343 | overall 0.69 ready 16/24 worst: large_g9+_obs3-4_near1=0.21(100) large_g6-8_obs3-4_near1=0.32(100) small_g9+_obs3-4_near1=0.35(100)
+[   6.1m ep  44945] S11_obstacles_0-4 lvl_ep=10400 avg_len=97.5 return=7.02 help=0.334 | overall 0.69 ready 16/24 worst: large_g9+_obs3-4_near1=0.20(100) small_g9+_obs3-4_near1=0.34(100) large_g6-8_obs3-4_near1=0.34(100)
+[   6.2m ep  45204] S11_obstacles_0-4 lvl_ep=10600 avg_len=101.3 return=6.65 help=0.347 | overall 0.69 ready 16/24 worst: large_g9+_obs3-4_near1=0.18(100) large_g6-8_obs3-4_near1=0.32(100) small_g9+_obs3-4_near1=0.33(100)
+[   6.2m ep  45468] S11_obstacles_0-4 lvl_ep=10800 avg_len=105.5 return=6.79 help=0.346 | overall 0.68 ready 18/24 worst: large_g9+_obs3-4_near1=0.19(100) small_g9+_obs3-4_near1=0.30(100) large_g6-8_obs3-4_near1=0.33(100)
+[   6.3m ep  45725] S11_obstacles_0-4 lvl_ep=11000 avg_len=107.5 return=6.26 help=0.334 | overall 0.66 ready 18/24 worst: large_g9+_obs3-4_near1=0.18(100) small_g9+_obs3-4_near1=0.32(100) large_g6-8_obs3-4_near1=0.37(100)
+[   6.3m ep  45995] S11_obstacles_0-4 lvl_ep=11200 avg_len=99.7 return=7.23 help=0.330 | overall 0.68 ready 18/24 worst: large_g9+_obs3-4_near1=0.18(100) small_g9+_obs3-4_near1=0.31(100) large_g6-8_obs3-4_near1=0.36(100)
+[   6.4m ep  46275] S11_obstacles_0-4 lvl_ep=11400 avg_len=104.9 return=6.55 help=0.338 | overall 0.69 ready 18/24 worst: large_g9+_obs3-4_near1=0.17(100) small_g9+_obs3-4_near1=0.28(100) large_g6-8_obs3-4_near1=0.28(100)
+[   6.4m ep  46545] S11_obstacles_0-4 lvl_ep=11600 avg_len=98.6 return=7.09 help=0.333 | overall 0.68 ready 18/24 worst: large_g9+_obs3-4_near1=0.15(100) small_g9+_obs3-4_near1=0.26(100) large_g6-8_obs3-4_near1=0.31(100)
+[   6.5m ep  46826] S11_obstacles_0-4 lvl_ep=11800 avg_len=102.9 return=6.89 help=0.359 | overall 0.70 ready 18/24 worst: large_g9+_obs3-4_near1=0.16(100) small_g9+_obs3-4_near1=0.21(100) large_g6-8_obs3-4_near1=0.31(100)
+[   6.5m ep  47107] S11_obstacles_0-4 lvl_ep=12000 avg_len=102.5 return=6.62 help=0.350 | overall 0.68 ready 18/24 worst: large_g9+_obs3-4_near1=0.14(100) small_g9+_obs3-4_near1=0.22(100) large_g6-8_obs3-4_near1=0.34(100)
+[   6.5m ep  47362] S11_obstacles_0-4 lvl_ep=12200 avg_len=106.6 return=6.49 help=0.348 | overall 0.66 ready 18/24 worst: large_g9+_obs3-4_near1=0.14(100) small_g9+_obs3-4_near1=0.21(100) large_g6-8_obs3-4_near1=0.34(100)
+[   6.6m ep  47625] S11_obstacles_0-4 lvl_ep=12400 avg_len=107.1 return=6.21 help=0.347 | overall 0.65 ready 18/24 worst: large_g9+_obs3-4_near1=0.18(100) small_g9+_obs3-4_near1=0.22(100) large_g6-8_obs3-4_near1=0.34(100)
+[   6.6m ep  47884] S11_obstacles_0-4 lvl_ep=12600 avg_len=97.5 return=7.07 help=0.351 | overall 0.67 ready 17/24 worst: large_g9+_obs3-4_near1=0.17(100) small_g9+_obs3-4_near1=0.24(100) large_g6-8_obs3-4_near1=0.36(100)
+[   6.7m ep  48140] S11_obstacles_0-4 lvl_ep=12800 avg_len=109.9 return=6.27 help=0.353 | overall 0.67 ready 17/24 worst: large_g9+_obs3-4_near1=0.21(100) small_g9+_obs3-4_near1=0.22(100) large_g6-8_obs3-4_near1=0.34(100)
+[   6.7m ep  48413] S11_obstacles_0-4 lvl_ep=13000 avg_len=105.7 return=6.47 help=0.366 | overall 0.64 ready 17/24 worst: large_g9+_obs3-4_near1=0.20(100) small_g9+_obs3-4_near1=0.23(100) large_g6-8_obs3-4_near1=0.30(100)
+[   6.8m ep  48683] S11_obstacles_0-4 lvl_ep=13200 avg_len=94.0 return=7.47 help=0.374 | overall 0.69 ready 17/24 worst: large_g9+_obs3-4_near1=0.23(100) small_g9+_obs3-4_near1=0.26(100) large_g6-8_obs3-4_near1=0.32(100)
+[   6.8m ep  48955] S11_obstacles_0-4 lvl_ep=13400 avg_len=97.8 return=6.77 help=0.377 | overall 0.71 ready 17/24 worst: small_g9+_obs3-4_near1=0.23(100) large_g9+_obs3-4_near1=0.24(100) small_g6-8_obs3-4_near1=0.34(100)
+[   6.9m ep  49250] S11_obstacles_0-4 lvl_ep=13600 avg_len=109.5 return=6.11 help=0.375 | overall 0.65 ready 17/24 worst: large_g9+_obs3-4_near1=0.22(100) small_g9+_obs3-4_near1=0.24(100) small_g6-8_obs3-4_near1=0.34(100)
+[   6.9m ep  49522] S11_obstacles_0-4 lvl_ep=13800 avg_len=106.0 return=6.22 help=0.382 | overall 0.64 ready 18/24 worst: small_g9+_obs3-4_near1=0.23(100) large_g9+_obs3-4_near1=0.25(100) small_g6-8_obs3-4_near1=0.35(100)
+[   7.0m ep  49788] S11_obstacles_0-4 lvl_ep=14000 avg_len=105.7 return=6.22 help=0.369 | overall 0.64 ready 17/24 worst: large_g9+_obs3-4_near1=0.22(100) small_g9+_obs3-4_near1=0.24(100) small_g6-8_obs3-4_near1=0.38(100)
+[   7.0m ep  50056] S11_obstacles_0-4 lvl_ep=14200 avg_len=108.9 return=5.85 help=0.383 | overall 0.62 ready 17/24 worst: large_g9+_obs3-4_near1=0.19(100) small_g9+_obs3-4_near1=0.26(100) large_g6-8_obs3-4_near1=0.36(100)
+[   7.0m ep  50318] S11_obstacles_0-4 lvl_ep=14400 avg_len=100.6 return=6.90 help=0.395 | overall 0.65 ready 17/24 worst: large_g9+_obs3-4_near1=0.20(100) small_g9+_obs3-4_near1=0.30(100) large_g6-8_obs3-4_near1=0.32(100)
+[   7.1m ep  50597] S11_obstacles_0-4 lvl_ep=14600 avg_len=108.1 return=6.34 help=0.379 | overall 0.67 ready 17/24 worst: large_g9+_obs3-4_near1=0.20(100) small_g9+_obs3-4_near1=0.25(100) large_g6-8_obs3-4_near1=0.31(100)
+[   7.1m ep  50855] S11_obstacles_0-4 lvl_ep=14800 avg_len=94.3 return=7.25 help=0.417 | overall 0.69 ready 18/24 worst: large_g9+_obs3-4_near1=0.20(100) small_g9+_obs3-4_near1=0.24(100) large_g6-8_obs3-4_near1=0.30(100)
+[   7.2m ep  51130] S11_obstacles_0-4 lvl_ep=15000 avg_len=106.5 return=6.44 help=0.375 | overall 0.69 ready 18/24 worst: large_g9+_obs3-4_near1=0.18(100) small_g9+_obs3-4_near1=0.27(100) large_g6-8_obs3-4_near1=0.29(100)
+[   7.2m ep  51394] S11_obstacles_0-4 lvl_ep=15200 avg_len=101.7 return=6.77 help=0.386 | overall 0.67 ready 17/24 worst: large_g9+_obs3-4_near1=0.16(100) small_g9+_obs3-4_near1=0.27(100) large_g6-8_obs3-4_near1=0.33(100)
+[   7.3m ep  51664] S11_obstacles_0-4 lvl_ep=15400 avg_len=98.3 return=6.97 help=0.382 | overall 0.69 ready 17/24 worst: large_g9+_obs3-4_near1=0.14(100) large_g6-8_obs3-4_near1=0.27(100) small_g9+_obs3-4_near1=0.29(100)
+[   7.3m ep  51925] S11_obstacles_0-4 lvl_ep=15600 avg_len=99.9 return=6.79 help=0.392 | overall 0.69 ready 17/24 worst: large_g9+_obs3-4_near1=0.15(100) large_g6-8_obs3-4_near1=0.29(100) small_g9+_obs3-4_near1=0.30(100)
+[   7.3m ep  52184] S11_obstacles_0-4 lvl_ep=15800 avg_len=108.5 return=6.27 help=0.376 | overall 0.67 ready 17/24 worst: large_g9+_obs3-4_near1=0.16(100) small_g9+_obs3-4_near1=0.28(100) large_g6-8_obs3-4_near1=0.29(100)
+[   7.4m ep  52453] S11_obstacles_0-4 lvl_ep=16000 avg_len=96.6 return=7.38 help=0.377 | overall 0.69 ready 18/24 worst: large_g9+_obs3-4_near1=0.18(100) small_g9+_obs3-4_near1=0.26(100) large_g6-8_obs3-4_near1=0.27(100)
+[   7.4m ep  52715] S11_obstacles_0-4 lvl_ep=16200 avg_len=102.3 return=6.64 help=0.386 | overall 0.70 ready 17/24 worst: large_g9+_obs3-4_near1=0.19(100) small_g9+_obs3-4_near1=0.25(100) large_g6-8_obs3-4_near1=0.28(100)
+[   7.4m ep  52965] S11_obstacles_0-4 lvl_ep=16400 avg_len=96.2 return=7.12 help=0.381 | overall 0.69 ready 17/24 worst: small_g9+_obs3-4_near1=0.21(100) large_g9+_obs3-4_near1=0.21(100) large_g6-8_obs3-4_near1=0.29(100)
+[   7.5m ep  53235] S11_obstacles_0-4 lvl_ep=16600 avg_len=94.8 return=7.27 help=0.364 | overall 0.72 ready 17/24 worst: small_g9+_obs3-4_near1=0.23(100) large_g9+_obs3-4_near1=0.23(100) large_g6-8_obs3-4_near1=0.35(100)
+[   7.5m ep  53489] S11_obstacles_0-4 lvl_ep=16800 avg_len=102.5 return=6.81 help=0.382 | overall 0.70 ready 17/24 worst: large_g9+_obs3-4_near1=0.20(100) small_g9+_obs3-4_near1=0.26(100) large_g6-8_obs3-4_near1=0.37(100)
+[   7.6m ep  53758] S11_obstacles_0-4 lvl_ep=17000 avg_len=93.0 return=7.52 help=0.356 | overall 0.71 ready 17/24 worst: large_g9+_obs3-4_near1=0.19(100) small_g9+_obs3-4_near1=0.28(100) large_g6-8_obs3-4_near1=0.38(100)
+[   7.6m ep  54020] S11_obstacles_0-4 lvl_ep=17200 avg_len=98.7 return=6.98 help=0.378 | overall 0.72 ready 17/24 worst: large_g9+_obs3-4_near1=0.21(100) small_g9+_obs3-4_near1=0.29(100) large_g6-8_obs3-4_near1=0.38(100)
+[   7.7m ep  54298] S11_obstacles_0-4 lvl_ep=17400 avg_len=103.0 return=6.67 help=0.377 | overall 0.68 ready 17/24 worst: large_g9+_obs3-4_near1=0.22(100) small_g9+_obs3-4_near1=0.28(100) large_g6-8_obs3-4_near1=0.35(100)
+[   7.7m ep  54576] S11_obstacles_0-4 lvl_ep=17600 avg_len=103.1 return=6.42 help=0.391 | overall 0.66 ready 17/24 worst: large_g9+_obs3-4_near1=0.21(100) small_g9+_obs3-4_near1=0.30(100) large_g6-8_obs3-4_near1=0.31(100)
+[   7.8m ep  54836] S11_obstacles_0-4 lvl_ep=17800 avg_len=107.6 return=6.32 help=0.374 | overall 0.65 ready 17/24 worst: large_g9+_obs3-4_near1=0.18(100) small_g9+_obs3-4_near1=0.29(100) large_g6-8_obs3-4_near1=0.32(100)
+[   7.8m ep  55107] S11_obstacles_0-4 lvl_ep=18000 avg_len=93.5 return=7.50 help=0.376 | overall 0.69 ready 17/24 worst: large_g9+_obs3-4_near1=0.18(100) small_g9+_obs3-4_near1=0.31(100) large_g6-8_obs3-4_near1=0.33(100)
+[   7.8m ep  55360] S11_obstacles_0-4 lvl_ep=18200 avg_len=105.0 return=6.60 help=0.377 | overall 0.70 ready 17/24 worst: large_g9+_obs3-4_near1=0.18(100) large_g6-8_obs3-4_near1=0.29(100) small_g9+_obs3-4_near1=0.34(100)
+[   7.9m ep  55634] S11_obstacles_0-4 lvl_ep=18400 avg_len=103.5 return=6.70 help=0.401 | overall 0.67 ready 17/24 worst: large_g9+_obs3-4_near1=0.17(100) large_g6-8_obs3-4_near1=0.32(100) small_g9+_obs3-4_near1=0.34(100)
+[   7.9m ep  55905] S11_obstacles_0-4 lvl_ep=18600 avg_len=100.0 return=6.85 help=0.385 | overall 0.68 ready 17/24 worst: large_g9+_obs3-4_near1=0.18(100) small_g9+_obs3-4_near1=0.32(100) large_g6-8_obs3-4_near1=0.35(100)
+[   8.0m ep  56171] S11_obstacles_0-4 lvl_ep=18800 avg_len=97.2 return=7.15 help=0.386 | overall 0.70 ready 17/24 worst: large_g9+_obs3-4_near1=0.17(100) small_g9+_obs3-4_near1=0.29(100) large_g6-8_obs3-4_near1=0.35(100)
+[   8.0m ep  56453] S11_obstacles_0-4 lvl_ep=19000 avg_len=116.7 return=5.66 help=0.386 | overall 0.65 ready 17/24 worst: large_g9+_obs3-4_near1=0.21(100) small_g9+_obs3-4_near1=0.30(100) large_g6-8_obs3-4_near1=0.36(100)
+[   8.0m ep  56726] S11_obstacles_0-4 lvl_ep=19200 avg_len=99.3 return=6.97 help=0.381 | overall 0.64 ready 17/24 worst: large_g9+_obs3-4_near1=0.21(100) small_g9+_obs3-4_near1=0.30(100) large_g6-8_obs3-4_near1=0.40(100)
+[   8.1m ep  56988] S11_obstacles_0-4 lvl_ep=19400 avg_len=98.8 return=7.20 help=0.399 | overall 0.70 ready 16/24 worst: large_g9+_obs3-4_near1=0.22(100) small_g9+_obs3-4_near1=0.33(100) large_g6-8_obs3-4_near1=0.41(100)
+[   8.1m ep  57253] S11_obstacles_0-4 lvl_ep=19600 avg_len=104.4 return=6.65 help=0.404 | overall 0.69 ready 16/24 worst: large_g9+_obs3-4_near1=0.23(100) small_g9+_obs3-4_near1=0.31(100) large_g6-8_obs3-4_near1=0.40(100)
+[   8.2m ep  57521] S11_obstacles_0-4 lvl_ep=19800 avg_len=106.1 return=6.45 help=0.404 | overall 0.67 ready 17/24 worst: large_g9+_obs3-4_near1=0.22(100) small_g9+_obs3-4_near1=0.30(100) large_g6-8_obs3-4_near1=0.40(100)
+[   8.2m ep  57802] S11_obstacles_0-4 lvl_ep=20000 avg_len=100.4 return=6.71 help=0.394 | overall 0.67 ready 17/24 worst: large_g9+_obs3-4_near1=0.19(100) small_g9+_obs3-4_near1=0.31(100) large_g6-8_obs3-4_near1=0.40(100)
+[   8.3m ep  58058] S11_obstacles_0-4 lvl_ep=20200 avg_len=103.9 return=6.73 help=0.412 | overall 0.68 ready 17/24 worst: large_g9+_obs3-4_near1=0.20(100) small_g9+_obs3-4_near1=0.33(100) large_g6-8_obs3-4_near1=0.39(100)
+[   8.3m ep  58340] S11_obstacles_0-4 lvl_ep=20400 avg_len=106.3 return=6.61 help=0.418 | overall 0.68 ready 17/24 worst: large_g9+_obs3-4_near1=0.19(100) small_g9+_obs3-4_near1=0.33(100) large_g6-8_obs3-4_near1=0.33(100)
+[   8.4m ep  58607] S11_obstacles_0-4 lvl_ep=20600 avg_len=86.5 return=7.96 help=0.383 | overall 0.72 ready 17/24 worst: large_g9+_obs3-4_near1=0.19(100) large_g6-8_obs3-4_near1=0.33(100) small_g9+_obs3-4_near1=0.36(100)
+[   8.4m ep  58882] S11_obstacles_0-4 lvl_ep=20800 avg_len=106.8 return=6.52 help=0.404 | overall 0.72 ready 17/24 worst: large_g9+_obs3-4_near1=0.20(100) small_g9+_obs3-4_near1=0.36(100) large_g6-8_obs3-4_near1=0.37(100)
+[   8.4m ep  59144] S11_obstacles_0-4 lvl_ep=21000 avg_len=102.6 return=6.42 help=0.412 | overall 0.66 ready 17/24 worst: large_g9+_obs3-4_near1=0.23(100) large_g6-8_obs3-4_near1=0.32(100) small_g9+_obs3-4_near1=0.34(100)
+[   8.5m ep  59403] S11_obstacles_0-4 lvl_ep=21200 avg_len=102.3 return=6.55 help=0.411 | overall 0.66 ready 17/24 worst: large_g9+_obs3-4_near1=0.24(100) large_g6-8_obs3-4_near1=0.30(100) small_g9+_obs3-4_near1=0.34(100)
+[   8.5m ep  59670] S11_obstacles_0-4 lvl_ep=21400 avg_len=103.3 return=6.55 help=0.397 | overall 0.66 ready 17/24 worst: large_g9+_obs3-4_near1=0.22(100) large_g6-8_obs3-4_near1=0.32(100) small_g9+_obs3-4_near1=0.34(100)
+[   8.6m ep  59946] S11_obstacles_0-4 lvl_ep=21600 avg_len=116.8 return=5.67 help=0.421 | overall 0.63 ready 18/24 worst: large_g9+_obs3-4_near1=0.18(100) large_g6-8_obs3-4_near1=0.32(100) small_g9+_obs3-4_near1=0.34(100)
+[   8.6m ep  60210] S11_obstacles_0-4 lvl_ep=21800 avg_len=110.8 return=5.94 help=0.408 | overall 0.61 ready 17/24 worst: large_g9+_obs3-4_near1=0.17(100) small_g9+_obs3-4_near1=0.29(100) large_g6-8_obs3-4_near1=0.33(100)
+[   8.7m ep  60473] S11_obstacles_0-4 lvl_ep=22000 avg_len=104.2 return=6.24 help=0.416 | overall 0.63 ready 18/24 worst: large_g9+_obs3-4_near1=0.19(100) small_g9+_obs3-4_near1=0.29(100) large_g6-8_obs3-4_near1=0.31(100)
+[   8.7m ep  60742] S11_obstacles_0-4 lvl_ep=22200 avg_len=103.5 return=6.43 help=0.399 | overall 0.65 ready 18/24 worst: large_g9+_obs3-4_near1=0.20(100) small_g9+_obs3-4_near1=0.21(100) large_g6-8_obs3-4_near1=0.30(100)
+[   8.7m ep  61017] S11_obstacles_0-4 lvl_ep=22400 avg_len=99.2 return=6.71 help=0.418 | overall 0.67 ready 18/24 worst: small_g9+_obs3-4_near1=0.20(100) large_g9+_obs3-4_near1=0.20(100) large_g6-8_obs3-4_near1=0.28(100)
+[   8.8m ep  61290] S11_obstacles_0-4 lvl_ep=22600 avg_len=104.5 return=6.52 help=0.419 | overall 0.67 ready 17/24 worst: small_g9+_obs3-4_near1=0.18(100) large_g9+_obs3-4_near1=0.19(100) large_g6-8_obs3-4_near1=0.29(100)
+[   8.8m ep  61548] S11_obstacles_0-4 lvl_ep=22800 avg_len=102.1 return=6.83 help=0.414 | overall 0.67 ready 17/24 worst: large_g9+_obs3-4_near1=0.18(100) small_g9+_obs3-4_near1=0.20(100) large_g6-8_obs3-4_near1=0.31(100)
+[   8.9m ep  61836] S11_obstacles_0-4 lvl_ep=23000 avg_len=101.7 return=6.82 help=0.384 | overall 0.69 ready 17/24 worst: large_g9+_obs3-4_near1=0.15(100) small_g9+_obs3-4_near1=0.19(100) large_g6-8_obs3-4_near1=0.28(100)
+[   8.9m ep  62111] S11_obstacles_0-4 lvl_ep=23200 avg_len=108.4 return=6.11 help=0.428 | overall 0.66 ready 18/24 worst: large_g9+_obs3-4_near1=0.16(100) small_g9+_obs3-4_near1=0.20(100) large_g6-8_obs3-4_near1=0.30(100)
+[   9.0m ep  62373] S11_obstacles_0-4 lvl_ep=23400 avg_len=105.9 return=6.42 help=0.414 | overall 0.65 ready 18/24 worst: large_g9+_obs3-4_near1=0.17(100) small_g9+_obs3-4_near1=0.22(100) large_g6-8_obs3-4_near1=0.29(100)
+[   9.0m ep  62648] S11_obstacles_0-4 lvl_ep=23600 avg_len=110.6 return=5.94 help=0.401 | overall 0.64 ready 18/24 worst: large_g9+_obs3-4_near1=0.18(100) small_g9+_obs3-4_near1=0.20(100) large_g6-8_obs3-4_near1=0.34(100)
+[   9.1m ep  62902] S11_obstacles_0-4 lvl_ep=23800 avg_len=107.0 return=6.57 help=0.388 | overall 0.65 ready 18/24 worst: large_g9+_obs3-4_near1=0.18(100) small_g9+_obs3-4_near1=0.22(100) large_g6-8_obs3-4_near1=0.31(100)
+[   9.1m ep  63164] S11_obstacles_0-4 lvl_ep=24000 avg_len=102.0 return=6.57 help=0.408 | overall 0.67 ready 18/24 worst: large_g9+_obs3-4_near1=0.15(100) small_g9+_obs3-4_near1=0.23(100) large_g6-8_obs3-4_near1=0.30(100)
+[   9.2m ep  63420] S11_obstacles_0-4 lvl_ep=24200 avg_len=104.3 return=6.44 help=0.413 | overall 0.67 ready 18/24 worst: large_g9+_obs3-4_near1=0.16(100) small_g9+_obs3-4_near1=0.23(100) large_g6-8_obs3-4_near1=0.33(100)
+[   9.2m ep  63700] S11_obstacles_0-4 lvl_ep=24400 avg_len=105.8 return=6.42 help=0.391 | overall 0.66 ready 18/24 worst: large_g9+_obs3-4_near1=0.17(100) small_g9+_obs3-4_near1=0.22(100) large_g6-8_obs3-4_near1=0.33(100)
+[   9.2m ep  63967] S11_obstacles_0-4 lvl_ep=24600 avg_len=109.2 return=5.85 help=0.400 | overall 0.63 ready 18/24 worst: large_g9+_obs3-4_near1=0.15(100) small_g9+_obs3-4_near1=0.20(100) large_g6-8_obs3-4_near1=0.32(100)
+[   9.3m ep  64233] S11_obstacles_0-4 lvl_ep=24800 avg_len=113.6 return=5.77 help=0.398 | overall 0.60 ready 18/24 worst: large_g9+_obs3-4_near1=0.15(100) small_g9+_obs3-4_near1=0.19(100) large_g6-8_obs3-4_near1=0.32(100)
+[   9.3m ep  64510] S11_obstacles_0-4 lvl_ep=25000 avg_len=108.6 return=6.66 help=0.394 | overall 0.63 ready 17/24 worst: large_g9+_obs3-4_near1=0.16(100) small_g9+_obs3-4_near1=0.20(100) large_g6-8_obs3-4_near1=0.33(100)
+[   9.4m ep  64775] S11_obstacles_0-4 lvl_ep=25200 avg_len=112.4 return=5.80 help=0.362 | overall 0.64 ready 17/24 worst: large_g9+_obs3-4_near1=0.16(100) small_g9+_obs3-4_near1=0.17(100) large_g6-8_obs3-4_near1=0.30(100)
+[   9.4m ep  65046] S11_obstacles_0-4 lvl_ep=25400 avg_len=92.0 return=7.48 help=0.404 | overall 0.67 ready 18/24 worst: large_g9+_obs3-4_near1=0.17(100) small_g9+_obs3-4_near1=0.20(100) large_g6-8_obs3-4_near1=0.29(100)
+[   9.5m ep  65322] S11_obstacles_0-4 lvl_ep=25600 avg_len=112.5 return=5.82 help=0.421 | overall 0.67 ready 18/24 worst: large_g9+_obs3-4_near1=0.15(100) small_g9+_obs3-4_near1=0.20(100) large_g6-8_obs3-4_near1=0.29(100)
+[   9.5m ep  65589] S11_obstacles_0-4 lvl_ep=25800 avg_len=109.1 return=6.05 help=0.395 | overall 0.61 ready 16/24 worst: large_g9+_obs3-4_near1=0.15(100) small_g9+_obs3-4_near1=0.19(100) large_g6-8_obs3-4_near1=0.29(100)
+[   9.6m ep  65847] S11_obstacles_0-4 lvl_ep=26000 avg_len=106.4 return=6.20 help=0.372 | overall 0.63 ready 16/24 worst: large_g9+_obs3-4_near1=0.15(100) small_g9+_obs3-4_near1=0.19(100) large_g6-8_obs3-4_near1=0.30(100)
+[   9.6m ep  66115] S11_obstacles_0-4 lvl_ep=26200 avg_len=106.8 return=6.23 help=0.369 | overall 0.64 ready 16/24 worst: large_g9+_obs3-4_near1=0.15(100) small_g9+_obs3-4_near1=0.21(100) large_g6-8_obs3-4_near1=0.28(100)
+[   9.7m ep  66370] S11_obstacles_0-4 lvl_ep=26400 avg_len=99.9 return=6.72 help=0.376 | overall 0.66 ready 16/24 worst: large_g9+_obs3-4_near1=0.16(100) small_g9+_obs3-4_near1=0.21(100) large_g6-8_obs3-4_near1=0.29(100)
+[   9.7m ep  66627] S11_obstacles_0-4 lvl_ep=26600 avg_len=118.0 return=5.31 help=0.362 | overall 0.62 ready 16/24 worst: large_g9+_obs3-4_near1=0.18(100) small_g9+_obs3-4_near1=0.22(100) large_g6-8_obs3-4_near1=0.25(100)
+[   9.8m ep  66884] S11_obstacles_0-4 lvl_ep=26800 avg_len=107.5 return=6.38 help=0.407 | overall 0.61 ready 17/24 worst: large_g9+_obs3-4_near1=0.17(100) small_g9+_obs3-4_near1=0.18(100) large_g6-8_obs3-4_near1=0.31(100)
+[   9.8m ep  67143] S11_obstacles_0-4 lvl_ep=27000 avg_len=110.8 return=6.28 help=0.389 | overall 0.65 ready 17/24 worst: large_g9+_obs3-4_near1=0.15(100) small_g9+_obs3-4_near1=0.19(100) large_g6-8_obs3-4_near1=0.31(100)
+[   9.8m ep  67409] S11_obstacles_0-4 lvl_ep=27200 avg_len=113.6 return=5.87 help=0.396 | overall 0.62 ready 17/24 worst: small_g9+_obs3-4_near1=0.17(100) large_g9+_obs3-4_near1=0.17(100) large_g6-8_obs3-4_near1=0.27(100)
+[   9.9m ep  67673] S11_obstacles_0-4 lvl_ep=27400 avg_len=107.2 return=6.27 help=0.380 | overall 0.62 ready 16/24 worst: large_g9+_obs3-4_near1=0.17(100) small_g9+_obs3-4_near1=0.18(100) large_g6-8_obs3-4_near1=0.31(100)
+[   9.9m ep  67943] S11_obstacles_0-4 lvl_ep=27600 avg_len=109.1 return=6.18 help=0.376 | overall 0.64 ready 16/24 worst: large_g9+_obs3-4_near1=0.19(100) small_g9+_obs3-4_near1=0.21(100) large_g6-8_obs3-4_near1=0.36(100)
+[  10.0m ep  68215] S11_obstacles_0-4 lvl_ep=27800 avg_len=113.1 return=5.72 help=0.380 | overall 0.62 ready 17/24 worst: small_g9+_obs3-4_near1=0.20(100) large_g9+_obs3-4_near1=0.22(100) large_g6-8_obs3-4_near1=0.31(100)
+[  10.0m ep  68482] S11_obstacles_0-4 lvl_ep=28000 avg_len=109.4 return=6.28 help=0.381 | overall 0.62 ready 18/24 worst: large_g9+_obs3-4_near1=0.21(100) small_g9+_obs3-4_near1=0.22(100) large_g6-8_obs3-4_near1=0.29(100)
+[  10.1m ep  68752] S11_obstacles_0-4 lvl_ep=28200 avg_len=99.3 return=6.97 help=0.385 | overall 0.67 ready 17/24 worst: small_g9+_obs3-4_near1=0.22(100) large_g9+_obs3-4_near1=0.22(100) large_g6-8_obs3-4_near1=0.27(100)
+[  10.1m ep  69002] S11_obstacles_0-4 lvl_ep=28400 avg_len=104.0 return=6.52 help=0.391 | overall 0.68 ready 17/24 worst: large_g9+_obs3-4_near1=0.21(100) small_g9+_obs3-4_near1=0.27(100) large_g6-8_obs3-4_near1=0.30(100)
+[  10.2m ep  69259] S11_obstacles_0-4 lvl_ep=28600 avg_len=112.7 return=6.21 help=0.400 | overall 0.65 ready 17/24 worst: large_g9+_obs3-4_near1=0.21(100) large_g6-8_obs3-4_near1=0.28(100) small_g9+_obs3-4_near1=0.31(100)
+[  10.2m ep  69517] S11_obstacles_0-4 lvl_ep=28800 avg_len=103.5 return=6.23 help=0.378 | overall 0.63 ready 17/24 worst: large_g9+_obs3-4_near1=0.20(100) large_g6-8_obs3-4_near1=0.27(100) small_g9+_obs3-4_near1=0.31(100)
+[  10.2m ep  69766] S11_obstacles_0-4 lvl_ep=29000 avg_len=100.9 return=6.73 help=0.394 | overall 0.66 ready 17/24 worst: large_g9+_obs3-4_near1=0.20(100) large_g6-8_obs3-4_near1=0.28(100) small_g9+_obs3-4_near1=0.30(100)
+[  10.3m ep  70033] S11_obstacles_0-4 lvl_ep=29200 avg_len=97.3 return=7.06 help=0.391 | overall 0.69 ready 16/24 worst: large_g9+_obs3-4_near1=0.19(100) small_g9+_obs3-4_near1=0.34(100) large_g6-8_obs3-4_near1=0.36(100)
+[  10.3m ep  70319] S11_obstacles_0-4 lvl_ep=29400 avg_len=105.7 return=6.61 help=0.413 | overall 0.69 ready 16/24 worst: large_g9+_obs3-4_near1=0.20(100) small_g9+_obs3-4_near1=0.32(100) large_g6-8_obs3-4_near1=0.38(100)
+[  10.4m ep  70591] S11_obstacles_0-4 lvl_ep=29600 avg_len=112.3 return=5.93 help=0.405 | overall 0.65 ready 17/24 worst: large_g9+_obs3-4_near1=0.20(100) small_g9+_obs3-4_near1=0.31(100) large_g6-8_obs3-4_near1=0.34(100)
+[  10.4m ep  70854] S11_obstacles_0-4 lvl_ep=29800 avg_len=110.0 return=6.31 help=0.415 | overall 0.63 ready 16/24 worst: large_g9+_obs3-4_near1=0.21(100) small_g9+_obs3-4_near1=0.30(100) large_g6-8_obs3-4_near1=0.34(100)
+[  10.5m ep  71112] S11_obstacles_0-4 lvl_ep=30000 avg_len=106.6 return=6.38 help=0.388 | overall 0.65 ready 16/24 worst: large_g9+_obs3-4_near1=0.19(100) small_g9+_obs3-4_near1=0.28(100) large_g6-8_obs3-4_near1=0.32(100)
+[  10.5m ep  71378] S11_obstacles_0-4 lvl_ep=30200 avg_len=101.5 return=6.88 help=0.410 | overall 0.67 ready 16/24 worst: large_g9+_obs3-4_near1=0.19(100) small_g9+_obs3-4_near1=0.29(100) large_g6-8_obs3-4_near1=0.34(100)
+[  10.6m ep  71649] S11_obstacles_0-4 lvl_ep=30400 avg_len=108.7 return=6.12 help=0.415 | overall 0.66 ready 16/24 worst: large_g9+_obs3-4_near1=0.18(100) small_g9+_obs3-4_near1=0.23(100) large_g6-8_obs3-4_near1=0.33(100)
+[  10.6m ep  71912] S11_obstacles_0-4 lvl_ep=30600 avg_len=97.3 return=7.10 help=0.392 | overall 0.67 ready 16/24 worst: large_g9+_obs3-4_near1=0.17(100) small_g9+_obs3-4_near1=0.24(100) small_g6-8_obs3-4_near1=0.39(100)
+[  10.7m ep  72174] S11_obstacles_0-4 lvl_ep=30800 avg_len=109.2 return=6.20 help=0.412 | overall 0.67 ready 16/24 worst: large_g9+_obs3-4_near1=0.15(100) small_g9+_obs3-4_near1=0.25(100) small_g6-8_obs3-4_near1=0.41(100)
+[  10.7m ep  72435] S11_obstacles_0-4 lvl_ep=31000 avg_len=114.7 return=5.64 help=0.403 | overall 0.61 ready 18/24 worst: large_g9+_obs3-4_near1=0.14(100) small_g9+_obs3-4_near1=0.23(100) large_g6-8_obs3-4_near1=0.38(100)
+[  10.7m ep  72711] S11_obstacles_0-4 lvl_ep=31200 avg_len=108.4 return=6.27 help=0.412 | overall 0.61 ready 17/24 worst: large_g9+_obs3-4_near1=0.14(100) small_g9+_obs3-4_near1=0.25(100) large_g6-8_obs3-4_near1=0.32(100)
+[  10.8m ep  72977] S11_obstacles_0-4 lvl_ep=31400 avg_len=115.9 return=5.94 help=0.401 | overall 0.63 ready 17/24 worst: large_g9+_obs3-4_near1=0.14(100) small_g9+_obs3-4_near1=0.23(100) large_g6-8_obs3-4_near1=0.31(100)
+[  10.8m ep  73252] S11_obstacles_0-4 lvl_ep=31600 avg_len=99.7 return=7.02 help=0.417 | overall 0.66 ready 17/24 worst: large_g9+_obs3-4_near1=0.16(100) small_g9+_obs3-4_near1=0.25(100) large_g6-8_obs3-4_near1=0.29(100)
+[  10.9m ep  73519] S11_obstacles_0-4 lvl_ep=31800 avg_len=103.3 return=6.63 help=0.399 | overall 0.69 ready 17/24 worst: large_g9+_obs3-4_near1=0.14(100) small_g9+_obs3-4_near1=0.24(100) large_g6-8_obs3-4_near1=0.36(100)
+[  10.9m ep  73777] S11_obstacles_0-4 lvl_ep=32000 avg_len=96.4 return=7.31 help=0.408 | overall 0.70 ready 17/24 worst: large_g9+_obs3-4_near1=0.16(100) small_g9+_obs3-4_near1=0.25(100) small_g6-8_obs3-4_near1=0.42(100)
+[  11.0m ep  74055] S11_obstacles_0-4 lvl_ep=32200 avg_len=108.6 return=6.17 help=0.404 | overall 0.68 ready 17/24 worst: large_g9+_obs3-4_near1=0.16(100) small_g9+_obs3-4_near1=0.22(100) small_g6-8_obs3-4_near1=0.45(100)
+[  11.0m ep  74328] S11_obstacles_0-4 lvl_ep=32400 avg_len=101.3 return=6.64 help=0.420 | overall 0.65 ready 17/24 worst: large_g9+_obs3-4_near1=0.16(100) small_g9+_obs3-4_near1=0.24(100) small_g6-8_obs3-4_near1=0.45(100)
+[  11.1m ep  74605] S11_obstacles_0-4 lvl_ep=32600 avg_len=111.6 return=5.84 help=0.425 | overall 0.64 ready 17/24 worst: large_g9+_obs3-4_near1=0.17(100) small_g9+_obs3-4_near1=0.24(100) large_g4-5_obs3-4_near1=0.46(100)
+[  11.1m ep  74859] S11_obstacles_0-4 lvl_ep=32800 avg_len=107.9 return=6.56 help=0.418 | overall 0.64 ready 17/24 worst: large_g9+_obs3-4_near1=0.20(100) small_g9+_obs3-4_near1=0.28(100) large_g6-8_obs3-4_near1=0.43(100)
+[  11.2m ep  75123] S11_obstacles_0-4 lvl_ep=33000 avg_len=103.5 return=6.70 help=0.409 | overall 0.66 ready 17/24 worst: large_g9+_obs3-4_near1=0.20(100) small_g9+_obs3-4_near1=0.28(100) large_g6-8_obs3-4_near1=0.37(100)
+[  11.2m ep  75411] S11_obstacles_0-4 lvl_ep=33200 avg_len=110.5 return=6.36 help=0.432 | overall 0.66 ready 16/24 worst: large_g9+_obs3-4_near1=0.22(100) small_g9+_obs3-4_near1=0.28(100) large_g6-8_obs3-4_near1=0.34(100)
+[  11.2m ep  75680] S11_obstacles_0-4 lvl_ep=33400 avg_len=103.6 return=6.49 help=0.427 | overall 0.66 ready 16/24 worst: large_g9+_obs3-4_near1=0.23(100) small_g9+_obs3-4_near1=0.26(100) large_g6-8_obs3-4_near1=0.32(100)
+[  11.3m ep  75960] S11_obstacles_0-4 lvl_ep=33600 avg_len=103.6 return=6.71 help=0.421 | overall 0.67 ready 17/24 worst: large_g9+_obs3-4_near1=0.23(100) small_g9+_obs3-4_near1=0.26(100) large_g6-8_obs3-4_near1=0.31(100)
+[  11.3m ep  76225] S11_obstacles_0-4 lvl_ep=33800 avg_len=105.9 return=6.46 help=0.409 | overall 0.67 ready 17/24 worst: large_g9+_obs3-4_near1=0.26(100) small_g9+_obs3-4_near1=0.27(100) large_g6-8_obs3-4_near1=0.32(100)
+[  11.4m ep  76481] S11_obstacles_0-4 lvl_ep=34000 avg_len=97.0 return=7.01 help=0.417 | overall 0.68 ready 17/24 worst: large_g9+_obs3-4_near1=0.28(100) small_g9+_obs3-4_near1=0.30(100) large_g6-8_obs3-4_near1=0.31(100)
+[  11.4m ep  76752] S11_obstacles_0-4 lvl_ep=34200 avg_len=106.1 return=6.63 help=0.433 | overall 0.68 ready 17/24 worst: small_g9+_obs3-4_near1=0.28(100) large_g9+_obs3-4_near1=0.31(100) large_g6-8_obs3-4_near1=0.32(100)
+[  11.4m ep  77010] S11_obstacles_0-4 lvl_ep=34400 avg_len=100.5 return=6.50 help=0.439 | overall 0.67 ready 17/24 worst: small_g9+_obs3-4_near1=0.26(100) large_g9+_obs3-4_near1=0.31(100) large_g6-8_obs3-4_near1=0.32(100)
+[  11.5m ep  77289] S11_obstacles_0-4 lvl_ep=34600 avg_len=98.8 return=7.05 help=0.433 | overall 0.69 ready 17/24 worst: small_g9+_obs3-4_near1=0.26(100) large_g9+_obs3-4_near1=0.29(100) large_g6-8_obs3-4_near1=0.32(100)
+[  11.5m ep  77542] S11_obstacles_0-4 lvl_ep=34800 avg_len=101.4 return=6.78 help=0.435 | overall 0.70 ready 17/24 worst: small_g9+_obs3-4_near1=0.25(100) large_g6-8_obs3-4_near1=0.31(100) large_g9+_obs3-4_near1=0.31(100)
+[  11.6m ep  77806] S11_obstacles_0-4 lvl_ep=35000 avg_len=98.2 return=6.99 help=0.430 | overall 0.69 ready 18/24 worst: small_g9+_obs3-4_near1=0.26(100) large_g9+_obs3-4_near1=0.31(100) large_g6-8_obs3-4_near1=0.33(100)
+[  11.6m ep  78083] S11_obstacles_0-4 lvl_ep=35200 avg_len=106.0 return=6.53 help=0.435 | overall 0.68 ready 18/24 worst: small_g9+_obs3-4_near1=0.25(100) large_g9+_obs3-4_near1=0.27(100) large_g6-8_obs3-4_near1=0.33(100)
+[  11.7m ep  78349] S11_obstacles_0-4 lvl_ep=35400 avg_len=111.5 return=5.90 help=0.448 | overall 0.64 ready 18/24 worst: small_g9+_obs3-4_near1=0.25(100) large_g9+_obs3-4_near1=0.27(100) large_g6-8_obs3-4_near1=0.30(100)
+[  11.7m ep  78598] S11_obstacles_0-4 lvl_ep=35600 avg_len=104.5 return=6.37 help=0.408 | overall 0.63 ready 17/24 worst: small_g9+_obs3-4_near1=0.23(100) large_g9+_obs3-4_near1=0.28(100) large_g6-8_obs3-4_near1=0.30(100)
+[  11.7m ep  78858] S11_obstacles_0-4 lvl_ep=35800 avg_len=112.9 return=5.71 help=0.435 | overall 0.62 ready 18/24 worst: small_g9+_obs3-4_near1=0.22(100) large_g9+_obs3-4_near1=0.25(100) large_g6-8_obs3-4_near1=0.32(100)
+[  11.8m ep  79108] S11_obstacles_0-4 lvl_ep=36000 avg_len=102.6 return=6.61 help=0.417 | overall 0.64 ready 18/24 worst: large_g9+_obs3-4_near1=0.22(100) small_g9+_obs3-4_near1=0.23(100) large_g6-8_obs3-4_near1=0.30(100)
+[  11.8m ep  79386] S11_obstacles_0-4 lvl_ep=36200 avg_len=107.3 return=6.05 help=0.426 | overall 0.65 ready 18/24 worst: large_g9+_obs3-4_near1=0.18(100) small_g9+_obs3-4_near1=0.20(100) large_g6-8_obs3-4_near1=0.28(100)
+[  11.9m ep  79653] S11_obstacles_0-4 lvl_ep=36400 avg_len=90.7 return=7.50 help=0.421 | overall 0.68 ready 18/24 worst: large_g9+_obs3-4_near1=0.15(100) small_g9+_obs3-4_near1=0.17(100) large_g6-8_obs3-4_near1=0.34(100)
+[  11.9m ep  79915] S11_obstacles_0-4 lvl_ep=36600 avg_len=98.5 return=7.02 help=0.427 | overall 0.72 ready 18/24 worst: small_g9+_obs3-4_near1=0.15(100) large_g9+_obs3-4_near1=0.15(100) large_g6-8_obs3-4_near1=0.32(100)
+[  12.0m ep  80169] S11_obstacles_0-4 lvl_ep=36800 avg_len=104.7 return=6.72 help=0.422 | overall 0.69 ready 18/24 worst: large_g9+_obs3-4_near1=0.16(100) small_g9+_obs3-4_near1=0.18(100) large_g6-8_obs3-4_near1=0.34(100)
+[  12.0m ep  80435] S11_obstacles_0-4 lvl_ep=37000 avg_len=107.2 return=6.42 help=0.431 | overall 0.67 ready 18/24 worst: large_g9+_obs3-4_near1=0.16(100) small_g9+_obs3-4_near1=0.22(100) large_g6-8_obs3-4_near1=0.32(100)
+[  12.1m ep  80688] S11_obstacles_0-4 lvl_ep=37200 avg_len=101.7 return=6.92 help=0.424 | overall 0.67 ready 17/24 worst: large_g9+_obs3-4_near1=0.16(100) small_g9+_obs3-4_near1=0.23(100) large_g6-8_obs3-4_near1=0.31(100)
+[  12.1m ep  80971] S11_obstacles_0-4 lvl_ep=37400 avg_len=115.7 return=5.85 help=0.433 | overall 0.65 ready 18/24 worst: large_g9+_obs3-4_near1=0.14(100) small_g9+_obs3-4_near1=0.21(100) large_g6-8_obs3-4_near1=0.31(100)
+[  12.1m ep  81227] S11_obstacles_0-4 lvl_ep=37600 avg_len=100.1 return=6.80 help=0.398 | overall 0.65 ready 18/24 worst: large_g9+_obs3-4_near1=0.16(100) small_g9+_obs3-4_near1=0.21(100) large_g6-8_obs3-4_near1=0.26(100)
+[  12.2m ep  81493] S11_obstacles_0-4 lvl_ep=37800 avg_len=101.5 return=6.85 help=0.443 | overall 0.69 ready 17/24 worst: large_g9+_obs3-4_near1=0.17(100) small_g9+_obs3-4_near1=0.22(100) large_g6-8_obs3-4_near1=0.27(100)
+[  12.2m ep  81766] S11_obstacles_0-4 lvl_ep=38000 avg_len=102.9 return=6.79 help=0.408 | overall 0.69 ready 17/24 worst: large_g9+_obs3-4_near1=0.20(100) small_g9+_obs3-4_near1=0.27(100) large_g6-8_obs3-4_near1=0.31(100)
+[  12.3m ep  82033] S11_obstacles_0-4 lvl_ep=38200 avg_len=98.4 return=7.02 help=0.418 | overall 0.69 ready 17/24 worst: large_g9+_obs3-4_near1=0.20(100) small_g9+_obs3-4_near1=0.26(100) large_g6-8_obs3-4_near1=0.32(100)
+[  12.3m ep  82300] S11_obstacles_0-4 lvl_ep=38400 avg_len=100.9 return=6.72 help=0.425 | overall 0.69 ready 17/24 worst: large_g9+_obs3-4_near1=0.21(100) small_g9+_obs3-4_near1=0.26(100) large_g6-8_obs3-4_near1=0.35(100)
+[  12.4m ep  82570] S11_obstacles_0-4 lvl_ep=38600 avg_len=104.5 return=6.41 help=0.429 | overall 0.67 ready 17/24 worst: large_g9+_obs3-4_near1=0.18(100) small_g9+_obs3-4_near1=0.27(100) large_g6-8_obs3-4_near1=0.45(100)
+[  12.4m ep  82828] S11_obstacles_0-4 lvl_ep=38800 avg_len=104.7 return=6.87 help=0.415 | overall 0.67 ready 17/24 worst: large_g9+_obs3-4_near1=0.18(100) small_g9+_obs3-4_near1=0.26(100) small_g6-8_obs3-4_near1=0.44(100)
+[  12.5m ep  83097] S11_obstacles_0-4 lvl_ep=39000 avg_len=105.2 return=6.48 help=0.411 | overall 0.68 ready 18/24 worst: large_g9+_obs3-4_near1=0.16(100) small_g9+_obs3-4_near1=0.24(100) small_g6-8_obs3-4_near1=0.40(100)
+[  12.5m ep  83373] S11_obstacles_0-4 lvl_ep=39200 avg_len=108.7 return=6.00 help=0.423 | overall 0.64 ready 18/24 worst: large_g9+_obs3-4_near1=0.17(100) small_g9+_obs3-4_near1=0.25(100) small_g6-8_obs3-4_near1=0.36(100)
+[  12.5m ep  83637] S11_obstacles_0-4 lvl_ep=39400 avg_len=110.7 return=6.36 help=0.426 | overall 0.64 ready 18/24 worst: large_g9+_obs3-4_near1=0.17(100) small_g9+_obs3-4_near1=0.24(100) small_g6-8_obs3-4_near1=0.38(100)
+[  12.6m ep  83897] S11_obstacles_0-4 lvl_ep=39600 avg_len=108.8 return=6.29 help=0.413 | overall 0.65 ready 18/24 worst: large_g9+_obs3-4_near1=0.15(100) small_g9+_obs3-4_near1=0.26(100) small_g6-8_obs3-4_near1=0.36(100)
+[  12.6m ep  84165] S11_obstacles_0-4 lvl_ep=39800 avg_len=113.3 return=5.72 help=0.410 | overall 0.62 ready 18/24 worst: large_g9+_obs3-4_near1=0.16(100) small_g9+_obs3-4_near1=0.21(100) large_g6-8_obs3-4_near1=0.37(100)
+[  12.7m ep  84424] S11_obstacles_0-4 lvl_ep=40000 avg_len=102.8 return=6.83 help=0.422 | overall 0.64 ready 18/24 worst: large_g9+_obs3-4_near1=0.16(100) small_g9+_obs3-4_near1=0.22(100) large_g6-8_obs3-4_near1=0.40(100)
+[  12.7m ep  84684] S11_obstacles_0-4 lvl_ep=40200 avg_len=108.5 return=6.35 help=0.425 | overall 0.67 ready 18/24 worst: large_g9+_obs3-4_near1=0.15(100) small_g9+_obs3-4_near1=0.21(100) large_g6-8_obs3-4_near1=0.38(100)
+[  12.8m ep  84949] S11_obstacles_0-4 lvl_ep=40400 avg_len=102.7 return=6.80 help=0.414 | overall 0.67 ready 18/24 worst: large_g9+_obs3-4_near1=0.18(100) small_g9+_obs3-4_near1=0.20(100) large_g6-8_obs3-4_near1=0.38(100)
+[  12.8m ep  85225] S11_obstacles_0-4 lvl_ep=40600 avg_len=96.8 return=7.29 help=0.410 | overall 0.70 ready 18/24 worst: large_g9+_obs3-4_near1=0.19(100) small_g9+_obs3-4_near1=0.22(100) small_g6-8_obs3-4_near1=0.40(100)
+[  12.9m ep  85488] S11_obstacles_0-4 lvl_ep=40800 avg_len=103.4 return=6.69 help=0.437 | overall 0.69 ready 18/24 worst: small_g9+_obs3-4_near1=0.22(100) large_g9+_obs3-4_near1=0.23(100) small_g6-8_obs3-4_near1=0.39(100)
+[  12.9m ep  85759] S11_obstacles_0-4 lvl_ep=41000 avg_len=103.3 return=6.89 help=0.437 | overall 0.68 ready 18/24 worst: large_g9+_obs3-4_near1=0.22(100) small_g9+_obs3-4_near1=0.24(100) small_g6-8_obs3-4_near1=0.38(100)
+[  12.9m ep  86026] S11_obstacles_0-4 lvl_ep=41200 avg_len=104.8 return=6.56 help=0.447 | overall 0.68 ready 18/24 worst: large_g9+_obs3-4_near1=0.21(100) small_g9+_obs3-4_near1=0.22(100) small_g6-8_obs3-4_near1=0.39(100)
+[  13.0m ep  86308] S11_obstacles_0-4 lvl_ep=41400 avg_len=100.2 return=6.85 help=0.435 | overall 0.68 ready 18/24 worst: large_g9+_obs3-4_near1=0.21(100) small_g9+_obs3-4_near1=0.26(100) large_g6-8_obs3-4_near1=0.34(100)
+[  13.0m ep  86580] S11_obstacles_0-4 lvl_ep=41600 avg_len=104.3 return=6.36 help=0.437 | overall 0.67 ready 17/24 worst: large_g9+_obs3-4_near1=0.18(100) small_g9+_obs3-4_near1=0.25(100) large_g6-8_obs3-4_near1=0.38(100)
+[  13.1m ep  86837] S11_obstacles_0-4 lvl_ep=41800 avg_len=109.5 return=6.29 help=0.428 | overall 0.64 ready 18/24 worst: large_g9+_obs3-4_near1=0.20(100) small_g9+_obs3-4_near1=0.29(100) large_g6-8_obs3-4_near1=0.33(100)
+[  13.1m ep  87105] S11_obstacles_0-4 lvl_ep=42000 avg_len=104.3 return=6.60 help=0.452 | overall 0.66 ready 18/24 worst: large_g9+_obs3-4_near1=0.20(100) small_g9+_obs3-4_near1=0.31(100) large_g6-8_obs3-4_near1=0.35(100)
+[  13.1m ep  87362] S11_obstacles_0-4 lvl_ep=42200 avg_len=100.3 return=6.96 help=0.438 | overall 0.69 ready 18/24 worst: large_g9+_obs3-4_near1=0.21(100) large_g6-8_obs3-4_near1=0.29(100) small_g9+_obs3-4_near1=0.33(100)
+[  13.2m ep  87613] S11_obstacles_0-4 lvl_ep=42400 avg_len=102.3 return=6.72 help=0.432 | overall 0.69 ready 18/24 worst: large_g9+_obs3-4_near1=0.21(100) small_g9+_obs3-4_near1=0.31(100) large_g6-8_obs3-4_near1=0.31(100)
+[  13.2m ep  87884] S11_obstacles_0-4 lvl_ep=42600 avg_len=102.7 return=7.04 help=0.416 | overall 0.69 ready 18/24 worst: large_g9+_obs3-4_near1=0.20(100) small_g9+_obs3-4_near1=0.35(100) small_g6-8_obs3-4_near1=0.43(100)
+[  13.3m ep  88148] S11_obstacles_0-4 lvl_ep=42800 avg_len=100.4 return=6.89 help=0.421 | overall 0.70 ready 19/24 worst: large_g9+_obs3-4_near1=0.19(100) small_g9+_obs3-4_near1=0.36(100) small_g6-8_obs3-4_near1=0.42(100)
+[  13.3m ep  88400] S11_obstacles_0-4 lvl_ep=43000 avg_len=110.9 return=6.12 help=0.435 | overall 0.66 ready 19/24 worst: large_g9+_obs3-4_near1=0.17(100) small_g9+_obs3-4_near1=0.35(100) small_g6-8_obs3-4_near1=0.42(100)
+[  13.4m ep  88673] S11_obstacles_0-4 lvl_ep=43200 avg_len=106.5 return=6.32 help=0.442 | overall 0.64 ready 19/24 worst: large_g9+_obs3-4_near1=0.16(100) small_g9+_obs3-4_near1=0.34(100) large_g4-5_obs3-4_near1=0.40(100)
+[  13.4m ep  88920] S11_obstacles_0-4 lvl_ep=43400 avg_len=103.9 return=6.87 help=0.473 | overall 0.67 ready 19/24 worst: large_g9+_obs3-4_near1=0.18(100) small_g9+_obs3-4_near1=0.36(100) small_g6-8_obs3-4_near1=0.43(100)
+[  13.5m ep  89184] S11_obstacles_0-4 lvl_ep=43600 avg_len=105.0 return=6.46 help=0.454 | overall 0.68 ready 19/24 worst: large_g9+_obs3-4_near1=0.17(100) small_g9+_obs3-4_near1=0.33(100) large_g6-8_obs3-4_near1=0.40(100)
+[  13.5m ep  89454] S11_obstacles_0-4 lvl_ep=43800 avg_len=106.3 return=6.31 help=0.465 | overall 0.65 ready 19/24 worst: large_g9+_obs3-4_near1=0.17(100) small_g9+_obs3-4_near1=0.26(100) large_g6-8_obs3-4_near1=0.33(100)
+[  13.5m ep  89725] S11_obstacles_0-4 lvl_ep=44000 avg_len=102.7 return=6.63 help=0.460 | overall 0.66 ready 19/24 worst: large_g9+_obs3-4_near1=0.14(100) small_g9+_obs3-4_near1=0.25(100) large_g6-8_obs3-4_near1=0.33(100)
+[  13.6m ep  89987] S11_obstacles_0-4 lvl_ep=44200 avg_len=112.8 return=5.86 help=0.456 | overall 0.64 ready 19/24 worst: large_g9+_obs3-4_near1=0.15(100) small_g9+_obs3-4_near1=0.21(100) large_g6-8_obs3-4_near1=0.31(100)
+[  13.6m ep  90241] S11_obstacles_0-4 lvl_ep=44400 avg_len=114.7 return=5.95 help=0.454 | overall 0.61 ready 19/24 worst: large_g9+_obs3-4_near1=0.16(100) small_g9+_obs3-4_near1=0.22(100) large_g6-8_obs3-4_near1=0.30(100)
+[  13.7m ep  90505] S11_obstacles_0-4 lvl_ep=44600 avg_len=110.2 return=6.18 help=0.468 | overall 0.63 ready 19/24 worst: large_g9+_obs3-4_near1=0.16(100) small_g9+_obs3-4_near1=0.23(100) large_g6-8_obs3-4_near1=0.31(100)
+[  13.7m ep  90762] S11_obstacles_0-4 lvl_ep=44800 avg_len=115.6 return=6.06 help=0.451 | overall 0.63 ready 18/24 worst: large_g9+_obs3-4_near1=0.17(100) small_g9+_obs3-4_near1=0.23(100) large_g6-8_obs3-4_near1=0.29(100)
+[  13.8m ep  91026] S11_obstacles_0-4 lvl_ep=45000 avg_len=99.3 return=6.77 help=0.452 | overall 0.65 ready 18/24 worst: large_g9+_obs3-4_near1=0.19(100) small_g9+_obs3-4_near1=0.25(100) large_g6-8_obs3-4_near1=0.30(100)
+[  13.8m ep  91284] S11_obstacles_0-4 lvl_ep=45200 avg_len=96.6 return=7.23 help=0.429 | overall 0.70 ready 18/24 worst: large_g9+_obs3-4_near1=0.16(100) small_g9+_obs3-4_near1=0.28(100) large_g6-8_obs3-4_near1=0.28(100)
+[  13.8m ep  91549] S11_obstacles_0-4 lvl_ep=45400 avg_len=99.5 return=7.11 help=0.441 | overall 0.71 ready 18/24 worst: large_g9+_obs3-4_near1=0.17(100) small_g9+_obs3-4_near1=0.29(100) small_g6-8_obs3-4_near1=0.30(100)
+[  13.9m ep  91803] S11_obstacles_0-4 lvl_ep=45600 avg_len=99.7 return=7.02 help=0.437 | overall 0.70 ready 18/24 worst: large_g9+_obs3-4_near1=0.15(100) large_g6-8_obs3-4_near1=0.32(100) small_g9+_obs3-4_near1=0.33(100)
+[  13.9m ep  92067] S11_obstacles_0-4 lvl_ep=45800 avg_len=94.0 return=7.13 help=0.439 | overall 0.70 ready 18/24 worst: large_g9+_obs3-4_near1=0.18(100) small_g9+_obs3-4_near1=0.32(100) large_g6-8_obs3-4_near1=0.33(100)
+[  14.0m ep  92341] S11_obstacles_0-4 lvl_ep=46000 avg_len=100.6 return=6.55 help=0.444 | overall 0.69 ready 18/24 worst: large_g9+_obs3-4_near1=0.17(100) small_g6-8_obs3-4_near1=0.33(100) large_g6-8_obs3-4_near1=0.35(100)
+[  14.0m ep  92606] S11_obstacles_0-4 lvl_ep=46200 avg_len=96.5 return=7.11 help=0.430 | overall 0.69 ready 19/24 worst: large_g9+_obs3-4_near1=0.19(100) small_g6-8_obs3-4_near1=0.30(100) small_g9+_obs3-4_near1=0.34(100)
+[  14.1m ep  92867] S11_obstacles_0-4 lvl_ep=46400 avg_len=102.1 return=6.85 help=0.433 | overall 0.70 ready 19/24 worst: large_g9+_obs3-4_near1=0.18(100) small_g6-8_obs3-4_near1=0.31(100) small_g9+_obs3-4_near1=0.32(100)
+[  14.1m ep  93137] S11_obstacles_0-4 lvl_ep=46600 avg_len=111.1 return=5.87 help=0.422 | overall 0.65 ready 19/24 worst: large_g9+_obs3-4_near1=0.16(100) small_g9+_obs3-4_near1=0.32(100) small_g6-8_obs3-4_near1=0.36(100)
+[  14.2m ep  93405] S11_obstacles_0-4 lvl_ep=46800 avg_len=104.7 return=6.49 help=0.412 | overall 0.64 ready 19/24 worst: large_g9+_obs3-4_near1=0.16(100) large_g6-8_obs3-4_near1=0.32(100) small_g9+_obs3-4_near1=0.33(100)
+[  14.2m ep  93673] S11_obstacles_0-4 lvl_ep=47000 avg_len=99.0 return=6.89 help=0.413 | overall 0.67 ready 19/24 worst: large_g9+_obs3-4_near1=0.16(100) large_g6-8_obs3-4_near1=0.32(100) small_g9+_obs3-4_near1=0.33(100)
+[  14.3m ep  93926] S11_obstacles_0-4 lvl_ep=47200 avg_len=107.4 return=6.21 help=0.425 | overall 0.66 ready 19/24 worst: large_g9+_obs3-4_near1=0.19(100) small_g9+_obs3-4_near1=0.29(100) large_g6-8_obs3-4_near1=0.29(100)
+[  14.3m ep  94199] S11_obstacles_0-4 lvl_ep=47400 avg_len=105.3 return=6.41 help=0.438 | overall 0.65 ready 19/24 worst: large_g9+_obs3-4_near1=0.17(100) small_g9+_obs3-4_near1=0.26(100) large_g6-8_obs3-4_near1=0.27(100)
+[  14.3m ep  94462] S11_obstacles_0-4 lvl_ep=47600 avg_len=103.1 return=6.89 help=0.431 | overall 0.68 ready 19/24 worst: large_g9+_obs3-4_near1=0.17(100) small_g9+_obs3-4_near1=0.28(100) large_g6-8_obs3-4_near1=0.31(100)
+[  14.4m ep  94715] S11_obstacles_0-4 lvl_ep=47800 avg_len=109.0 return=6.18 help=0.424 | overall 0.66 ready 19/24 worst: large_g9+_obs3-4_near1=0.17(100) small_g9+_obs3-4_near1=0.30(100) large_g6-8_obs3-4_near1=0.34(100)
+[  14.4m ep  94985] S11_obstacles_0-4 lvl_ep=48000 avg_len=104.9 return=6.51 help=0.420 | overall 0.65 ready 19/24 worst: large_g9+_obs3-4_near1=0.16(100) small_g9+_obs3-4_near1=0.28(100) large_g6-8_obs3-4_near1=0.35(100)
+[  14.0m ep  95259] S11_obstacles_0-4 lvl_ep=48200 avg_len=103.3 return=6.62 help=0.436 | overall 0.67 ready 19/24 worst: large_g9+_obs3-4_near1=0.17(100) small_g9+_obs3-4_near1=0.26(100) large_g6-8_obs3-4_near1=0.33(100)
+[  14.0m ep  95526] S11_obstacles_0-4 lvl_ep=48400 avg_len=110.8 return=5.90 help=0.418 | overall 0.64 ready 19/24 worst: large_g9+_obs3-4_near1=0.18(100) small_g9+_obs3-4_near1=0.23(100) large_g6-8_obs3-4_near1=0.33(100)
+[  14.1m ep  95794] S11_obstacles_0-4 lvl_ep=48600 avg_len=104.7 return=6.50 help=0.412 | overall 0.64 ready 19/24 worst: large_g9+_obs3-4_near1=0.16(100) small_g9+_obs3-4_near1=0.24(100) large_g6-8_obs3-4_near1=0.31(100)
+[  14.1m ep  96069] S11_obstacles_0-4 lvl_ep=48800 avg_len=107.9 return=6.44 help=0.450 | overall 0.66 ready 19/24 worst: large_g9+_obs3-4_near1=0.17(100) small_g9+_obs3-4_near1=0.25(100) large_g6-8_obs3-4_near1=0.29(100)
+[  14.1m ep  96338] S11_obstacles_0-4 lvl_ep=49000 avg_len=102.8 return=6.54 help=0.425 | overall 0.66 ready 18/24 worst: large_g9+_obs3-4_near1=0.20(100) large_g6-8_obs3-4_near1=0.27(100) small_g9+_obs3-4_near1=0.28(100)
+[  14.2m ep  96622] S11_obstacles_0-4 lvl_ep=49200 avg_len=107.4 return=6.50 help=0.462 | overall 0.66 ready 18/24 worst: large_g9+_obs3-4_near1=0.22(100) small_g9+_obs3-4_near1=0.26(100) large_g6-8_obs3-4_near1=0.27(100)
+[  14.2m ep  96862] S11_obstacles_0-4 lvl_ep=49400 avg_len=97.0 return=7.00 help=0.433 | overall 0.68 ready 19/24 worst: large_g9+_obs3-4_near1=0.22(100) small_g9+_obs3-4_near1=0.27(100) large_g6-8_obs3-4_near1=0.27(100)
+[  14.3m ep  97136] S11_obstacles_0-4 lvl_ep=49600 avg_len=108.0 return=6.41 help=0.436 | overall 0.68 ready 18/24 worst: large_g9+_obs3-4_near1=0.23(100) large_g6-8_obs3-4_near1=0.27(100) small_g9+_obs3-4_near1=0.28(100)
+[  14.3m ep  97412] S11_obstacles_0-4 lvl_ep=49800 avg_len=100.4 return=6.88 help=0.434 | overall 0.67 ready 19/24 worst: large_g9+_obs3-4_near1=0.22(100) small_g9+_obs3-4_near1=0.31(100) large_g6-8_obs3-4_near1=0.31(100)
+[  14.4m ep  97677] S11_obstacles_0-4 lvl_ep=50000 avg_len=106.7 return=6.51 help=0.441 | overall 0.68 ready 18/24 worst: large_g9+_obs3-4_near1=0.25(100) small_g9+_obs3-4_near1=0.31(100) large_g6-8_obs3-4_near1=0.34(100)
+[  14.4m ep  97942] S11_obstacles_0-4 lvl_ep=50200 avg_len=100.8 return=6.85 help=0.430 | overall 0.68 ready 17/24 worst: large_g9+_obs3-4_near1=0.25(100) large_g6-8_obs3-4_near1=0.33(100) small_g9+_obs3-4_near1=0.34(100)
+[  14.4m ep  98203] S11_obstacles_0-4 lvl_ep=50400 avg_len=96.5 return=7.04 help=0.420 | overall 0.69 ready 18/24 worst: large_g9+_obs3-4_near1=0.26(100) small_g9+_obs3-4_near1=0.35(100) large_g6-8_obs3-4_near1=0.35(100)
+[  14.5m ep  98477] S11_obstacles_0-4 lvl_ep=50600 avg_len=108.3 return=6.31 help=0.446 | overall 0.67 ready 18/24 worst: large_g9+_obs3-4_near1=0.27(100) small_g9+_obs3-4_near1=0.34(100) large_g6-8_obs3-4_near1=0.34(100)
+[  14.5m ep  98733] S11_obstacles_0-4 lvl_ep=50800 avg_len=106.7 return=6.54 help=0.432 | overall 0.65 ready 18/24 worst: large_g9+_obs3-4_near1=0.25(100) large_g6-8_obs3-4_near1=0.31(100) small_g9+_obs3-4_near1=0.34(100)
+[  14.6m ep  98989] S11_obstacles_0-4 lvl_ep=51000 avg_len=104.7 return=6.52 help=0.420 | overall 0.66 ready 18/24 worst: large_g9+_obs3-4_near1=0.23(100) small_g9+_obs3-4_near1=0.34(100) large_g6-8_obs3-4_near1=0.34(100)
+[  14.6m ep  99260] S11_obstacles_0-4 lvl_ep=51200 avg_len=95.5 return=7.46 help=0.444 | overall 0.70 ready 19/24 worst: large_g9+_obs3-4_near1=0.22(100) large_g6-8_obs3-4_near1=0.33(100) small_g9+_obs3-4_near1=0.36(100)
+[  14.7m ep  99535] S11_obstacles_0-4 lvl_ep=51400 avg_len=101.7 return=6.98 help=0.438 | overall 0.72 ready 19/24 worst: large_g9+_obs3-4_near1=0.20(100) small_g9+_obs3-4_near1=0.33(100) large_g6-8_obs3-4_near1=0.39(100)
+[  14.7m ep  99817] S11_obstacles_0-4 lvl_ep=51600 avg_len=105.7 return=6.58 help=0.428 | overall 0.69 ready 18/24 worst: large_g9+_obs3-4_near1=0.20(100) small_g9+_obs3-4_near1=0.33(100) large_g6-8_obs3-4_near1=0.37(100)
+[  14.7m ep 100082] S11_obstacles_0-4 lvl_ep=51800 avg_len=103.4 return=6.73 help=0.418 | overall 0.68 ready 18/24 worst: large_g9+_obs3-4_near1=0.19(100) small_g9+_obs3-4_near1=0.31(100) large_g6-8_obs3-4_near1=0.39(100)
+[  14.8m ep 100347] S11_obstacles_0-4 lvl_ep=52000 avg_len=100.4 return=6.68 help=0.417 | overall 0.68 ready 18/24 worst: large_g9+_obs3-4_near1=0.21(100) small_g9+_obs3-4_near1=0.28(100) large_g6-8_obs3-4_near1=0.38(100)
+[  14.8m ep 100625] S11_obstacles_0-4 lvl_ep=52200 avg_len=106.2 return=6.32 help=0.425 | overall 0.66 ready 18/24 worst: large_g9+_obs3-4_near1=0.18(100) small_g9+_obs3-4_near1=0.26(100) large_g6-8_obs3-4_near1=0.36(100)
+[  14.9m ep 100897] S11_obstacles_0-4 lvl_ep=52400 avg_len=97.8 return=7.38 help=0.427 | overall 0.69 ready 19/24 worst: large_g9+_obs3-4_near1=0.18(100) small_g9+_obs3-4_near1=0.23(100) large_g6-8_obs3-4_near1=0.35(100)
+[  14.9m ep 101167] S11_obstacles_0-4 lvl_ep=52600 avg_len=98.8 return=6.96 help=0.433 | overall 0.72 ready 19/24 worst: large_g9+_obs3-4_near1=0.15(100) small_g9+_obs3-4_near1=0.20(100) large_g6-8_obs3-4_near1=0.34(100)
+[  15.0m ep 101434] S11_obstacles_0-4 lvl_ep=52800 avg_len=101.8 return=6.59 help=0.416 | overall 0.69 ready 19/24 worst: large_g9+_obs3-4_near1=0.16(100) small_g9+_obs3-4_near1=0.22(100) large_g6-8_obs3-4_near1=0.36(100)
+[  15.0m ep 101719] S11_obstacles_0-4 lvl_ep=53000 avg_len=101.3 return=6.46 help=0.433 | overall 0.66 ready 19/24 worst: large_g9+_obs3-4_near1=0.14(100) small_g9+_obs3-4_near1=0.26(100) large_g6-8_obs3-4_near1=0.38(100)
+[  15.1m ep 101996] S11_obstacles_0-4 lvl_ep=53200 avg_len=105.2 return=6.63 help=0.430 | overall 0.66 ready 19/24 worst: large_g9+_obs3-4_near1=0.14(100) small_g9+_obs3-4_near1=0.25(100) large_g6-8_obs3-4_near1=0.40(100)
+[  15.1m ep 102256] S11_obstacles_0-4 lvl_ep=53400 avg_len=107.1 return=6.47 help=0.431 | overall 0.66 ready 19/24 worst: large_g9+_obs3-4_near1=0.15(100) small_g9+_obs3-4_near1=0.22(100) large_g6-8_obs3-4_near1=0.41(100)
+[  15.2m ep 102528] S11_obstacles_0-4 lvl_ep=53600 avg_len=98.9 return=7.30 help=0.440 | overall 0.69 ready 19/24 worst: large_g9+_obs3-4_near1=0.16(100) small_g9+_obs3-4_near1=0.22(100) large_g6-8_obs3-4_near1=0.41(100)
+[  15.2m ep 102791] S11_obstacles_0-4 lvl_ep=53800 avg_len=98.1 return=7.16 help=0.441 | overall 0.72 ready 19/24 worst: large_g9+_obs3-4_near1=0.14(100) small_g9+_obs3-4_near1=0.23(100) large_g6-8_obs3-4_near1=0.39(100)
+[  15.2m ep 103063] S11_obstacles_0-4 lvl_ep=54000 avg_len=102.4 return=6.81 help=0.452 | overall 0.70 ready 19/24 worst: large_g9+_obs3-4_near1=0.16(100) small_g9+_obs3-4_near1=0.26(100) large_g6-8_obs3-4_near1=0.36(100)
+[  15.3m ep 103331] S11_obstacles_0-4 lvl_ep=54200 avg_len=100.2 return=6.58 help=0.426 | overall 0.68 ready 19/24 worst: large_g9+_obs3-4_near1=0.14(100) small_g9+_obs3-4_near1=0.26(100) large_g6-8_obs3-4_near1=0.33(100)
+[  15.3m ep 103598] S11_obstacles_0-4 lvl_ep=54400 avg_len=104.8 return=6.95 help=0.423 | overall 0.68 ready 18/24 worst: large_g9+_obs3-4_near1=0.13(100) small_g9+_obs3-4_near1=0.30(100) large_g6-8_obs3-4_near1=0.32(100)
+[  15.4m ep 103846] S11_obstacles_0-4 lvl_ep=54600 avg_len=103.1 return=6.92 help=0.432 | overall 0.70 ready 18/24 worst: large_g9+_obs3-4_near1=0.13(100) small_g9+_obs3-4_near1=0.27(100) large_g6-8_obs3-4_near1=0.32(100)
+[  15.4m ep 104119] S11_obstacles_0-4 lvl_ep=54800 avg_len=102.5 return=6.79 help=0.442 | overall 0.69 ready 18/24 worst: large_g9+_obs3-4_near1=0.12(100) small_g9+_obs3-4_near1=0.27(100) large_g6-8_obs3-4_near1=0.29(100)
+[  15.5m ep 104397] S11_obstacles_0-4 lvl_ep=55000 avg_len=111.0 return=6.39 help=0.434 | overall 0.66 ready 18/24 worst: large_g9+_obs3-4_near1=0.13(100) large_g6-8_obs3-4_near1=0.28(100) small_g9+_obs3-4_near1=0.31(100)
+[  15.5m ep 104670] S11_obstacles_0-4 lvl_ep=55200 avg_len=110.4 return=5.94 help=0.422 | overall 0.63 ready 18/24 worst: large_g9+_obs3-4_near1=0.12(100) large_g6-8_obs3-4_near1=0.26(100) small_g9+_obs3-4_near1=0.29(100)
+[  15.6m ep 104946] S11_obstacles_0-4 lvl_ep=55400 avg_len=99.7 return=6.85 help=0.456 | overall 0.66 ready 18/24 worst: large_g9+_obs3-4_near1=0.13(100) small_g9+_obs3-4_near1=0.28(100) large_g6-8_obs3-4_near1=0.30(100)
+[  15.6m ep 105207] S11_obstacles_0-4 lvl_ep=55600 avg_len=104.0 return=6.65 help=0.433 | overall 0.68 ready 18/24 worst: large_g9+_obs3-4_near1=0.14(100) small_g9+_obs3-4_near1=0.26(100) large_g6-8_obs3-4_near1=0.30(100)
+[  15.6m ep 105481] S11_obstacles_0-4 lvl_ep=55800 avg_len=105.2 return=6.59 help=0.432 | overall 0.68 ready 18/24 worst: large_g9+_obs3-4_near1=0.13(100) small_g9+_obs3-4_near1=0.26(100) large_g6-8_obs3-4_near1=0.33(100)
+[  15.7m ep 105753] S11_obstacles_0-4 lvl_ep=56000 avg_len=102.5 return=6.83 help=0.423 | overall 0.68 ready 18/24 worst: large_g9+_obs3-4_near1=0.12(100) small_g9+_obs3-4_near1=0.25(100) large_g6-8_obs3-4_near1=0.34(100)
+[  15.7m ep 106033] S11_obstacles_0-4 lvl_ep=56200 avg_len=105.3 return=6.54 help=0.423 | overall 0.68 ready 18/24 worst: large_g9+_obs3-4_near1=0.10(100) small_g9+_obs3-4_near1=0.26(100) large_g6-8_obs3-4_near1=0.39(100)
+[  15.8m ep 106288] S11_obstacles_0-4 lvl_ep=56400 avg_len=101.8 return=6.70 help=0.418 | overall 0.67 ready 18/24 worst: large_g9+_obs3-4_near1=0.08(100) small_g9+_obs3-4_near1=0.27(100) large_g6-8_obs3-4_near1=0.39(100)
+[  15.8m ep 106554] S11_obstacles_0-4 lvl_ep=56600 avg_len=117.4 return=5.76 help=0.410 | overall 0.64 ready 17/24 worst: large_g9+_obs3-4_near1=0.11(100) small_g9+_obs3-4_near1=0.26(100) large_g6-8_obs3-4_near1=0.38(100)
+[  15.8m ep 106830] S11_obstacles_0-4 lvl_ep=56800 avg_len=92.5 return=7.73 help=0.419 | overall 0.68 ready 19/24 worst: large_g9+_obs3-4_near1=0.11(100) small_g9+_obs3-4_near1=0.30(100) large_g6-8_obs3-4_near1=0.39(100)
+[  15.9m ep 107093] S11_obstacles_0-4 lvl_ep=57000 avg_len=98.8 return=7.20 help=0.418 | overall 0.73 ready 18/24 worst: large_g9+_obs3-4_near1=0.12(100) small_g9+_obs3-4_near1=0.34(100) large_g6-8_obs3-4_near1=0.36(100)
+[  15.9m ep 107372] S11_obstacles_0-4 lvl_ep=57200 avg_len=100.7 return=7.19 help=0.446 | overall 0.71 ready 18/24 worst: large_g9+_obs3-4_near1=0.12(100) small_g9+_obs3-4_near1=0.35(100) large_g6-8_obs3-4_near1=0.35(100)
+[  16.0m ep 107620] S11_obstacles_0-4 lvl_ep=57400 avg_len=111.3 return=6.25 help=0.438 | overall 0.68 ready 18/24 worst: large_g9+_obs3-4_near1=0.13(100) large_g6-8_obs3-4_near1=0.34(100) small_g9+_obs3-4_near1=0.36(100)
+[  16.0m ep 107886] S11_obstacles_0-4 lvl_ep=57600 avg_len=105.1 return=6.58 help=0.414 | overall 0.65 ready 19/24 worst: large_g9+_obs3-4_near1=0.13(100) small_g9+_obs3-4_near1=0.33(100) large_g6-8_obs3-4_near1=0.36(100)
+[  16.1m ep 108160] S11_obstacles_0-4 lvl_ep=57800 avg_len=106.2 return=6.50 help=0.425 | overall 0.66 ready 19/24 worst: large_g9+_obs3-4_near1=0.14(100) small_g9+_obs3-4_near1=0.29(100) large_g6-8_obs3-4_near1=0.39(100)
+[  16.1m ep 108424] S11_obstacles_0-4 lvl_ep=58000 avg_len=96.5 return=7.55 help=0.435 | overall 0.70 ready 19/24 worst: large_g9+_obs3-4_near1=0.17(100) small_g9+_obs3-4_near1=0.30(100) large_g6-8_obs3-4_near1=0.39(100)
+[  16.2m ep 108684] S11_obstacles_0-4 lvl_ep=58200 avg_len=98.5 return=7.12 help=0.406 | overall 0.73 ready 19/24 worst: large_g9+_obs3-4_near1=0.20(100) small_g9+_obs3-4_near1=0.31(100) large_g6-8_obs3-4_near1=0.40(100)
+[  16.2m ep 108951] S11_obstacles_0-4 lvl_ep=58400 avg_len=101.8 return=7.09 help=0.425 | overall 0.71 ready 19/24 worst: large_g9+_obs3-4_near1=0.21(100) small_g9+_obs3-4_near1=0.29(100) large_g6-8_obs3-4_near1=0.41(100)
+[  16.2m ep 109214] S11_obstacles_0-4 lvl_ep=58600 avg_len=109.5 return=6.30 help=0.420 | overall 0.68 ready 19/24 worst: large_g9+_obs3-4_near1=0.24(100) small_g9+_obs3-4_near1=0.25(100) large_g6-8_obs3-4_near1=0.40(100)
+[  16.3m ep 109464] S11_obstacles_0-4 lvl_ep=58800 avg_len=100.6 return=7.16 help=0.412 | overall 0.68 ready 18/24 worst: large_g9+_obs3-4_near1=0.26(100) small_g9+_obs3-4_near1=0.27(100) large_g6-8_obs3-4_near1=0.41(100)
+[  16.3m ep 109742] S11_obstacles_0-4 lvl_ep=59000 avg_len=104.8 return=6.69 help=0.402 | overall 0.70 ready 18/24 worst: large_g9+_obs3-4_near1=0.24(100) small_g9+_obs3-4_near1=0.30(100) large_g6-8_obs3-4_near1=0.35(100)
+[  16.4m ep 110014] S11_obstacles_0-4 lvl_ep=59200 avg_len=98.1 return=7.15 help=0.406 | overall 0.69 ready 19/24 worst: large_g9+_obs3-4_near1=0.24(100) small_g9+_obs3-4_near1=0.30(100) large_g6-8_obs3-4_near1=0.36(100)
+[  16.4m ep 110281] S11_obstacles_0-4 lvl_ep=59400 avg_len=90.1 return=7.48 help=0.426 | overall 0.72 ready 18/24 worst: large_g9+_obs3-4_near1=0.26(100) small_g9+_obs3-4_near1=0.30(100) large_g6-8_obs3-4_near1=0.37(100)
+[  16.4m ep 110559] S11_obstacles_0-4 lvl_ep=59600 avg_len=109.6 return=6.31 help=0.433 | overall 0.69 ready 18/24 worst: large_g9+_obs3-4_near1=0.27(100) small_g9+_obs3-4_near1=0.31(100) large_g6-8_obs3-4_near1=0.35(100)
+[  16.5m ep 110846] S11_obstacles_0-4 lvl_ep=59800 avg_len=95.9 return=7.49 help=0.395 | overall 0.69 ready 18/24 worst: large_g9+_obs3-4_near1=0.28(100) small_g9+_obs3-4_near1=0.32(100) small_g6-8_obs3-4_near1=0.39(100)
+[  16.5m ep 111098] S11_obstacles_0-4 lvl_ep=60000 avg_len=102.1 return=6.85 help=0.426 | overall 0.71 ready 18/24 worst: large_g9+_obs3-4_near1=0.26(100) small_g9+_obs3-4_near1=0.29(100) small_g6-8_obs3-4_near1=0.36(100)
+[  16.6m ep 111372] S11_obstacles_0-4 lvl_ep=60200 avg_len=104.2 return=6.58 help=0.407 | overall 0.68 ready 18/24 worst: large_g9+_obs3-4_near1=0.24(100) small_g9+_obs3-4_near1=0.30(100) small_g6-8_obs3-4_near1=0.33(100)
+[  16.6m ep 111640] S11_obstacles_0-4 lvl_ep=60400 avg_len=101.6 return=6.82 help=0.412 | overall 0.68 ready 18/24 worst: large_g9+_obs3-4_near1=0.24(100) small_g9+_obs3-4_near1=0.27(100) large_g6-8_obs3-4_near1=0.32(100)
+[  16.6m ep 111905] S11_obstacles_0-4 lvl_ep=60600 avg_len=98.5 return=6.92 help=0.406 | overall 0.69 ready 18/24 worst: large_g9+_obs3-4_near1=0.23(100) large_g6-8_obs3-4_near1=0.28(100) small_g9+_obs3-4_near1=0.29(100)
+[  16.7m ep 112171] S11_obstacles_0-4 lvl_ep=60800 avg_len=98.7 return=7.12 help=0.410 | overall 0.70 ready 19/24 worst: large_g9+_obs3-4_near1=0.24(100) small_g9+_obs3-4_near1=0.31(100) large_g6-8_obs3-4_near1=0.31(100)
+[  16.7m ep 112444] S11_obstacles_0-4 lvl_ep=61000 avg_len=95.7 return=7.27 help=0.401 | overall 0.71 ready 19/24 worst: large_g9+_obs3-4_near1=0.23(100) large_g6-8_obs3-4_near1=0.26(100) small_g9+_obs3-4_near1=0.30(100)
+[  16.7m ep 112703] S11_obstacles_0-4 lvl_ep=61200 avg_len=103.1 return=6.75 help=0.405 | overall 0.70 ready 19/24 worst: large_g9+_obs3-4_near1=0.22(100) small_g9+_obs3-4_near1=0.27(100) large_g6-8_obs3-4_near1=0.29(100)
+[  16.8m ep 112959] S11_obstacles_0-4 lvl_ep=61400 avg_len=95.4 return=7.17 help=0.402 | overall 0.69 ready 19/24 worst: large_g9+_obs3-4_near1=0.22(100) small_g9+_obs3-4_near1=0.24(100) large_g6-8_obs3-4_near1=0.30(100)
+[  16.8m ep 113230] S11_obstacles_0-4 lvl_ep=61600 avg_len=105.4 return=6.59 help=0.393 | overall 0.69 ready 19/24 worst: large_g9+_obs3-4_near1=0.19(100) small_g9+_obs3-4_near1=0.24(100) large_g6-8_obs3-4_near1=0.32(100)
+[  16.9m ep 113496] S11_obstacles_0-4 lvl_ep=61800 avg_len=106.6 return=6.57 help=0.390 | overall 0.67 ready 19/24 worst: large_g9+_obs3-4_near1=0.17(100) small_g9+_obs3-4_near1=0.22(100) large_g6-8_obs3-4_near1=0.34(100)
+[  16.9m ep 113776] S11_obstacles_0-4 lvl_ep=62000 avg_len=102.8 return=7.04 help=0.405 | overall 0.69 ready 19/24 worst: large_g9+_obs3-4_near1=0.17(100) small_g9+_obs3-4_near1=0.23(100) large_g6-8_obs3-4_near1=0.35(100)
+[  17.0m ep 114041] S11_obstacles_0-4 lvl_ep=62200 avg_len=99.7 return=6.95 help=0.401 | overall 0.70 ready 19/24 worst: large_g9+_obs3-4_near1=0.15(100) small_g9+_obs3-4_near1=0.25(100) large_g6-8_obs3-4_near1=0.36(100)
+[  17.0m ep 114284] S11_obstacles_0-4 lvl_ep=62400 avg_len=106.9 return=6.67 help=0.385 | overall 0.68 ready 19/24 worst: large_g9+_obs3-4_near1=0.17(100) small_g9+_obs3-4_near1=0.26(100) large_g6-8_obs3-4_near1=0.42(100)
+[  17.0m ep 114551] S11_obstacles_0-4 lvl_ep=62600 avg_len=113.2 return=5.94 help=0.404 | overall 0.64 ready 19/24 worst: large_g9+_obs3-4_near1=0.14(100) small_g9+_obs3-4_near1=0.27(100) large_g6-8_obs3-4_near1=0.40(100)
+[  17.1m ep 114828] S11_obstacles_0-4 lvl_ep=62800 avg_len=104.8 return=6.67 help=0.420 | overall 0.64 ready 19/24 worst: large_g9+_obs3-4_near1=0.12(100) small_g9+_obs3-4_near1=0.30(100) large_g6-8_obs3-4_near1=0.40(100)
+[  17.1m ep 115092] S11_obstacles_0-4 lvl_ep=63000 avg_len=96.7 return=7.42 help=0.433 | overall 0.70 ready 19/24 worst: large_g9+_obs3-4_near1=0.15(100) small_g9+_obs3-4_near1=0.34(100) large_g6-8_obs3-4_near1=0.39(100)
+[  17.2m ep 115356] S11_obstacles_0-4 lvl_ep=63200 avg_len=98.8 return=6.77 help=0.428 | overall 0.70 ready 18/24 worst: large_g9+_obs3-4_near1=0.14(100) small_g9+_obs3-4_near1=0.33(100) large_g6-8_obs3-4_near1=0.40(100)
+[  17.2m ep 115637] S11_obstacles_0-4 lvl_ep=63400 avg_len=98.8 return=6.83 help=0.420 | overall 0.68 ready 19/24 worst: large_g9+_obs3-4_near1=0.14(100) small_g9+_obs3-4_near1=0.34(100) large_g6-8_obs3-4_near1=0.36(100)
+[  17.2m ep 115925] S11_obstacles_0-4 lvl_ep=63600 avg_len=102.7 return=6.51 help=0.438 | overall 0.67 ready 19/24 worst: large_g9+_obs3-4_near1=0.14(100) small_g9+_obs3-4_near1=0.30(100) large_g6-8_obs3-4_near1=0.32(100)
+[  17.3m ep 116200] S11_obstacles_0-4 lvl_ep=63800 avg_len=104.5 return=6.41 help=0.441 | overall 0.66 ready 19/24 worst: large_g9+_obs3-4_near1=0.15(100) small_g9+_obs3-4_near1=0.31(100) large_g6-8_obs3-4_near1=0.33(100)
+[  17.3m ep 116472] S11_obstacles_0-4 lvl_ep=64000 avg_len=105.4 return=6.54 help=0.459 | overall 0.66 ready 18/24 worst: large_g9+_obs3-4_near1=0.15(100) small_g9+_obs3-4_near1=0.27(100) large_g6-8_obs3-4_near1=0.37(100)
+[  17.4m ep 116745] S11_obstacles_0-4 lvl_ep=64200 avg_len=102.9 return=6.52 help=0.421 | overall 0.66 ready 19/24 worst: large_g9+_obs3-4_near1=0.11(100) small_g9+_obs3-4_near1=0.28(100) small_g6-8_obs3-4_near1=0.34(100)
+[  17.4m ep 117020] S11_obstacles_0-4 lvl_ep=64400 avg_len=108.1 return=6.26 help=0.439 | overall 0.65 ready 19/24 worst: large_g9+_obs3-4_near1=0.12(100) large_g6-8_obs3-4_near1=0.29(100) small_g9+_obs3-4_near1=0.30(100)
+[  17.5m ep 117287] S11_obstacles_0-4 lvl_ep=64600 avg_len=93.0 return=7.60 help=0.435 | overall 0.69 ready 18/24 worst: large_g9+_obs3-4_near1=0.14(100) large_g6-8_obs3-4_near1=0.29(100) small_g9+_obs3-4_near1=0.33(100)
+[  17.5m ep 117553] S11_obstacles_0-4 lvl_ep=64800 avg_len=99.1 return=6.96 help=0.441 | overall 0.72 ready 18/24 worst: large_g9+_obs3-4_near1=0.16(100) large_g6-8_obs3-4_near1=0.31(100) small_g9+_obs3-4_near1=0.32(100)
+[  17.6m ep 117820] S11_obstacles_0-4 lvl_ep=65000 avg_len=91.4 return=7.36 help=0.440 | overall 0.71 ready 19/24 worst: large_g9+_obs3-4_near1=0.17(100) small_g9+_obs3-4_near1=0.31(100) large_g6-8_obs3-4_near1=0.37(100)
+[  17.6m ep 118101] S11_obstacles_0-4 lvl_ep=65200 avg_len=106.0 return=6.50 help=0.434 | overall 0.70 ready 19/24 worst: large_g9+_obs3-4_near1=0.13(100) small_g9+_obs3-4_near1=0.31(100) large_g6-8_obs3-4_near1=0.36(100)
+[  17.6m ep 118364] S11_obstacles_0-4 lvl_ep=65400 avg_len=105.9 return=6.41 help=0.454 | overall 0.66 ready 18/24 worst: large_g9+_obs3-4_near1=0.14(100) small_g9+_obs3-4_near1=0.28(100) large_g6-8_obs3-4_near1=0.37(100)
+[  17.7m ep 118636] S11_obstacles_0-4 lvl_ep=65600 avg_len=106.4 return=6.20 help=0.424 | overall 0.65 ready 18/24 worst: large_g9+_obs3-4_near1=0.16(100) small_g9+_obs3-4_near1=0.29(100) large_g6-8_obs3-4_near1=0.39(100)
+[  17.7m ep 118898] S11_obstacles_0-4 lvl_ep=65800 avg_len=105.0 return=6.53 help=0.450 | overall 0.65 ready 18/24 worst: large_g9+_obs3-4_near1=0.17(100) small_g9+_obs3-4_near1=0.29(100) large_g6-8_obs3-4_near1=0.41(100)
+[  17.8m ep 119156] S11_obstacles_0-4 lvl_ep=66000 avg_len=100.1 return=6.95 help=0.440 | overall 0.68 ready 18/24 worst: large_g9+_obs3-4_near1=0.17(100) small_g9+_obs3-4_near1=0.28(100) large_g6-8_obs3-4_near1=0.37(100)
+[  17.8m ep 119425] S11_obstacles_0-4 lvl_ep=66200 avg_len=96.1 return=7.11 help=0.430 | overall 0.70 ready 19/24 worst: large_g9+_obs3-4_near1=0.18(100) small_g9+_obs3-4_near1=0.29(100) large_g6-8_obs3-4_near1=0.38(100)
+[  17.8m ep 119703] S11_obstacles_0-4 lvl_ep=66400 avg_len=99.4 return=7.03 help=0.444 | overall 0.71 ready 19/24 worst: large_g9+_obs3-4_near1=0.19(100) small_g9+_obs3-4_near1=0.28(100) small_g6-8_obs3-4_near1=0.38(100)
+[  17.9m ep 119974] S11_obstacles_0-4 lvl_ep=66600 avg_len=98.2 return=7.27 help=0.445 | overall 0.71 ready 19/24 worst: large_g9+_obs3-4_near1=0.19(100) small_g9+_obs3-4_near1=0.28(100) small_g6-8_obs3-4_near1=0.39(100)
+[  17.9m ep 120241] S11_obstacles_0-4 lvl_ep=66800 avg_len=95.2 return=7.32 help=0.437 | overall 0.72 ready 18/24 worst: large_g9+_obs3-4_near1=0.20(100) small_g9+_obs3-4_near1=0.30(100) small_g6-8_obs3-4_near1=0.42(100)
+[  18.0m ep 120513] S11_obstacles_0-4 lvl_ep=67000 avg_len=105.9 return=6.31 help=0.455 | overall 0.68 ready 17/24 worst: large_g9+_obs3-4_near1=0.15(100) small_g9+_obs3-4_near1=0.33(100) small_g6-8_obs3-4_near1=0.43(100)
+[  18.0m ep 120775] S11_obstacles_0-4 lvl_ep=67200 avg_len=100.9 return=7.05 help=0.431 | overall 0.67 ready 18/24 worst: large_g9+_obs3-4_near1=0.16(100) small_g9+_obs3-4_near1=0.35(100) small_g6-8_obs3-4_near1=0.42(100)
+[  18.1m ep 121024] S11_obstacles_0-4 lvl_ep=67400 avg_len=94.0 return=7.54 help=0.452 | overall 0.72 ready 19/24 worst: large_g9+_obs3-4_near1=0.16(100) small_g9+_obs3-4_near1=0.39(100) small_g6-8_obs3-4_near1=0.43(100)
+[  18.1m ep 121290] S11_obstacles_0-4 lvl_ep=67600 avg_len=114.0 return=5.76 help=0.431 | overall 0.67 ready 19/24 worst: large_g9+_obs3-4_near1=0.15(100) small_g9+_obs3-4_near1=0.37(100) large_g6-8_obs3-4_near1=0.41(100)
+[  18.2m ep 121561] S11_obstacles_0-4 lvl_ep=67800 avg_len=108.7 return=6.35 help=0.420 | overall 0.63 ready 19/24 worst: large_g9+_obs3-4_near1=0.14(100) small_g9+_obs3-4_near1=0.36(100) large_g6-8_obs3-4_near1=0.39(100)
+[  18.2m ep 121820] S11_obstacles_0-4 lvl_ep=68000 avg_len=99.2 return=6.85 help=0.429 | overall 0.67 ready 19/24 worst: large_g9+_obs3-4_near1=0.15(100) small_g9+_obs3-4_near1=0.36(100) large_g6-8_obs3-4_near1=0.36(100)
+[  18.3m ep 122071] S11_obstacles_0-4 lvl_ep=68200 avg_len=90.4 return=7.61 help=0.429 | overall 0.72 ready 19/24 worst: large_g9+_obs3-4_near1=0.16(100) small_g9+_obs3-4_near1=0.34(100) large_g6-8_obs3-4_near1=0.35(100)
+[  18.3m ep 122331] S11_obstacles_0-4 lvl_ep=68400 avg_len=103.1 return=6.73 help=0.412 | overall 0.71 ready 18/24 worst: large_g9+_obs3-4_near1=0.17(100) small_g9+_obs3-4_near1=0.33(100) large_g6-8_obs3-4_near1=0.35(100)
+Process SpawnProcess-15:
+Process SpawnProcess-17:
+Process SpawnProcess-12:
+Process SpawnProcess-13:
+Process SpawnProcess-19:
+Process SpawnProcess-20:
+Process SpawnProcess-11:
+Process SpawnProcess-21:
+Process SpawnProcess-16:
+Process SpawnProcess-10:
+Process SpawnProcess-9:
+Process SpawnProcess-18:
+Process SpawnProcess-22:
+Process SpawnProcess-14:
+Traceback (most recent call last):
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\connection.py", line 311, in _recv_bytes
+    nread, err = ov.GetOverlappedResult(True)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Traceback (most recent call last):
+BrokenPipeError: [WinError 109] 파이프가 끝났습니다
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+Traceback (most recent call last):
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\connection.py", line 311, in _recv_bytes
+    nread, err = ov.GetOverlappedResult(True)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+BrokenPipeError: [WinError 109] 파이프가 끝났습니다
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\process.py", line 314, in _bootstrap
+    self.run()
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\connection.py", line 311, in _recv_bytes
+    nread, err = ov.GetOverlappedResult(True)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "C:\Users\user\projects\cooperative_transport\train\stages\vec_env.py", line 239, in _worker
+    connection.recv()
+BrokenPipeError: [WinError 109] 파이프가 끝났습니다
+
+During handling of the above exception, another exception occurred:
+
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\connection.py", line 249, in recv
+    buf = self._recv_bytes()
+          ^^^^^^^^^^^^^^^^^^
+Traceback (most recent call last):
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\connection.py", line 320, in _recv_bytes
+    raise EOFError
+EOFError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\process.py", line 314, in _bootstrap
+    self.run()
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "C:\Users\user\projects\cooperative_transport\train\stages\vec_env.py", line 239, in _worker
+    connection.recv()
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\connection.py", line 249, in recv
+    buf = self._recv_bytes()
+          ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\connection.py", line 320, in _recv_bytes
+    raise EOFError
+EOFError
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\process.py", line 314, in _bootstrap
+    self.run()
+Traceback (most recent call last):
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "C:\Users\user\projects\cooperative_transport\train\stages\vec_env.py", line 239, in _worker
+    connection.recv()
+Traceback (most recent call last):
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\connection.py", line 249, in recv
+    buf = self._recv_bytes()
+          ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\connection.py", line 320, in _recv_bytes
+    raise EOFError
+Traceback (most recent call last):
+EOFError
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\connection.py", line 311, in _recv_bytes
+    nread, err = ov.GetOverlappedResult(True)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\connection.py", line 311, in _recv_bytes
+    nread, err = ov.GetOverlappedResult(True)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\connection.py", line 311, in _recv_bytes
+    nread, err = ov.GetOverlappedResult(True)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+BrokenPipeError: [WinError 109] 파이프가 끝났습니다
+BrokenPipeError: [WinError 109] 파이프가 끝났습니다
+Traceback (most recent call last):
+BrokenPipeError: [WinError 109] 파이프가 끝났습니다
+
+During handling of the above exception, another exception occurred:
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+Traceback (most recent call last):
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\connection.py", line 311, in _recv_bytes
+    nread, err = ov.GetOverlappedResult(True)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Traceback (most recent call last):
+Traceback (most recent call last):
+Traceback (most recent call last):
+BrokenPipeError: [WinError 109] 파이프가 끝났습니다
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\process.py", line 314, in _bootstrap
+    self.run()
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\process.py", line 314, in _bootstrap
+    self.run()
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\connection.py", line 311, in _recv_bytes
+    nread, err = ov.GetOverlappedResult(True)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\connection.py", line 311, in _recv_bytes
+    nread, err = ov.GetOverlappedResult(True)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\connection.py", line 311, in _recv_bytes
+    nread, err = ov.GetOverlappedResult(True)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Traceback (most recent call last):
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+Traceback (most recent call last):
+  File "C:\Users\user\projects\cooperative_transport\train\stages\vec_env.py", line 239, in _worker
+    connection.recv()
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\connection.py", line 249, in recv
+    buf = self._recv_bytes()
+          ^^^^^^^^^^^^^^^^^^
+
+During handling of the above exception, another exception occurred:
+
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+BrokenPipeError: [WinError 109] 파이프가 끝났습니다
+BrokenPipeError: [WinError 109] 파이프가 끝났습니다
+Traceback (most recent call last):
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\process.py", line 314, in _bootstrap
+    self.run()
+Traceback (most recent call last):
+BrokenPipeError: [WinError 109] 파이프가 끝났습니다
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\connection.py", line 320, in _recv_bytes
+    raise EOFError
+
+During handling of the above exception, another exception occurred:
+
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\connection.py", line 311, in _recv_bytes
+    nread, err = ov.GetOverlappedResult(True)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\projects\cooperative_transport\train\stages\vec_env.py", line 239, in _worker
+    connection.recv()
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\connection.py", line 311, in _recv_bytes
+    nread, err = ov.GetOverlappedResult(True)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\connection.py", line 311, in _recv_bytes
+    nread, err = ov.GetOverlappedResult(True)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+During handling of the above exception, another exception occurred:
+
+EOFError
+Traceback (most recent call last):
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\connection.py", line 311, in _recv_bytes
+    nread, err = ov.GetOverlappedResult(True)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Traceback (most recent call last):
+BrokenPipeError: [WinError 109] 파이프가 끝났습니다
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\connection.py", line 249, in recv
+    buf = self._recv_bytes()
+          ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\connection.py", line 320, in _recv_bytes
+    raise EOFError
+EOFError
+BrokenPipeError: [WinError 109] 파이프가 끝났습니다
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+BrokenPipeError: [WinError 109] 파이프가 끝났습니다
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\process.py", line 314, in _bootstrap
+    self.run()
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "C:\Users\user\projects\cooperative_transport\train\stages\vec_env.py", line 239, in _worker
+    connection.recv()
+
+During handling of the above exception, another exception occurred:
+
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\process.py", line 314, in _bootstrap
+    self.run()
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "C:\Users\user\projects\cooperative_transport\train\stages\vec_env.py", line 239, in _worker
+    connection.recv()
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\connection.py", line 249, in recv
+    buf = self._recv_bytes()
+          ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\connection.py", line 320, in _recv_bytes
+    raise EOFError
+Traceback (most recent call last):
+BrokenPipeError: [WinError 109] 파이프가 끝났습니다
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "C:\Users\user\projects\cooperative_transport\train\stages\vec_env.py", line 239, in _worker
+    connection.recv()
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\connection.py", line 249, in recv
+    buf = self._recv_bytes()
+          ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\process.py", line 314, in _bootstrap
+    self.run()
+EOFError
+Traceback (most recent call last):
+
+During handling of the above exception, another exception occurred:
+
+
+During handling of the above exception, another exception occurred:
+
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\connection.py", line 320, in _recv_bytes
+    raise EOFError
+Traceback (most recent call last):
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\process.py", line 314, in _bootstrap
+    self.run()
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\process.py", line 314, in _bootstrap
+    self.run()
+Traceback (most recent call last):
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\connection.py", line 249, in recv
+    buf = self._recv_bytes()
+          ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\connection.py", line 320, in _recv_bytes
+    raise EOFError
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\process.py", line 314, in _bootstrap
+    self.run()
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "C:\Users\user\projects\cooperative_transport\train\stages\vec_env.py", line 239, in _worker
+    connection.recv()
+EOFError
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\process.py", line 314, in _bootstrap
+    self.run()
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "C:\Users\user\projects\cooperative_transport\train\stages\vec_env.py", line 239, in _worker
+    connection.recv()
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\connection.py", line 249, in recv
+    buf = self._recv_bytes()
+          ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\process.py", line 314, in _bootstrap
+    self.run()
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "C:\Users\user\projects\cooperative_transport\train\stages\vec_env.py", line 239, in _worker
+    connection.recv()
+EOFError
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\connection.py", line 249, in recv
+    buf = self._recv_bytes()
+          ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\projects\cooperative_transport\train\stages\vec_env.py", line 239, in _worker
+    connection.recv()
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\connection.py", line 249, in recv
+    buf = self._recv_bytes()
+          ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\connection.py", line 320, in _recv_bytes
+    raise EOFError
+  File "C:\Users\user\projects\cooperative_transport\train\stages\vec_env.py", line 239, in _worker
+    connection.recv()
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\connection.py", line 320, in _recv_bytes
+    raise EOFError
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "C:\Users\user\projects\cooperative_transport\train\stages\vec_env.py", line 239, in _worker
+    connection.recv()
+EOFError
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\connection.py", line 249, in recv
+    buf = self._recv_bytes()
+          ^^^^^^^^^^^^^^^^^^
+EOFError
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\connection.py", line 249, in recv
+    buf = self._recv_bytes()
+          ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\connection.py", line 249, in recv
+    buf = self._recv_bytes()
+          ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\connection.py", line 320, in _recv_bytes
+    raise EOFError
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\connection.py", line 320, in _recv_bytes
+    raise EOFError
+  File "C:\Users\user\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\connection.py", line 320, in _recv_bytes
+    raise EOFError
+EOFError
+EOFError
+EOFError

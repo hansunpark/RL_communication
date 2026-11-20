@@ -1,0 +1,28 @@
+{
+  "run": "comm_scratch_gru",
+  "level": "S10d_one_obstacle_random_spawn",
+  "tag": "stalled",
+  "comm_on": {
+    "episodes": 300,
+    "success_rate": 0.86,
+    "avg_length": 72.03333333333333,
+    "help_rate": 0.3985076353540028,
+    "rc": 0.4642796544809465,
+    "cpr": 0.7167664670658682,
+    "rc_steps": 21610,
+    "push_opportunities": 3340,
+    "coordinated_pushes": 2394
+  },
+  "comm_off": {
+    "episodes": 300,
+    "success_rate": 0.56,
+    "avg_length": 130.6,
+    "help_rate": 0.0,
+    "rc": 0.44233027054619917,
+    "cpr": 0.6284745762711864,
+    "rc_steps": 39180,
+    "push_opportunities": 2950,
+    "coordinated_pushes": 1854
+  },
+  "success_gap": 0.29999999999999993
+}

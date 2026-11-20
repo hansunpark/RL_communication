@@ -1,0 +1,32 @@
+{
+  "run": "comm_scratch_gru",
+  "level": "S11a_small_obstacles_0-4",
+  "tag": "mastered",
+  "comm_on": {
+    "episodes": 300,
+    "success_rate": 0.8533333333333334,
+    "avg_length": 75.06666666666666,
+    "help_rate": 0.4165297513321492,
+    "rc": 0.4543294849023114,
+    "cpr": 0.6537735849056604,
+    "rally_steps": 33.67,
+    "rally_rate": 0.97,
+    "rc_steps": 22520,
+    "push_opportunities": 3180,
+    "coordinated_pushes": 2079
+  },
+  "comm_off": {
+    "episodes": 300,
+    "success_rate": 0.45666666666666667,
+    "avg_length": 141.60333333333332,
+    "help_rate": 0.0,
+    "rc": 0.40696428991786926,
+    "cpr": 0.558454425363276,
+    "rally_steps": 70.60333333333334,
+    "rally_rate": 0.8633333333333333,
+    "rc_steps": 42481,
+    "push_opportunities": 3028,
+    "coordinated_pushes": 1691
+  },
+  "success_gap": 0.3966666666666667
+}

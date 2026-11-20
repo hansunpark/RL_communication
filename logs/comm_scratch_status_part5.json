@@ -1,0 +1,47 @@
+{
+  "run": "comm_scratch",
+  "level": 3,
+  "level_name": "S3a_size_max3",
+  "num_levels": 13,
+  "level_episodes": 8400,
+  "total_episodes": 11258,
+  "global_step": 5964960,
+  "elapsed_min": 6.3,
+  "avg_len": 169.435,
+  "avg_return": 1.2196500000000006,
+  "help_rate": 0.45360927258371775,
+  "buckets": {
+    "small_g4-5_obs0": {
+      "n": 100,
+      "success_rate": 0.27,
+      "ready": false
+    },
+    "small_g0-3_obs0": {
+      "n": 100,
+      "success_rate": 0.48,
+      "ready": false
+    },
+    "large_g4-5_obs0": {
+      "n": 100,
+      "success_rate": 0.04,
+      "ready": false
+    },
+    "large_g0-3_obs0": {
+      "n": 100,
+      "success_rate": 0.12,
+      "ready": false
+    }
+  },
+  "last_update": {
+    "policy_loss": -0.014526002058119047,
+    "value_loss": 0.5254026665352285,
+    "entropy": 1.6060811467468739,
+    "move_entropy": 1.2400906011462212,
+    "comm_entropy": 0.365990549325943,
+    "entropy_coef": 0.03
+  },
+  "history": [],
+  "stop_reason": null,
+  "help_rate_target_visible": 0.47453981198626183,
+  "help_rate_target_hidden": 0.314258178265819
+}

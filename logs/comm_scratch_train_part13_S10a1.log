@@ -1,0 +1,59 @@
+Device: cpu
+Resumed from checkpoints\comm_scratch_latest.pt at S10a1_clear_obstacle_small_target_scaffold
+Observation dim: 129
+Will stop after mastering S10a1_clear_obstacle_small_target_scaffold
+Run: comm_scratch envs=16 comm_enabled=True
+[   0.1m ep  28462] S10a1_clear_obstacle_small_target_scaffold lvl_ep=200 avg_len=55.3 return=7.16 help=0.405 | ready 0/2 worst: small_g4-5_obs1-2=0.68(100) small_g0-3_obs1-2=0.78(79)
+[   0.2m ep  28737] S10a1_clear_obstacle_small_target_scaffold lvl_ep=400 avg_len=55.7 return=7.10 help=0.416 | ready 0/2 worst: small_g4-5_obs1-2=0.66(100) small_g0-3_obs1-2=0.82(100)
+[   0.3m ep  29008] S10a1_clear_obstacle_small_target_scaffold lvl_ep=600 avg_len=51.0 return=7.67 help=0.411 | ready 0/2 worst: small_g4-5_obs1-2=0.69(100) small_g0-3_obs1-2=0.83(100)
+[   0.3m ep  29278] S10a1_clear_obstacle_small_target_scaffold lvl_ep=800 avg_len=57.5 return=6.64 help=0.414 | ready 0/2 worst: small_g4-5_obs1-2=0.63(100) small_g0-3_obs1-2=0.75(100)
+[   0.4m ep  29536] S10a1_clear_obstacle_small_target_scaffold lvl_ep=1000 avg_len=47.4 return=8.55 help=0.418 | ready 1/2 worst: small_g0-3_obs1-2=0.83(100) small_g4-5_obs1-2=0.85(100)
+[   0.5m ep  29799] S10a1_clear_obstacle_small_target_scaffold lvl_ep=1200 avg_len=52.4 return=7.18 help=0.400 | ready 0/2 worst: small_g4-5_obs1-2=0.68(100) small_g0-3_obs1-2=0.81(100)
+[   0.6m ep  30066] S10a1_clear_obstacle_small_target_scaffold lvl_ep=1400 avg_len=56.1 return=6.67 help=0.411 | ready 0/2 worst: small_g4-5_obs1-2=0.63(100) small_g0-3_obs1-2=0.71(100)
+[   0.7m ep  30333] S10a1_clear_obstacle_small_target_scaffold lvl_ep=1600 avg_len=53.9 return=7.14 help=0.430 | ready 0/2 worst: small_g4-5_obs1-2=0.64(100) small_g0-3_obs1-2=0.79(100)
+[   0.8m ep  30594] S10a1_clear_obstacle_small_target_scaffold lvl_ep=1800 avg_len=57.1 return=6.83 help=0.433 | ready 0/2 worst: small_g4-5_obs1-2=0.65(100) small_g0-3_obs1-2=0.76(100)
+[   0.9m ep  30869] S10a1_clear_obstacle_small_target_scaffold lvl_ep=2000 avg_len=54.4 return=7.18 help=0.423 | ready 0/2 worst: small_g4-5_obs1-2=0.65(100) small_g0-3_obs1-2=0.79(100)
+[   0.9m ep  31147] S10a1_clear_obstacle_small_target_scaffold lvl_ep=2200 avg_len=57.3 return=7.13 help=0.451 | ready 0/2 worst: small_g4-5_obs1-2=0.66(100) small_g0-3_obs1-2=0.79(100)
+[   1.0m ep  31411] S10a1_clear_obstacle_small_target_scaffold lvl_ep=2400 avg_len=52.5 return=7.69 help=0.458 | ready 0/2 worst: small_g4-5_obs1-2=0.75(100) small_g0-3_obs1-2=0.79(100)
+[   1.1m ep  31664] S10a1_clear_obstacle_small_target_scaffold lvl_ep=2600 avg_len=54.2 return=7.22 help=0.423 | ready 0/2 worst: small_g4-5_obs1-2=0.72(100) small_g0-3_obs1-2=0.76(100)
+[   1.2m ep  31927] S10a1_clear_obstacle_small_target_scaffold lvl_ep=2800 avg_len=52.9 return=7.48 help=0.415 | ready 1/2 worst: small_g4-5_obs1-2=0.70(100) small_g0-3_obs1-2=0.85(100)
+[   1.3m ep  32202] S10a1_clear_obstacle_small_target_scaffold lvl_ep=3000 avg_len=52.5 return=7.46 help=0.442 | ready 0/2 worst: small_g4-5_obs1-2=0.74(100) small_g0-3_obs1-2=0.79(100)
+[   1.3m ep  32481] S10a1_clear_obstacle_small_target_scaffold lvl_ep=3200 avg_len=55.4 return=6.92 help=0.434 | ready 0/2 worst: small_g4-5_obs1-2=0.63(100) small_g0-3_obs1-2=0.77(100)
+[   1.4m ep  32743] S10a1_clear_obstacle_small_target_scaffold lvl_ep=3400 avg_len=55.4 return=6.99 help=0.454 | ready 0/2 worst: small_g4-5_obs1-2=0.66(100) small_g0-3_obs1-2=0.78(100)
+[   1.5m ep  33029] S10a1_clear_obstacle_small_target_scaffold lvl_ep=3600 avg_len=56.6 return=6.71 help=0.444 | ready 0/2 worst: small_g4-5_obs1-2=0.62(100) small_g0-3_obs1-2=0.78(100)
+[   1.6m ep  33297] S10a1_clear_obstacle_small_target_scaffold lvl_ep=3800 avg_len=53.0 return=7.55 help=0.454 | ready 0/2 worst: small_g4-5_obs1-2=0.73(100) small_g0-3_obs1-2=0.80(100)
+[   1.7m ep  33570] S10a1_clear_obstacle_small_target_scaffold lvl_ep=4000 avg_len=54.0 return=7.37 help=0.432 | ready 0/2 worst: small_g4-5_obs1-2=0.71(100) small_g0-3_obs1-2=0.83(100)
+[   1.8m ep  33846] S10a1_clear_obstacle_small_target_scaffold lvl_ep=4200 avg_len=54.2 return=7.22 help=0.411 | ready 0/2 worst: small_g4-5_obs1-2=0.67(100) small_g0-3_obs1-2=0.84(100)
+[   1.9m ep  34117] S10a1_clear_obstacle_small_target_scaffold lvl_ep=4400 avg_len=53.4 return=7.41 help=0.405 | ready 1/2 worst: small_g4-5_obs1-2=0.68(100) small_g0-3_obs1-2=0.86(100)
+[   2.0m ep  34388] S10a1_clear_obstacle_small_target_scaffold lvl_ep=4600 avg_len=52.1 return=7.36 help=0.425 | ready 0/2 worst: small_g4-5_obs1-2=0.65(100) small_g0-3_obs1-2=0.84(100)
+[   2.0m ep  34631] S10a1_clear_obstacle_small_target_scaffold lvl_ep=4800 avg_len=55.2 return=7.21 help=0.399 | ready 0/2 worst: small_g4-5_obs1-2=0.68(100) small_g0-3_obs1-2=0.78(100)
+[   2.1m ep  34885] S10a1_clear_obstacle_small_target_scaffold lvl_ep=5000 avg_len=52.3 return=7.41 help=0.399 | ready 0/2 worst: small_g4-5_obs1-2=0.71(100) small_g0-3_obs1-2=0.76(100)
+[   2.2m ep  35148] S10a1_clear_obstacle_small_target_scaffold lvl_ep=5200 avg_len=52.8 return=7.29 help=0.417 | ready 0/2 worst: small_g4-5_obs1-2=0.62(100) small_g0-3_obs1-2=0.82(100)
+[   2.3m ep  35409] S10a1_clear_obstacle_small_target_scaffold lvl_ep=5400 avg_len=52.3 return=7.70 help=0.431 | ready 0/2 worst: small_g4-5_obs1-2=0.75(100) small_g0-3_obs1-2=0.81(100)
+[   2.3m ep  35685] S10a1_clear_obstacle_small_target_scaffold lvl_ep=5600 avg_len=48.0 return=7.83 help=0.414 | ready 0/2 worst: small_g4-5_obs1-2=0.74(100) small_g0-3_obs1-2=0.81(100)
+[   2.4m ep  35947] S10a1_clear_obstacle_small_target_scaffold lvl_ep=5800 avg_len=55.8 return=6.83 help=0.417 | ready 0/2 worst: small_g4-5_obs1-2=0.61(100) small_g0-3_obs1-2=0.83(100)
+[   2.5m ep  36209] S10a1_clear_obstacle_small_target_scaffold lvl_ep=6000 avg_len=51.6 return=7.40 help=0.440 | ready 1/2 worst: small_g4-5_obs1-2=0.65(100) small_g0-3_obs1-2=0.86(100)
+[   2.6m ep  36475] S10a1_clear_obstacle_small_target_scaffold lvl_ep=6200 avg_len=49.2 return=7.91 help=0.436 | ready 1/2 worst: small_g4-5_obs1-2=0.75(100) small_g0-3_obs1-2=0.85(100)
+[   2.7m ep  36736] S10a1_clear_obstacle_small_target_scaffold lvl_ep=6400 avg_len=44.6 return=8.31 help=0.448 | ready 1/2 worst: small_g4-5_obs1-2=0.75(100) small_g0-3_obs1-2=0.91(100)
+[   2.7m ep  37005] S10a1_clear_obstacle_small_target_scaffold lvl_ep=6600 avg_len=54.5 return=7.18 help=0.418 | ready 1/2 worst: small_g4-5_obs1-2=0.64(100) small_g0-3_obs1-2=0.86(100)
+[   2.8m ep  37267] S10a1_clear_obstacle_small_target_scaffold lvl_ep=6800 avg_len=55.3 return=7.02 help=0.423 | ready 0/2 worst: small_g4-5_obs1-2=0.66(100) small_g0-3_obs1-2=0.81(100)
+[   2.9m ep  37530] S10a1_clear_obstacle_small_target_scaffold lvl_ep=7000 avg_len=50.9 return=7.27 help=0.426 | ready 0/2 worst: small_g4-5_obs1-2=0.73(100) small_g0-3_obs1-2=0.74(100)
+[   3.0m ep  37805] S10a1_clear_obstacle_small_target_scaffold lvl_ep=7200 avg_len=45.0 return=8.21 help=0.436 | ready 1/2 worst: small_g4-5_obs1-2=0.80(100) small_g0-3_obs1-2=0.85(100)
+[   3.0m ep  38079] S10a1_clear_obstacle_small_target_scaffold lvl_ep=7400 avg_len=50.6 return=7.71 help=0.423 | ready 0/2 worst: small_g4-5_obs1-2=0.73(100) small_g0-3_obs1-2=0.83(100)
+[   3.1m ep  38357] S10a1_clear_obstacle_small_target_scaffold lvl_ep=7600 avg_len=57.4 return=6.06 help=0.428 | ready 0/2 worst: small_g4-5_obs1-2=0.62(100) small_g0-3_obs1-2=0.72(100)
+[   3.2m ep  38635] S10a1_clear_obstacle_small_target_scaffold lvl_ep=7800 avg_len=53.0 return=7.52 help=0.419 | ready 0/2 worst: small_g4-5_obs1-2=0.71(100) small_g0-3_obs1-2=0.81(100)
+[   3.3m ep  38904] S10a1_clear_obstacle_small_target_scaffold lvl_ep=8000 avg_len=47.1 return=7.81 help=0.440 | ready 1/2 worst: small_g4-5_obs1-2=0.66(100) small_g0-3_obs1-2=0.93(100)
+[   3.4m ep  39176] S10a1_clear_obstacle_small_target_scaffold lvl_ep=8200 avg_len=51.5 return=7.30 help=0.438 | ready 0/2 worst: small_g4-5_obs1-2=0.66(100) small_g0-3_obs1-2=0.83(100)
+[   3.5m ep  39432] S10a1_clear_obstacle_small_target_scaffold lvl_ep=8400 avg_len=52.3 return=7.38 help=0.417 | ready 0/2 worst: small_g4-5_obs1-2=0.70(100) small_g0-3_obs1-2=0.81(100)
+[   3.5m ep  39695] S10a1_clear_obstacle_small_target_scaffold lvl_ep=8600 avg_len=48.5 return=7.75 help=0.409 | ready 0/2 worst: small_g4-5_obs1-2=0.73(100) small_g0-3_obs1-2=0.80(100)
+[   3.6m ep  39956] S10a1_clear_obstacle_small_target_scaffold lvl_ep=8800 avg_len=47.0 return=8.38 help=0.407 | ready 0/2 worst: small_g0-3_obs1-2=0.82(100) small_g4-5_obs1-2=0.82(100)
+
+======================================================================
+S10a1_clear_obstacle_small_target_scaffold mastered after 8869 episodes
+  small_g0-3_obs1-2            n= 100 success=0.850
+  small_g4-5_obs1-2            n= 100 success=0.850
+  ablation: comm_on=0.777 comm_off=0.697 gap=+0.080
+======================================================================
+
+Moving to S10a2_clear_obstacle_in_path_scaffold
+comm_scratch finished: stopped after S10a1_clear_obstacle_small_target_scaffold

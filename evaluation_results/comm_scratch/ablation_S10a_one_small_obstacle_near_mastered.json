@@ -1,0 +1,18 @@
+{
+  "run": "comm_scratch",
+  "level": "S10a_one_small_obstacle_near",
+  "tag": "mastered",
+  "comm_on": {
+    "episodes": 300,
+    "success_rate": 0.8333333333333334,
+    "avg_length": 75.59,
+    "help_rate": 0.6385985800590908
+  },
+  "comm_off": {
+    "episodes": 300,
+    "success_rate": 0.44666666666666666,
+    "avg_length": 140.14333333333335,
+    "help_rate": 0.0
+  },
+  "success_gap": 0.3866666666666667
+}

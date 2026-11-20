@@ -1,0 +1,18 @@
+{
+  "run": "comm_scratch",
+  "level": "S10a1_clear_obstacle_small_target_scaffold",
+  "tag": "mastered",
+  "comm_on": {
+    "episodes": 300,
+    "success_rate": 0.7766666666666666,
+    "avg_length": 50.09,
+    "help_rate": 0.41195847474545816
+  },
+  "comm_off": {
+    "episodes": 300,
+    "success_rate": 0.6966666666666667,
+    "avg_length": 56.18333333333333,
+    "help_rate": 0.0
+  },
+  "success_gap": 0.07999999999999996
+}

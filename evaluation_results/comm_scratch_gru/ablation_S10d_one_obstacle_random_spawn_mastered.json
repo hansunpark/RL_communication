@@ -1,0 +1,32 @@
+{
+  "run": "comm_scratch_gru",
+  "level": "S10d_one_obstacle_random_spawn",
+  "tag": "mastered",
+  "comm_on": {
+    "episodes": 300,
+    "success_rate": 0.88,
+    "avg_length": 70.4,
+    "help_rate": 0.4259351325757576,
+    "rc": 0.4528527462121236,
+    "cpr": 0.7051201011378002,
+    "rally_steps": 29.343333333333334,
+    "rally_rate": 0.9833333333333333,
+    "rc_steps": 21120,
+    "push_opportunities": 3164,
+    "coordinated_pushes": 2231
+  },
+  "comm_off": {
+    "episodes": 300,
+    "success_rate": 0.5,
+    "avg_length": 134.36666666666667,
+    "help_rate": 0.0,
+    "rc": 0.4117402629620528,
+    "cpr": 0.7055169894044574,
+    "rally_steps": 58.75333333333333,
+    "rally_rate": 0.8966666666666666,
+    "rc_steps": 40310,
+    "push_opportunities": 2737,
+    "coordinated_pushes": 1931
+  },
+  "success_gap": 0.38
+}
